@@ -1,24 +1,8 @@
-﻿using System;
-using System.Reflection;
-using System.Text.RegularExpressions;
-using static System.Collections.Specialized.BitVector32;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
-namespace Overbrugging
+﻿namespace Overbrugging
 {
-    //[Serializable]
-    //[XmlRoot(ElementName = "QueryOverbrug")]
     public class OudeOverbrugging
     {
-        public OudeOverbrugging()
-        {
-            //RegNr = DatumInv = Sectie = Installatie = InstallatieDeel = "";
-            //NaamKKD1uit = NaamKKD2uit = Ploeg = Reden = "";
-            //Uitvoering = EnigeOverb = WerkVerg = WerkVergNr = "";
-            //WerkVergOk = SrsNr = DatumWv = NaamWV = NaamKKDverw = "";
-            //UitersteDatum = Veld1 = BijzonderhedenWV = OvernemenIWV = "";
-            //TIW = TIWOB = InGebruik = PersWijzig = BewerkTijd = Soort = MocRsNr = "";
-        }
+        public OudeOverbrugging(){}
 
         public string RegNr;
         public string DatumInv;
