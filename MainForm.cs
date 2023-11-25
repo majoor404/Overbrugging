@@ -9,9 +9,21 @@ namespace Overbrugging
 {
     public partial class MainForm : Form
     {
+        private bool Drag;
+        private int MouseX;
+        private int MouseY;
+
+        //private const int WM_NCHITTEST = 0x84;
+        //private const int HTCLIENT = 0x1;
+        //private const int HTCAPTION = 0x2;
+
+        //private bool m_aeroEnabled;
+        
+        
         public static List<OudeOverbrugging> OudeLijst = new List<OudeOverbrugging>();
         public static List<NamenFunties> NamenLijst = new List<NamenFunties>();
         public static List<Secties> SectieLijst = new List<Secties>();
+        public static List<OverBrugRecord> LijstOverbrugingen = new List<OverBrugRecord> { };
 
         public MainForm()
         {
@@ -120,6 +132,8 @@ namespace Overbrugging
                     SectieLijst.Add(sc);
                 }
 
+                _ = MessageBox.Show("Dan nu samen voegen tot nieuwe opslag class.");
+
 
 
             }
@@ -129,6 +143,32 @@ namespace Overbrugging
                 _ = MessageBox.Show(ex.Message);
 
             }
+        }
+
+        private void panelTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            Drag = true;
+            MouseX = Cursor.Position.X - this.Left;
+            MouseY = Cursor.Position.Y - this.Top;
+        }
+
+        private void panelTop_MouseUp(object sender, MouseEventArgs e)
+        {
+            Drag = false;
+        }
+
+        private void panelTop_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(Drag)
+            {
+                this.Top = Cursor.Position.Y - MouseY;
+                this.Left = Cursor.Position.X - MouseX;
+            }
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
