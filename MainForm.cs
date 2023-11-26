@@ -12,18 +12,12 @@ namespace Overbrugging
         private bool Drag;
         private int MouseX;
         private int MouseY;
-
-        //private const int WM_NCHITTEST = 0x84;
-        //private const int HTCLIENT = 0x1;
-        //private const int HTCAPTION = 0x2;
-
-        //private bool m_aeroEnabled;
-        
         
         public static List<OudeOverbrugging> OudeLijst = new List<OudeOverbrugging>();
         public static List<NamenFunties> NamenLijst = new List<NamenFunties>();
         public static List<Secties> SectieLijst = new List<Secties>();
         public static List<OverBrugRecord> LijstOverbrugingen = new List<OverBrugRecord> { };
+        public static List<Data> LijstData = new List<Data>();
 
         public MainForm()
         {
@@ -55,9 +49,10 @@ namespace Overbrugging
                 string[] items;
                 OudeLijst.Clear();
 
-                OudeOverbrugging ov = new OudeOverbrugging();
+                
                 for (int i = 0; csvTekst.Count() > i; i++)
                 {
+                    OudeOverbrugging ov = new OudeOverbrugging();
                     items = csvTekst[i].Split(';');
                     int count = 0;
                     ov.RegNr = items[count++];
@@ -103,9 +98,10 @@ namespace Overbrugging
                 string[] namenTekst = File.ReadAllLines($"Namen.mdb.csv");
                 NamenLijst.Clear();
 
-                NamenFunties nf = new NamenFunties();
+                
                 for (int i = 0; namenTekst.Count() > i; i++)
                 {
+                    NamenFunties nf = new NamenFunties();
                     items = namenTekst[i].Split(';');
                     int count = 0;
                     nf.Index = int.Parse(items[count++]);
@@ -122,9 +118,10 @@ namespace Overbrugging
 
                 string[] SectieTekst = File.ReadAllLines($"SectieTabel.mdb.csv");
                 SectieLijst.Clear();
-                Secties sc = new Secties();
+                
                 for (int i = 0; SectieTekst.Count() > i; i++)
                 {
+                    Secties sc = new Secties();
                     items = SectieTekst[i].Split(';');
                     int count = 0;
                     sc.Index = int.Parse(items[count++]);
@@ -134,7 +131,55 @@ namespace Overbrugging
 
                 _ = MessageBox.Show("Dan nu samen voegen tot nieuwe opslag class.");
 
+                foreach (OudeOverbrugging o in OudeLijst)
+                {
+                    Data a = new Data();
+                    a.RegNr = o.RegNr;
+                    a.DatumInv = NaarDateTime(o.DatumInv);
+                    a.SapNr = o.SrsNr;
+                    a.MocNr = o.MocRsNr;
 
+                    a.Sectie = ZoekSectie(o.Sectie);
+                    //public string Installatie;
+                    //public string InstallatieDeel;
+
+                    //public string Naam1;
+                    //public string Naam2;
+                    //public string Ploeg;
+
+                    //public string Reden;
+                    //public string Uitvoering;
+
+                    //// ivwv
+                    //public bool WerkVerg;
+                    //public string WerkVergNr;
+
+                    //public DateTime DatumWv;
+                    //public string NaamWV;
+
+                    //public DateTime UitersteDatum;
+                    //public DateTime DatumVerloopWV;
+
+                    //public int Soort;
+
+                    //public string BijzonderhedenWV;
+
+                    ////verwijderen
+                    //public string Naamverw;
+                    //public DateTime DatumVerw;
+                    //public string BijzonderhedenVerw;
+
+                    //public string ReserveS1;
+                    //public string ReserveS2;
+                    //public int ReserveI1;
+                    //public int ReserveI2;
+                    //public DateTime ReserveD1;
+                    //public DateTime ReserveD2;
+                    //public bool ReserveB1;
+
+
+                    LijstData.Add(a);
+                }
 
             }
 
@@ -144,6 +189,34 @@ namespace Overbrugging
 
             }
         }
+
+        private DateTime NaarDateTime(string Datum) // is van format "19-11-2023 00:00:00" of "9-4-2001 00:00:00"
+        {
+            // verwijder tijd
+            int pos = Datum.IndexOf(" ");
+            Datum = Datum.Substring(0, pos);
+
+            string []temp = Datum.Split('-');
+
+            int Dag = int.Parse(temp[0]);
+            int Maand = int.Parse(temp[1]);
+            int Jaar = int.Parse(temp[2]);
+
+            DateTime ret = new DateTime(Jaar, Maand, Dag);
+            return ret;
+        }
+
+        private String ZoekSectie(string nummer)
+        {
+            int zoek = int.Parse(nummer);
+            foreach (Secties s in SectieLijst)
+            {
+                if (zoek == s.Index)
+                    return s.Naam;
+            }
+            return "";
+        }
+
 
         private void panelTop_MouseDown(object sender, MouseEventArgs e)
         {
@@ -169,6 +242,11 @@ namespace Overbrugging
         private void Exit_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            comboBoxSoortFilter.SelectedIndex = 0;
         }
     }
 }
