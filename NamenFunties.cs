@@ -10,7 +10,7 @@ namespace Overbrugging
     {
         public NamenFunties() { }
 
-        public int Index;
+        public string Index;
         public string PersoneelNummer;
         public string Naam;
         public string Team;

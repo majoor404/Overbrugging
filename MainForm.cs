@@ -16,6 +16,7 @@ namespace Overbrugging
         public static List<OudeOverbrugging> OudeLijst = new List<OudeOverbrugging>();
         public static List<NamenFunties> NamenLijst = new List<NamenFunties>();
         public static List<Secties> SectieLijst = new List<Secties>();
+        public static List<InstallatieOnderdeel> InstallatieLijst = new List<InstallatieOnderdeel>();
         public static List<OverBrugRecord> LijstOverbrugingen = new List<OverBrugRecord> { };
         public static List<Data> LijstData = new List<Data>();
 
@@ -104,7 +105,7 @@ namespace Overbrugging
                     NamenFunties nf = new NamenFunties();
                     items = namenTekst[i].Split(';');
                     int count = 0;
-                    nf.Index = int.Parse(items[count++]);
+                    nf.Index = items[count++];
                     nf.PersoneelNummer = items[count++];
                     nf.Naam = items[count++];
                     nf.Team = items[count++];
@@ -124,10 +125,27 @@ namespace Overbrugging
                     Secties sc = new Secties();
                     items = SectieTekst[i].Split(';');
                     int count = 0;
-                    sc.Index = int.Parse(items[count++]);
+                    sc.Index = items[count++];
                     sc.Naam = items[count++];
                     SectieLijst.Add(sc);
                 }
+
+                _ = MessageBox.Show("Inlezen InstallatieTabel.mdb.csv");
+
+                string[] InstallatieTekst = File.ReadAllLines($"InstallatieTabel.mdb.csv");
+                InstallatieLijst.Clear();
+
+                for (int i = 0; InstallatieTekst.Count() > i; i++)
+                {
+                    InstallatieOnderdeel iso = new InstallatieOnderdeel();
+                    items = InstallatieTekst[i].Split(';');
+                    int count = 0;
+                    iso.Index = items[count++];
+                    iso.Instal = items[count++];
+                    iso.Sectie = ZoekSectie(items[count++]);
+                    InstallatieLijst.Add(iso);
+                }
+
 
                 _ = MessageBox.Show("Dan nu samen voegen tot nieuwe opslag class.");
 
@@ -139,44 +157,51 @@ namespace Overbrugging
                     a.SapNr = o.SrsNr;
                     a.MocNr = o.MocRsNr;
 
+                    labelAantal.Text = a.RegNr;
+                    labelAantal.Refresh();
+
                     a.Sectie = ZoekSectie(o.Sectie);
-                    //public string Installatie;
-                    //public string InstallatieDeel;
+                    a.Installatie = ZoekInstallatie(o.Installatie);
+                    a.InstallatieDeel = o.InstallatieDeel;
 
-                    //public string Naam1;
-                    //public string Naam2;
-                    //public string Ploeg;
+                    a.Naam1 = ZoekNaam(o.NaamKKD1uit);
+                    a.Naam2 = ZoekNaam(o.NaamKKD2uit);
+                    a.Ploeg = o.Ploeg;
 
-                    //public string Reden;
-                    //public string Uitvoering;
+                    a.Reden = o.Reden;
+                    a.Uitvoering = o.Uitvoering;
 
                     //// ivwv
-                    //public bool WerkVerg;
-                    //public string WerkVergNr;
+                    a.WerkVerg = MaakBool(o.WerkVerg);
+                    a.WerkVergNr = o.WerkVergNr;
 
-                    //public DateTime DatumWv;
-                    //public string NaamWV;
+                    a.DatumWv = NaarDateTime(o.DatumWv);
+                    a.NaamWV = ZoekNaam(o.NaamWV); 
 
-                    //public DateTime UitersteDatum;
-                    //public DateTime DatumVerloopWV;
+                    a.UitersteDatum = NaarDateTime(o.UitersteDatum);
+                    a.DatumVerloopWV = NaarDateTime(o.DatumVerloopWV);
 
-                    //public int Soort;
+                    a.Soort = 0; // default
+                    if (o.TIWOB == "Tijdelijke Installatie Wijziging")
+                        a.Soort = 1;
+                    if (o.TIWOB == "Management Of Change")
+                        a.Soort = 2;
 
-                    //public string BijzonderhedenWV;
+                    a.BijzonderhedenWV = o.BijzonderhedenWV;
 
                     ////verwijderen
-                    //public string Naamverw;
-                    //public DateTime DatumVerw;
-                    //public string BijzonderhedenVerw;
+                    a.Naamverw = ZoekNaam(o.NaamKKDverw);
+                    a.DatumVerw = NaarDateTime(o.DatumVerw);
+                    a.BijzonderhedenVerw = o.BijzonderhedenVerw;
 
-                    //public string ReserveS1;
-                    //public string ReserveS2;
-                    //public int ReserveI1;
-                    //public int ReserveI2;
-                    //public DateTime ReserveD1;
-                    //public DateTime ReserveD2;
-                    //public bool ReserveB1;
-
+                    a.ReserveS1 = "";
+                    a.ReserveS2 = "";
+                    a.ReserveI1 = 0;
+                    a.ReserveI2 = 0;
+                    a.ReserveD1 = DateTime.Now;
+                    a.ReserveD2 = DateTime.Now;
+                    a.ReserveB1 = false;
+                    a.ReserveB2 = false;
 
                     LijstData.Add(a);
                 }
@@ -192,6 +217,8 @@ namespace Overbrugging
 
         private DateTime NaarDateTime(string Datum) // is van format "19-11-2023 00:00:00" of "9-4-2001 00:00:00"
         {
+            if(string.IsNullOrEmpty(Datum))
+                return DateTime.Now;
             // verwijder tijd
             int pos = Datum.IndexOf(" ");
             Datum = Datum.Substring(0, pos);
@@ -206,38 +233,78 @@ namespace Overbrugging
             return ret;
         }
 
-        private String ZoekSectie(string nummer)
+        private bool MaakBool(string vraag)
         {
-            int zoek = int.Parse(nummer);
-            foreach (Secties s in SectieLijst)
+            if (string.IsNullOrEmpty(vraag))
+                return false;
+            if (vraag == "Ja")
+                return true;
+            return false;
+        }
+        private String ZoekSectie(string zoek)
+        {
+            if (string.IsNullOrEmpty(zoek))
+                return "";
+            try
             {
-                if (zoek == s.Index)
-                    return s.Naam;
+                Secties Q = SectieLijst.First(a => a.Index == zoek);
+                return Q.Naam;
             }
-            return "";
-        }
-
-
-        private void panelTop_MouseDown(object sender, MouseEventArgs e)
-        {
-            Drag = true;
-            MouseX = Cursor.Position.X - this.Left;
-            MouseY = Cursor.Position.Y - this.Top;
-        }
-
-        private void panelTop_MouseUp(object sender, MouseEventArgs e)
-        {
-            Drag = false;
-        }
-
-        private void panelTop_MouseMove(object sender, MouseEventArgs e)
-        {
-            if(Drag)
+            catch
             {
-                this.Top = Cursor.Position.Y - MouseY;
-                this.Left = Cursor.Position.X - MouseX;
+                return "";
             }
         }
+
+        private String ZoekNaam(string zoek)
+        {
+            if (string.IsNullOrEmpty(zoek))
+                return "";
+            try
+            {
+                NamenFunties Q = NamenLijst.First(a => a.Index == zoek);
+                return Q.Naam;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        private string ZoekInstallatie(string zoek)
+        {
+            if (string.IsNullOrEmpty(zoek))
+                return "";
+            try
+            {
+                InstallatieOnderdeel Q = InstallatieLijst.First(a => a.Index == zoek);
+                return Q.Instal;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+        //private void panelTop_MouseDown(object sender, MouseEventArgs e)
+        //{
+        //    Drag = true;
+        //    MouseX = Cursor.Position.X - this.Left;
+        //    MouseY = Cursor.Position.Y - this.Top;
+        //}
+
+        //private void panelTop_MouseUp(object sender, MouseEventArgs e)
+        //{
+        //    Drag = false;
+        //}
+
+        //private void panelTop_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    if(Drag)
+        //    {
+        //        this.Top = Cursor.Position.Y - MouseY;
+        //        this.Left = Cursor.Position.X - MouseX;
+        //    }
+        //}
 
         private void Exit_Click(object sender, EventArgs e)
         {
@@ -247,6 +314,11 @@ namespace Overbrugging
         private void MainForm_Shown(object sender, EventArgs e)
         {
             comboBoxSoortFilter.SelectedIndex = 0;
+        }
+
+        private void dataBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

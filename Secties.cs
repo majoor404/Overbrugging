@@ -3,7 +3,7 @@
     public class Secties
     {
         public Secties() { }
-        public int Index;
+        public string Index;
         public string Naam;
     }
 }
