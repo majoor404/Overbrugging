@@ -539,5 +539,10 @@ namespace Overbrugging
                 ButImport_Click(this,null);
             }
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            _ = System.Diagnostics.Process.Start("https://github.com/majoor404/Overbrugging"); 
+        }
     }
 }
