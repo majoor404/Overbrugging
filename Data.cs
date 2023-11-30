@@ -1,58 +1,63 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Overbrugging
 {
+    [Serializable]
     public class Data
     {
+        private static string heleText(string _Soort)
+        {
+            if (_Soort == "0")
+                return "Overb";
+            if (_Soort == "1")
+                return "TIW";
+            if (_Soort == "2")
+                return "MOC";
+            return _Soort;
+        }
         public Data() { }
-        
+
         //invoer
-        public string RegNr;
-        public DateTime DatumInv;
-        public string SapNr;
-        public string MocNr;
+        public int RegNr { get; set; }
+        public string DatumInv { get; set; }
+        public string SapNr { get; set; }
+        public string MocNr { get; set; }
 
-        public string Sectie;
-        public string Installatie;
-        public string InstallatieDeel;
+        public string Sectie { get; set; }
+        public string Installatie { get; set; }
+        public string InstallatieDeel { get; set; }
 
-        public string Naam1;
-        public string Naam2;
-        public string Ploeg;
+        public string Naam1 { get; set; }
+        public string Naam2 { get; set; }
+        public string Ploeg { get; set; }
 
-        public string Reden;
-        public string Uitvoering;
-        
+        public string Reden { get; set; }
+        public string Uitvoering { get; set; }
+
         // ivwv
-        public bool WerkVerg;
-        public string WerkVergNr;
+        public string WerkVerg { get; set; }
+        public string WerkVergNr { get; set; }
 
-        public DateTime DatumWv;
-        public string NaamWV;
+        public string DatumWv { get; set; }
+        public string NaamWV { get; set; }
 
-        public DateTime UitersteDatum;
-        public DateTime DatumVerloopWV;
+        public string UitersteDatum { get; set; }
+        public string DatumVerloopWV { get; set; }
+        public string Soort { get; set; } 
+        public string BijzonderhedenWV { get; set; }
 
-        public int Soort;
-
-        public string BijzonderhedenWV;
-        
         //verwijderen
-        public string Naamverw;
-        public DateTime DatumVerw;
-        public string BijzonderhedenVerw;
+        public string Naamverw { get; set; }
+        public string DatumVerw { get; set; }
+        public string BijzonderhedenVerw { get; set; }
 
-        public string ReserveS1;
-        public string ReserveS2;
-        public int ReserveI1;
-        public int ReserveI2;
-        public DateTime ReserveD1;
-        public DateTime ReserveD2;
-        public bool ReserveB1;
-        public bool ReserveB2;
+        public string Reserve1 { get; set; }
+        public string Reserve2 { get; set; }
+        public string Reserve3 { get; set; }
+        public string Reserve4 { get; set; }
+        public string Reserve5 { get; set; }
+        public string Reserve6 { get; set; }
+        public string Reserve7 { get; set; }
+        public string Reserve8 { get; set; }
     }
 }

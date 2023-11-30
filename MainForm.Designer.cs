@@ -37,24 +37,22 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.ButImport = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.comboBoxSoortFilter = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
+            this.comboBoxSectie = new System.Windows.Forms.ComboBox();
+            this.ButSettings = new System.Windows.Forms.Button();
+            this.ButRefresh = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.ButExit = new System.Windows.Forms.Button();
             this.panelMain = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -145,10 +143,9 @@
             // panelMenu
             // 
             this.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelMenu.Controls.Add(this.ButImport);
             this.panelMenu.Controls.Add(this.panel2);
-            this.panelMenu.Controls.Add(this.button3);
-            this.panelMenu.Controls.Add(this.button4);
+            this.panelMenu.Controls.Add(this.ButSettings);
+            this.panelMenu.Controls.Add(this.ButRefresh);
             this.panelMenu.Controls.Add(this.button5);
             this.panelMenu.Controls.Add(this.button6);
             this.panelMenu.Controls.Add(this.button7);
@@ -159,16 +156,6 @@
             this.panelMenu.Size = new System.Drawing.Size(213, 932);
             this.panelMenu.TabIndex = 4;
             // 
-            // ButImport
-            // 
-            this.ButImport.Location = new System.Drawing.Point(64, 650);
-            this.ButImport.Name = "ButImport";
-            this.ButImport.Size = new System.Drawing.Size(75, 23);
-            this.ButImport.TabIndex = 24;
-            this.ButImport.Text = "Import";
-            this.ButImport.UseVisualStyleBackColor = true;
-            this.ButImport.Click += new System.EventHandler(this.ButImport_Click);
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Transparent;
@@ -178,8 +165,8 @@
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.label13);
             this.panel2.Controls.Add(this.comboBoxSoortFilter);
-            this.panel2.Controls.Add(this.comboBox2);
-            this.panel2.Controls.Add(this.comboBox3);
+            this.panel2.Controls.Add(this.comboBoxStatus);
+            this.panel2.Controls.Add(this.comboBoxSectie);
             this.panel2.Location = new System.Drawing.Point(12, 346);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(179, 238);
@@ -235,58 +222,63 @@
             this.comboBoxSoortFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxSoortFilter.FormattingEnabled = true;
             this.comboBoxSoortFilter.Items.AddRange(new object[] {
-            "Alles",
-            "Moc",
-            "Overbruging",
-            "Tiw"});
+            "ALLE",
+            "MOC",
+            "OVERB",
+            "TIW"});
             this.comboBoxSoortFilter.Location = new System.Drawing.Point(8, 191);
             this.comboBoxSoortFilter.Name = "comboBoxSoortFilter";
             this.comboBoxSoortFilter.Size = new System.Drawing.Size(153, 26);
             this.comboBoxSoortFilter.TabIndex = 9;
             // 
-            // comboBox2
+            // comboBoxStatus
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(8, 134);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(153, 26);
-            this.comboBox2.TabIndex = 9;
+            this.comboBoxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Items.AddRange(new object[] {
+            "Niet Verwijderd",
+            "Verwijderd"});
+            this.comboBoxStatus.Location = new System.Drawing.Point(8, 134);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new System.Drawing.Size(153, 26);
+            this.comboBoxStatus.TabIndex = 9;
             // 
-            // comboBox3
+            // comboBoxSectie
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(8, 70);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(153, 26);
-            this.comboBox3.TabIndex = 10;
+            this.comboBoxSectie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSectie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxSectie.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxSectie.FormattingEnabled = true;
+            this.comboBoxSectie.Location = new System.Drawing.Point(8, 70);
+            this.comboBoxSectie.Name = "comboBoxSectie";
+            this.comboBoxSectie.Size = new System.Drawing.Size(153, 26);
+            this.comboBoxSectie.TabIndex = 10;
             // 
-            // button3
+            // ButSettings
             // 
-            this.button3.BackColor = System.Drawing.Color.Transparent;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(12, 767);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(180, 60);
-            this.button3.TabIndex = 15;
-            this.button3.Text = "Settings";
-            this.button3.UseVisualStyleBackColor = false;
+            this.ButSettings.BackColor = System.Drawing.Color.Transparent;
+            this.ButSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButSettings.Location = new System.Drawing.Point(12, 767);
+            this.ButSettings.Name = "ButSettings";
+            this.ButSettings.Size = new System.Drawing.Size(180, 60);
+            this.ButSettings.TabIndex = 15;
+            this.ButSettings.Text = "Settings";
+            this.ButSettings.UseVisualStyleBackColor = false;
+            this.ButSettings.Click += new System.EventHandler(this.ButSettings_Click);
             // 
-            // button4
+            // ButRefresh
             // 
-            this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(12, 264);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(180, 60);
-            this.button4.TabIndex = 16;
-            this.button4.Text = "Herlaad";
-            this.button4.UseVisualStyleBackColor = false;
+            this.ButRefresh.BackColor = System.Drawing.Color.Transparent;
+            this.ButRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButRefresh.Location = new System.Drawing.Point(12, 264);
+            this.ButRefresh.Name = "ButRefresh";
+            this.ButRefresh.Size = new System.Drawing.Size(180, 60);
+            this.ButRefresh.TabIndex = 16;
+            this.ButRefresh.Text = "Refresh";
+            this.ButRefresh.UseVisualStyleBackColor = false;
+            this.ButRefresh.Click += new System.EventHandler(this.ButRefresh_Click);
             // 
             // button5
             // 
@@ -345,20 +337,22 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Index});
-            this.dataGridView1.Location = new System.Drawing.Point(13, 13);
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridView1.Location = new System.Drawing.Point(4, 4);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1024, 905);
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.ShowCellErrors = false;
+            this.dataGridView1.ShowCellToolTips = false;
+            this.dataGridView1.ShowEditingIcon = false;
+            this.dataGridView1.ShowRowErrors = false;
+            this.dataGridView1.Size = new System.Drawing.Size(1040, 921);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // Index
-            // 
-            this.Index.HeaderText = "Nr";
-            this.Index.Name = "Index";
-            this.Index.ReadOnly = true;
-            this.Index.Visible = false;
             // 
             // MainForm
             // 
@@ -393,17 +387,16 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panelMenu;
-        private System.Windows.Forms.Button ButImport;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox comboBoxSoortFilter;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ComboBox comboBoxStatus;
+        private System.Windows.Forms.ComboBox comboBoxSectie;
+        private System.Windows.Forms.Button ButSettings;
+        private System.Windows.Forms.Button ButRefresh;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
@@ -411,7 +404,6 @@
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.Label labelAantal;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Index;
     }
 }
 

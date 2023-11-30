@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 
 namespace Overbrugging
 {
     public partial class MainForm : Form
     {
-        private bool Drag;
-        private int MouseX;
-        private int MouseY;
-        
         public static List<OudeOverbrugging> OudeLijst = new List<OudeOverbrugging>();
         public static List<NamenFunties> NamenLijst = new List<NamenFunties>();
         public static List<Secties> SectieLijst = new List<Secties>();
@@ -25,22 +21,6 @@ namespace Overbrugging
             InitializeComponent();
         }
 
-
-        private static T FromXML<T>(string xml)
-        {
-            XmlRootAttribute xRoot = new XmlRootAttribute
-            {
-                ElementName = "ArrayOfOverbrugje",
-                IsNullable = true
-            };
-
-            using (StringReader stringReader = new StringReader(xml))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(T), xRoot);
-                return (T)serializer.Deserialize(stringReader);
-            }
-        }
-
         private void ButImport_Click(object sender, EventArgs e)
         {
             _ = MessageBox.Show("Inlezen Overb1.mdb.csv");
@@ -50,7 +30,7 @@ namespace Overbrugging
                 string[] items;
                 OudeLijst.Clear();
 
-                
+
                 for (int i = 0; csvTekst.Count() > i; i++)
                 {
                     OudeOverbrugging ov = new OudeOverbrugging();
@@ -99,7 +79,7 @@ namespace Overbrugging
                 string[] namenTekst = File.ReadAllLines($"Namen.mdb.csv");
                 NamenLijst.Clear();
 
-                
+
                 for (int i = 0; namenTekst.Count() > i; i++)
                 {
                     NamenFunties nf = new NamenFunties();
@@ -109,8 +89,8 @@ namespace Overbrugging
                     nf.PersoneelNummer = items[count++];
                     nf.Naam = items[count++];
                     nf.Team = items[count++];
-                    if (items[count++] == "True") { nf.Funtie = true; } else { nf.Funtie = false; };
-                    if (items[count++] == "True") { nf.IVW = true; } else { nf.IVW = false; };
+                    nf.Funtie = items[count++] == "True"; ;
+                    nf.IVW = items[count++] == "True"; ;
 
                     NamenLijst.Add(nf);
                 }
@@ -119,7 +99,7 @@ namespace Overbrugging
 
                 string[] SectieTekst = File.ReadAllLines($"SectieTabel.mdb.csv");
                 SectieLijst.Clear();
-                
+
                 for (int i = 0; SectieTekst.Count() > i; i++)
                 {
                     Secties sc = new Secties();
@@ -149,15 +129,18 @@ namespace Overbrugging
 
                 _ = MessageBox.Show("Dan nu samen voegen tot nieuwe opslag class.");
 
+                LijstData.Clear();
                 foreach (OudeOverbrugging o in OudeLijst)
                 {
-                    Data a = new Data();
-                    a.RegNr = o.RegNr;
-                    a.DatumInv = NaarDateTime(o.DatumInv);
-                    a.SapNr = o.SrsNr;
-                    a.MocNr = o.MocRsNr;
+                    Data a = new Data
+                    {
+                        RegNr = int.Parse(o.RegNr),
+                        DatumInv = VerwijderTijd(o.DatumInv),
+                        SapNr = o.SrsNr,
+                        MocNr = o.MocRsNr
+                    };
 
-                    labelAantal.Text = a.RegNr;
+                    labelAantal.Text = a.RegNr.ToString();
                     labelAantal.Refresh();
 
                     a.Sectie = ZoekSectie(o.Sectie);
@@ -172,39 +155,52 @@ namespace Overbrugging
                     a.Uitvoering = o.Uitvoering;
 
                     //// ivwv
-                    a.WerkVerg = MaakBool(o.WerkVerg);
+                    a.WerkVerg = o.WerkVerg;
                     a.WerkVergNr = o.WerkVergNr;
 
-                    a.DatumWv = NaarDateTime(o.DatumWv);
-                    a.NaamWV = ZoekNaam(o.NaamWV); 
+                    a.DatumWv = VerwijderTijd(o.DatumWv);
+                    a.NaamWV = ZoekNaam(o.NaamWV);
 
-                    a.UitersteDatum = NaarDateTime(o.UitersteDatum);
-                    a.DatumVerloopWV = NaarDateTime(o.DatumVerloopWV);
+                    a.UitersteDatum = VerwijderTijd(o.UitersteDatum);
+                    a.DatumVerloopWV = VerwijderTijd(o.DatumVerloopWV);
 
-                    a.Soort = 0; // default
+                    a.Soort = "OVERB"; // default
                     if (o.TIWOB == "Tijdelijke Installatie Wijziging")
-                        a.Soort = 1;
+                    {
+                        a.Soort = "TIW";
+                    }
+
                     if (o.TIWOB == "Management Of Change")
-                        a.Soort = 2;
+                    {
+                        a.Soort = "MOC";
+                    }
 
                     a.BijzonderhedenWV = o.BijzonderhedenWV;
 
                     ////verwijderen
                     a.Naamverw = ZoekNaam(o.NaamKKDverw);
-                    a.DatumVerw = NaarDateTime(o.DatumVerw);
+                    a.DatumVerw = VerwijderTijd(o.DatumVerw);
                     a.BijzonderhedenVerw = o.BijzonderhedenVerw;
 
-                    a.ReserveS1 = "";
-                    a.ReserveS2 = "";
-                    a.ReserveI1 = 0;
-                    a.ReserveI2 = 0;
-                    a.ReserveD1 = DateTime.Now;
-                    a.ReserveD2 = DateTime.Now;
-                    a.ReserveB1 = false;
-                    a.ReserveB2 = false;
+                    a.Reserve1 = "";
+                    a.Reserve2 = "";
+                    a.Reserve3 = "";
+                    a.Reserve4 = "";
+                    a.Reserve5 = "";
+                    a.Reserve6 = "";
+                    a.Reserve7 = "";
+                    a.Reserve8 = "";
 
                     LijstData.Add(a);
                 }
+
+                _ = MessageBox.Show("Save overbrug lijst");
+                SaveData_lijst();
+                _ = MessageBox.Show("Save namen lijst");
+                SaveDataNamen_lijst();
+                _ = MessageBox.Show("Save secties lijst");
+                SaveDataSecties_lijst();
+
 
             }
 
@@ -215,36 +211,50 @@ namespace Overbrugging
             }
         }
 
-        private DateTime NaarDateTime(string Datum) // is van format "19-11-2023 00:00:00" of "9-4-2001 00:00:00"
+        private string VerwijderTijd(string Datum) // is van format "19-11-2023 00:00:00" of "9-4-2001 00:00:00"
         {
-            if(string.IsNullOrEmpty(Datum))
-                return DateTime.Now;
+            if (string.IsNullOrEmpty(Datum))
+            {
+                return "";
+            }
             // verwijder tijd
             int pos = Datum.IndexOf(" ");
-            Datum = Datum.Substring(0, pos);
-
-            string []temp = Datum.Split('-');
-
-            int Dag = int.Parse(temp[0]);
-            int Maand = int.Parse(temp[1]);
-            int Jaar = int.Parse(temp[2]);
-
-            DateTime ret = new DateTime(Jaar, Maand, Dag);
-            return ret;
+            return Datum.Substring(0, pos);
         }
+        //private DateTime NaarDateTime(string Datum) // is van format "19-11-2023 00:00:00" of "9-4-2001 00:00:00"
+        //{
+        //    if(string.IsNullOrEmpty(Datum))
+        //        return DateTime.Now;
+        //    // verwijder tijd
+        //    int pos = Datum.IndexOf(" ");
+        //    Datum = Datum.Substring(0, pos);
 
-        private bool MaakBool(string vraag)
-        {
-            if (string.IsNullOrEmpty(vraag))
-                return false;
-            if (vraag == "Ja")
-                return true;
-            return false;
-        }
-        private String ZoekSectie(string zoek)
+        //    string []temp = Datum.Split('-');
+
+        //    int Dag = int.Parse(temp[0]);
+        //    int Maand = int.Parse(temp[1]);
+        //    int Jaar = int.Parse(temp[2]);
+
+        //    DateTime ret = new DateTime(Jaar, Maand, Dag);
+        //    return ret;
+        //}
+
+        //private bool MaakBool(string vraag)
+        //{
+        //    if (string.IsNullOrEmpty(vraag))
+        //        return false;
+        //    if (vraag == "Ja")
+        //        return true;
+        //    return false;
+        //}
+
+        private string ZoekSectie(string zoek)
         {
             if (string.IsNullOrEmpty(zoek))
+            {
                 return "";
+            }
+
             try
             {
                 Secties Q = SectieLijst.First(a => a.Index == zoek);
@@ -256,10 +266,13 @@ namespace Overbrugging
             }
         }
 
-        private String ZoekNaam(string zoek)
+        private string ZoekNaam(string zoek)
         {
             if (string.IsNullOrEmpty(zoek))
+            {
                 return "";
+            }
+
             try
             {
                 NamenFunties Q = NamenLijst.First(a => a.Index == zoek);
@@ -274,7 +287,10 @@ namespace Overbrugging
         private string ZoekInstallatie(string zoek)
         {
             if (string.IsNullOrEmpty(zoek))
+            {
                 return "";
+            }
+
             try
             {
                 InstallatieOnderdeel Q = InstallatieLijst.First(a => a.Index == zoek);
@@ -285,26 +301,6 @@ namespace Overbrugging
                 return "";
             }
         }
-        //private void panelTop_MouseDown(object sender, MouseEventArgs e)
-        //{
-        //    Drag = true;
-        //    MouseX = Cursor.Position.X - this.Left;
-        //    MouseY = Cursor.Position.Y - this.Top;
-        //}
-
-        //private void panelTop_MouseUp(object sender, MouseEventArgs e)
-        //{
-        //    Drag = false;
-        //}
-
-        //private void panelTop_MouseMove(object sender, MouseEventArgs e)
-        //{
-        //    if(Drag)
-        //    {
-        //        this.Top = Cursor.Position.Y - MouseY;
-        //        this.Left = Cursor.Position.X - MouseX;
-        //    }
-        //}
 
         private void Exit_Click(object sender, EventArgs e)
         {
@@ -313,12 +309,235 @@ namespace Overbrugging
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
+            // laad secties
+            LaadSecties_lijst();
+            // zet filter dropdown
+            if (comboBoxSectie.Items.Count == 0)
+            {
+                comboBoxSectie.Items.Clear();
+                _ = comboBoxSectie.Items.Add("ALLE");
+                foreach (Secties item in SectieLijst)
+                {
+                    _ = comboBoxSectie.Items.Add(item.Naam);
+                }
+                comboBoxSectie.SelectedIndex = 0;
+            }
+
             comboBoxSoortFilter.SelectedIndex = 0;
+            comboBoxStatus.SelectedIndex = 0;
+
+            dataGridView1.Columns.Clear();
+
+            dataGridView1.AutoGenerateColumns = false;
+
+            _ = dataGridView1.Columns.Add("Nr", "Nr");
+            dataGridView1.Columns[0].Width = 40;
+            _ = dataGridView1.Columns.Add("Datum", "Datum inv.");
+            dataGridView1.Columns[1].Width = 80;
+            _ = dataGridView1.Columns.Add("Soort", "Soort");
+            dataGridView1.Columns[2].Width = 60;
+            _ = dataGridView1.Columns.Add("Sectie", "Sectie");
+            dataGridView1.Columns[3].Width = 60;
+
+            _ = dataGridView1.Columns.Add("Installatie", "Installatie");
+            dataGridView1.Columns[4].Width = 120;
+            _ = dataGridView1.Columns.Add("InstalatieDeel", "Instalatie Deel");
+            dataGridView1.Columns[5].Width = 180;
+            _ = dataGridView1.Columns.Add("Rede", "Rede");
+            dataGridView1.Columns[6].Width = 360;
+
+            _ = dataGridView1.Columns.Add("DatumVerl", "Verloopt");
+            dataGridView1.Columns[7].Width = 80;
+
+            ButRefresh_Click(this, null);
+
+            // zet update roetine op filters actief
+            comboBoxSectie.SelectedIndexChanged += ButRefresh_Click;
+            comboBoxSoortFilter.SelectedIndexChanged += ButRefresh_Click;
+            comboBoxStatus.SelectedIndexChanged += ButRefresh_Click;
         }
 
-        private void dataBindingSource_CurrentChanged(object sender, EventArgs e)
+        private void VulGrid()
         {
+            StopRedraw.SuspendDrawing(panelMain);
+            //dataGridView1.SuspendLayout();
 
+            dataGridView1.DataSource = LijstData;
+
+            dataGridView1.Columns["Nr"].DataPropertyName = "Regnr";
+            dataGridView1.Columns["Datum"].DataPropertyName = "DatumInv";
+            dataGridView1.Columns["Soort"].DataPropertyName = "Soort";
+            dataGridView1.Columns["Sectie"].DataPropertyName = "Sectie";
+            dataGridView1.Columns["Installatie"].DataPropertyName = "Installatie";
+            dataGridView1.Columns["InstalatieDeel"].DataPropertyName = "InstallatieDeel";
+            dataGridView1.Columns["Rede"].DataPropertyName = "Reden";
+            dataGridView1.Columns["DatumVerl"].DataPropertyName = "UitersteDatum";
+            
+
+            //dataGridView1.ResumeLayout();
+            StopRedraw.ResumeDrawing(panelMain);
+
+            labelAantal.Text = LijstData.Count().ToString();
+        }
+
+        private void ButRefresh_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
+
+            // laad alle overbrugingen
+            LaadData_lijst();
+
+            // filter op status
+            LijstData = comboBoxStatus.Text == "Niet Verwijderd"
+                ? LijstData.Where(x => x.DatumVerw == string.Empty).ToList()
+                : LijstData.Where(x => x.DatumVerw != string.Empty).ToList();
+
+            // filter op sectie
+            if (comboBoxSectie.Text != "" && comboBoxSectie.Text != "ALLE")
+            {
+                LijstData = LijstData.Where(x => x.Sectie == comboBoxSectie.Text).ToList();
+            }
+
+            // Filter op Soort
+            if (comboBoxSoortFilter.Text != "ALLE")
+            {
+                LijstData = LijstData.Where(x => x.Soort == comboBoxSoortFilter.Text).ToList();
+            }
+
+            // sorteer
+            LijstData = LijstData.OrderByDescending(o => o.RegNr).ToList();
+
+            VulGrid();
+        }
+
+        public static void SaveData_lijst()
+        {
+            try
+            {
+                using (Stream stream = File.Open("overbrug.bin", FileMode.OpenOrCreate))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    bin.Serialize(stream, LijstData);
+                    bin = null; // destroy voor volgende keer
+                    GC.Collect();
+                }
+            }
+            catch
+            {
+                GC.Collect();
+            }
+        }
+
+        public static void SaveDataNamen_lijst()
+        {
+            try
+            {
+                using (Stream stream = File.Open("namen.bin", FileMode.OpenOrCreate))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    bin.Serialize(stream, NamenLijst);
+                    bin = null; // destroy voor volgende keer
+                    GC.Collect();
+                }
+            }
+            catch
+            {
+                GC.Collect();
+            }
+        }
+
+        public static void SaveDataSecties_lijst()
+        {
+            try
+            {
+                using (Stream stream = File.Open("sectie.bin", FileMode.OpenOrCreate))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    bin.Serialize(stream, SectieLijst);
+                    bin = null; // destroy voor volgende keer
+                    GC.Collect();
+                }
+            }
+            catch
+            {
+                GC.Collect();
+            }
+        }
+
+        public static void LaadData_lijst()
+        {
+            try
+            {
+                using (Stream stream = File.Open("overbrug.bin", FileMode.Open, FileAccess.Read, FileShare.None))
+                {
+                    LijstData.Clear();
+                    BinaryFormatter bin = new BinaryFormatter();
+                    LijstData = (List<Data>)bin.Deserialize(stream);
+                    bin = null; // destroy voor volgende keer
+                    GC.Collect();
+                }
+            }
+            catch
+            {
+                GC.Collect();
+            }
+        }
+
+        public static void LaadSecties_lijst()
+        {
+            try
+            {
+                using (Stream stream = File.Open("sectie.bin", FileMode.Open, FileAccess.Read, FileShare.None))
+                {
+                    LijstData.Clear();
+                    BinaryFormatter bin = new BinaryFormatter();
+                    SectieLijst = (List<Secties>)bin.Deserialize(stream);
+                    bin = null; // destroy voor volgende keer
+                    GC.Collect();
+                }
+            }
+            catch
+            {
+                GC.Collect();
+            }
+        }
+
+        public static void LaadNamen_lijst()
+        {
+            try
+            {
+                using (Stream stream = File.Open("namen.bin", FileMode.Open, FileAccess.Read, FileShare.None))
+                {
+                    NamenLijst.Clear();
+                    BinaryFormatter bin = new BinaryFormatter();
+                    NamenLijst = (List<NamenFunties>)bin.Deserialize(stream);
+                    bin = null; // destroy voor volgende keer
+                    GC.Collect();
+                }
+            }
+            catch
+            {
+                GC.Collect();
+            }
+        }
+
+        private void ButSettings_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            var ret = settings.ShowDialog();
+            if (ret == DialogResult.OK)
+            {
+
+            }
+            if(ret == DialogResult.Cancel)
+            {
+
+            }
+            if (ret == DialogResult.Abort)
+            {
+                ButImport_Click(this,null);
+            }
         }
     }
 }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Overbrugging
 {
+    [Serializable]
     public class NamenFunties
     {
         public NamenFunties() { }
-
         public string Index;
         public string PersoneelNummer;
         public string Naam;
