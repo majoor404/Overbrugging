@@ -48,12 +48,16 @@
             this.DatumInv = new System.Windows.Forms.DateTimePicker();
             this.TextBoxSapNr = new System.Windows.Forms.TextBox();
             this.TextBoxMocNr = new System.Windows.Forms.TextBox();
+            this.ComboBoxSectie = new System.Windows.Forms.ComboBox();
+            this.ComboSectieDeel = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.ComboSectieDeel);
+            this.panel1.Controls.Add(this.ComboBoxSectie);
             this.panel1.Controls.Add(this.DatumInv);
             this.panel1.Controls.Add(this.TextBoxMocNr);
             this.panel1.Controls.Add(this.TextBoxSapNr);
@@ -262,6 +266,24 @@
             this.TextBoxMocNr.Size = new System.Drawing.Size(133, 24);
             this.TextBoxMocNr.TabIndex = 1;
             // 
+            // ComboBoxSectie
+            // 
+            this.ComboBoxSectie.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxSectie.FormattingEnabled = true;
+            this.ComboBoxSectie.Location = new System.Drawing.Point(461, 62);
+            this.ComboBoxSectie.Name = "ComboBoxSectie";
+            this.ComboBoxSectie.Size = new System.Drawing.Size(133, 26);
+            this.ComboBoxSectie.TabIndex = 3;
+            // 
+            // ComboSectieDeel
+            // 
+            this.ComboSectieDeel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboSectieDeel.FormattingEnabled = true;
+            this.ComboSectieDeel.Location = new System.Drawing.Point(461, 104);
+            this.ComboSectieDeel.Name = "ComboSectieDeel";
+            this.ComboSectieDeel.Size = new System.Drawing.Size(133, 26);
+            this.ComboSectieDeel.TabIndex = 3;
+            // 
             // Detail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -271,6 +293,7 @@
             this.Name = "Detail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Detail";
+            this.Load += new System.EventHandler(this.Detail_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -299,5 +322,7 @@
         public System.Windows.Forms.DateTimePicker DatumInv;
         public System.Windows.Forms.TextBox TextBoxSapNr;
         public System.Windows.Forms.TextBox TextBoxMocNr;
+        public System.Windows.Forms.ComboBox ComboBoxSectie;
+        public System.Windows.Forms.ComboBox ComboSectieDeel;
     }
 }

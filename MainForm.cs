@@ -204,6 +204,8 @@ namespace Overbrugging
                 SaveDataNamen_lijst();
                 _ = MessageBox.Show("Save secties lijst");
                 SaveDataSecties_lijst();
+                _ = MessageBox.Show("Save Installatie lijst");
+                SaveDataInstallaties_lijst();
 
 
             }
@@ -331,6 +333,8 @@ namespace Overbrugging
         {
             // laad secties
             LaadSecties_lijst();
+            // laad installaties
+            LaadInstallaties_lijst();
             // zet filter dropdown
             if (comboBoxSectie.Items.Count == 0)
             {
@@ -485,6 +489,24 @@ namespace Overbrugging
             }
         }
 
+        public void SaveDataInstallaties_lijst()
+        {
+            try
+            {
+                using (Stream stream = File.Open("install.bin", FileMode.OpenOrCreate))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    bin.Serialize(stream, InstallatieLijst);
+                    bin = null; // destroy voor volgende keer
+                    GC.Collect();
+                }
+            }
+            catch
+            {
+                GC.Collect();
+            }
+        }
+
         public void LaadData_lijst()
         {
             try
@@ -542,6 +564,25 @@ namespace Overbrugging
             }
         }
 
+        public void LaadInstallaties_lijst()
+        {
+            try
+            {
+                using (Stream stream = File.Open("install.bin", FileMode.Open, FileAccess.Read, FileShare.None))
+                {
+                    InstallatieLijst.Clear();
+                    BinaryFormatter bin = new BinaryFormatter();
+                    InstallatieLijst = (List<InstallatieOnderdeel>)bin.Deserialize(stream);
+                    bin = null; // destroy voor volgende keer
+                    GC.Collect();
+                }
+            }
+            catch
+            {
+                GC.Collect();
+            }
+        }
+
         private void ButSettings_Click(object sender, EventArgs e)
         {
             Settings settings = new Settings();
@@ -568,20 +609,44 @@ namespace Overbrugging
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            int regNr = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
-            Data Q = ZoekDataRecord(regNr);
+            try
+            {
+                int regNr = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                Data Q = ZoekDataRecord(regNr);
 
-            Detail dt = new Detail();
-            dt.TextBoxRegNr.Text = Q.RegNr.ToString();
-            dt.TextBoxRegNr.Enabled = false;
+                Detail dt = new Detail();
+                dt.TextBoxRegNr.Text = Q.RegNr.ToString();
+                dt.TextBoxRegNr.Enabled = false;
 
-            dt.DatumInv.Value = NaarDateTime(Q.DatumInv);
+                dt.DatumInv.Value = NaarDateTime(Q.DatumInv);
 
-            dt.TextBoxSapNr.Text = Q.SapNr;
+                dt.TextBoxSapNr.Text = Q.SapNr;
 
-            dt.TextBoxMocNr.Text = Q.MocNr;
+                dt.TextBoxMocNr.Text = Q.MocNr;
 
-            dt.ShowDialog();
+                dt.ComboBoxSectie.Items.Clear();
+                for (int i = 0; i < MainForm.Main.SectieLijst.Count; i++)
+                {
+                    dt.ComboBoxSectie.Items.Add(MainForm.Main.SectieLijst[i].Naam);
+                }
+                dt.ComboBoxSectie.Text = Q.Sectie;
+
+                List<InstallatieOnderdeel> InstallatieLijstFilter = new List<InstallatieOnderdeel>();
+                InstallatieLijstFilter = InstallatieLijst.Where(x => x.Sectie == dt.ComboBoxSectie.Text).ToList();
+                dt.ComboSectieDeel.Items.Clear();
+                for (int i = 0; i < InstallatieLijstFilter.Count; i++)
+                {
+                    dt.ComboSectieDeel.Items.Add(InstallatieLijstFilter[i].Instal);
+                }
+
+                dt.ComboSectieDeel.Text = Q.InstallatieDeel;
+
+                dt.ShowDialog();
+            }
+            catch
+            {
+                MessageBox.Show($"e = {e.RowIndex}");
+            }
         }
     }
 }
