@@ -50,7 +50,7 @@
             this.Name = "EditNamen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EditNamen";
-            this.Load += new System.EventHandler(this.EditNamen_Load);
+            this.Shown += new System.EventHandler(this.EditNamen_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Overbrugging
@@ -17,8 +10,11 @@ namespace Overbrugging
             InitializeComponent();
         }
 
-        private void EditNamen_Load(object sender, EventArgs e)
+        private void EditNamen_Shown(object sender, EventArgs e)
         {
+            MainForm.Main.LaadNamen_lijst();
+            dataGridView1.DataSource = MainForm.Main.NamenLijst;
+
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.Columns.Clear();
 
@@ -33,8 +29,6 @@ namespace Overbrugging
             _ = dataGridView1.Columns.Add("IVWV", "IVWV");
             dataGridView1.Columns[3].Width = 70;
 
-            //dataGridView1.DataSource = MainForm.NamenLijst;
-
             dataGridView1.Columns["Naam"].DataPropertyName = "Naam";
             dataGridView1.Columns["Naam"].ValueType = typeof(string);
             dataGridView1.Columns["PersoneelNummer"].DataPropertyName = "PersoneelNummer";
@@ -45,9 +39,6 @@ namespace Overbrugging
             dataGridView1.Columns["Naam"].ValueType = typeof(bool);
             dataGridView1.Columns["IVWV"].DataPropertyName = "IVW";
             dataGridView1.Columns["Naam"].ValueType = typeof(bool);
-
-
-
         }
     }
 }

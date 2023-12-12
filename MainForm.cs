@@ -10,16 +10,19 @@ namespace Overbrugging
 {
     public partial class MainForm : Form
     {
-        public static List<OudeOverbrugging> OudeLijst = new List<OudeOverbrugging>();
+        public List<OudeOverbrugging> OudeLijst = new List<OudeOverbrugging>();
         public List<NamenFunties> NamenLijst { get; set; } = new List<NamenFunties>();
         public List<Secties> SectieLijst = new List<Secties>();
         public List<InstallatieOnderdeel> InstallatieLijst = new List<InstallatieOnderdeel>();
         public List<OverBrugRecord> LijstOverbrugingen = new List<OverBrugRecord> { };
         public List<Data> LijstData = new List<Data>();
 
+        public static MainForm Main;
+
         public MainForm()
         {
             InitializeComponent();
+            Main = this;
         }
 
         private void ButImport_Click(object sender, EventArgs e)
@@ -504,7 +507,7 @@ namespace Overbrugging
             }
         }
 
-        public /*static*/ void LaadNamen_lijst()
+        public void LaadNamen_lijst()
         {
             try
             {
@@ -529,9 +532,7 @@ namespace Overbrugging
             var ret = settings.ShowDialog();
             if (ret == DialogResult.OK)
             {
-                LaadNamen_lijst();
                 EditNamen ed = new EditNamen();
-                ed.dataGridView1.DataSource = NamenLijst;
                 ed.ShowDialog();
             }
             if(ret == DialogResult.Cancel)
