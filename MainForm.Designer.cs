@@ -48,7 +48,6 @@
             this.ButSettings = new System.Windows.Forms.Button();
             this.ButRefresh = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.ButExit = new System.Windows.Forms.Button();
             this.panelMain = new System.Windows.Forms.Panel();
@@ -148,7 +147,6 @@
             this.panelMenu.Controls.Add(this.ButSettings);
             this.panelMenu.Controls.Add(this.ButRefresh);
             this.panelMenu.Controls.Add(this.button5);
-            this.panelMenu.Controls.Add(this.button6);
             this.panelMenu.Controls.Add(this.button7);
             this.panelMenu.Controls.Add(this.ButExit);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
@@ -168,7 +166,7 @@
             this.panel2.Controls.Add(this.comboBoxSoortFilter);
             this.panel2.Controls.Add(this.comboBoxStatus);
             this.panel2.Controls.Add(this.comboBoxSectie);
-            this.panel2.Location = new System.Drawing.Point(12, 346);
+            this.panel2.Location = new System.Drawing.Point(14, 263);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(179, 238);
             this.panel2.TabIndex = 23;
@@ -273,7 +271,7 @@
             // 
             this.ButRefresh.BackColor = System.Drawing.Color.Transparent;
             this.ButRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButRefresh.Location = new System.Drawing.Point(12, 264);
+            this.ButRefresh.Location = new System.Drawing.Point(14, 177);
             this.ButRefresh.Name = "ButRefresh";
             this.ButRefresh.Size = new System.Drawing.Size(180, 60);
             this.ButRefresh.TabIndex = 16;
@@ -285,23 +283,12 @@
             // 
             this.button5.BackColor = System.Drawing.Color.Transparent;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(12, 179);
+            this.button5.Location = new System.Drawing.Point(14, 92);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(180, 60);
             this.button5.TabIndex = 17;
             this.button5.Text = "Zoek";
             this.button5.UseVisualStyleBackColor = false;
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.Transparent;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(12, 92);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(180, 60);
-            this.button6.TabIndex = 18;
-            this.button6.Text = "Pas Aan";
-            this.button6.UseVisualStyleBackColor = false;
             // 
             // button7
             // 
@@ -366,6 +353,7 @@
             this.dataGridView1.ShowRowErrors = false;
             this.dataGridView1.Size = new System.Drawing.Size(1040, 900);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // MainForm
             // 
@@ -412,7 +400,6 @@
         private System.Windows.Forms.Button ButSettings;
         private System.Windows.Forms.Button ButRefresh;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button ButExit;
         private System.Windows.Forms.Panel panelMain;

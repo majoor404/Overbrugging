@@ -225,23 +225,25 @@ namespace Overbrugging
             int pos = Datum.IndexOf(" ");
             return Datum.Substring(0, pos);
         }
-        //private DateTime NaarDateTime(string Datum) // is van format "19-11-2023 00:00:00" of "9-4-2001 00:00:00"
-        //{
-        //    if(string.IsNullOrEmpty(Datum))
-        //        return DateTime.Now;
-        //    // verwijder tijd
-        //    int pos = Datum.IndexOf(" ");
-        //    Datum = Datum.Substring(0, pos);
 
-        //    string []temp = Datum.Split('-');
+        private DateTime NaarDateTime(string Datum) // is van format "19-11-2023 00:00:00" of "9-4-2001 00:00:00"
+        {
+            if (string.IsNullOrEmpty(Datum))
+                return DateTime.Now;
+            // verwijder tijd
+            int pos = Datum.IndexOf(" ");
+            if(pos>-1)
+                Datum = Datum.Substring(0, pos);
 
-        //    int Dag = int.Parse(temp[0]);
-        //    int Maand = int.Parse(temp[1]);
-        //    int Jaar = int.Parse(temp[2]);
+            string[] temp = Datum.Split('-');
 
-        //    DateTime ret = new DateTime(Jaar, Maand, Dag);
-        //    return ret;
-        //}
+            int Dag = int.Parse(temp[0]);
+            int Maand = int.Parse(temp[1]);
+            int Jaar = int.Parse(temp[2]);
+
+            DateTime ret = new DateTime(Jaar, Maand, Dag);
+            return ret;
+        }
 
         //private bool MaakBool(string vraag)
         //{
@@ -267,6 +269,20 @@ namespace Overbrugging
             catch
             {
                 return "";
+            }
+        }
+
+        private Data ZoekDataRecord(int nr)
+        {
+            Data Q = new Data();
+            try
+            {
+                Q = LijstData.First(a => a.RegNr == nr);
+                return Q;
+            }
+            catch
+            {
+                return Q;
             }
         }
 
@@ -548,6 +564,24 @@ namespace Overbrugging
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             _ = System.Diagnostics.Process.Start("https://github.com/majoor404/Overbrugging"); 
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int regNr = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+            Data Q = ZoekDataRecord(regNr);
+
+            Detail dt = new Detail();
+            dt.TextBoxRegNr.Text = Q.RegNr.ToString();
+            dt.TextBoxRegNr.Enabled = false;
+
+            dt.DatumInv.Value = NaarDateTime(Q.DatumInv);
+
+            dt.TextBoxSapNr.Text = Q.SapNr;
+
+            dt.TextBoxMocNr.Text = Q.MocNr;
+
+            dt.ShowDialog();
         }
     }
 }
