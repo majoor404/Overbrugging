@@ -93,11 +93,14 @@ namespace Overbrugging
                     nf.PersoneelNummer = items[count++];
                     nf.Naam = items[count++];
                     nf.Team = items[count++];
-                    nf.Funtie = items[count++] == "True"; ;
-                    nf.IVW = items[count++] == "True"; ;
+                    count++;    // funtie niet meer gebruiken
+                    nf.IVWV = items[count++] == "True";
 
                     NamenLijst.Add(nf);
                 }
+
+                _ = MessageBox.Show("Save namen lijst");
+                SaveDataNamen_lijst();
 
                 _ = MessageBox.Show("Inlezen SectieTabel.mdb.csv");
 
@@ -114,6 +117,9 @@ namespace Overbrugging
                     SectieLijst.Add(sc);
                 }
 
+                _ = MessageBox.Show("Save secties lijst");
+                SaveDataSecties_lijst();
+
                 _ = MessageBox.Show("Inlezen InstallatieTabel.mdb.csv");
 
                 string[] InstallatieTekst = File.ReadAllLines($"InstallatieTabel.mdb.csv");
@@ -129,6 +135,9 @@ namespace Overbrugging
                     iso.Sectie = ZoekSectie(items[count++]);
                     InstallatieLijst.Add(iso);
                 }
+
+                _ = MessageBox.Show("Save Installatie lijst");
+                SaveDataInstallaties_lijst();
 
 
                 _ = MessageBox.Show("Dan nu samen voegen tot nieuwe opslag class.");
@@ -197,17 +206,8 @@ namespace Overbrugging
 
                     LijstData.Add(a);
                 }
-
                 _ = MessageBox.Show("Save overbrug lijst");
                 SaveData_lijst();
-                _ = MessageBox.Show("Save namen lijst");
-                SaveDataNamen_lijst();
-                _ = MessageBox.Show("Save secties lijst");
-                SaveDataSecties_lijst();
-                _ = MessageBox.Show("Save Installatie lijst");
-                SaveDataInstallaties_lijst();
-
-
             }
 
             catch (Exception ex)
@@ -639,7 +639,7 @@ namespace Overbrugging
                     dt.ComboSectieDeel.Items.Add(InstallatieLijstFilter[i].Instal);
                 }
 
-                dt.ComboSectieDeel.Text = Q.InstallatieDeel;
+                dt.ComboSectieDeel.Text = Q.Installatie;
 
                 dt.ShowDialog();
             }
@@ -647,6 +647,16 @@ namespace Overbrugging
             {
                 MessageBox.Show($"e = {e.RowIndex}");
             }
+        }
+
+        public void SorteerNaamOpPersoneelNummer()
+        {
+            NamenLijst.Sort(Sorteer_Namen);
+        }
+
+        public int Sorteer_Namen(NamenFunties a, NamenFunties b)
+        {
+            return a.PersoneelNummer.CompareTo(b.PersoneelNummer);
         }
     }
 }

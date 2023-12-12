@@ -1,5 +1,8 @@
-﻿namespace Overbrugging
+﻿using System;
+
+namespace Overbrugging
 {
+    [Serializable]
     public class InstallatieOnderdeel
     {
         public InstallatieOnderdeel() { }

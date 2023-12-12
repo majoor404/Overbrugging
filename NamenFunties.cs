@@ -14,7 +14,6 @@ namespace Overbrugging
         public string PersoneelNummer { get; set; }
         public string Naam { get; set; }
         public string Team { get; set; }
-        public bool Funtie { get; set; }
-        public bool IVW { get; set; }
+        public bool IVWV { get; set; }
     }
 }

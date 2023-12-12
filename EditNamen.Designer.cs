@@ -38,6 +38,7 @@
             this.TextBoxPersNr = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TextBoxTeam = new System.Windows.Forms.TextBox();
+            this.CheckBoxIvWv = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,14 +53,14 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(775, 432);
+            this.dataGridView1.Size = new System.Drawing.Size(600, 432);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // ButNew
             // 
             this.ButNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButNew.Location = new System.Drawing.Point(794, 12);
+            this.ButNew.Location = new System.Drawing.Point(629, 13);
             this.ButNew.Name = "ButNew";
             this.ButNew.Size = new System.Drawing.Size(196, 53);
             this.ButNew.TabIndex = 1;
@@ -69,7 +70,7 @@
             // ButDel
             // 
             this.ButDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButDel.Location = new System.Drawing.Point(794, 71);
+            this.ButDel.Location = new System.Drawing.Point(629, 72);
             this.ButDel.Name = "ButDel";
             this.ButDel.Size = new System.Drawing.Size(196, 53);
             this.ButDel.TabIndex = 1;
@@ -79,12 +80,13 @@
             // ButSave
             // 
             this.ButSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButSave.Location = new System.Drawing.Point(794, 392);
+            this.ButSave.Location = new System.Drawing.Point(629, 459);
             this.ButSave.Name = "ButSave";
-            this.ButSave.Size = new System.Drawing.Size(196, 53);
+            this.ButSave.Size = new System.Drawing.Size(196, 109);
             this.ButSave.TabIndex = 1;
             this.ButSave.Text = "Save";
             this.ButSave.UseVisualStyleBackColor = true;
+            this.ButSave.Click += new System.EventHandler(this.ButSave_Click);
             // 
             // label1
             // 
@@ -101,7 +103,7 @@
             this.TextBoxNaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxNaam.Location = new System.Drawing.Point(104, 459);
             this.TextBoxNaam.Name = "TextBoxNaam";
-            this.TextBoxNaam.Size = new System.Drawing.Size(307, 24);
+            this.TextBoxNaam.Size = new System.Drawing.Size(410, 24);
             this.TextBoxNaam.TabIndex = 3;
             // 
             // label2
@@ -119,7 +121,7 @@
             this.TextBoxPersNr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPersNr.Location = new System.Drawing.Point(104, 499);
             this.TextBoxPersNr.Name = "TextBoxPersNr";
-            this.TextBoxPersNr.Size = new System.Drawing.Size(307, 24);
+            this.TextBoxPersNr.Size = new System.Drawing.Size(509, 24);
             this.TextBoxPersNr.TabIndex = 3;
             // 
             // label3
@@ -137,14 +139,27 @@
             this.TextBoxTeam.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxTeam.Location = new System.Drawing.Point(104, 544);
             this.TextBoxTeam.Name = "TextBoxTeam";
-            this.TextBoxTeam.Size = new System.Drawing.Size(307, 24);
+            this.TextBoxTeam.Size = new System.Drawing.Size(509, 24);
             this.TextBoxTeam.TabIndex = 3;
+            // 
+            // CheckBoxIvWv
+            // 
+            this.CheckBoxIvWv.AutoSize = true;
+            this.CheckBoxIvWv.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CheckBoxIvWv.Location = new System.Drawing.Point(542, 462);
+            this.CheckBoxIvWv.Name = "CheckBoxIvWv";
+            this.CheckBoxIvWv.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.CheckBoxIvWv.Size = new System.Drawing.Size(71, 22);
+            this.CheckBoxIvWv.TabIndex = 4;
+            this.CheckBoxIvWv.Text = "IV /WV";
+            this.CheckBoxIvWv.UseVisualStyleBackColor = true;
             // 
             // EditNamen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1002, 647);
+            this.ClientSize = new System.Drawing.Size(838, 587);
+            this.Controls.Add(this.CheckBoxIvWv);
             this.Controls.Add(this.TextBoxTeam);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TextBoxPersNr);
@@ -177,5 +192,6 @@
         private System.Windows.Forms.TextBox TextBoxPersNr;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TextBoxTeam;
+        private System.Windows.Forms.CheckBox CheckBoxIvWv;
     }
 }
