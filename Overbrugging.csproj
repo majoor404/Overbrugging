@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditNamen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditNamen.Designer.cs">
+      <DependentUpon>EditNamen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,6 +62,9 @@
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="StopRedraw.cs" />
+    <EmbeddedResource Include="EditNamen.resx">
+      <DependentUpon>EditNamen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>

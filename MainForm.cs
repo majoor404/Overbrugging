@@ -528,7 +528,8 @@ namespace Overbrugging
             var ret = settings.ShowDialog();
             if (ret == DialogResult.OK)
             {
-
+                EditNamen ed = new EditNamen();
+                ed.ShowDialog();
             }
             if(ret == DialogResult.Cancel)
             {
