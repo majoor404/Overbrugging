@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
@@ -10,11 +11,11 @@ namespace Overbrugging
     public partial class MainForm : Form
     {
         public static List<OudeOverbrugging> OudeLijst = new List<OudeOverbrugging>();
-        public static List<NamenFunties> NamenLijst = new List<NamenFunties>();
-        public static List<Secties> SectieLijst = new List<Secties>();
-        public static List<InstallatieOnderdeel> InstallatieLijst = new List<InstallatieOnderdeel>();
-        public static List<OverBrugRecord> LijstOverbrugingen = new List<OverBrugRecord> { };
-        public static List<Data> LijstData = new List<Data>();
+        public List<NamenFunties> NamenLijst { get; set; } = new List<NamenFunties>();
+        public List<Secties> SectieLijst = new List<Secties>();
+        public List<InstallatieOnderdeel> InstallatieLijst = new List<InstallatieOnderdeel>();
+        public List<OverBrugRecord> LijstOverbrugingen = new List<OverBrugRecord> { };
+        public List<Data> LijstData = new List<Data>();
 
         public MainForm()
         {
@@ -411,7 +412,7 @@ namespace Overbrugging
             VulGrid();
         }
 
-        public static void SaveData_lijst()
+        public void SaveData_lijst()
         {
             try
             {
@@ -429,7 +430,7 @@ namespace Overbrugging
             }
         }
 
-        public static void SaveDataNamen_lijst()
+        public void SaveDataNamen_lijst()
         {
             try
             {
@@ -447,7 +448,7 @@ namespace Overbrugging
             }
         }
 
-        public static void SaveDataSecties_lijst()
+        public void SaveDataSecties_lijst()
         {
             try
             {
@@ -465,7 +466,7 @@ namespace Overbrugging
             }
         }
 
-        public static void LaadData_lijst()
+        public void LaadData_lijst()
         {
             try
             {
@@ -484,7 +485,7 @@ namespace Overbrugging
             }
         }
 
-        public static void LaadSecties_lijst()
+        public void LaadSecties_lijst()
         {
             try
             {
@@ -503,7 +504,7 @@ namespace Overbrugging
             }
         }
 
-        public static void LaadNamen_lijst()
+        public /*static*/ void LaadNamen_lijst()
         {
             try
             {
@@ -528,7 +529,9 @@ namespace Overbrugging
             var ret = settings.ShowDialog();
             if (ret == DialogResult.OK)
             {
+                LaadNamen_lijst();
                 EditNamen ed = new EditNamen();
+                ed.dataGridView1.DataSource = NamenLijst;
                 ed.ShowDialog();
             }
             if(ret == DialogResult.Cancel)
@@ -541,7 +544,7 @@ namespace Overbrugging
             }
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             _ = System.Diagnostics.Process.Start("https://github.com/majoor404/Overbrugging"); 
         }

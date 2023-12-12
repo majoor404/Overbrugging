@@ -5,16 +5,16 @@ namespace Overbrugging
     [Serializable]
     public class Data
     {
-        private static string heleText(string _Soort)
-        {
-            if (_Soort == "0")
-                return "Overb";
-            if (_Soort == "1")
-                return "TIW";
-            if (_Soort == "2")
-                return "MOC";
-            return _Soort;
-        }
+        //private static string heleText(string _Soort)
+        //{
+        //    if (_Soort == "0")
+        //        return "Overb";
+        //    if (_Soort == "1")
+        //        return "TIW";
+        //    if (_Soort == "2")
+        //        return "MOC";
+        //    return _Soort;
+        //}
         public Data() { }
 
         //invoer
