@@ -57,5 +57,39 @@ namespace Overbrugging
             // refresh
             dataGridView1.Refresh();
         }
+
+        private void ButNew_Click(object sender, EventArgs e)
+        {
+            // veeg alle namen leeg
+            TextBoxNaam.Text = TextBoxPersNr.Text = TextBoxTeam.Text = "";
+            CheckBoxIvWv.Checked = false;
+            // melding
+            MessageBox.Show("Voeg gegevens toe en druk op save.");
+        }
+
+        private void ButDel_Click(object sender, EventArgs e)
+        {
+            // zoek personeel nummer record
+            // en delete deze
+            try
+            {
+                NamenFunties Record = MainForm.Main.NamenLijst.First(a => a.PersoneelNummer == TextBoxPersNr.Text);
+                // vraag
+                DialogResult dialogResult = MessageBox.Show($"Verwijder {Record.Naam}", "Vraagje", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    MainForm.Main.NamenLijst.Remove(Record);
+                    // sorteer
+                    MainForm.Main.SorteerNaamOpPersoneelNummer();
+                    // save
+                    MainForm.Main.SaveDataNamen_lijst();
+                    // refresh
+                    dataGridView1.Refresh();
+                }
+            }
+            catch {
+                MessageBox.Show($"Personeel nr {TextBoxPersNr.Text} niet gevonden in lijst!");
+            }
+        }
     }
 }

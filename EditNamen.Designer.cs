@@ -66,6 +66,7 @@
             this.ButNew.TabIndex = 1;
             this.ButNew.Text = "Nieuw";
             this.ButNew.UseVisualStyleBackColor = true;
+            this.ButNew.Click += new System.EventHandler(this.ButNew_Click);
             // 
             // ButDel
             // 
@@ -76,6 +77,7 @@
             this.ButDel.TabIndex = 1;
             this.ButDel.Text = "Delete";
             this.ButDel.UseVisualStyleBackColor = true;
+            this.ButDel.Click += new System.EventHandler(this.ButDel_Click);
             // 
             // ButSave
             // 
