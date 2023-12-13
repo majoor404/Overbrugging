@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
@@ -231,11 +230,15 @@ namespace Overbrugging
         private DateTime NaarDateTime(string Datum) // is van format "19-11-2023 00:00:00" of "9-4-2001 00:00:00"
         {
             if (string.IsNullOrEmpty(Datum))
+            {
                 return DateTime.Now;
+            }
             // verwijder tijd
             int pos = Datum.IndexOf(" ");
-            if(pos>-1)
+            if (pos > -1)
+            {
                 Datum = Datum.Substring(0, pos);
+            }
 
             string[] temp = Datum.Split('-');
 
@@ -299,6 +302,24 @@ namespace Overbrugging
             {
                 NamenFunties Q = NamenLijst.First(a => a.Index == zoek);
                 return Q.Naam;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        private string ZoekPersnr(string zoek)
+        {
+            if (string.IsNullOrEmpty(zoek))
+            {
+                return "";
+            }
+
+            try
+            {
+                NamenFunties Q = NamenLijst.First(a => a.Naam == zoek);
+                return Q.PersoneelNummer;
             }
             catch
             {
@@ -396,7 +417,7 @@ namespace Overbrugging
             dataGridView1.Columns["InstalatieDeel"].DataPropertyName = "InstallatieDeel";
             dataGridView1.Columns["Rede"].DataPropertyName = "Reden";
             dataGridView1.Columns["DatumVerl"].DataPropertyName = "UitersteDatum";
-            
+
 
             //dataGridView1.ResumeLayout();
             StopRedraw.ResumeDrawing(panelMain);
@@ -586,66 +607,96 @@ namespace Overbrugging
         private void ButSettings_Click(object sender, EventArgs e)
         {
             Settings settings = new Settings();
-            var ret = settings.ShowDialog();
+            DialogResult ret = settings.ShowDialog();
             if (ret == DialogResult.OK)
             {
                 EditNamen ed = new EditNamen();
-                ed.ShowDialog();
+                _ = ed.ShowDialog();
             }
-            if(ret == DialogResult.Cancel)
+            if (ret == DialogResult.Cancel)
             {
 
             }
             if (ret == DialogResult.Abort)
             {
-                ButImport_Click(this,null);
+                ButImport_Click(this, null);
             }
         }
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            _ = System.Diagnostics.Process.Start("https://github.com/majoor404/Overbrugging"); 
+            _ = System.Diagnostics.Process.Start("https://github.com/majoor404/Overbrugging");
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
+                // zoek record
                 int regNr = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
                 Data Q = ZoekDataRecord(regNr);
-
+                // maak formulier
                 Detail dt = new Detail();
                 dt.TextBoxRegNr.Text = Q.RegNr.ToString();
                 dt.TextBoxRegNr.Enabled = false;
 
-                dt.DatumInv.Value = NaarDateTime(Q.DatumInv);
-
-                dt.TextBoxSapNr.Text = Q.SapNr;
-
-                dt.TextBoxMocNr.Text = Q.MocNr;
-
+                // vullen dropdown items
+                LaadNamen_lijst();
                 dt.ComboBoxSectie.Items.Clear();
                 for (int i = 0; i < MainForm.Main.SectieLijst.Count; i++)
                 {
-                    dt.ComboBoxSectie.Items.Add(MainForm.Main.SectieLijst[i].Naam);
+                    _ = dt.ComboBoxSectie.Items.Add(MainForm.Main.SectieLijst[i].Naam);
                 }
-                dt.ComboBoxSectie.Text = Q.Sectie;
-
                 List<InstallatieOnderdeel> InstallatieLijstFilter = new List<InstallatieOnderdeel>();
                 InstallatieLijstFilter = InstallatieLijst.Where(x => x.Sectie == dt.ComboBoxSectie.Text).ToList();
                 dt.ComboSectieDeel.Items.Clear();
                 for (int i = 0; i < InstallatieLijstFilter.Count; i++)
                 {
-                    dt.ComboSectieDeel.Items.Add(InstallatieLijstFilter[i].Instal);
+                    _ = dt.ComboSectieDeel.Items.Add(InstallatieLijstFilter[i].Instal);
+                }
+                dt.ComboBoxNaam1.Items.Clear();
+                dt.ComboBoxNaam2.Items.Clear();
+                dt.ComboBoxNaamVerw.Items.Clear();
+                for (int i = 0; i < NamenLijst.Count; i++)
+                {
+                    _ = dt.ComboBoxNaam1.Items.Add(NamenLijst[i].Naam);
+                    _ = dt.ComboBoxNaam2.Items.Add(NamenLijst[i].Naam);
+                    _ = dt.ComboBoxNaamVerw.Items.Add(NamenLijst[i].Naam);
+                }
+                
+                List<NamenFunties> IVWVFilter = new List<NamenFunties>();
+                IVWVFilter = NamenLijst.Where(x => x.IVWV == true).ToList();
+                for (int i = 0; i < IVWVFilter.Count; i++)
+                {
+                    //dt.ComboBoxNaamVerw.Items.Add(IVWVFilter[i].Naam);
                 }
 
+                // bovenste panel vullen met data
+                dt.DatumInv.Value = NaarDateTime(Q.DatumInv);
+                dt.TextBoxSapNr.Text = Q.SapNr;
+                dt.TextBoxMocNr.Text = Q.MocNr;
+                dt.ComboBoxSectie.Text = Q.Sectie;
                 dt.ComboSectieDeel.Text = Q.Installatie;
+                dt.TextBoxInstDeel.Text = Q.InstallatieDeel;
+                dt.ComboBoxNaam1.Text = Q.Naam1;
+                dt.ComboBoxNaam2.Text = Q.Naam2;
+                dt.TextBoxPersnr1.Text = ZoekPersnr(Q.Naam1);
+                dt.TextBoxPersnr2.Text = ZoekPersnr(Q.Naam2);
+                dt.TextBoxRede.Text = Q.Reden;
+                dt.TextBoxOplossing.Text = Q.Uitvoering;
+                // middelste panel
 
-                dt.ShowDialog();
+                // onderste panel
+                dt.DatumVerw.Value = NaarDateTime(Q.DatumVerw);
+                dt.ComboBoxNaamVerw.Text = Q.Naamverw;
+                dt.TextBoxPersNrVerw.Text = ZoekPersnr(Q.Naamverw);
+                dt.TextBoxBijzVerw.Text = Q.BijzonderhedenVerw;
+                // open dialog
+                _ = dt.ShowDialog();
             }
             catch
             {
-                MessageBox.Show($"e = {e.RowIndex}");
+                _ = MessageBox.Show($"e = {e.RowIndex}");
             }
         }
 
