@@ -20,7 +20,7 @@ namespace Overbrugging
             dataGridView1.Columns[0].Visible = false;   // index
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             TextBoxNaam.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             TextBoxPersNr.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -44,11 +44,13 @@ namespace Overbrugging
                 MainForm.Main.NamenLijst.Remove(Record);
             }catch { }
             // toevoegen
-            NamenFunties item = new NamenFunties();
-            item.Naam = TextBoxNaam.Text;
-            item.PersoneelNummer = TextBoxPersNr.Text;
-            item.Team = TextBoxTeam.Text;
-            item.IVWV = CheckBoxIvWv.Checked == true ? true : false;
+            NamenFunties item = new NamenFunties
+            {
+                Naam = TextBoxNaam.Text,
+                PersoneelNummer = TextBoxPersNr.Text,
+                Team = TextBoxTeam.Text,
+                IVWV = CheckBoxIvWv.Checked == true
+            };
             MainForm.Main.NamenLijst.Add(item);
             // sorteer
             MainForm.Main.SorteerNaamOpPersoneelNummer();

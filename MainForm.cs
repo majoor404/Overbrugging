@@ -227,28 +227,28 @@ namespace Overbrugging
             return Datum.Substring(0, pos);
         }
 
-        private DateTime NaarDateTime(string Datum) // is van format "19-11-2023 00:00:00" of "9-4-2001 00:00:00"
-        {
-            if (string.IsNullOrEmpty(Datum))
-            {
-                return DateTime.Now;
-            }
-            // verwijder tijd
-            int pos = Datum.IndexOf(" ");
-            if (pos > -1)
-            {
-                Datum = Datum.Substring(0, pos);
-            }
+        //private DateTime NaarDateTime(string Datum) // is van format "19-11-2023 00:00:00" of "9-4-2001 00:00:00"
+        //{
+        //    if (string.IsNullOrEmpty(Datum))
+        //    {
+        //        return DateTime.Now;
+        //    }
+        //    // verwijder tijd
+        //    int pos = Datum.IndexOf(" ");
+        //    if (pos > -1)
+        //    {
+        //        Datum = Datum.Substring(0, pos);
+        //    }
 
-            string[] temp = Datum.Split('-');
+        //    string[] temp = Datum.Split('-');
 
-            int Dag = int.Parse(temp[0]);
-            int Maand = int.Parse(temp[1]);
-            int Jaar = int.Parse(temp[2]);
+        //    int Dag = int.Parse(temp[0]);
+        //    int Maand = int.Parse(temp[1]);
+        //    int Jaar = int.Parse(temp[2]);
 
-            DateTime ret = new DateTime(Jaar, Maand, Dag);
-            return ret;
-        }
+        //    DateTime ret = new DateTime(Jaar, Maand, Dag);
+        //    return ret;
+        //}
 
         //private bool MaakBool(string vraag)
         //{
@@ -376,23 +376,23 @@ namespace Overbrugging
             dataGridView1.AutoGenerateColumns = false;
 
             _ = dataGridView1.Columns.Add("Nr", "Nr");
-            dataGridView1.Columns[0].Width = 40;
+            dataGridView1.Columns[0].Width = 50;
             _ = dataGridView1.Columns.Add("Datum", "Datum inv.");
-            dataGridView1.Columns[1].Width = 80;
+            dataGridView1.Columns[1].Width = 90;
             _ = dataGridView1.Columns.Add("Soort", "Soort");
             dataGridView1.Columns[2].Width = 60;
             _ = dataGridView1.Columns.Add("Sectie", "Sectie");
             dataGridView1.Columns[3].Width = 60;
 
             _ = dataGridView1.Columns.Add("Installatie", "Installatie");
-            dataGridView1.Columns[4].Width = 120;
+            dataGridView1.Columns[4].Width = 110;
             _ = dataGridView1.Columns.Add("InstalatieDeel", "Instalatie Deel");
             dataGridView1.Columns[5].Width = 180;
             _ = dataGridView1.Columns.Add("Rede", "Rede");
-            dataGridView1.Columns[6].Width = 360;
+            dataGridView1.Columns[6].Width = 340;
 
             _ = dataGridView1.Columns.Add("DatumVerl", "Verloopt");
-            dataGridView1.Columns[7].Width = 80;
+            dataGridView1.Columns[7].Width = 90;
 
             ButRefresh_Click(this, null);
 
@@ -628,7 +628,7 @@ namespace Overbrugging
             _ = System.Diagnostics.Process.Start("https://github.com/majoor404/Overbrugging");
         }
 
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -663,7 +663,6 @@ namespace Overbrugging
                     _ = dt.ComboBoxNaam2.Items.Add(NamenLijst[i].Naam);
                     _ = dt.ComboBoxNaamVerw.Items.Add(NamenLijst[i].Naam);
                 }
-                
                 List<NamenFunties> IVWVFilter = new List<NamenFunties>();
                 IVWVFilter = NamenLijst.Where(x => x.IVWV == true).ToList();
                 for (int i = 0; i < IVWVFilter.Count; i++)
@@ -672,7 +671,7 @@ namespace Overbrugging
                 }
 
                 // bovenste panel vullen met data
-                dt.DatumInv.Value = NaarDateTime(Q.DatumInv);
+                dt.DatumInv.Datum = Q.DatumInv;
                 dt.TextBoxSapNr.Text = Q.SapNr;
                 dt.TextBoxMocNr.Text = Q.MocNr;
                 dt.ComboBoxSectie.Text = Q.Sectie;
@@ -685,14 +684,14 @@ namespace Overbrugging
                 dt.TextBoxRede.Text = Q.Reden;
                 dt.TextBoxOplossing.Text = Q.Uitvoering;
                 // middelste panel
-                dt.DatumWv.Value = NaarDateTime(Q.DatumWv);
+                dt.DatumWv.Datum = Q.DatumWv;
                 dt.ComboBoxIVWV.Text = Q.NaamWV;
-                dt.DatumVerloopTIW.Value = NaarDateTime(Q.UitersteDatum);
+                dt.DatumVerloopTIW.Datum = Q.UitersteDatum;
                 dt.TextBoxPersNrIVWV.Text = ZoekPersnr(Q.NaamWV);
                 dt.TextBoxBijzIVWV.Text = Q.BijzonderhedenWV;
                 dt.ComboBoxType.Text = Q.Soort;
                 // onderste panel
-                dt.DatumVerw.Value = NaarDateTime(Q.DatumVerw);
+                dt.DatumVerw.Datum = Q.DatumVerw;
                 dt.ComboBoxNaamVerw.Text = Q.Naamverw;
                 dt.TextBoxPersNrVerw.Text = ZoekPersnr(Q.Naamverw);
                 dt.TextBoxBijzVerw.Text = Q.BijzonderhedenVerw;
@@ -714,5 +713,6 @@ namespace Overbrugging
         {
             return a.PersoneelNummer.CompareTo(b.PersoneelNummer);
         }
+        
     }
 }

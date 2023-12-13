@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatumPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DatumPicker.Designer.cs">
+      <DependentUpon>DatumPicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Detail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="StopRedraw.cs" />
+    <EmbeddedResource Include="DatumPicker.resx">
+      <DependentUpon>DatumPicker.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Detail.resx">
       <DependentUpon>Detail.cs</DependentUpon>
     </EmbeddedResource>
@@ -77,9 +86,6 @@
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="GradientPanel.cs">
-      <SubType>Component</SubType>
-    </None>
     <Compile Include="Data.cs" />
     <Compile Include="Installatie.cs" />
     <Compile Include="MainForm.cs">

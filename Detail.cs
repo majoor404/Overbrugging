@@ -9,10 +9,5 @@ namespace Overbrugging
         {
             InitializeComponent();
         }
-
-        private void Detail_Load(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

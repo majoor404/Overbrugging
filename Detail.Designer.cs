@@ -34,7 +34,6 @@
             this.ComboBoxNaam2 = new System.Windows.Forms.ComboBox();
             this.ComboSectieDeel = new System.Windows.Forms.ComboBox();
             this.ComboBoxSectie = new System.Windows.Forms.ComboBox();
-            this.DatumInv = new System.Windows.Forms.DateTimePicker();
             this.ComboBoxNaam1 = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.TextBoxPersnr1 = new System.Windows.Forms.TextBox();
@@ -64,7 +63,6 @@
             this.ComboBoxNaamVerw = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.DatumVerw = new System.Windows.Forms.DateTimePicker();
             this.label19 = new System.Windows.Forms.Label();
             this.TextBoxPersNrVerw = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -72,15 +70,17 @@
             this.label21 = new System.Windows.Forms.Label();
             this.TextBoxBijzIVWV = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.DatumVerloopTIW = new System.Windows.Forms.DateTimePicker();
             this.label22 = new System.Windows.Forms.Label();
-            this.DatumWv = new System.Windows.Forms.DateTimePicker();
             this.ComboBoxIVWV = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
             this.TextBoxPersNrIVWV = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
+            this.DatumVerloopTIW = new Overbrugging.DatumPicker();
+            this.DatumWv = new Overbrugging.DatumPicker();
+            this.DatumVerw = new Overbrugging.DatumPicker();
+            this.DatumInv = new Overbrugging.DatumPicker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -89,12 +89,12 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.DatumInv);
             this.panel1.Controls.Add(this.TextBoxOplossing);
             this.panel1.Controls.Add(this.TextBoxRede);
             this.panel1.Controls.Add(this.ComboBoxNaam2);
             this.panel1.Controls.Add(this.ComboSectieDeel);
             this.panel1.Controls.Add(this.ComboBoxSectie);
-            this.panel1.Controls.Add(this.DatumInv);
             this.panel1.Controls.Add(this.ComboBoxNaam1);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.TextBoxPersnr1);
@@ -161,7 +161,7 @@
             // 
             this.ComboSectieDeel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboSectieDeel.FormattingEnabled = true;
-            this.ComboSectieDeel.Location = new System.Drawing.Point(461, 162);
+            this.ComboSectieDeel.Location = new System.Drawing.Point(494, 162);
             this.ComboSectieDeel.Name = "ComboSectieDeel";
             this.ComboSectieDeel.Size = new System.Drawing.Size(133, 26);
             this.ComboSectieDeel.TabIndex = 3;
@@ -170,19 +170,10 @@
             // 
             this.ComboBoxSectie.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxSectie.FormattingEnabled = true;
-            this.ComboBoxSectie.Location = new System.Drawing.Point(461, 120);
+            this.ComboBoxSectie.Location = new System.Drawing.Point(494, 120);
             this.ComboBoxSectie.Name = "ComboBoxSectie";
             this.ComboBoxSectie.Size = new System.Drawing.Size(133, 26);
             this.ComboBoxSectie.TabIndex = 3;
-            // 
-            // DatumInv
-            // 
-            this.DatumInv.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DatumInv.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatumInv.Location = new System.Drawing.Point(159, 123);
-            this.DatumInv.Name = "DatumInv";
-            this.DatumInv.Size = new System.Drawing.Size(133, 24);
-            this.DatumInv.TabIndex = 2;
             // 
             // ComboBoxNaam1
             // 
@@ -215,7 +206,7 @@
             // TextBoxInstDeel
             // 
             this.TextBoxInstDeel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxInstDeel.Location = new System.Drawing.Point(461, 202);
+            this.TextBoxInstDeel.Location = new System.Drawing.Point(494, 202);
             this.TextBoxInstDeel.Name = "TextBoxInstDeel";
             this.TextBoxInstDeel.Size = new System.Drawing.Size(295, 24);
             this.TextBoxInstDeel.TabIndex = 1;
@@ -233,7 +224,7 @@
             this.TextBoxMocNr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxMocNr.Location = new System.Drawing.Point(159, 199);
             this.TextBoxMocNr.Name = "TextBoxMocNr";
-            this.TextBoxMocNr.Size = new System.Drawing.Size(133, 24);
+            this.TextBoxMocNr.Size = new System.Drawing.Size(137, 24);
             this.TextBoxMocNr.TabIndex = 1;
             // 
             // label13
@@ -251,7 +242,7 @@
             this.TextBoxSapNr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxSapNr.Location = new System.Drawing.Point(159, 162);
             this.TextBoxSapNr.Name = "TextBoxSapNr";
-            this.TextBoxSapNr.Size = new System.Drawing.Size(133, 24);
+            this.TextBoxSapNr.Size = new System.Drawing.Size(137, 24);
             this.TextBoxSapNr.TabIndex = 1;
             // 
             // TextBoxRegNr
@@ -259,7 +250,7 @@
             this.TextBoxRegNr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxRegNr.Location = new System.Drawing.Point(159, 82);
             this.TextBoxRegNr.Name = "TextBoxRegNr";
-            this.TextBoxRegNr.Size = new System.Drawing.Size(133, 24);
+            this.TextBoxRegNr.Size = new System.Drawing.Size(137, 24);
             this.TextBoxRegNr.TabIndex = 1;
             // 
             // label14
@@ -336,7 +327,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(311, 202);
+            this.label8.Location = new System.Drawing.Point(344, 202);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(95, 18);
             this.label8.TabIndex = 0;
@@ -346,7 +337,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(311, 162);
+            this.label7.Location = new System.Drawing.Point(344, 162);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(68, 18);
             this.label7.TabIndex = 0;
@@ -356,7 +347,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(311, 123);
+            this.label6.Location = new System.Drawing.Point(344, 123);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 18);
             this.label6.TabIndex = 0;
@@ -395,13 +386,13 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.DatumVerw);
             this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.TextBoxBijzVerw);
             this.panel2.Controls.Add(this.label17);
             this.panel2.Controls.Add(this.ComboBoxNaamVerw);
             this.panel2.Controls.Add(this.label20);
             this.panel2.Controls.Add(this.label18);
-            this.panel2.Controls.Add(this.DatumVerw);
             this.panel2.Controls.Add(this.label19);
             this.panel2.Controls.Add(this.TextBoxPersNrVerw);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -449,7 +440,7 @@
             this.ComboBoxNaamVerw.FormattingEnabled = true;
             this.ComboBoxNaamVerw.Location = new System.Drawing.Point(168, 158);
             this.ComboBoxNaamVerw.Name = "ComboBoxNaamVerw";
-            this.ComboBoxNaamVerw.Size = new System.Drawing.Size(161, 26);
+            this.ComboBoxNaamVerw.Size = new System.Drawing.Size(137, 26);
             this.ComboBoxNaamVerw.TabIndex = 3;
             // 
             // label20
@@ -472,16 +463,6 @@
             this.label18.TabIndex = 0;
             this.label18.Text = "Naam";
             // 
-            // DatumVerw
-            // 
-            this.DatumVerw.CustomFormat = " ";
-            this.DatumVerw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DatumVerw.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatumVerw.Location = new System.Drawing.Point(168, 109);
-            this.DatumVerw.Name = "DatumVerw";
-            this.DatumVerw.Size = new System.Drawing.Size(161, 24);
-            this.DatumVerw.TabIndex = 2;
-            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -495,7 +476,7 @@
             // TextBoxPersNrVerw
             // 
             this.TextBoxPersNrVerw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPersNrVerw.Location = new System.Drawing.Point(583, 161);
+            this.TextBoxPersNrVerw.Location = new System.Drawing.Point(528, 161);
             this.TextBoxPersNrVerw.Name = "TextBoxPersNrVerw";
             this.TextBoxPersNrVerw.Size = new System.Drawing.Size(133, 24);
             this.TextBoxPersNrVerw.TabIndex = 1;
@@ -503,13 +484,13 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.DatumVerloopTIW);
+            this.panel3.Controls.Add(this.DatumWv);
             this.panel3.Controls.Add(this.ComboBoxType);
             this.panel3.Controls.Add(this.label21);
             this.panel3.Controls.Add(this.TextBoxBijzIVWV);
             this.panel3.Controls.Add(this.label24);
-            this.panel3.Controls.Add(this.DatumVerloopTIW);
             this.panel3.Controls.Add(this.label22);
-            this.panel3.Controls.Add(this.DatumWv);
             this.panel3.Controls.Add(this.ComboBoxIVWV);
             this.panel3.Controls.Add(this.label27);
             this.panel3.Controls.Add(this.TextBoxPersNrIVWV);
@@ -532,7 +513,7 @@
             "Overb"});
             this.ComboBoxType.Location = new System.Drawing.Point(528, 134);
             this.ComboBoxType.Name = "ComboBoxType";
-            this.ComboBoxType.Size = new System.Drawing.Size(161, 26);
+            this.ComboBoxType.Size = new System.Drawing.Size(137, 26);
             this.ComboBoxType.TabIndex = 5;
             this.ComboBoxType.Text = "TIW";
             // 
@@ -568,15 +549,6 @@
             this.label24.TabIndex = 0;
             this.label24.Text = "Datum verloop TIW";
             // 
-            // DatumVerloopTIW
-            // 
-            this.DatumVerloopTIW.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DatumVerloopTIW.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatumVerloopTIW.Location = new System.Drawing.Point(528, 84);
-            this.DatumVerloopTIW.Name = "DatumVerloopTIW";
-            this.DatumVerloopTIW.Size = new System.Drawing.Size(161, 24);
-            this.DatumVerloopTIW.TabIndex = 2;
-            // 
             // label22
             // 
             this.label22.AutoSize = true;
@@ -587,15 +559,6 @@
             this.label22.TabIndex = 0;
             this.label22.Text = "Datum";
             // 
-            // DatumWv
-            // 
-            this.DatumWv.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DatumWv.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatumWv.Location = new System.Drawing.Point(159, 84);
-            this.DatumWv.Name = "DatumWv";
-            this.DatumWv.Size = new System.Drawing.Size(161, 24);
-            this.DatumWv.TabIndex = 2;
-            // 
             // ComboBoxIVWV
             // 
             this.ComboBoxIVWV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -603,7 +566,7 @@
             this.ComboBoxIVWV.FormattingEnabled = true;
             this.ComboBoxIVWV.Location = new System.Drawing.Point(159, 138);
             this.ComboBoxIVWV.Name = "ComboBoxIVWV";
-            this.ComboBoxIVWV.Size = new System.Drawing.Size(161, 26);
+            this.ComboBoxIVWV.Size = new System.Drawing.Size(137, 26);
             this.ComboBoxIVWV.TabIndex = 3;
             // 
             // label27
@@ -621,7 +584,7 @@
             this.TextBoxPersNrIVWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPersNrIVWV.Location = new System.Drawing.Point(159, 190);
             this.TextBoxPersNrIVWV.Name = "TextBoxPersNrIVWV";
-            this.TextBoxPersNrIVWV.Size = new System.Drawing.Size(161, 24);
+            this.TextBoxPersNrIVWV.Size = new System.Drawing.Size(137, 24);
             this.TextBoxPersNrIVWV.TabIndex = 1;
             // 
             // label23
@@ -654,6 +617,38 @@
             this.label26.TabIndex = 0;
             this.label26.Text = "Naam";
             // 
+            // DatumVerloopTIW
+            // 
+            this.DatumVerloopTIW.Datum = "";
+            this.DatumVerloopTIW.Location = new System.Drawing.Point(528, 84);
+            this.DatumVerloopTIW.Name = "DatumVerloopTIW";
+            this.DatumVerloopTIW.Size = new System.Drawing.Size(137, 42);
+            this.DatumVerloopTIW.TabIndex = 7;
+            // 
+            // DatumWv
+            // 
+            this.DatumWv.Datum = "";
+            this.DatumWv.Location = new System.Drawing.Point(159, 84);
+            this.DatumWv.Name = "DatumWv";
+            this.DatumWv.Size = new System.Drawing.Size(137, 42);
+            this.DatumWv.TabIndex = 6;
+            // 
+            // DatumVerw
+            // 
+            this.DatumVerw.Datum = "";
+            this.DatumVerw.Location = new System.Drawing.Point(168, 114);
+            this.DatumVerw.Name = "DatumVerw";
+            this.DatumVerw.Size = new System.Drawing.Size(137, 42);
+            this.DatumVerw.TabIndex = 5;
+            // 
+            // DatumInv
+            // 
+            this.DatumInv.Datum = "";
+            this.DatumInv.Location = new System.Drawing.Point(159, 120);
+            this.DatumInv.Name = "DatumInv";
+            this.DatumInv.Size = new System.Drawing.Size(137, 42);
+            this.DatumInv.TabIndex = 5;
+            // 
             // Detail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -665,7 +660,6 @@
             this.Name = "Detail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Detail";
-            this.Load += new System.EventHandler(this.Detail_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -695,7 +689,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label15;
         public System.Windows.Forms.TextBox TextBoxRegNr;
-        public System.Windows.Forms.DateTimePicker DatumInv;
         public System.Windows.Forms.TextBox TextBoxSapNr;
         public System.Windows.Forms.TextBox TextBoxMocNr;
         public System.Windows.Forms.ComboBox ComboBoxSectie;
@@ -714,16 +707,13 @@
         public System.Windows.Forms.ComboBox ComboBoxNaamVerw;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label18;
-        public System.Windows.Forms.DateTimePicker DatumVerw;
         private System.Windows.Forms.Label label19;
         public System.Windows.Forms.TextBox TextBoxPersNrVerw;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
-        public System.Windows.Forms.DateTimePicker DatumWv;
         public System.Windows.Forms.TextBox TextBoxBijzIVWV;
         private System.Windows.Forms.Label label24;
-        public System.Windows.Forms.DateTimePicker DatumVerloopTIW;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label25;
         public System.Windows.Forms.ComboBox ComboBoxIVWV;
@@ -731,5 +721,9 @@
         private System.Windows.Forms.Label label27;
         public System.Windows.Forms.TextBox TextBoxPersNrIVWV;
         public System.Windows.Forms.ComboBox ComboBoxType;
+        public DatumPicker DatumInv;
+        public DatumPicker DatumVerw;
+        public DatumPicker DatumVerloopTIW;
+        public DatumPicker DatumWv;
     }
 }
