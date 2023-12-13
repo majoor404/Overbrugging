@@ -5,7 +5,7 @@ namespace Overbrugging
     [Serializable]
     public class Data
     {
-        //private static string heleText(string _Soort)
+        //public static string heleText(string _Soort)
         //{
         //    if (_Soort == "0")
         //        return "Overb";

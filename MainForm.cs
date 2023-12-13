@@ -668,7 +668,7 @@ namespace Overbrugging
                 IVWVFilter = NamenLijst.Where(x => x.IVWV == true).ToList();
                 for (int i = 0; i < IVWVFilter.Count; i++)
                 {
-                    //dt.ComboBoxNaamVerw.Items.Add(IVWVFilter[i].Naam);
+                    dt.ComboBoxIVWV.Items.Add(IVWVFilter[i].Naam);
                 }
 
                 // bovenste panel vullen met data
@@ -685,7 +685,12 @@ namespace Overbrugging
                 dt.TextBoxRede.Text = Q.Reden;
                 dt.TextBoxOplossing.Text = Q.Uitvoering;
                 // middelste panel
-
+                dt.DatumWv.Value = NaarDateTime(Q.DatumWv);
+                dt.ComboBoxIVWV.Text = Q.NaamWV;
+                dt.DatumVerloopTIW.Value = NaarDateTime(Q.UitersteDatum);
+                dt.TextBoxPersNrIVWV.Text = ZoekPersnr(Q.NaamWV);
+                dt.TextBoxBijzIVWV.Text = Q.BijzonderhedenWV;
+                dt.ComboBoxType.Text = Q.Soort;
                 // onderste panel
                 dt.DatumVerw.Value = NaarDateTime(Q.DatumVerw);
                 dt.ComboBoxNaamVerw.Text = Q.Naamverw;
