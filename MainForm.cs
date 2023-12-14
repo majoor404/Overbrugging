@@ -376,9 +376,9 @@ namespace Overbrugging
             dataGridView1.AutoGenerateColumns = false;
 
             _ = dataGridView1.Columns.Add("Nr", "Nr");
-            dataGridView1.Columns[0].Width = 50;
+            dataGridView1.Columns[0].Width = 60;
             _ = dataGridView1.Columns.Add("Datum", "Datum inv.");
-            dataGridView1.Columns[1].Width = 90;
+            dataGridView1.Columns[1].Width = 100;
             _ = dataGridView1.Columns.Add("Soort", "Soort");
             dataGridView1.Columns[2].Width = 60;
             _ = dataGridView1.Columns.Add("Sectie", "Sectie");
@@ -389,10 +389,12 @@ namespace Overbrugging
             _ = dataGridView1.Columns.Add("InstalatieDeel", "Instalatie Deel");
             dataGridView1.Columns[5].Width = 180;
             _ = dataGridView1.Columns.Add("Rede", "Rede");
-            dataGridView1.Columns[6].Width = 340;
+            dataGridView1.Columns[6].Width = 360;
 
             _ = dataGridView1.Columns.Add("DatumVerl", "Verloopt");
-            dataGridView1.Columns[7].Width = 90;
+            dataGridView1.Columns[7].Width = 100;
+
+            dataGridView1.RowHeadersVisible = false;
 
             ButRefresh_Click(this, null);
 

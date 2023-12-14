@@ -81,6 +81,7 @@
             this.DatumWv = new Overbrugging.DatumPicker();
             this.DatumVerw = new Overbrugging.DatumPicker();
             this.DatumInv = new Overbrugging.DatumPicker();
+            this.LabelType = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -89,6 +90,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.LabelType);
             this.panel1.Controls.Add(this.DatumInv);
             this.panel1.Controls.Add(this.TextBoxOplossing);
             this.panel1.Controls.Add(this.TextBoxRede);
@@ -516,6 +518,7 @@
             this.ComboBoxType.Size = new System.Drawing.Size(137, 26);
             this.ComboBoxType.TabIndex = 5;
             this.ComboBoxType.Text = "TIW";
+            this.ComboBoxType.SelectedIndexChanged += new System.EventHandler(this.ComboBoxType_SelectedIndexChanged);
             // 
             // label21
             // 
@@ -649,6 +652,16 @@
             this.DatumInv.Size = new System.Drawing.Size(137, 42);
             this.DatumInv.TabIndex = 5;
             // 
+            // LabelType
+            // 
+            this.LabelType.AutoSize = true;
+            this.LabelType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelType.Location = new System.Drawing.Point(849, 84);
+            this.LabelType.Name = "LabelType";
+            this.LabelType.Size = new System.Drawing.Size(248, 24);
+            this.LabelType.TabIndex = 6;
+            this.LabelType.Text = "Tijdelijke Instalatie Wijzeging";
+            // 
             // Detail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -725,5 +738,6 @@
         public DatumPicker DatumVerw;
         public DatumPicker DatumVerloopTIW;
         public DatumPicker DatumWv;
+        private System.Windows.Forms.Label LabelType;
     }
 }
