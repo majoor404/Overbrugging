@@ -168,6 +168,7 @@
             this.ComboBoxNaam2.Name = "ComboBoxNaam2";
             this.ComboBoxNaam2.Size = new System.Drawing.Size(161, 26);
             this.ComboBoxNaam2.TabIndex = 3;
+            this.ComboBoxNaam2.SelectedIndexChanged += new System.EventHandler(this.ComboBoxNaam2_SelectedIndexChanged);
             // 
             // ComboSectieDeel
             // 
@@ -196,6 +197,7 @@
             this.ComboBoxNaam1.Name = "ComboBoxNaam1";
             this.ComboBoxNaam1.Size = new System.Drawing.Size(161, 26);
             this.ComboBoxNaam1.TabIndex = 3;
+            this.ComboBoxNaam1.SelectedIndexChanged += new System.EventHandler(this.ComboBoxNaam1_SelectedIndexChanged);
             // 
             // label11
             // 
@@ -212,6 +214,7 @@
             this.TextBoxPersnr1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPersnr1.Location = new System.Drawing.Point(853, 96);
             this.TextBoxPersnr1.Name = "TextBoxPersnr1";
+            this.TextBoxPersnr1.ReadOnly = true;
             this.TextBoxPersnr1.Size = new System.Drawing.Size(133, 24);
             this.TextBoxPersnr1.TabIndex = 1;
             // 
@@ -228,6 +231,7 @@
             this.TextBoxPersnr2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPersnr2.Location = new System.Drawing.Point(853, 133);
             this.TextBoxPersnr2.Name = "TextBoxPersnr2";
+            this.TextBoxPersnr2.ReadOnly = true;
             this.TextBoxPersnr2.Size = new System.Drawing.Size(133, 24);
             this.TextBoxPersnr2.TabIndex = 1;
             // 
@@ -454,6 +458,7 @@
             this.ComboBoxNaamVerw.Name = "ComboBoxNaamVerw";
             this.ComboBoxNaamVerw.Size = new System.Drawing.Size(137, 26);
             this.ComboBoxNaamVerw.TabIndex = 3;
+            this.ComboBoxNaamVerw.SelectedIndexChanged += new System.EventHandler(this.ComboBoxNaamVerw_SelectedIndexChanged);
             // 
             // label20
             // 
@@ -490,6 +495,7 @@
             this.TextBoxPersNrVerw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPersNrVerw.Location = new System.Drawing.Point(494, 60);
             this.TextBoxPersNrVerw.Name = "TextBoxPersNrVerw";
+            this.TextBoxPersNrVerw.ReadOnly = true;
             this.TextBoxPersNrVerw.Size = new System.Drawing.Size(133, 24);
             this.TextBoxPersNrVerw.TabIndex = 1;
             // 
@@ -577,6 +583,7 @@
             this.ComboBoxIVWV.Name = "ComboBoxIVWV";
             this.ComboBoxIVWV.Size = new System.Drawing.Size(137, 26);
             this.ComboBoxIVWV.TabIndex = 3;
+            this.ComboBoxIVWV.SelectedIndexChanged += new System.EventHandler(this.ComboBoxIVWV_SelectedIndexChanged);
             // 
             // label27
             // 
@@ -593,6 +600,7 @@
             this.TextBoxPersNrIVWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPersNrIVWV.Location = new System.Drawing.Point(159, 163);
             this.TextBoxPersNrIVWV.Name = "TextBoxPersNrIVWV";
+            this.TextBoxPersNrIVWV.ReadOnly = true;
             this.TextBoxPersNrIVWV.Size = new System.Drawing.Size(137, 24);
             this.TextBoxPersNrIVWV.TabIndex = 1;
             // 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Overbrugging
@@ -67,6 +68,44 @@ namespace Overbrugging
                 TextBoxMocNr.Visible = false;
             }
             ButtonType.Text = QN.Soort;
+        }
+
+        private void ComboBoxNaam1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TextBoxPersnr1.Text = ZoekPersnr(ComboBoxNaam1.Text);
+        }
+
+        private void ComboBoxNaam2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TextBoxPersnr2.Text = ZoekPersnr(ComboBoxNaam2.Text);
+        }
+
+        private void ComboBoxIVWV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TextBoxPersNrIVWV.Text = ZoekPersnr(ComboBoxIVWV.Text);
+        }
+
+        private void ComboBoxNaamVerw_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TextBoxPersNrVerw.Text = ZoekPersnr(ComboBoxNaamVerw.Text);
+        }
+
+        public string ZoekPersnr(string zoek)
+        {
+            if (string.IsNullOrEmpty(zoek))
+            {
+                return "";
+            }
+
+            try
+            {
+                NamenFunties Q = MainForm.Main.NamenLijst.First(a => a.Naam == zoek);
+                return Q.PersoneelNummer;
+            }
+            catch
+            {
+                return "";
+            }
         }
     }
 }

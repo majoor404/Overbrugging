@@ -1,4 +1,5 @@
 ﻿using Melding;
+using Overbrugging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -311,23 +312,7 @@ namespace Overbrugging
             }
         }
 
-        private string ZoekPersnr(string zoek)
-        {
-            if (string.IsNullOrEmpty(zoek))
-            {
-                return "";
-            }
-
-            try
-            {
-                NamenFunties Q = NamenLijst.First(a => a.Naam == zoek);
-                return Q.PersoneelNummer;
-            }
-            catch
-            {
-                return "";
-            }
-        }
+        
 
         private string ZoekInstallatie(string zoek)
         {
@@ -663,65 +648,37 @@ namespace Overbrugging
                 // zoek record
                 int regNr = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
                 Data Q = ZoekDataRecord(regNr);
+                
                 // maak formulier
                 Detail dt = new Detail();
                 dt.TextBoxRegNr.Text = Q.RegNr.ToString();
                 dt.TextBoxRegNr.Enabled = false;
 
-                // vullen dropdown items
                 LaadNamen_lijst();
-                dt.ComboBoxSectie.Items.Clear();
-                for (int i = 0; i < MainForm.Main.SectieLijst.Count; i++)
-                {
-                    _ = dt.ComboBoxSectie.Items.Add(MainForm.Main.SectieLijst[i].Naam);
-                }
-                List<InstallatieOnderdeel> InstallatieLijstFilter = new List<InstallatieOnderdeel>();
-                InstallatieLijstFilter = InstallatieLijst.Where(x => x.Sectie == dt.ComboBoxSectie.Text).ToList();
-                dt.ComboSectieDeel.Items.Clear();
-                for (int i = 0; i < InstallatieLijstFilter.Count; i++)
-                {
-                    _ = dt.ComboSectieDeel.Items.Add(InstallatieLijstFilter[i].Instal);
-                }
-                dt.ComboBoxNaam1.Items.Clear();
-                dt.ComboBoxNaam2.Items.Clear();
-                dt.ComboBoxNaamVerw.Items.Clear();
-                for (int i = 0; i < NamenLijst.Count; i++)
-                {
-                    _ = dt.ComboBoxNaam1.Items.Add(NamenLijst[i].Naam);
-                    _ = dt.ComboBoxNaam2.Items.Add(NamenLijst[i].Naam);
-                    _ = dt.ComboBoxNaamVerw.Items.Add(NamenLijst[i].Naam);
-                }
-                List<NamenFunties> IVWVFilter = new List<NamenFunties>();
-                IVWVFilter = NamenLijst.Where(x => x.IVWV == true).ToList();
-                for (int i = 0; i < IVWVFilter.Count; i++)
-                {
-                    dt.ComboBoxIVWV.Items.Add(IVWVFilter[i].Naam);
-                }
+
+                // vullen dropdown items
+                dt.ComboBoxSectie.Text = Q.Sectie; // daarvoor heb ik wel sectie nodig.
+                VulDropDownItems(dt);
 
                 // bovenste panel vullen met data
                 dt.DatumInv.Datum = Q.DatumInv;
                 dt.TextBoxSapNr.Text = Q.SapNr;
                 dt.TextBoxMocNr.Text = Q.MocNr;
-                dt.ComboBoxSectie.Text = Q.Sectie;
                 dt.ComboSectieDeel.Text = Q.Installatie;
                 dt.TextBoxInstDeel.Text = Q.InstallatieDeel;
                 dt.ComboBoxNaam1.Text = Q.Naam1;
                 dt.ComboBoxNaam2.Text = Q.Naam2;
-                dt.TextBoxPersnr1.Text = ZoekPersnr(Q.Naam1);
-                dt.TextBoxPersnr2.Text = ZoekPersnr(Q.Naam2);
                 dt.TextBoxRede.Text = Q.Reden;
                 dt.TextBoxOplossing.Text = Q.Uitvoering;
                 // middelste panel
                 dt.DatumWv.Datum = Q.DatumWv;
                 dt.ComboBoxIVWV.Text = Q.NaamWV;
                 dt.DatumVerloopTIW.Datum = Q.UitersteDatum;
-                dt.TextBoxPersNrIVWV.Text = ZoekPersnr(Q.NaamWV);
                 dt.TextBoxBijzIVWV.Text = Q.BijzonderhedenWV;
                 dt.ButtonType.Text = Q.Soort;
                 // onderste panel
                 dt.DatumVerw.Datum = Q.DatumVerw;
                 dt.ComboBoxNaamVerw.Text = Q.Naamverw;
-                dt.TextBoxPersNrVerw.Text = ZoekPersnr(Q.Naamverw);
                 dt.TextBoxBijzVerw.Text = Q.BijzonderhedenVerw;
                 // open dialog
                 _ = dt.ShowDialog();
@@ -742,7 +699,7 @@ namespace Overbrugging
             return a.PersoneelNummer.CompareTo(b.PersoneelNummer);
         }
 
-        private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -784,6 +741,38 @@ namespace Overbrugging
             if (ret == DialogResult.Abort)
             {
                 //MOC
+            }
+        }
+
+        public void VulDropDownItems(Detail dt)
+        {
+            // vullen dropdown items
+            dt.ComboBoxSectie.Items.Clear();
+            for (int i = 0; i < MainForm.Main.SectieLijst.Count; i++)
+            {
+                _ = dt.ComboBoxSectie.Items.Add(MainForm.Main.SectieLijst[i].Naam);
+            }
+            List<InstallatieOnderdeel> InstallatieLijstFilter = new List<InstallatieOnderdeel>();
+            InstallatieLijstFilter = InstallatieLijst.Where(x => x.Sectie == dt.ComboBoxSectie.Text).ToList();
+            dt.ComboSectieDeel.Items.Clear();
+            for (int i = 0; i < InstallatieLijstFilter.Count; i++)
+            {
+                _ = dt.ComboSectieDeel.Items.Add(InstallatieLijstFilter[i].Instal);
+            }
+            dt.ComboBoxNaam1.Items.Clear();
+            dt.ComboBoxNaam2.Items.Clear();
+            dt.ComboBoxNaamVerw.Items.Clear();
+            for (int i = 0; i < NamenLijst.Count; i++)
+            {
+                _ = dt.ComboBoxNaam1.Items.Add(NamenLijst[i].Naam);
+                _ = dt.ComboBoxNaam2.Items.Add(NamenLijst[i].Naam);
+                _ = dt.ComboBoxNaamVerw.Items.Add(NamenLijst[i].Naam);
+            }
+            List<NamenFunties> IVWVFilter = new List<NamenFunties>();
+            IVWVFilter = NamenLijst.Where(x => x.IVWV == true).ToList();
+            for (int i = 0; i < IVWVFilter.Count; i++)
+            {
+                dt.ComboBoxIVWV.Items.Add(IVWVFilter[i].Naam);
             }
         }
     }

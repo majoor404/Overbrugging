@@ -9,9 +9,9 @@ namespace Melding
         private int meldingX, meldingY;
         private readonly int schermbreed, schermhoog;
         private int close;
-        private statusForm status;
+        private StatusForm status;
 
-        private enum statusForm { start, show, eind};
+        private enum StatusForm { start, show, eind};
         public enum Type { Info, Cal, Err, Klaar, Edit, Save , Note};
 
         public FormMelding(Type type, string regel1, string regel2)
@@ -74,26 +74,26 @@ namespace Melding
             Close();
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
-            if (status == statusForm.start)
+            if (status == StatusForm.start)
             {
                 meldingY -= 6;
                 Location = new Point(meldingX, meldingY);
                 Refresh();
                 if (meldingY < schermhoog - Height - 10)
                 {
-                    status = statusForm.show;
+                    status = StatusForm.show;
                     close = 110;
                 }
             }
-            if (status == statusForm.show)
+            if (status == StatusForm.show)
             {
                 close--;
                 if (close < 0)
-                    status = statusForm.eind;
+                    status = StatusForm.eind;
             }
-            if (status == statusForm.eind)
+            if (status == StatusForm.eind)
             {
                 meldingY += 6;
                 Location = new Point(meldingX, meldingY);
@@ -108,7 +108,7 @@ namespace Melding
 
         private void FormMelding_Shown(object sender, EventArgs e)
         {
-            status = statusForm.start;
+            status = StatusForm.start;
             timer.Enabled = true;
         }
     }
