@@ -1,5 +1,4 @@
 ﻿using Melding;
-using Overbrugging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -384,7 +383,10 @@ namespace Overbrugging
 
             int index = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
             if (LastIndex == 0)
+            {
                 LastIndex = index;
+            }
+
             VulPreview(index);
         }
 
@@ -614,7 +616,7 @@ namespace Overbrugging
                 // zoek record
                 int regNr = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
                 Data Q = ZoekDataRecord(regNr);
-                
+
                 // maak formulier
                 Detail dt = new Detail();
                 dt.TextBoxRegNr.Text = Q.RegNr.ToString();
@@ -625,7 +627,7 @@ namespace Overbrugging
                 VulDropDownItems(dt);
 
                 VulDatailForm(dt, Q);
-                
+
                 // open dialog
                 _ = dt.ShowDialog();
             }
@@ -653,7 +655,7 @@ namespace Overbrugging
                 int regNr = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
                 VulPreview(regNr);
             }
-            catch {}
+            catch { }
         }
 
         private void VulPreview(int index)
@@ -665,7 +667,8 @@ namespace Overbrugging
                 TB2.Text = Q.Uitvoering;
                 GeselRegNr.Text = index.ToString();
             }
-            catch {
+            catch
+            {
                 TB1.Clear();
                 TB2.Clear();
                 GeselRegNr.Text = "";
@@ -676,35 +679,63 @@ namespace Overbrugging
         {
             KeuzeType KS = new KeuzeType();
             DialogResult ret = KS.ShowDialog();
+            Data Q = new Data();
+            LijstData.Add(Q);   // meteen toevoegen aan lijst, maar is nog leeg
+
+            Detail dt = new Detail();
+
             if (ret == DialogResult.OK)
             {
                 // TIW
+                Q.Soort = "TIW";
             }
             if (ret == DialogResult.Cancel)
             {
                 //OVERB
+                Q.Soort = "OVERB";
             }
             if (ret == DialogResult.Abort)
             {
                 //MOC
+                Q.Soort = "MOC";
             }
+            LastIndex++;
+            
+            // maak formulier
+            
+            Q.RegNr = LastIndex;
+            dt.TextBoxRegNr.Text = LastIndex.ToString();
+            dt.TextBoxRegNr.Enabled = false;
+
+            LaadNamen_lijst();
+            VulDropDownItems(dt);
+
+            Q.DatumInv = dt.DatumInv.Datum = DateTime.Now.ToShortDateString();
+
+            // open dialog
+            _ = dt.ShowDialog();
         }
 
         public void VulDropDownItems(Detail dt)
         {
-            // vullen dropdown items
-            dt.ComboBoxSectie.Items.Clear();
-            for (int i = 0; i < MainForm.Main.SectieLijst.Count; i++)
+            VulSectiesDropDown(dt);
+            VulSectiesOnderdeelDropDown(dt);
+            VulNamenPersoneel(dt);
+            VulNamenIVWVPersoneel(dt);
+        }  // vullen dropdown items
+
+        private void VulNamenIVWVPersoneel(Detail dt)
+        {
+            List<NamenFunties> IVWVFilter = new List<NamenFunties>();
+            IVWVFilter = NamenLijst.Where(x => x.IVWV == true).ToList();
+            for (int i = 0; i < IVWVFilter.Count; i++)
             {
-                _ = dt.ComboBoxSectie.Items.Add(MainForm.Main.SectieLijst[i].Naam);
+                _ = dt.ComboBoxIVWV.Items.Add(IVWVFilter[i].Naam);
             }
-            List<InstallatieOnderdeel> InstallatieLijstFilter = new List<InstallatieOnderdeel>();
-            InstallatieLijstFilter = InstallatieLijst.Where(x => x.Sectie == dt.ComboBoxSectie.Text).ToList();
-            dt.ComboSectieDeel.Items.Clear();
-            for (int i = 0; i < InstallatieLijstFilter.Count; i++)
-            {
-                _ = dt.ComboSectieDeel.Items.Add(InstallatieLijstFilter[i].Instal);
-            }
+        }
+
+        private void VulNamenPersoneel(Detail dt)
+        {
             dt.ComboBoxNaam1.Items.Clear();
             dt.ComboBoxNaam2.Items.Clear();
             dt.ComboBoxNaamVerw.Items.Clear();
@@ -714,18 +745,35 @@ namespace Overbrugging
                 _ = dt.ComboBoxNaam2.Items.Add(NamenLijst[i].Naam);
                 _ = dt.ComboBoxNaamVerw.Items.Add(NamenLijst[i].Naam);
             }
-            List<NamenFunties> IVWVFilter = new List<NamenFunties>();
-            IVWVFilter = NamenLijst.Where(x => x.IVWV == true).ToList();
-            for (int i = 0; i < IVWVFilter.Count; i++)
+        }
+
+        public void VulSectiesOnderdeelDropDown(Detail dt)
+        {
+            List<InstallatieOnderdeel> InstallatieLijstFilter = new List<InstallatieOnderdeel>();
+            InstallatieLijstFilter = InstallatieLijst.Where(x => x.Sectie == dt.ComboBoxSectie.Text).ToList();
+            dt.ComboSectieDeel.Items.Clear();
+            for (int i = 0; i < InstallatieLijstFilter.Count; i++)
             {
-                dt.ComboBoxIVWV.Items.Add(IVWVFilter[i].Naam);
+                _ = dt.ComboSectieDeel.Items.Add(InstallatieLijstFilter[i].Instal);
+            }
+        }
+
+        private void VulSectiesDropDown(Detail dt)
+        {
+            dt.ComboBoxSectie.Items.Clear();
+            for (int i = 0; i < MainForm.Main.SectieLijst.Count; i++)
+            {
+                _ = dt.ComboBoxSectie.Items.Add(MainForm.Main.SectieLijst[i].Naam);
             }
         }
 
         private void ButtonWijzig_Click(object sender, EventArgs e)
         {
             if (GeselRegNr.Text == "0000")
+            {
                 return;
+            }
+
             try
             {
                 // zoek record

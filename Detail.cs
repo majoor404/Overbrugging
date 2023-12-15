@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -7,8 +8,7 @@ namespace Overbrugging
 {
     public partial class Detail : Form
     {
-        public Data QN = new Data();
-        
+        Data QN = new Data();
         public Detail()
         {
             InitializeComponent();
@@ -45,6 +45,7 @@ namespace Overbrugging
             int regNr = int.Parse(TextBoxRegNr.Text);
             QN = MainForm.Main.ZoekDataRecord(regNr);
             RefreshForm();
+            TextBoxSapNr.Focus();
         }
 
         private void RefreshForm()
@@ -106,6 +107,11 @@ namespace Overbrugging
             {
                 return "";
             }
+        }
+
+        private void ComboBoxSectie_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MainForm.Main.VulSectiesOnderdeelDropDown(this);
         }
     }
 }
