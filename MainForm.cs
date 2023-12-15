@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Melding;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -352,6 +353,9 @@ namespace Overbrugging
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
+            FormMelding md = new FormMelding(FormMelding.Type.Info, "Overbruging 2.0", "R.Majoor");
+            md.Show();
+
             // laad secties
             LaadSecties_lijst();
             // laad installaties
@@ -425,6 +429,9 @@ namespace Overbrugging
             StopRedraw.ResumeDrawing(panelMain);
 
             labelAantal.Text = LijstData.Count().ToString();
+
+            int index = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+            VulPreview(index);
         }
 
         private void ButRefresh_Click(object sender, EventArgs e)
@@ -468,6 +475,10 @@ namespace Overbrugging
                     bin.Serialize(stream, LijstData);
                     bin = null; // destroy voor volgende keer
                     GC.Collect();
+
+                    // Melding
+                    FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Data");
+                    md.Show();
                 }
             }
             catch
@@ -486,6 +497,10 @@ namespace Overbrugging
                     bin.Serialize(stream, NamenLijst);
                     bin = null; // destroy voor volgende keer
                     GC.Collect();
+
+                    // Melding
+                    FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Namen");
+                    md.Show();
                 }
             }
             catch
@@ -504,6 +519,10 @@ namespace Overbrugging
                     bin.Serialize(stream, SectieLijst);
                     bin = null; // destroy voor volgende keer
                     GC.Collect();
+
+                    // Melding
+                    FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Sectie's");
+                    md.Show();
                 }
             }
             catch
@@ -522,6 +541,10 @@ namespace Overbrugging
                     bin.Serialize(stream, InstallatieLijst);
                     bin = null; // destroy voor volgende keer
                     GC.Collect();
+
+                    // Melding
+                    FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Instalatie's");
+                    md.Show();
                 }
             }
             catch
@@ -715,6 +738,30 @@ namespace Overbrugging
         {
             return a.PersoneelNummer.CompareTo(b.PersoneelNummer);
         }
-        
+
+        private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                // zoek record
+                int regNr = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                VulPreview(regNr);
+            }
+            catch {}
+        }
+
+        private void VulPreview(int index)
+        {
+            try
+            {
+                Data Q = ZoekDataRecord(index);
+                TB1.Text = Q.Reden;
+                TB2.Text = Q.Uitvoering;
+            }
+            catch {
+                TB1.Clear();
+                TB2.Clear();
+            }
+        }
     }
 }

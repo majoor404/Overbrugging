@@ -53,11 +53,17 @@
             this.ButExit = new System.Windows.Forms.Button();
             this.panelMain = new System.Windows.Forms.Panel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.TB1 = new System.Windows.Forms.TextBox();
+            this.TB2 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelMain.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,9 +86,10 @@
             // labelAantal
             // 
             this.labelAantal.AutoSize = true;
-            this.labelAantal.Location = new System.Drawing.Point(356, 21);
+            this.labelAantal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAantal.Location = new System.Drawing.Point(355, 17);
             this.labelAantal.Name = "labelAantal";
-            this.labelAantal.Size = new System.Drawing.Size(35, 13);
+            this.labelAantal.Size = new System.Drawing.Size(46, 18);
             this.labelAantal.TabIndex = 1;
             this.labelAantal.Text = "label6";
             // 
@@ -317,8 +324,9 @@
             // panelMain
             // 
             this.panelMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelMain.Controls.Add(this.linkLabel1);
             this.panelMain.Controls.Add(this.dataGridView1);
+            this.panelMain.Controls.Add(this.panel1);
+            this.panelMain.Controls.Add(this.linkLabel1);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(213, 53);
             this.panelMain.Name = "panelMain";
@@ -336,6 +344,63 @@
             this.linkLabel1.Text = "https://github.com/majoor404/Overbrugging";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.TB2);
+            this.panel1.Controls.Add(this.TB1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1047, 168);
+            this.panel1.TabIndex = 2;
+            // 
+            // TB1
+            // 
+            this.TB1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TB1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TB1.Location = new System.Drawing.Point(14, 35);
+            this.TB1.Multiline = true;
+            this.TB1.Name = "TB1";
+            this.TB1.ReadOnly = true;
+            this.TB1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.TB1.Size = new System.Drawing.Size(480, 114);
+            this.TB1.TabIndex = 0;
+            // 
+            // TB2
+            // 
+            this.TB2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TB2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TB2.Location = new System.Drawing.Point(544, 35);
+            this.TB2.Multiline = true;
+            this.TB2.Name = "TB2";
+            this.TB2.ReadOnly = true;
+            this.TB2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.TB2.Size = new System.Drawing.Size(480, 114);
+            this.TB2.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(541, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(157, 18);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Oplossing (Technisch)";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(11, 14);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(43, 18);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Rede";
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -350,7 +415,8 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.Location = new System.Drawing.Point(4, 4);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 168);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -359,9 +425,10 @@
             this.dataGridView1.ShowCellToolTips = false;
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(1040, 900);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.Size = new System.Drawing.Size(1047, 760);
+            this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
+            this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
             // 
             // MainForm
             // 
@@ -383,6 +450,8 @@
             this.panel2.PerformLayout();
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -412,8 +481,13 @@
         private System.Windows.Forms.Button ButExit;
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.Label labelAantal;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox TB2;
+        private System.Windows.Forms.TextBox TB1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

@@ -67,6 +67,12 @@
     <Compile Include="EditNamen.Designer.cs">
       <DependentUpon>EditNamen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Melding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Melding.designer.cs">
+      <DependentUpon>Melding.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditNamen.resx">
       <DependentUpon>EditNamen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Melding.resx">
+      <DependentUpon>Melding.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
@@ -111,6 +120,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -126,6 +136,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="usb.png" />
+    <None Include="pencil.png" />
+    <None Include="calendar.png" />
+    <None Include="caution.png" />
+    <None Include="finish.png" />
+    <None Include="info.png" />
+    <None Include="notes.png" />
     <Content Include="overbrug.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
