@@ -60,6 +60,7 @@
             this.TB2 = new System.Windows.Forms.TextBox();
             this.TB1 = new System.Windows.Forms.TextBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.ButtonWijzig = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -155,6 +156,7 @@
             this.panelMenu.Controls.Add(this.panel2);
             this.panelMenu.Controls.Add(this.ButSettings);
             this.panelMenu.Controls.Add(this.ButRefresh);
+            this.panelMenu.Controls.Add(this.ButtonWijzig);
             this.panelMenu.Controls.Add(this.button5);
             this.panelMenu.Controls.Add(this.ButtonNieuw);
             this.panelMenu.Controls.Add(this.ButExit);
@@ -175,7 +177,7 @@
             this.panel2.Controls.Add(this.comboBoxSoortFilter);
             this.panel2.Controls.Add(this.comboBoxStatus);
             this.panel2.Controls.Add(this.comboBoxSectie);
-            this.panel2.Location = new System.Drawing.Point(14, 263);
+            this.panel2.Location = new System.Drawing.Point(10, 339);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(179, 238);
             this.panel2.TabIndex = 23;
@@ -280,7 +282,7 @@
             // 
             this.ButRefresh.BackColor = System.Drawing.Color.Transparent;
             this.ButRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButRefresh.Location = new System.Drawing.Point(14, 177);
+            this.ButRefresh.Location = new System.Drawing.Point(10, 253);
             this.ButRefresh.Name = "ButRefresh";
             this.ButRefresh.Size = new System.Drawing.Size(180, 60);
             this.ButRefresh.TabIndex = 16;
@@ -292,7 +294,7 @@
             // 
             this.button5.BackColor = System.Drawing.Color.Transparent;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(14, 92);
+            this.button5.Location = new System.Drawing.Point(10, 168);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(180, 60);
             this.button5.TabIndex = 17;
@@ -444,6 +446,18 @@
             this.linkLabel1.Text = "https://github.com/majoor404/Overbrugging";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
+            // ButtonWijzig
+            // 
+            this.ButtonWijzig.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonWijzig.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonWijzig.Location = new System.Drawing.Point(14, 90);
+            this.ButtonWijzig.Name = "ButtonWijzig";
+            this.ButtonWijzig.Size = new System.Drawing.Size(180, 60);
+            this.ButtonWijzig.TabIndex = 17;
+            this.ButtonWijzig.Text = "Wijzig";
+            this.ButtonWijzig.UseVisualStyleBackColor = false;
+            this.ButtonWijzig.Click += new System.EventHandler(this.ButtonWijzig_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -503,6 +517,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label GeselRegNr;
+        private System.Windows.Forms.Button ButtonWijzig;
     }
 }
 

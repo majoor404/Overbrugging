@@ -230,38 +230,6 @@ namespace Overbrugging
             return Datum.Substring(0, pos);
         }
 
-        //private DateTime NaarDateTime(string Datum) // is van format "19-11-2023 00:00:00" of "9-4-2001 00:00:00"
-        //{
-        //    if (string.IsNullOrEmpty(Datum))
-        //    {
-        //        return DateTime.Now;
-        //    }
-        //    // verwijder tijd
-        //    int pos = Datum.IndexOf(" ");
-        //    if (pos > -1)
-        //    {
-        //        Datum = Datum.Substring(0, pos);
-        //    }
-
-        //    string[] temp = Datum.Split('-');
-
-        //    int Dag = int.Parse(temp[0]);
-        //    int Maand = int.Parse(temp[1]);
-        //    int Jaar = int.Parse(temp[2]);
-
-        //    DateTime ret = new DateTime(Jaar, Maand, Dag);
-        //    return ret;
-        //}
-
-        //private bool MaakBool(string vraag)
-        //{
-        //    if (string.IsNullOrEmpty(vraag))
-        //        return false;
-        //    if (vraag == "Ja")
-        //        return true;
-        //    return false;
-        //}
-
         private string ZoekSectie(string zoek)
         {
             if (string.IsNullOrEmpty(zoek))
@@ -311,8 +279,6 @@ namespace Overbrugging
                 return "";
             }
         }
-
-        
 
         private string ZoekInstallatie(string zoek)
         {
@@ -654,32 +620,12 @@ namespace Overbrugging
                 dt.TextBoxRegNr.Text = Q.RegNr.ToString();
                 dt.TextBoxRegNr.Enabled = false;
 
-                LaadNamen_lijst();
-
                 // vullen dropdown items
                 dt.ComboBoxSectie.Text = Q.Sectie; // daarvoor heb ik wel sectie nodig.
                 VulDropDownItems(dt);
 
-                // bovenste panel vullen met data
-                dt.DatumInv.Datum = Q.DatumInv;
-                dt.TextBoxSapNr.Text = Q.SapNr;
-                dt.TextBoxMocNr.Text = Q.MocNr;
-                dt.ComboSectieDeel.Text = Q.Installatie;
-                dt.TextBoxInstDeel.Text = Q.InstallatieDeel;
-                dt.ComboBoxNaam1.Text = Q.Naam1;
-                dt.ComboBoxNaam2.Text = Q.Naam2;
-                dt.TextBoxRede.Text = Q.Reden;
-                dt.TextBoxOplossing.Text = Q.Uitvoering;
-                // middelste panel
-                dt.DatumWv.Datum = Q.DatumWv;
-                dt.ComboBoxIVWV.Text = Q.NaamWV;
-                dt.DatumVerloopTIW.Datum = Q.UitersteDatum;
-                dt.TextBoxBijzIVWV.Text = Q.BijzonderhedenWV;
-                dt.ButtonType.Text = Q.Soort;
-                // onderste panel
-                dt.DatumVerw.Datum = Q.DatumVerw;
-                dt.ComboBoxNaamVerw.Text = Q.Naamverw;
-                dt.TextBoxBijzVerw.Text = Q.BijzonderhedenVerw;
+                VulDatailForm(dt, Q);
+                
                 // open dialog
                 _ = dt.ShowDialog();
             }
@@ -773,6 +719,75 @@ namespace Overbrugging
             for (int i = 0; i < IVWVFilter.Count; i++)
             {
                 dt.ComboBoxIVWV.Items.Add(IVWVFilter[i].Naam);
+            }
+        }
+
+        private void ButtonWijzig_Click(object sender, EventArgs e)
+        {
+            if (GeselRegNr.Text == "0000")
+                return;
+            try
+            {
+                // zoek record
+                int regNr = int.Parse(GeselRegNr.Text);
+                Data Q = ZoekDataRecord(regNr);
+
+                // maak formulier
+                Detail dt = new Detail();
+                dt.TextBoxRegNr.Text = Q.RegNr.ToString();
+                dt.TextBoxRegNr.Enabled = false;
+
+                // vullen dropdown items
+                dt.ComboBoxSectie.Text = Q.Sectie; // daarvoor heb ik wel sectie nodig.
+                VulDropDownItems(dt);
+
+                VulDatailForm(dt, Q);
+
+                // open dialog
+                _ = dt.ShowDialog();
+            }
+            catch
+            {
+                _ = MessageBox.Show($"Kon detail van record {GeselRegNr.Text} niet laden");
+            }
+
+
+        }
+
+        private void VulDatailForm(Detail dt, Data Q)
+        {
+            try
+            {
+                LaadNamen_lijst();
+
+                // vullen dropdown items
+                dt.ComboBoxSectie.Text = Q.Sectie; // daarvoor heb ik wel sectie nodig.
+                VulDropDownItems(dt);
+
+                // bovenste panel vullen met data
+                dt.DatumInv.Datum = Q.DatumInv;
+                dt.TextBoxSapNr.Text = Q.SapNr;
+                dt.TextBoxMocNr.Text = Q.MocNr;
+                dt.ComboSectieDeel.Text = Q.Installatie;
+                dt.TextBoxInstDeel.Text = Q.InstallatieDeel;
+                dt.ComboBoxNaam1.Text = Q.Naam1;
+                dt.ComboBoxNaam2.Text = Q.Naam2;
+                dt.TextBoxRede.Text = Q.Reden;
+                dt.TextBoxOplossing.Text = Q.Uitvoering;
+                // middelste panel
+                dt.DatumWv.Datum = Q.DatumWv;
+                dt.ComboBoxIVWV.Text = Q.NaamWV;
+                dt.DatumVerloopTIW.Datum = Q.UitersteDatum;
+                dt.TextBoxBijzIVWV.Text = Q.BijzonderhedenWV;
+                dt.ButtonType.Text = Q.Soort;
+                // onderste panel
+                dt.DatumVerw.Datum = Q.DatumVerw;
+                dt.ComboBoxNaamVerw.Text = Q.Naamverw;
+                dt.TextBoxBijzVerw.Text = Q.BijzonderhedenVerw;
+            }
+            catch
+            {
+                _ = MessageBox.Show($"Error VulDetailForm");
             }
         }
     }
