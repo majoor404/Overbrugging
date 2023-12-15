@@ -49,22 +49,23 @@
             this.ButSettings = new System.Windows.Forms.Button();
             this.ButRefresh = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.ButtonNieuw = new System.Windows.Forms.Button();
             this.ButExit = new System.Windows.Forms.Button();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.TB1 = new System.Windows.Forms.TextBox();
-            this.TB2 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.GeselRegNr = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.TB2 = new System.Windows.Forms.TextBox();
+            this.TB1 = new System.Windows.Forms.TextBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelMain.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
@@ -155,7 +156,7 @@
             this.panelMenu.Controls.Add(this.ButSettings);
             this.panelMenu.Controls.Add(this.ButRefresh);
             this.panelMenu.Controls.Add(this.button5);
-            this.panelMenu.Controls.Add(this.button7);
+            this.panelMenu.Controls.Add(this.ButtonNieuw);
             this.panelMenu.Controls.Add(this.ButExit);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 53);
@@ -298,16 +299,17 @@
             this.button5.Text = "Zoek";
             this.button5.UseVisualStyleBackColor = false;
             // 
-            // button7
+            // ButtonNieuw
             // 
-            this.button7.BackColor = System.Drawing.Color.Transparent;
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(12, 13);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(180, 60);
-            this.button7.TabIndex = 13;
-            this.button7.Text = "VoegToe";
-            this.button7.UseVisualStyleBackColor = false;
+            this.ButtonNieuw.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonNieuw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonNieuw.Location = new System.Drawing.Point(12, 13);
+            this.ButtonNieuw.Name = "ButtonNieuw";
+            this.ButtonNieuw.Size = new System.Drawing.Size(180, 60);
+            this.ButtonNieuw.TabIndex = 13;
+            this.ButtonNieuw.Text = "Nieuw";
+            this.ButtonNieuw.UseVisualStyleBackColor = false;
+            this.ButtonNieuw.Click += new System.EventHandler(this.ButtonNieuw_Click);
             // 
             // ButExit
             // 
@@ -333,74 +335,6 @@
             this.panelMain.Size = new System.Drawing.Size(1051, 932);
             this.panelMain.TabIndex = 5;
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(823, 911);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(218, 13);
-            this.linkLabel1.TabIndex = 1;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "https://github.com/majoor404/Overbrugging";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.TB2);
-            this.panel1.Controls.Add(this.TB1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1047, 168);
-            this.panel1.TabIndex = 2;
-            // 
-            // TB1
-            // 
-            this.TB1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TB1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TB1.Location = new System.Drawing.Point(14, 35);
-            this.TB1.Multiline = true;
-            this.TB1.Name = "TB1";
-            this.TB1.ReadOnly = true;
-            this.TB1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TB1.Size = new System.Drawing.Size(480, 114);
-            this.TB1.TabIndex = 0;
-            // 
-            // TB2
-            // 
-            this.TB2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TB2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TB2.Location = new System.Drawing.Point(544, 35);
-            this.TB2.Multiline = true;
-            this.TB2.Name = "TB2";
-            this.TB2.ReadOnly = true;
-            this.TB2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TB2.Size = new System.Drawing.Size(480, 114);
-            this.TB2.TabIndex = 0;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(541, 15);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(157, 18);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Oplossing (Technisch)";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(11, 14);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(43, 18);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "Rede";
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -416,6 +350,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.GridColor = System.Drawing.Color.CornflowerBlue;
             this.dataGridView1.Location = new System.Drawing.Point(0, 168);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -429,6 +364,85 @@
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
             this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.GeselRegNr);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.TB2);
+            this.panel1.Controls.Add(this.TB1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1047, 168);
+            this.panel1.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(541, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(157, 18);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Oplossing (Technisch)";
+            // 
+            // GeselRegNr
+            // 
+            this.GeselRegNr.AutoSize = true;
+            this.GeselRegNr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GeselRegNr.Location = new System.Drawing.Point(434, 15);
+            this.GeselRegNr.Name = "GeselRegNr";
+            this.GeselRegNr.Size = new System.Drawing.Size(40, 18);
+            this.GeselRegNr.TabIndex = 2;
+            this.GeselRegNr.Text = "0000";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(11, 14);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(43, 18);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Rede";
+            // 
+            // TB2
+            // 
+            this.TB2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TB2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TB2.Location = new System.Drawing.Point(544, 35);
+            this.TB2.Multiline = true;
+            this.TB2.Name = "TB2";
+            this.TB2.ReadOnly = true;
+            this.TB2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.TB2.Size = new System.Drawing.Size(480, 114);
+            this.TB2.TabIndex = 0;
+            // 
+            // TB1
+            // 
+            this.TB1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TB1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TB1.Location = new System.Drawing.Point(14, 35);
+            this.TB1.Multiline = true;
+            this.TB1.Name = "TB1";
+            this.TB1.ReadOnly = true;
+            this.TB1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.TB1.Size = new System.Drawing.Size(480, 114);
+            this.TB1.TabIndex = 0;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(823, 911);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(218, 13);
+            this.linkLabel1.TabIndex = 1;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "https://github.com/majoor404/Overbrugging";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // MainForm
             // 
@@ -450,9 +464,9 @@
             this.panel2.PerformLayout();
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -477,7 +491,7 @@
         private System.Windows.Forms.Button ButSettings;
         private System.Windows.Forms.Button ButRefresh;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button ButtonNieuw;
         private System.Windows.Forms.Button ButExit;
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.Label labelAantal;
@@ -488,6 +502,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label GeselRegNr;
     }
 }
 

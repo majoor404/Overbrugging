@@ -16,6 +16,7 @@ namespace Overbrugging
         public List<InstallatieOnderdeel> InstallatieLijst = new List<InstallatieOnderdeel>();
         public List<OverBrugRecord> LijstOverbrugingen = new List<OverBrugRecord> { };
         public List<Data> LijstData = new List<Data>();
+        public static int LastIndex = 0;
 
         public static MainForm Main;
 
@@ -278,7 +279,7 @@ namespace Overbrugging
             }
         }
 
-        private Data ZoekDataRecord(int nr)
+        public Data ZoekDataRecord(int nr)
         {
             Data Q = new Data();
             try
@@ -431,6 +432,8 @@ namespace Overbrugging
             labelAantal.Text = LijstData.Count().ToString();
 
             int index = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+            if (LastIndex == 0)
+                LastIndex = index;
             VulPreview(index);
         }
 
@@ -714,7 +717,7 @@ namespace Overbrugging
                 dt.DatumVerloopTIW.Datum = Q.UitersteDatum;
                 dt.TextBoxPersNrIVWV.Text = ZoekPersnr(Q.NaamWV);
                 dt.TextBoxBijzIVWV.Text = Q.BijzonderhedenWV;
-                dt.ComboBoxType.Text = Q.Soort;
+                dt.ButtonType.Text = Q.Soort;
                 // onderste panel
                 dt.DatumVerw.Datum = Q.DatumVerw;
                 dt.ComboBoxNaamVerw.Text = Q.Naamverw;
@@ -757,10 +760,30 @@ namespace Overbrugging
                 Data Q = ZoekDataRecord(index);
                 TB1.Text = Q.Reden;
                 TB2.Text = Q.Uitvoering;
+                GeselRegNr.Text = index.ToString();
             }
             catch {
                 TB1.Clear();
                 TB2.Clear();
+                GeselRegNr.Text = "";
+            }
+        }
+
+        private void ButtonNieuw_Click(object sender, EventArgs e)
+        {
+            KeuzeType KS = new KeuzeType();
+            DialogResult ret = KS.ShowDialog();
+            if (ret == DialogResult.OK)
+            {
+                // TIW
+            }
+            if (ret == DialogResult.Cancel)
+            {
+                //OVERB
+            }
+            if (ret == DialogResult.Abort)
+            {
+                //MOC
             }
         }
     }
