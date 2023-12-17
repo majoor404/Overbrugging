@@ -54,7 +54,7 @@ namespace Overbrugging
             };
             MainForm.Main.NamenLijst.Add(item);
             // sorteer
-            MainForm.Main.SorteerNaamOpPersoneelNummer();
+            MainForm.Main.SorteerNaamOpNaam();
             // save
             MainForm.Main.SaveDataNamen_lijst();
             // refresh
@@ -83,7 +83,7 @@ namespace Overbrugging
                 {
                     MainForm.Main.NamenLijst.Remove(Record);
                     // sorteer
-                    MainForm.Main.SorteerNaamOpPersoneelNummer();
+                    MainForm.Main.SorteerNaamOpNaam();
                     // save
                     MainForm.Main.SaveDataNamen_lijst();
                     // refresh

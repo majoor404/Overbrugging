@@ -637,14 +637,14 @@ namespace Overbrugging
             }
         }
 
-        public void SorteerNaamOpPersoneelNummer()
+        public void SorteerNaamOpNaam()
         {
             NamenLijst.Sort(Sorteer_Namen);
         }
 
         public int Sorteer_Namen(NamenFunties a, NamenFunties b)
         {
-            return a.PersoneelNummer.CompareTo(b.PersoneelNummer);
+            return a.Naam.CompareTo(b.Naam);
         }
 
         private void DataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)

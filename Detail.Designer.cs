@@ -30,7 +30,6 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.LabelType = new System.Windows.Forms.Label();
-            this.DatumInv = new Overbrugging.DatumPicker();
             this.TextBoxOplossing = new System.Windows.Forms.TextBox();
             this.TextBoxRede = new System.Windows.Forms.TextBox();
             this.ComboBoxNaam2 = new System.Windows.Forms.ComboBox();
@@ -59,7 +58,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.DatumVerw = new Overbrugging.DatumPicker();
             this.label16 = new System.Windows.Forms.Label();
             this.TextBoxBijzVerw = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -70,8 +68,6 @@
             this.TextBoxPersNrVerw = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.ButtonType = new System.Windows.Forms.Button();
-            this.DatumVerloopTIW = new Overbrugging.DatumPicker();
-            this.DatumWv = new Overbrugging.DatumPicker();
             this.label21 = new System.Windows.Forms.Label();
             this.TextBoxBijzIVWV = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
@@ -82,6 +78,12 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
+            this.ButtonIVWVDatumNu = new System.Windows.Forms.Button();
+            this.ButtonIVWVDatumVerw = new System.Windows.Forms.Button();
+            this.DatumVerloopTIW = new Overbrugging.DatumPicker();
+            this.DatumWv = new Overbrugging.DatumPicker();
+            this.DatumVerw = new Overbrugging.DatumPicker();
+            this.DatumInv = new Overbrugging.DatumPicker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -134,14 +136,6 @@
             this.LabelType.Size = new System.Drawing.Size(248, 24);
             this.LabelType.TabIndex = 6;
             this.LabelType.Text = "Tijdelijke Instalatie Wijzeging";
-            // 
-            // DatumInv
-            // 
-            this.DatumInv.Datum = "";
-            this.DatumInv.Location = new System.Drawing.Point(159, 88);
-            this.DatumInv.Name = "DatumInv";
-            this.DatumInv.Size = new System.Drawing.Size(137, 42);
-            this.DatumInv.TabIndex = 5;
             // 
             // TextBoxOplossing
             // 
@@ -232,7 +226,7 @@
             this.TextBoxInstDeel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxInstDeel.Location = new System.Drawing.Point(494, 170);
             this.TextBoxInstDeel.Name = "TextBoxInstDeel";
-            this.TextBoxInstDeel.Size = new System.Drawing.Size(295, 24);
+            this.TextBoxInstDeel.Size = new System.Drawing.Size(273, 24);
             this.TextBoxInstDeel.TabIndex = 1;
             // 
             // TextBoxPersnr2
@@ -312,7 +306,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(610, 217);
+            this.label10.Location = new System.Drawing.Point(795, 196);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(157, 18);
             this.label10.TabIndex = 0;
@@ -411,6 +405,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.ButtonIVWVDatumVerw);
             this.panel2.Controls.Add(this.DatumVerw);
             this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.TextBoxBijzVerw);
@@ -425,14 +420,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1264, 221);
             this.panel2.TabIndex = 1;
-            // 
-            // DatumVerw
-            // 
-            this.DatumVerw.Datum = "";
-            this.DatumVerw.Location = new System.Drawing.Point(168, 114);
-            this.DatumVerw.Name = "DatumVerw";
-            this.DatumVerw.Size = new System.Drawing.Size(137, 42);
-            this.DatumVerw.TabIndex = 5;
             // 
             // label16
             // 
@@ -471,7 +458,7 @@
             this.ComboBoxNaamVerw.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxNaamVerw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxNaamVerw.FormattingEnabled = true;
-            this.ComboBoxNaamVerw.Location = new System.Drawing.Point(168, 58);
+            this.ComboBoxNaamVerw.Location = new System.Drawing.Point(159, 58);
             this.ComboBoxNaamVerw.Name = "ComboBoxNaamVerw";
             this.ComboBoxNaamVerw.Size = new System.Drawing.Size(137, 26);
             this.ComboBoxNaamVerw.TabIndex = 3;
@@ -481,7 +468,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(657, 58);
+            this.label20.Location = new System.Drawing.Point(795, 30);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(110, 18);
             this.label20.TabIndex = 0;
@@ -519,6 +506,7 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.ButtonIVWVDatumNu);
             this.panel3.Controls.Add(this.ButtonType);
             this.panel3.Controls.Add(this.DatumVerloopTIW);
             this.panel3.Controls.Add(this.DatumWv);
@@ -541,7 +529,7 @@
             // ButtonType
             // 
             this.ButtonType.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonType.Location = new System.Drawing.Point(496, 104);
+            this.ButtonType.Location = new System.Drawing.Point(515, 104);
             this.ButtonType.Name = "ButtonType";
             this.ButtonType.Size = new System.Drawing.Size(137, 31);
             this.ButtonType.TabIndex = 8;
@@ -549,27 +537,11 @@
             this.ButtonType.UseVisualStyleBackColor = true;
             this.ButtonType.Click += new System.EventHandler(this.ButtonType_Click);
             // 
-            // DatumVerloopTIW
-            // 
-            this.DatumVerloopTIW.Datum = "";
-            this.DatumVerloopTIW.Location = new System.Drawing.Point(496, 55);
-            this.DatumVerloopTIW.Name = "DatumVerloopTIW";
-            this.DatumVerloopTIW.Size = new System.Drawing.Size(137, 42);
-            this.DatumVerloopTIW.TabIndex = 7;
-            // 
-            // DatumWv
-            // 
-            this.DatumWv.Datum = "";
-            this.DatumWv.Location = new System.Drawing.Point(159, 57);
-            this.DatumWv.Name = "DatumWv";
-            this.DatumWv.Size = new System.Drawing.Size(137, 42);
-            this.DatumWv.TabIndex = 6;
-            // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(10, 21);
+            this.label21.Location = new System.Drawing.Point(10, 17);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(210, 24);
             this.label21.TabIndex = 1;
@@ -591,7 +563,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(335, 60);
+            this.label24.Location = new System.Drawing.Point(354, 60);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(136, 18);
             this.label24.TabIndex = 0;
@@ -641,7 +613,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(657, 60);
+            this.label23.Location = new System.Drawing.Point(791, 30);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(89, 18);
             this.label23.TabIndex = 0;
@@ -651,7 +623,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(335, 109);
+            this.label25.Location = new System.Drawing.Point(354, 109);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(40, 18);
             this.label25.TabIndex = 0;
@@ -666,6 +638,58 @@
             this.label26.Size = new System.Drawing.Size(48, 18);
             this.label26.TabIndex = 0;
             this.label26.Text = "Naam";
+            // 
+            // ButtonIVWVDatumNu
+            // 
+            this.ButtonIVWVDatumNu.Location = new System.Drawing.Point(302, 52);
+            this.ButtonIVWVDatumNu.Name = "ButtonIVWVDatumNu";
+            this.ButtonIVWVDatumNu.Size = new System.Drawing.Size(30, 30);
+            this.ButtonIVWVDatumNu.TabIndex = 9;
+            this.ButtonIVWVDatumNu.Text = "Nu";
+            this.ButtonIVWVDatumNu.UseVisualStyleBackColor = true;
+            this.ButtonIVWVDatumNu.Click += new System.EventHandler(this.ButtonIVWVDatumNu_Click);
+            // 
+            // ButtonIVWVDatumVerw
+            // 
+            this.ButtonIVWVDatumVerw.Location = new System.Drawing.Point(303, 111);
+            this.ButtonIVWVDatumVerw.Name = "ButtonIVWVDatumVerw";
+            this.ButtonIVWVDatumVerw.Size = new System.Drawing.Size(30, 30);
+            this.ButtonIVWVDatumVerw.TabIndex = 10;
+            this.ButtonIVWVDatumVerw.Text = "Nu";
+            this.ButtonIVWVDatumVerw.UseVisualStyleBackColor = true;
+            this.ButtonIVWVDatumVerw.Click += new System.EventHandler(this.ButtonIVWVDatumVerw_Click);
+            // 
+            // DatumVerloopTIW
+            // 
+            this.DatumVerloopTIW.Datum = "";
+            this.DatumVerloopTIW.Location = new System.Drawing.Point(515, 55);
+            this.DatumVerloopTIW.Name = "DatumVerloopTIW";
+            this.DatumVerloopTIW.Size = new System.Drawing.Size(137, 42);
+            this.DatumVerloopTIW.TabIndex = 7;
+            // 
+            // DatumWv
+            // 
+            this.DatumWv.Datum = "";
+            this.DatumWv.Location = new System.Drawing.Point(159, 55);
+            this.DatumWv.Name = "DatumWv";
+            this.DatumWv.Size = new System.Drawing.Size(137, 42);
+            this.DatumWv.TabIndex = 6;
+            // 
+            // DatumVerw
+            // 
+            this.DatumVerw.Datum = "";
+            this.DatumVerw.Location = new System.Drawing.Point(159, 114);
+            this.DatumVerw.Name = "DatumVerw";
+            this.DatumVerw.Size = new System.Drawing.Size(137, 42);
+            this.DatumVerw.TabIndex = 5;
+            // 
+            // DatumInv
+            // 
+            this.DatumInv.Datum = "";
+            this.DatumInv.Location = new System.Drawing.Point(159, 88);
+            this.DatumInv.Name = "DatumInv";
+            this.DatumInv.Size = new System.Drawing.Size(137, 42);
+            this.DatumInv.TabIndex = 5;
             // 
             // Detail
             // 
@@ -745,5 +769,7 @@
         public DatumPicker DatumWv;
         public System.Windows.Forms.Button ButtonType;
         public System.Windows.Forms.Label LabelType;
+        private System.Windows.Forms.Button ButtonIVWVDatumVerw;
+        private System.Windows.Forms.Button ButtonIVWVDatumNu;
     }
 }

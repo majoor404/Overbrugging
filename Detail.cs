@@ -113,5 +113,21 @@ namespace Overbrugging
         {
             MainForm.Main.VulSectiesOnderdeelDropDown(this);
         }
+
+        private void ButtonIVWVDatumNu_Click(object sender, EventArgs e)
+        {
+            DateTime nu  = DateTime.Now;
+            DatumWv.TB.Text = nu.ToShortDateString();
+            // verloop op + 1 week en dan op woensdag
+            nu = nu.AddDays(7);
+            while(nu.DayOfWeek !=  DayOfWeek.Wednesday)
+                nu = nu.AddDays(1);
+            DatumVerloopTIW.TB.Text = nu.ToShortDateString();
+        }
+
+        private void ButtonIVWVDatumVerw_Click(object sender, EventArgs e)
+        {
+            DatumVerw.TB.Text = DateTime.Now.ToShortDateString();
+        }
     }
 }
