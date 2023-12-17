@@ -67,6 +67,12 @@
     <Compile Include="EditNamen.Designer.cs">
       <DependentUpon>EditNamen.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditSecties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditSecties.Designer.cs">
+      <DependentUpon>EditSecties.cs</DependentUpon>
+    </Compile>
     <Compile Include="KeuzeType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditNamen.resx">
       <DependentUpon>EditNamen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditSecties.resx">
+      <DependentUpon>EditSecties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KeuzeType.resx">
       <DependentUpon>KeuzeType.cs</DependentUpon>

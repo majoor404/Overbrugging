@@ -1,6 +1,4 @@
-﻿using Melding;
-using System;
-using System.Data;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -43,7 +41,8 @@ namespace Overbrugging
             {
                 NamenFunties Record = MainForm.Main.NamenLijst.First(a => a.PersoneelNummer == TextBoxPersNr.Text);
                 MainForm.Main.NamenLijst.Remove(Record);
-            }catch { }
+            }
+            catch { }
             // toevoegen
             NamenFunties item = new NamenFunties
             {
@@ -90,7 +89,8 @@ namespace Overbrugging
                     dataGridView1.Refresh();
                 }
             }
-            catch {
+            catch
+            {
                 MessageBox.Show($"Personeel nr {TextBoxPersNr.Text} niet gevonden in lijst!");
             }
         }

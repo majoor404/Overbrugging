@@ -596,7 +596,8 @@ namespace Overbrugging
             }
             if (ret == DialogResult.Cancel)
             {
-
+                EditSecties editSecties = new EditSecties();
+                _ = editSecties.ShowDialog();
             }
             if (ret == DialogResult.Abort)
             {
@@ -700,9 +701,9 @@ namespace Overbrugging
                 Q.Soort = "MOC";
             }
             LastIndex++;
-            
+
             // maak formulier
-            
+
             Q.RegNr = LastIndex;
             dt.TextBoxRegNr.Text = LastIndex.ToString();
             dt.TextBoxRegNr.Enabled = false;
