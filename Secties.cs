@@ -6,7 +6,7 @@ namespace Overbrugging
     public class Secties
     {
         public Secties() { }
-        public string Index;
-        public string Naam;
+        public string Index { get; set; }
+        public string Naam {  get; set; }
     }
 }

@@ -17,6 +17,8 @@ namespace Overbrugging
             dataGridView1.DataSource = MainForm.Main.NamenLijst;
 
             dataGridView1.Columns[0].Visible = false;   // index
+
+            dataGridView1.RowHeadersVisible = false;
         }
 
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

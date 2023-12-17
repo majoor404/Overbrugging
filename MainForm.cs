@@ -318,6 +318,7 @@ namespace Overbrugging
                 _ = comboBoxSectie.Items.Add("ALLE");
                 foreach (Secties item in SectieLijst)
                 {
+                    if(!string.IsNullOrEmpty(item.Naam))
                     _ = comboBoxSectie.Items.Add(item.Naam);
                 }
                 comboBoxSectie.SelectedIndex = 0;

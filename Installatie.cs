@@ -6,8 +6,8 @@ namespace Overbrugging
     public class InstallatieOnderdeel
     {
         public InstallatieOnderdeel() { }
-        public string Index;
-        public string Instal;
-        public string Sectie;
+        public string Index { get; set; }
+        public string Instal { get; set; }
+        public string Sectie { get; set; }
     }
 }
