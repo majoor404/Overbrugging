@@ -362,7 +362,7 @@ namespace Overbrugging
 
         private void VulGrid()
         {
-            StopRedraw.SuspendDrawing(panelMain);
+            //StopRedraw.SuspendDrawing(panelMain);
             //dataGridView1.SuspendLayout();
 
             dataGridView1.DataSource = LijstData;
@@ -378,7 +378,7 @@ namespace Overbrugging
 
 
             //dataGridView1.ResumeLayout();
-            StopRedraw.ResumeDrawing(panelMain);
+            //StopRedraw.ResumeDrawing(panelMain);
 
             labelAantal.Text = LijstData.Count().ToString();
 
@@ -604,6 +604,7 @@ namespace Overbrugging
             {
                 ButImport_Click(this, null);
             }
+            ButRefresh_Click(this, null);
         }
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
