@@ -669,12 +669,50 @@ namespace Overbrugging
                 TB1.Text = Q.Reden;
                 TB2.Text = Q.Uitvoering;
                 GeselRegNr.Text = index.ToString();
+                TBDINV.Text = Q.DatumInv;
+                TBSAP.Text = Q.SapNr;
+                TBMOC.Text = Q.MocNr;
+                TBSEC.Text = Q.Sectie;
+                TBINST.Text = Q.Installatie;
+                TBINSTD.Text = Q.InstallatieDeel;
+                TBN1.Text = Q.Naam1;
+                TBN2.Text = Q.Naam2;
+
+                if (Q.Soort == "TIW")
+                {
+                    LabelType.Text = "Tijdelijke Instalatie Wijzeging";
+                }
+                if (Q.Soort == "MOC")
+                {
+                    LabelType.Text = "Management Of Change";
+                }
+                if (Q.Soort == "OVERB")
+                {
+                    LabelType.Text = "Overbruging";
+                }
+                TBDWV.Text = Q.DatumWv;
+                TBDWVV.Text = Q.UitersteDatum;
+                TBNWV.Text = Q.NaamWV;
+                TextBoxBijzIVWV.Text = Q.BijzonderhedenWV;
             }
             catch
             {
                 TB1.Clear();
                 TB2.Clear();
-                GeselRegNr.Text = "";
+                GeselRegNr.Text = string.Empty;
+                TBDINV.Text = string.Empty;
+                TBSAP.Text = string.Empty;
+                TBMOC.Text = string.Empty;
+                TBSEC.Text = string.Empty;
+                TBINST.Text = string.Empty;
+                TBINSTD.Text = string.Empty;
+                TBN1.Text = string.Empty;
+                TBN2.Text = string.Empty;
+                LabelType.Text = string.Empty;
+                TBDWV.Text = string.Empty;
+                TBDWVV.Text = string.Empty;
+                TBNWV.Text = string.Empty;
+                TextBoxBijzIVWV.Text = string.Empty;
             }
         }
 

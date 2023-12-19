@@ -41,7 +41,7 @@
             this.buttonNaam.Name = "buttonNaam";
             this.buttonNaam.Size = new System.Drawing.Size(207, 44);
             this.buttonNaam.TabIndex = 0;
-            this.buttonNaam.Text = "Edit Namen/Funties";
+            this.buttonNaam.Text = "Edit Namen/Funtie";
             this.buttonNaam.UseVisualStyleBackColor = true;
             // 
             // buttonSecties
