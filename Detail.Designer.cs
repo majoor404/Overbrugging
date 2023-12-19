@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Detail));
             this.panel1 = new System.Windows.Forms.Panel();
             this.LabelType = new System.Windows.Forms.Label();
+            this.DatumInv = new Overbrugging.DatumPicker();
             this.TextBoxOplossing = new System.Windows.Forms.TextBox();
             this.TextBoxRede = new System.Windows.Forms.TextBox();
             this.ComboBoxNaam2 = new System.Windows.Forms.ComboBox();
@@ -58,6 +60,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.ButtonIVWVDatumVerw = new System.Windows.Forms.Button();
+            this.DatumVerw = new Overbrugging.DatumPicker();
             this.label16 = new System.Windows.Forms.Label();
             this.TextBoxBijzVerw = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -67,7 +71,10 @@
             this.label19 = new System.Windows.Forms.Label();
             this.TextBoxPersNrVerw = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.ButtonIVWVDatumNu = new System.Windows.Forms.Button();
             this.ButtonType = new System.Windows.Forms.Button();
+            this.DatumVerloopTIW = new Overbrugging.DatumPicker();
+            this.DatumWv = new Overbrugging.DatumPicker();
             this.label21 = new System.Windows.Forms.Label();
             this.TextBoxBijzIVWV = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
@@ -78,12 +85,6 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
-            this.ButtonIVWVDatumNu = new System.Windows.Forms.Button();
-            this.ButtonIVWVDatumVerw = new System.Windows.Forms.Button();
-            this.DatumVerloopTIW = new Overbrugging.DatumPicker();
-            this.DatumWv = new Overbrugging.DatumPicker();
-            this.DatumVerw = new Overbrugging.DatumPicker();
-            this.DatumInv = new Overbrugging.DatumPicker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -136,6 +137,14 @@
             this.LabelType.Size = new System.Drawing.Size(248, 24);
             this.LabelType.TabIndex = 6;
             this.LabelType.Text = "Tijdelijke Instalatie Wijzeging";
+            // 
+            // DatumInv
+            // 
+            this.DatumInv.Datum = "";
+            this.DatumInv.Location = new System.Drawing.Point(159, 88);
+            this.DatumInv.Name = "DatumInv";
+            this.DatumInv.Size = new System.Drawing.Size(137, 42);
+            this.DatumInv.TabIndex = 5;
             // 
             // TextBoxOplossing
             // 
@@ -269,6 +278,7 @@
             this.TextBoxRegNr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxRegNr.Location = new System.Drawing.Point(159, 50);
             this.TextBoxRegNr.Name = "TextBoxRegNr";
+            this.TextBoxRegNr.ReadOnly = true;
             this.TextBoxRegNr.Size = new System.Drawing.Size(137, 24);
             this.TextBoxRegNr.TabIndex = 1;
             // 
@@ -421,6 +431,24 @@
             this.panel2.Size = new System.Drawing.Size(1264, 221);
             this.panel2.TabIndex = 1;
             // 
+            // ButtonIVWVDatumVerw
+            // 
+            this.ButtonIVWVDatumVerw.Location = new System.Drawing.Point(303, 111);
+            this.ButtonIVWVDatumVerw.Name = "ButtonIVWVDatumVerw";
+            this.ButtonIVWVDatumVerw.Size = new System.Drawing.Size(30, 30);
+            this.ButtonIVWVDatumVerw.TabIndex = 10;
+            this.ButtonIVWVDatumVerw.Text = "Nu";
+            this.ButtonIVWVDatumVerw.UseVisualStyleBackColor = true;
+            this.ButtonIVWVDatumVerw.Click += new System.EventHandler(this.ButtonIVWVDatumVerw_Click);
+            // 
+            // DatumVerw
+            // 
+            this.DatumVerw.Datum = "";
+            this.DatumVerw.Location = new System.Drawing.Point(159, 114);
+            this.DatumVerw.Name = "DatumVerw";
+            this.DatumVerw.Size = new System.Drawing.Size(137, 42);
+            this.DatumVerw.TabIndex = 5;
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -526,6 +554,16 @@
             this.panel3.Size = new System.Drawing.Size(1264, 221);
             this.panel3.TabIndex = 2;
             // 
+            // ButtonIVWVDatumNu
+            // 
+            this.ButtonIVWVDatumNu.Location = new System.Drawing.Point(302, 52);
+            this.ButtonIVWVDatumNu.Name = "ButtonIVWVDatumNu";
+            this.ButtonIVWVDatumNu.Size = new System.Drawing.Size(30, 30);
+            this.ButtonIVWVDatumNu.TabIndex = 9;
+            this.ButtonIVWVDatumNu.Text = "Nu";
+            this.ButtonIVWVDatumNu.UseVisualStyleBackColor = true;
+            this.ButtonIVWVDatumNu.Click += new System.EventHandler(this.ButtonIVWVDatumNu_Click);
+            // 
             // ButtonType
             // 
             this.ButtonType.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -536,6 +574,22 @@
             this.ButtonType.Text = "Type";
             this.ButtonType.UseVisualStyleBackColor = true;
             this.ButtonType.Click += new System.EventHandler(this.ButtonType_Click);
+            // 
+            // DatumVerloopTIW
+            // 
+            this.DatumVerloopTIW.Datum = "";
+            this.DatumVerloopTIW.Location = new System.Drawing.Point(515, 55);
+            this.DatumVerloopTIW.Name = "DatumVerloopTIW";
+            this.DatumVerloopTIW.Size = new System.Drawing.Size(137, 42);
+            this.DatumVerloopTIW.TabIndex = 7;
+            // 
+            // DatumWv
+            // 
+            this.DatumWv.Datum = "";
+            this.DatumWv.Location = new System.Drawing.Point(159, 55);
+            this.DatumWv.Name = "DatumWv";
+            this.DatumWv.Size = new System.Drawing.Size(137, 42);
+            this.DatumWv.TabIndex = 6;
             // 
             // label21
             // 
@@ -639,58 +693,6 @@
             this.label26.TabIndex = 0;
             this.label26.Text = "Naam";
             // 
-            // ButtonIVWVDatumNu
-            // 
-            this.ButtonIVWVDatumNu.Location = new System.Drawing.Point(302, 52);
-            this.ButtonIVWVDatumNu.Name = "ButtonIVWVDatumNu";
-            this.ButtonIVWVDatumNu.Size = new System.Drawing.Size(30, 30);
-            this.ButtonIVWVDatumNu.TabIndex = 9;
-            this.ButtonIVWVDatumNu.Text = "Nu";
-            this.ButtonIVWVDatumNu.UseVisualStyleBackColor = true;
-            this.ButtonIVWVDatumNu.Click += new System.EventHandler(this.ButtonIVWVDatumNu_Click);
-            // 
-            // ButtonIVWVDatumVerw
-            // 
-            this.ButtonIVWVDatumVerw.Location = new System.Drawing.Point(303, 111);
-            this.ButtonIVWVDatumVerw.Name = "ButtonIVWVDatumVerw";
-            this.ButtonIVWVDatumVerw.Size = new System.Drawing.Size(30, 30);
-            this.ButtonIVWVDatumVerw.TabIndex = 10;
-            this.ButtonIVWVDatumVerw.Text = "Nu";
-            this.ButtonIVWVDatumVerw.UseVisualStyleBackColor = true;
-            this.ButtonIVWVDatumVerw.Click += new System.EventHandler(this.ButtonIVWVDatumVerw_Click);
-            // 
-            // DatumVerloopTIW
-            // 
-            this.DatumVerloopTIW.Datum = "";
-            this.DatumVerloopTIW.Location = new System.Drawing.Point(515, 55);
-            this.DatumVerloopTIW.Name = "DatumVerloopTIW";
-            this.DatumVerloopTIW.Size = new System.Drawing.Size(137, 42);
-            this.DatumVerloopTIW.TabIndex = 7;
-            // 
-            // DatumWv
-            // 
-            this.DatumWv.Datum = "";
-            this.DatumWv.Location = new System.Drawing.Point(159, 55);
-            this.DatumWv.Name = "DatumWv";
-            this.DatumWv.Size = new System.Drawing.Size(137, 42);
-            this.DatumWv.TabIndex = 6;
-            // 
-            // DatumVerw
-            // 
-            this.DatumVerw.Datum = "";
-            this.DatumVerw.Location = new System.Drawing.Point(159, 114);
-            this.DatumVerw.Name = "DatumVerw";
-            this.DatumVerw.Size = new System.Drawing.Size(137, 42);
-            this.DatumVerw.TabIndex = 5;
-            // 
-            // DatumInv
-            // 
-            this.DatumInv.Datum = "";
-            this.DatumInv.Location = new System.Drawing.Point(159, 88);
-            this.DatumInv.Name = "DatumInv";
-            this.DatumInv.Size = new System.Drawing.Size(137, 42);
-            this.DatumInv.TabIndex = 5;
-            // 
             // Detail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -699,9 +701,14 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Detail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Detail";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Detail_FormClosed);
             this.Shown += new System.EventHandler(this.Detail_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

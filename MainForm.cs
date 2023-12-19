@@ -16,6 +16,7 @@ namespace Overbrugging
         public List<InstallatieOnderdeel> InstallatieLijst = new List<InstallatieOnderdeel>();
         public List<OverBrugRecord> LijstOverbrugingen = new List<OverBrugRecord> { };
         public List<Data> LijstData = new List<Data>();
+        public Data TempData = new Data();
         public static int LastIndex = 0;
 
         public static MainForm Main;
@@ -362,7 +363,7 @@ namespace Overbrugging
 
         private void VulGrid()
         {
-            //StopRedraw.SuspendDrawing(panelMain);
+            StopRedraw.SuspendDrawing(panelMain);
             //dataGridView1.SuspendLayout();
 
             dataGridView1.DataSource = LijstData;
@@ -378,7 +379,7 @@ namespace Overbrugging
 
 
             //dataGridView1.ResumeLayout();
-            //StopRedraw.ResumeDrawing(panelMain);
+            StopRedraw.ResumeDrawing(panelMain);
 
             labelAantal.Text = LijstData.Count().ToString();
 
@@ -618,21 +619,24 @@ namespace Overbrugging
             {
                 // zoek record
                 int regNr = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
-                Data Q = ZoekDataRecord(regNr);
-
+                TempData = ZoekDataRecord(regNr);
+                
                 // maak formulier
                 Detail dt = new Detail();
-                dt.TextBoxRegNr.Text = Q.RegNr.ToString();
-                dt.TextBoxRegNr.Enabled = false;
+                //dt.TextBoxRegNr.Text = TempData.RegNr.ToString();
+                //dt.TextBoxRegNr.Enabled = false;
 
                 // vullen dropdown items
-                dt.ComboBoxSectie.Text = Q.Sectie; // daarvoor heb ik wel sectie nodig.
+                dt.ComboBoxSectie.Text = TempData.Sectie; // daarvoor heb ik wel sectie nodig.
                 VulDropDownItems(dt);
 
-                VulDatailForm(dt, Q);
+                VulDatailForm(dt, TempData);
 
                 // open dialog
                 _ = dt.ShowDialog();
+
+                //refresh
+                ButRefresh_Click(this, null);
             }
             catch
             {
@@ -719,42 +723,44 @@ namespace Overbrugging
         private void ButtonNieuw_Click(object sender, EventArgs e)
         {
             KeuzeType KS = new KeuzeType();
-            DialogResult ret = KS.ShowDialog();
-            Data Q = new Data();
-            LijstData.Add(Q);   // meteen toevoegen aan lijst, maar is nog leeg
+            DialogResult retKeuzeForm = KS.ShowDialog();
 
             Detail dt = new Detail();
 
-            if (ret == DialogResult.OK)
+            TempData = new Data();
+
+            if (retKeuzeForm == DialogResult.OK)
             {
                 // TIW
-                Q.Soort = "TIW";
+                TempData.Soort = "TIW";
             }
-            if (ret == DialogResult.Cancel)
+            if (retKeuzeForm == DialogResult.Cancel)
             {
                 //OVERB
-                Q.Soort = "OVERB";
+                TempData.Soort = "OVERB";
             }
-            if (ret == DialogResult.Abort)
+            if (retKeuzeForm == DialogResult.Abort)
             {
                 //MOC
-                Q.Soort = "MOC";
+                TempData.Soort = "MOC";
             }
             LastIndex++;
-
+            TempData.RegNr = LastIndex;
+            
             // maak formulier
-
-            Q.RegNr = LastIndex;
-            dt.TextBoxRegNr.Text = LastIndex.ToString();
-            dt.TextBoxRegNr.Enabled = false;
+            //dt.TextBoxRegNr.Text = LastIndex.ToString();
+            //dt.TextBoxRegNr.Enabled = false;
 
             LaadNamen_lijst();
             VulDropDownItems(dt);
 
-            Q.DatumInv = dt.DatumInv.Datum = DateTime.Now.ToShortDateString();
+            TempData.DatumInv = dt.DatumInv.Datum = DateTime.Now.ToShortDateString();
 
             // open dialog
-            _ = dt.ShowDialog();
+            _ = dt.ShowDialog(); 
+
+            //refresh
+            ButRefresh_Click(this, null);
         }
 
         public void VulDropDownItems(Detail dt)

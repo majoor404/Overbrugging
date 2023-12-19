@@ -8,7 +8,7 @@ namespace Overbrugging
 {
     public partial class Detail : Form
     {
-        Data QN = new Data();
+        //public Data HuidigeDataInDetail = new Data();
         public Detail()
         {
             InitializeComponent();
@@ -21,17 +21,17 @@ namespace Overbrugging
             if (ret == DialogResult.OK)
             {
                 // TIW
-                QN.Soort = "TIW";
+                MainForm.Main.TempData.Soort = "TIW";
             }
             if (ret == DialogResult.Cancel)
             {
                 //OVERB
-                QN.Soort = "OVERB";
+                MainForm.Main.TempData.Soort = "OVERB";
             }
             if (ret == DialogResult.Abort)
             {
                 //MOC
-                QN.Soort = "MOC";
+                MainForm.Main.TempData.Soort = "MOC";
             }
             RefreshForm();
         }
@@ -41,34 +41,32 @@ namespace Overbrugging
             Point loc = this.Location;
             loc.X += 50;
             this.Location = loc;
-            // zoek record
-            int regNr = int.Parse(TextBoxRegNr.Text);
-            QN = MainForm.Main.ZoekDataRecord(regNr);
-            RefreshForm();
+            TextBoxRegNr.Text = MainForm.Main.TempData.RegNr.ToString();
+            RefreshForm();      // type appart, ook gebruik bij knopje drukken.
             TextBoxSapNr.Focus();
         }
 
         private void RefreshForm()
         {
-            if (QN.Soort == "TIW")
+            if (MainForm.Main.TempData.Soort == "TIW")
             {
                 LabelType.Text = "Tijdelijke Instalatie Wijzeging";
                 labelMOC.Visible = false;
                 TextBoxMocNr.Visible = false;
             }
-            if (QN.Soort == "MOC")
+            if (MainForm.Main.TempData.Soort == "MOC")
             {
                 LabelType.Text = "Management Of Change";
                 labelMOC.Visible = true;
                 TextBoxMocNr.Visible = true;
             }
-            if (QN.Soort == "OVERB")
+            if (MainForm.Main.TempData.Soort == "OVERB")
             {
                 LabelType.Text = "Overbruging";
                 labelMOC.Visible = false;
                 TextBoxMocNr.Visible = false;
             }
-            ButtonType.Text = QN.Soort;
+            ButtonType.Text = MainForm.Main.TempData.Soort;
         }
 
         private void ComboBoxNaam1_SelectedIndexChanged(object sender, EventArgs e)
@@ -128,6 +126,43 @@ namespace Overbrugging
         private void ButtonIVWVDatumVerw_Click(object sender, EventArgs e)
         {
             DatumVerw.TB.Text = DateTime.Now.ToShortDateString();
+        }
+
+        private void Detail_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MainForm.Main.LaadData_lijst();
+            // save data
+            MainForm.Main.TempData.DatumInv = DatumInv.Datum;
+            MainForm.Main.TempData.SapNr = TextBoxSapNr.Text;
+            MainForm.Main.TempData.MocNr = TextBoxMocNr.Text;
+            MainForm.Main.TempData.Sectie = ComboBoxSectie.Text;
+            MainForm.Main.TempData.Installatie = ComboSectieDeel.Text;
+            MainForm.Main.TempData.InstallatieDeel = TextBoxInstDeel.Text;
+            MainForm.Main.TempData.Naam1 = ComboBoxNaam1.Text;
+            MainForm.Main.TempData.Naam2 = ComboBoxNaam2.Text;
+            MainForm.Main.TempData.Reden = TextBoxRede.Text;
+            MainForm.Main.TempData.Uitvoering = TextBoxOplossing.Text;
+            MainForm.Main.TempData.RegNr = int.Parse(TextBoxRegNr.Text);
+            // middelste panel
+            MainForm.Main.TempData.DatumWv = DatumWv.Datum;
+            MainForm.Main.TempData.NaamWV = ComboBoxIVWV.Text;
+            MainForm.Main.TempData.UitersteDatum = DatumVerloopTIW.Datum;
+            MainForm.Main.TempData.BijzonderhedenWV = TextBoxBijzIVWV.Text;
+            MainForm.Main.TempData.Soort = ButtonType.Text;
+            // onderste panel
+            MainForm.Main.TempData.DatumVerw = DatumVerw.Datum;
+            MainForm.Main.TempData.Naamverw = ComboBoxNaamVerw.Text;
+            MainForm.Main.TempData.BijzonderhedenVerw = TextBoxBijzVerw.Text;
+            // als record al bestaat, delete
+            try
+            {
+                Data temp = MainForm.Main.LijstData.First(a => a.RegNr == MainForm.Main.TempData.RegNr);
+                MainForm.Main.LijstData.Remove(temp);
+            }
+            catch{}
+            // en toevoegen nieuwe
+            MainForm.Main.LijstData.Add(MainForm.Main.TempData);
+            MainForm.Main.SaveData_lijst();
         }
     }
 }

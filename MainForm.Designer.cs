@@ -66,6 +66,17 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.TBINSTD = new System.Windows.Forms.TextBox();
+            this.TBINST = new System.Windows.Forms.TextBox();
+            this.TBN2 = new System.Windows.Forms.TextBox();
+            this.TBN1 = new System.Windows.Forms.TextBox();
+            this.TBSEC = new System.Windows.Forms.TextBox();
+            this.TBMOC = new System.Windows.Forms.TextBox();
+            this.TBSAP = new System.Windows.Forms.TextBox();
+            this.TBNWV = new System.Windows.Forms.TextBox();
+            this.TBDWVV = new System.Windows.Forms.TextBox();
+            this.TBDWV = new System.Windows.Forms.TextBox();
+            this.TBDINV = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.GeselRegNr = new System.Windows.Forms.TextBox();
             this.labelMOC = new System.Windows.Forms.Label();
@@ -77,17 +88,6 @@
             this.TB2 = new System.Windows.Forms.TextBox();
             this.TB1 = new System.Windows.Forms.TextBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.TBDINV = new System.Windows.Forms.TextBox();
-            this.TBSAP = new System.Windows.Forms.TextBox();
-            this.TBMOC = new System.Windows.Forms.TextBox();
-            this.TBSEC = new System.Windows.Forms.TextBox();
-            this.TBINST = new System.Windows.Forms.TextBox();
-            this.TBINSTD = new System.Windows.Forms.TextBox();
-            this.TBN1 = new System.Windows.Forms.TextBox();
-            this.TBN2 = new System.Windows.Forms.TextBox();
-            this.TBDWV = new System.Windows.Forms.TextBox();
-            this.TBDWVV = new System.Windows.Forms.TextBox();
-            this.TBNWV = new System.Windows.Forms.TextBox();
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -558,6 +558,105 @@
             this.label16.TabIndex = 15;
             this.label16.Text = "Installatie";
             // 
+            // TBINSTD
+            // 
+            this.TBINSTD.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBINSTD.Location = new System.Drawing.Point(460, 91);
+            this.TBINSTD.Name = "TBINSTD";
+            this.TBINSTD.ReadOnly = true;
+            this.TBINSTD.Size = new System.Drawing.Size(226, 24);
+            this.TBINSTD.TabIndex = 12;
+            // 
+            // TBINST
+            // 
+            this.TBINST.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBINST.Location = new System.Drawing.Point(460, 54);
+            this.TBINST.Name = "TBINST";
+            this.TBINST.ReadOnly = true;
+            this.TBINST.Size = new System.Drawing.Size(226, 24);
+            this.TBINST.TabIndex = 12;
+            // 
+            // TBN2
+            // 
+            this.TBN2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBN2.Location = new System.Drawing.Point(793, 92);
+            this.TBN2.Name = "TBN2";
+            this.TBN2.ReadOnly = true;
+            this.TBN2.Size = new System.Drawing.Size(211, 24);
+            this.TBN2.TabIndex = 12;
+            // 
+            // TBN1
+            // 
+            this.TBN1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBN1.Location = new System.Drawing.Point(793, 53);
+            this.TBN1.Name = "TBN1";
+            this.TBN1.ReadOnly = true;
+            this.TBN1.Size = new System.Drawing.Size(211, 24);
+            this.TBN1.TabIndex = 12;
+            // 
+            // TBSEC
+            // 
+            this.TBSEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBSEC.Location = new System.Drawing.Point(460, 12);
+            this.TBSEC.Name = "TBSEC";
+            this.TBSEC.ReadOnly = true;
+            this.TBSEC.Size = new System.Drawing.Size(226, 24);
+            this.TBSEC.TabIndex = 12;
+            // 
+            // TBMOC
+            // 
+            this.TBMOC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBMOC.Location = new System.Drawing.Point(117, 135);
+            this.TBMOC.Name = "TBMOC";
+            this.TBMOC.ReadOnly = true;
+            this.TBMOC.Size = new System.Drawing.Size(137, 24);
+            this.TBMOC.TabIndex = 12;
+            // 
+            // TBSAP
+            // 
+            this.TBSAP.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBSAP.Location = new System.Drawing.Point(117, 98);
+            this.TBSAP.Name = "TBSAP";
+            this.TBSAP.ReadOnly = true;
+            this.TBSAP.Size = new System.Drawing.Size(137, 24);
+            this.TBSAP.TabIndex = 12;
+            // 
+            // TBNWV
+            // 
+            this.TBNWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBNWV.Location = new System.Drawing.Point(229, 414);
+            this.TBNWV.Name = "TBNWV";
+            this.TBNWV.ReadOnly = true;
+            this.TBNWV.Size = new System.Drawing.Size(137, 24);
+            this.TBNWV.TabIndex = 12;
+            // 
+            // TBDWVV
+            // 
+            this.TBDWVV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBDWVV.Location = new System.Drawing.Point(229, 373);
+            this.TBDWVV.Name = "TBDWVV";
+            this.TBDWVV.ReadOnly = true;
+            this.TBDWVV.Size = new System.Drawing.Size(137, 24);
+            this.TBDWVV.TabIndex = 12;
+            // 
+            // TBDWV
+            // 
+            this.TBDWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBDWV.Location = new System.Drawing.Point(229, 331);
+            this.TBDWV.Name = "TBDWV";
+            this.TBDWV.ReadOnly = true;
+            this.TBDWV.Size = new System.Drawing.Size(137, 24);
+            this.TBDWV.TabIndex = 12;
+            // 
+            // TBDINV
+            // 
+            this.TBDINV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBDINV.Location = new System.Drawing.Point(117, 58);
+            this.TBDINV.Name = "TBDINV";
+            this.TBDINV.ReadOnly = true;
+            this.TBDINV.Size = new System.Drawing.Size(137, 24);
+            this.TBDINV.TabIndex = 12;
+            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -671,105 +770,6 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "https://github.com/majoor404/Overbrugging";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
-            // 
-            // TBDINV
-            // 
-            this.TBDINV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBDINV.Location = new System.Drawing.Point(117, 58);
-            this.TBDINV.Name = "TBDINV";
-            this.TBDINV.ReadOnly = true;
-            this.TBDINV.Size = new System.Drawing.Size(137, 24);
-            this.TBDINV.TabIndex = 12;
-            // 
-            // TBSAP
-            // 
-            this.TBSAP.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBSAP.Location = new System.Drawing.Point(117, 98);
-            this.TBSAP.Name = "TBSAP";
-            this.TBSAP.ReadOnly = true;
-            this.TBSAP.Size = new System.Drawing.Size(137, 24);
-            this.TBSAP.TabIndex = 12;
-            // 
-            // TBMOC
-            // 
-            this.TBMOC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBMOC.Location = new System.Drawing.Point(117, 135);
-            this.TBMOC.Name = "TBMOC";
-            this.TBMOC.ReadOnly = true;
-            this.TBMOC.Size = new System.Drawing.Size(137, 24);
-            this.TBMOC.TabIndex = 12;
-            // 
-            // TBSEC
-            // 
-            this.TBSEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBSEC.Location = new System.Drawing.Point(460, 12);
-            this.TBSEC.Name = "TBSEC";
-            this.TBSEC.ReadOnly = true;
-            this.TBSEC.Size = new System.Drawing.Size(226, 24);
-            this.TBSEC.TabIndex = 12;
-            // 
-            // TBINST
-            // 
-            this.TBINST.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBINST.Location = new System.Drawing.Point(460, 54);
-            this.TBINST.Name = "TBINST";
-            this.TBINST.ReadOnly = true;
-            this.TBINST.Size = new System.Drawing.Size(226, 24);
-            this.TBINST.TabIndex = 12;
-            // 
-            // TBINSTD
-            // 
-            this.TBINSTD.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBINSTD.Location = new System.Drawing.Point(460, 91);
-            this.TBINSTD.Name = "TBINSTD";
-            this.TBINSTD.ReadOnly = true;
-            this.TBINSTD.Size = new System.Drawing.Size(226, 24);
-            this.TBINSTD.TabIndex = 12;
-            // 
-            // TBN1
-            // 
-            this.TBN1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBN1.Location = new System.Drawing.Point(793, 53);
-            this.TBN1.Name = "TBN1";
-            this.TBN1.ReadOnly = true;
-            this.TBN1.Size = new System.Drawing.Size(211, 24);
-            this.TBN1.TabIndex = 12;
-            // 
-            // TBN2
-            // 
-            this.TBN2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBN2.Location = new System.Drawing.Point(793, 92);
-            this.TBN2.Name = "TBN2";
-            this.TBN2.ReadOnly = true;
-            this.TBN2.Size = new System.Drawing.Size(211, 24);
-            this.TBN2.TabIndex = 12;
-            // 
-            // TBDWV
-            // 
-            this.TBDWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBDWV.Location = new System.Drawing.Point(229, 331);
-            this.TBDWV.Name = "TBDWV";
-            this.TBDWV.ReadOnly = true;
-            this.TBDWV.Size = new System.Drawing.Size(137, 24);
-            this.TBDWV.TabIndex = 12;
-            // 
-            // TBDWVV
-            // 
-            this.TBDWVV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBDWVV.Location = new System.Drawing.Point(229, 373);
-            this.TBDWVV.Name = "TBDWVV";
-            this.TBDWVV.ReadOnly = true;
-            this.TBDWVV.Size = new System.Drawing.Size(137, 24);
-            this.TBDWVV.TabIndex = 12;
-            // 
-            // TBNWV
-            // 
-            this.TBNWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBNWV.Location = new System.Drawing.Point(229, 414);
-            this.TBNWV.Name = "TBNWV";
-            this.TBNWV.ReadOnly = true;
-            this.TBNWV.Size = new System.Drawing.Size(137, 24);
-            this.TBNWV.TabIndex = 12;
             // 
             // MainForm
             // 
