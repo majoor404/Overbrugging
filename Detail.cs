@@ -130,6 +130,11 @@ namespace Overbrugging
 
         private void Detail_FormClosed(object sender, FormClosedEventArgs e)
         {
+            
+        }
+
+        private void ButVoerUit_Click(object sender, EventArgs e)
+        {
             MainForm.Main.LaadData_lijst();
             // save data
             MainForm.Main.TempData.DatumInv = DatumInv.Datum;
@@ -159,10 +164,12 @@ namespace Overbrugging
                 Data temp = MainForm.Main.LijstData.First(a => a.RegNr == MainForm.Main.TempData.RegNr);
                 MainForm.Main.LijstData.Remove(temp);
             }
-            catch{}
+            catch { }
             // en toevoegen nieuwe
             MainForm.Main.LijstData.Add(MainForm.Main.TempData);
             MainForm.Main.SaveData_lijst();
+
+            Close();
         }
     }
 }

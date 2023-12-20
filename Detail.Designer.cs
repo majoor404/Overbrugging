@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Detail));
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.Panel12345 = new System.Windows.Forms.Panel();
             this.LabelType = new System.Windows.Forms.Label();
             this.DatumInv = new Overbrugging.DatumPicker();
             this.TextBoxOplossing = new System.Windows.Forms.TextBox();
@@ -85,48 +85,56 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
+            this.ButVoerUit = new System.Windows.Forms.Button();
+            this.ButCancel = new System.Windows.Forms.Button();
+            this.ButSave = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.Panel12345.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // Panel12345
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.LabelType);
-            this.panel1.Controls.Add(this.DatumInv);
-            this.panel1.Controls.Add(this.TextBoxOplossing);
-            this.panel1.Controls.Add(this.TextBoxRede);
-            this.panel1.Controls.Add(this.ComboBoxNaam2);
-            this.panel1.Controls.Add(this.ComboSectieDeel);
-            this.panel1.Controls.Add(this.ComboBoxSectie);
-            this.panel1.Controls.Add(this.ComboBoxNaam1);
-            this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.TextBoxPersnr1);
-            this.panel1.Controls.Add(this.TextBoxInstDeel);
-            this.panel1.Controls.Add(this.TextBoxPersnr2);
-            this.panel1.Controls.Add(this.TextBoxMocNr);
-            this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.TextBoxSapNr);
-            this.panel1.Controls.Add(this.TextBoxRegNr);
-            this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.labelMOC);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1264, 417);
-            this.panel1.TabIndex = 0;
+            this.Panel12345.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Panel12345.Controls.Add(this.ButCancel);
+            this.Panel12345.Controls.Add(this.ButVoerUit);
+            this.Panel12345.Controls.Add(this.LabelType);
+            this.Panel12345.Controls.Add(this.DatumInv);
+            this.Panel12345.Controls.Add(this.TextBoxOplossing);
+            this.Panel12345.Controls.Add(this.TextBoxRede);
+            this.Panel12345.Controls.Add(this.ComboBoxNaam2);
+            this.Panel12345.Controls.Add(this.ComboSectieDeel);
+            this.Panel12345.Controls.Add(this.ComboBoxSectie);
+            this.Panel12345.Controls.Add(this.ComboBoxNaam1);
+            this.Panel12345.Controls.Add(this.label11);
+            this.Panel12345.Controls.Add(this.TextBoxPersnr1);
+            this.Panel12345.Controls.Add(this.TextBoxInstDeel);
+            this.Panel12345.Controls.Add(this.TextBoxPersnr2);
+            this.Panel12345.Controls.Add(this.TextBoxMocNr);
+            this.Panel12345.Controls.Add(this.label13);
+            this.Panel12345.Controls.Add(this.TextBoxSapNr);
+            this.Panel12345.Controls.Add(this.TextBoxRegNr);
+            this.Panel12345.Controls.Add(this.label14);
+            this.Panel12345.Controls.Add(this.label12);
+            this.Panel12345.Controls.Add(this.label15);
+            this.Panel12345.Controls.Add(this.label10);
+            this.Panel12345.Controls.Add(this.label9);
+            this.Panel12345.Controls.Add(this.labelMOC);
+            this.Panel12345.Controls.Add(this.label4);
+            this.Panel12345.Controls.Add(this.label8);
+            this.Panel12345.Controls.Add(this.label7);
+            this.Panel12345.Controls.Add(this.label6);
+            this.Panel12345.Controls.Add(this.label3);
+            this.Panel12345.Controls.Add(this.label2);
+            this.Panel12345.Controls.Add(this.label1);
+            this.Panel12345.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Panel12345.Location = new System.Drawing.Point(0, 0);
+            this.Panel12345.Name = "Panel12345";
+            this.Panel12345.Size = new System.Drawing.Size(1264, 417);
+            this.Panel12345.TabIndex = 0;
             // 
             // LabelType
             // 
@@ -155,7 +163,7 @@
             this.TextBoxOplossing.Multiline = true;
             this.TextBoxOplossing.Name = "TextBoxOplossing";
             this.TextBoxOplossing.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TextBoxOplossing.Size = new System.Drawing.Size(435, 178);
+            this.TextBoxOplossing.Size = new System.Drawing.Size(435, 147);
             this.TextBoxOplossing.TabIndex = 4;
             // 
             // TextBoxRede
@@ -167,7 +175,7 @@
             this.TextBoxRede.Multiline = true;
             this.TextBoxRede.Name = "TextBoxRede";
             this.TextBoxRede.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TextBoxRede.Size = new System.Drawing.Size(435, 178);
+            this.TextBoxRede.Size = new System.Drawing.Size(435, 147);
             this.TextBoxRede.TabIndex = 4;
             // 
             // ComboBoxNaam2
@@ -415,7 +423,9 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.ButtonIVWVDatumVerw);
+            this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.DatumVerw);
             this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.TextBoxBijzVerw);
@@ -468,7 +478,7 @@
             this.TextBoxBijzVerw.Multiline = true;
             this.TextBoxBijzVerw.Name = "TextBoxBijzVerw";
             this.TextBoxBijzVerw.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TextBoxBijzVerw.Size = new System.Drawing.Size(435, 127);
+            this.TextBoxBijzVerw.Size = new System.Drawing.Size(435, 98);
             this.TextBoxBijzVerw.TabIndex = 4;
             // 
             // label17
@@ -534,7 +544,9 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.button1);
             this.panel3.Controls.Add(this.ButtonIVWVDatumNu);
+            this.panel3.Controls.Add(this.ButSave);
             this.panel3.Controls.Add(this.ButtonType);
             this.panel3.Controls.Add(this.DatumVerloopTIW);
             this.panel3.Controls.Add(this.DatumWv);
@@ -610,7 +622,7 @@
             this.TextBoxBijzIVWV.Multiline = true;
             this.TextBoxBijzIVWV.Name = "TextBoxBijzIVWV";
             this.TextBoxBijzIVWV.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TextBoxBijzIVWV.Size = new System.Drawing.Size(435, 127);
+            this.TextBoxBijzIVWV.Size = new System.Drawing.Size(435, 106);
             this.TextBoxBijzIVWV.TabIndex = 4;
             // 
             // label24
@@ -693,6 +705,72 @@
             this.label26.TabIndex = 0;
             this.label26.Text = "Naam";
             // 
+            // ButVoerUit
+            // 
+            this.ButVoerUit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButVoerUit.Location = new System.Drawing.Point(794, 372);
+            this.ButVoerUit.Name = "ButVoerUit";
+            this.ButVoerUit.Size = new System.Drawing.Size(122, 34);
+            this.ButVoerUit.TabIndex = 7;
+            this.ButVoerUit.Text = "VoerUit";
+            this.ButVoerUit.UseVisualStyleBackColor = true;
+            this.ButVoerUit.Click += new System.EventHandler(this.ButVoerUit_Click);
+            // 
+            // ButCancel
+            // 
+            this.ButCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.ButCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButCancel.Location = new System.Drawing.Point(1107, 370);
+            this.ButCancel.Name = "ButCancel";
+            this.ButCancel.Size = new System.Drawing.Size(122, 34);
+            this.ButCancel.TabIndex = 7;
+            this.ButCancel.Text = "Cancel";
+            this.ButCancel.UseVisualStyleBackColor = true;
+            // 
+            // ButSave
+            // 
+            this.ButSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButSave.Location = new System.Drawing.Point(798, 175);
+            this.ButSave.Name = "ButSave";
+            this.ButSave.Size = new System.Drawing.Size(122, 34);
+            this.ButSave.TabIndex = 7;
+            this.ButSave.Text = "Save";
+            this.ButSave.UseVisualStyleBackColor = true;
+            this.ButSave.Click += new System.EventHandler(this.ButVoerUit_Click);
+            // 
+            // button1
+            // 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(1107, 175);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(122, 34);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Cancel";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(798, 172);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(122, 34);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Save";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.ButVoerUit_Click);
+            // 
+            // button3
+            // 
+            this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(1107, 173);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(122, 34);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Cancel";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // Detail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -700,7 +778,7 @@
             this.ClientSize = new System.Drawing.Size(1264, 859);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.Panel12345);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -708,10 +786,9 @@
             this.Name = "Detail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Detail";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Detail_FormClosed);
             this.Shown += new System.EventHandler(this.Detail_Shown);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Panel12345.ResumeLayout(false);
+            this.Panel12345.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -722,7 +799,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel Panel12345;
         private System.Windows.Forms.Label labelMOC;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -778,5 +855,11 @@
         public System.Windows.Forms.Label LabelType;
         private System.Windows.Forms.Button ButtonIVWVDatumVerw;
         private System.Windows.Forms.Button ButtonIVWVDatumNu;
+        private System.Windows.Forms.Button ButVoerUit;
+        private System.Windows.Forms.Button ButCancel;
+        private System.Windows.Forms.Button ButSave;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -752,14 +752,9 @@ namespace Overbrugging
                 return;
             }
 
-
             LastIndex++;
             TempData.RegNr = LastIndex;
             
-            // maak formulier
-            //dt.TextBoxRegNr.Text = LastIndex.ToString();
-            //dt.TextBoxRegNr.Enabled = false;
-
             LaadNamen_lijst();
             VulDropDownItems(dt);
 
