@@ -445,6 +445,7 @@ namespace Overbrugging
             {
                 GC.Collect();
             }
+            Backup($"{datapath}overbrug.bin");
         }
 
         public void SaveDataNamen_lijst()
@@ -885,6 +886,38 @@ namespace Overbrugging
             catch
             {
                 _ = MessageBox.Show($"Error VulDetailForm");
+            }
+        }
+
+        private void Backup(string file)
+        {
+            string nieuw_naam = "";
+            try
+            {
+                if (File.Exists(file))
+                {
+                    
+                        if (!Directory.Exists("Backup"))
+                        {
+                            _ = Directory.CreateDirectory("Backup");
+                        }
+
+                        string s = DateTime.Now.ToString("MM-dd-yyyy HH-mm-ss");
+
+                        nieuw_naam = Directory.GetCurrentDirectory() + @"\Backup\overbrug_" + s + ".bin";
+                        File.Copy(file, nieuw_naam, true);  // overwrite oude file
+
+                        List<FileInfo> files = new DirectoryInfo("Backup").EnumerateFiles("*overbrug_*")
+                                        .OrderByDescending(f => f.CreationTime)
+                                        .Skip(10)
+                                        .ToList();
+
+                        files.ForEach(f => f.Delete());
+                }
+            }
+            catch
+            {
+                _ = MessageBox.Show($"Save backup ging fout\n{nieuw_naam}");
             }
         }
     }
