@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Policy;
 using System.Windows.Forms;
 
 namespace Overbrugging
@@ -18,6 +19,7 @@ namespace Overbrugging
         public List<Data> LijstData = new List<Data>();
         public Data TempData = new Data();
         public static int LastIndex = 0;
+        public static string datapath = AppDomain.CurrentDomain.BaseDirectory + "Data\\";
 
         public static MainForm Main;
 
@@ -427,7 +429,7 @@ namespace Overbrugging
         {
             try
             {
-                using (Stream stream = File.Open("overbrug.bin", FileMode.OpenOrCreate))
+                using (Stream stream = File.Open($"{datapath}overbrug.bin", FileMode.OpenOrCreate))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, LijstData);
@@ -449,7 +451,7 @@ namespace Overbrugging
         {
             try
             {
-                using (Stream stream = File.Open("namen.bin", FileMode.OpenOrCreate))
+                using (Stream stream = File.Open($"{datapath}namen.bin", FileMode.OpenOrCreate))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, NamenLijst);
@@ -471,7 +473,7 @@ namespace Overbrugging
         {
             try
             {
-                using (Stream stream = File.Open("sectie.bin", FileMode.OpenOrCreate))
+                using (Stream stream = File.Open($"{datapath}sectie.bin", FileMode.OpenOrCreate))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, SectieLijst);
@@ -493,7 +495,7 @@ namespace Overbrugging
         {
             try
             {
-                using (Stream stream = File.Open("install.bin", FileMode.OpenOrCreate))
+                using (Stream stream = File.Open($"{datapath}install.bin", FileMode.OpenOrCreate))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
                     bin.Serialize(stream, InstallatieLijst);
@@ -515,7 +517,7 @@ namespace Overbrugging
         {
             try
             {
-                using (Stream stream = File.Open("overbrug.bin", FileMode.Open, FileAccess.Read, FileShare.None))
+                using (Stream stream = File.Open($"{datapath}overbrug.bin", FileMode.Open, FileAccess.Read, FileShare.None))
                 {
                     LijstData.Clear();
                     BinaryFormatter bin = new BinaryFormatter();
@@ -534,7 +536,7 @@ namespace Overbrugging
         {
             try
             {
-                using (Stream stream = File.Open("sectie.bin", FileMode.Open, FileAccess.Read, FileShare.None))
+                using (Stream stream = File.Open($"{datapath}sectie.bin", FileMode.Open, FileAccess.Read, FileShare.None))
                 {
                     LijstData.Clear();
                     BinaryFormatter bin = new BinaryFormatter();
@@ -553,7 +555,7 @@ namespace Overbrugging
         {
             try
             {
-                using (Stream stream = File.Open("namen.bin", FileMode.Open, FileAccess.Read, FileShare.None))
+                using (Stream stream = File.Open($"{datapath}namen.bin", FileMode.Open, FileAccess.Read, FileShare.None))
                 {
                     NamenLijst.Clear();
                     BinaryFormatter bin = new BinaryFormatter();
@@ -572,7 +574,7 @@ namespace Overbrugging
         {
             try
             {
-                using (Stream stream = File.Open("install.bin", FileMode.Open, FileAccess.Read, FileShare.None))
+                using (Stream stream = File.Open($"{datapath}install.bin", FileMode.Open, FileAccess.Read, FileShare.None))
                 {
                     InstallatieLijst.Clear();
                     BinaryFormatter bin = new BinaryFormatter();
