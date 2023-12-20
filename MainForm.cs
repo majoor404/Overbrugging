@@ -737,7 +737,7 @@ namespace Overbrugging
                 // TIW
                 TempData.Soort = "TIW";
             }
-            if (retKeuzeForm == DialogResult.Cancel)
+            if (retKeuzeForm == DialogResult.Yes)
             {
                 //OVERB
                 TempData.Soort = "OVERB";
@@ -747,6 +747,12 @@ namespace Overbrugging
                 //MOC
                 TempData.Soort = "MOC";
             }
+            if (retKeuzeForm == DialogResult.Cancel)
+            {
+                return;
+            }
+
+
             LastIndex++;
             TempData.RegNr = LastIndex;
             

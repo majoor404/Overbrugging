@@ -23,7 +23,7 @@ namespace Overbrugging
                 // TIW
                 MainForm.Main.TempData.Soort = "TIW";
             }
-            if (ret == DialogResult.Cancel)
+            if (ret == DialogResult.Yes)
             {
                 //OVERB
                 MainForm.Main.TempData.Soort = "OVERB";

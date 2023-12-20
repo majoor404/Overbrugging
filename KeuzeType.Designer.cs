@@ -45,7 +45,7 @@
             // 
             // ButtonOverb
             // 
-            this.ButtonOverb.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.ButtonOverb.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.ButtonOverb.Location = new System.Drawing.Point(13, 92);
             this.ButtonOverb.Name = "ButtonOverb";
             this.ButtonOverb.Size = new System.Drawing.Size(199, 63);
@@ -74,7 +74,7 @@
             this.Controls.Add(this.ButTIW);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "KeuzeType";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Type";
