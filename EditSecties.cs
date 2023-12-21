@@ -78,6 +78,7 @@ namespace Overbrugging
             MainForm.Main.SectieLijst.Add(N);
             MainForm.Main.SaveDataSecties_lijst();
 
+            MainForm.Main.wait(500);
             EditSecties_Shown(this, null);
         }
 
@@ -100,6 +101,7 @@ namespace Overbrugging
                     MainForm.Main.SectieLijst.Remove(Record);
                     // save
                     MainForm.Main.SaveDataSecties_lijst();
+                    MainForm.Main.wait(500);
                     // refresh
                     EditSecties_Shown(this, null);
                 }
@@ -125,6 +127,7 @@ namespace Overbrugging
 
             MainForm.Main.InstallatieLijst.Add(N);
             MainForm.Main.SaveDataInstallaties_lijst();
+            MainForm.Main.wait(500);
 
             EditSecties_Shown(this, null);
         }
@@ -142,6 +145,7 @@ namespace Overbrugging
                     MainForm.Main.InstallatieLijst.Remove(Record);
                     // save
                     MainForm.Main.SaveDataInstallaties_lijst();
+                    MainForm.Main.wait(500);
                     // refresh
                     EditSecties_Shown(this, null);
                 }

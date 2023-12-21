@@ -87,6 +87,8 @@ namespace Overbrugging
                     MainForm.Main.SorteerNaamOpNaam();
                     // save
                     MainForm.Main.SaveDataNamen_lijst();
+                    //
+                    MainForm.Main.wait(500);
                     // refresh
                     dataGridView1.Refresh();
                 }

@@ -18,7 +18,7 @@ namespace Overbrugging
         public List<OverBrugRecord> LijstOverbrugingen = new List<OverBrugRecord> { };
         public List<Data> LijstData = new List<Data>();
         public Data TempData = new Data();
-        //public static int LastIndex = 0;
+        public int LastIndex = 0;
         public static string datapath = AppDomain.CurrentDomain.BaseDirectory + "Data\\";
         public List<string> instellingen = new List<string>();
 
@@ -323,8 +323,8 @@ namespace Overbrugging
                 _ = comboBoxSectie.Items.Add("ALLE");
                 foreach (Secties item in SectieLijst)
                 {
-                    if(!string.IsNullOrEmpty(item.Naam))
-                    _ = comboBoxSectie.Items.Add(item.Naam);
+                    if (!string.IsNullOrEmpty(item.Naam))
+                        _ = comboBoxSectie.Items.Add(item.Naam);
                 }
                 comboBoxSectie.SelectedIndex = 0;
             }
@@ -392,12 +392,6 @@ namespace Overbrugging
             VulPreview(index);
         }
 
-        public int LaatsteIndex()
-        {
-            LaadInstelingen();
-            return int.Parse(instellingen[0]);
-        }
-
         private void ButRefresh_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = null;
@@ -423,8 +417,8 @@ namespace Overbrugging
                 LijstData = LijstData.Where(x => x.Soort == comboBoxSoortFilter.Text).ToList();
             }
 
-            // sorteer
-            LijstData = LijstData.OrderByDescending(o => o.RegNr).ToList();
+            // sorteer (ziet nu in laaddata)
+            //LijstData = LijstData.OrderByDescending(o => o.RegNr).ToList();
 
             VulGrid();
         }
@@ -525,8 +519,8 @@ namespace Overbrugging
             {
                 File.WriteAllLines(inst, instellingen);
             }
-                catch (IOException)
-                {
+            catch (IOException)
+            {
                 MessageBox.Show("instelingen file save Error()");
             }
         }
@@ -538,7 +532,8 @@ namespace Overbrugging
             {
                 instellingen = File.ReadAllLines(inst).ToList();
             }
-            catch {
+            catch
+            {
                 MessageBox.Show($"{inst} niet aanwezig, exit");
                 Close();
             }
@@ -560,6 +555,14 @@ namespace Overbrugging
             {
                 GC.Collect();
             }
+
+            LastIndex = GetLaatsteRecord();
+        }
+
+        private int GetLaatsteRecord()
+        {
+            LijstData = LijstData.OrderByDescending(o => o.RegNr).ToList();
+            return LijstData[0].RegNr;
         }
 
         public void LaadSecties_lijst()
@@ -652,7 +655,7 @@ namespace Overbrugging
                 // zoek record
                 int regNr = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
                 TempData = ZoekDataRecord(regNr);
-                
+
                 // maak formulier
                 Detail dt = new Detail();
                 //dt.TextBoxRegNr.Text = TempData.RegNr.ToString();
@@ -781,16 +784,15 @@ namespace Overbrugging
                 return;
             }
 
-            //LastIndex++;
-            //TempData.RegNr = LastIndex;
-            
             LaadNamen_lijst();
             VulDropDownItems(dt);
 
             TempData.DatumInv = dt.DatumInv.Datum = DateTime.Now.ToShortDateString();
 
             // open dialog
-            _ = dt.ShowDialog(); 
+            _ = dt.ShowDialog();
+            
+            MainForm.Main.wait(500);
 
             //refresh
             ButRefresh_Click(this, null);
@@ -873,6 +875,8 @@ namespace Overbrugging
 
                 // open dialog
                 _ = dt.ShowDialog();
+
+                wait(500);
             }
             catch
             {
@@ -926,28 +930,49 @@ namespace Overbrugging
             {
                 if (File.Exists(file))
                 {
-                    
-                        if (!Directory.Exists("Backup"))
-                        {
-                            _ = Directory.CreateDirectory("Backup");
-                        }
 
-                        string s = DateTime.Now.ToString("MM-dd-yyyy HH-mm-ss");
+                    if (!Directory.Exists("Backup"))
+                    {
+                        _ = Directory.CreateDirectory("Backup");
+                    }
 
-                        nieuw_naam = Directory.GetCurrentDirectory() + @"\Backup\overbrug_" + s + ".bin";
-                        File.Copy(file, nieuw_naam, true);  // overwrite oude file
+                    string s = DateTime.Now.ToString("MM-dd-yyyy HH-mm-ss");
 
-                        List<FileInfo> files = new DirectoryInfo("Backup").EnumerateFiles("*overbrug_*")
-                                        .OrderByDescending(f => f.CreationTime)
-                                        .Skip(10)
-                                        .ToList();
+                    nieuw_naam = Directory.GetCurrentDirectory() + @"\Backup\overbrug_" + s + ".bin";
+                    File.Copy(file, nieuw_naam, true);  // overwrite oude file
 
-                        files.ForEach(f => f.Delete());
+                    List<FileInfo> files = new DirectoryInfo("Backup").EnumerateFiles("*overbrug_*")
+                                    .OrderByDescending(f => f.CreationTime)
+                                    .Skip(10)
+                                    .ToList();
+
+                    files.ForEach(f => f.Delete());
                 }
             }
             catch
             {
                 _ = MessageBox.Show($"Save backup ging fout\n{nieuw_naam}");
+            }
+        }
+
+        public void wait(int milliseconds)
+        {
+            var timer1 = new System.Windows.Forms.Timer();
+            if (milliseconds == 0 || milliseconds < 0) return;
+
+            timer1.Interval = milliseconds;
+            timer1.Enabled = true;
+            timer1.Start();
+
+            timer1.Tick += (s, e) =>
+            {
+                timer1.Enabled = false;
+                timer1.Stop();
+            };
+
+            while (timer1.Enabled)
+            {
+                Application.DoEvents();
             }
         }
     }
