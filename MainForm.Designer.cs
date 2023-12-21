@@ -39,6 +39,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.ButRefresh = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -88,7 +89,6 @@
             this.TB2 = new System.Windows.Forms.TextBox();
             this.TB1 = new System.Windows.Forms.TextBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.ButRefresh = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -209,6 +209,18 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(179, 308);
             this.panel2.TabIndex = 23;
+            // 
+            // ButRefresh
+            // 
+            this.ButRefresh.BackColor = System.Drawing.Color.Transparent;
+            this.ButRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButRefresh.Location = new System.Drawing.Point(8, 232);
+            this.ButRefresh.Name = "ButRefresh";
+            this.ButRefresh.Size = new System.Drawing.Size(153, 60);
+            this.ButRefresh.TabIndex = 18;
+            this.ButRefresh.Text = "Reset / Refresh";
+            this.ButRefresh.UseVisualStyleBackColor = false;
+            this.ButRefresh.Click += new System.EventHandler(this.MainForm_Shown);
             // 
             // label10
             // 
@@ -394,6 +406,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(1047, 468);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
+            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
             this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_RowEnter);
             this.dataGridView1.BindingContextChanged += new System.EventHandler(this.dataGridView1_BindingContextChanged);
             // 
@@ -774,18 +787,6 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "https://github.com/majoor404/Overbrugging";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
-            // 
-            // ButRefresh
-            // 
-            this.ButRefresh.BackColor = System.Drawing.Color.Transparent;
-            this.ButRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButRefresh.Location = new System.Drawing.Point(8, 232);
-            this.ButRefresh.Name = "ButRefresh";
-            this.ButRefresh.Size = new System.Drawing.Size(153, 60);
-            this.ButRefresh.TabIndex = 18;
-            this.ButRefresh.Text = "Reset / Refresh";
-            this.ButRefresh.UseVisualStyleBackColor = false;
-            this.ButRefresh.Click += new System.EventHandler(this.MainForm_Shown);
             // 
             // MainForm
             // 

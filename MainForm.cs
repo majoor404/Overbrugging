@@ -1,6 +1,7 @@
 ﻿using Melding;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -372,15 +373,17 @@ namespace Overbrugging
 
             dataGridView1.DataSource = LijstData;
 
-            dataGridView1.Columns["Nr"].DataPropertyName = "Regnr";
-            dataGridView1.Columns["Datum"].DataPropertyName = "DatumInv";
-            dataGridView1.Columns["Soort"].DataPropertyName = "Soort";
-            dataGridView1.Columns["Sectie"].DataPropertyName = "Sectie";
-            dataGridView1.Columns["Installatie"].DataPropertyName = "Installatie";
-            dataGridView1.Columns["InstalatieDeel"].DataPropertyName = "InstallatieDeel";
-            dataGridView1.Columns["Rede"].DataPropertyName = "Reden";
-            dataGridView1.Columns["DatumVerl"].DataPropertyName = "UitersteDatum";
-
+            if (dataGridView1.Columns["Nr"].DataPropertyName == "")
+            {
+                dataGridView1.Columns["Nr"].DataPropertyName = "Regnr";
+                dataGridView1.Columns["Datum"].DataPropertyName = "DatumInv";
+                dataGridView1.Columns["Soort"].DataPropertyName = "Soort";
+                dataGridView1.Columns["Sectie"].DataPropertyName = "Sectie";
+                dataGridView1.Columns["Installatie"].DataPropertyName = "Installatie";
+                dataGridView1.Columns["InstalatieDeel"].DataPropertyName = "InstallatieDeel";
+                dataGridView1.Columns["Rede"].DataPropertyName = "Reden";
+                dataGridView1.Columns["DatumVerl"].DataPropertyName = "UitersteDatum";
+            }
 
             //dataGridView1.ResumeLayout();
             StopRedraw.ResumeDrawing(panelMain);
@@ -1057,6 +1060,84 @@ namespace Overbrugging
             {
                 cm.Refresh();
             }
+            else
+            {
+                _ = MessageBox.Show("Asdsgsghsh");
+            }
         }
+
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //DataGridViewColumn newColumn = dataGridView1.Columns[e.ColumnIndex];
+            //DataGridViewColumn oldColumn = dataGridView1.SortedColumn;
+            //ListSortDirection direction;
+
+            //// If oldColumn is null, then the DataGridView is not sorted.
+            //if (oldColumn != null)
+            //{
+            //    // Sort the same column again, reversing the SortOrder.
+            //    if (oldColumn == newColumn &&
+            //        dataGridView1.SortOrder == SortOrder.Ascending)
+            //    {
+            //        direction = ListSortDirection.Descending;
+            //    }
+            //    else
+            //    {
+            //        // Sort a new column and remove the old SortGlyph.
+            //        direction = ListSortDirection.Ascending;
+            //        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+            //    }
+            //}
+            //else
+            //{
+            //    direction = ListSortDirection.Ascending;
+            //    oldColumn = newColumn;
+            //}
+
+            
+            //// Sort the selected column.
+            //Sort(newColumn, direction);
+
+            //newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
+
+            //VulGrid();
+        }
+
+        private void Sort(DataGridViewColumn newColumn, ListSortDirection richting)
+        {
+            
+            //dataGridView1.Columns["Datum"].DataPropertyName = "DatumInv";
+            
+            //dataGridView1.Columns["Sectie"].DataPropertyName = "Sectie";
+            //dataGridView1.Columns["Installatie"].DataPropertyName = "Installatie";
+            //dataGridView1.Columns["InstalatieDeel"].DataPropertyName = "InstallatieDeel";
+            //dataGridView1.Columns["Rede"].DataPropertyName = "Reden";
+            //dataGridView1.Columns["DatumVerl"].DataPropertyName = "UitersteDatum";
+
+            if(newColumn.DataPropertyName == "Regnr")
+            {
+                if (richting == ListSortDirection.Ascending)
+                {
+                    LijstData = LijstData.OrderBy(o => o.RegNr).ToList();
+                }
+                else
+                {
+                    LijstData = LijstData.OrderByDescending(o => o.RegNr).ToList();
+                }
+            }
+            if (newColumn.DataPropertyName == "Soort")
+            {
+                if (richting == ListSortDirection.Ascending)
+                {
+                    LijstData = LijstData.OrderBy(o => o.Soort).ToList();
+                }
+                else
+                {
+                    LijstData = LijstData.OrderByDescending(o => o.Soort).ToList();
+                }
+            }
+        }
+
+        
     }
 }
