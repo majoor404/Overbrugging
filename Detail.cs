@@ -147,8 +147,18 @@ namespace Overbrugging
 
         private void ButVoerUit_Click(object sender, EventArgs e)
         {
-            int index = MainForm.Main.LaatsteIndex();
-            index++;
+            int index;
+            bool save_nieuwe_index = false;
+            if (string.IsNullOrEmpty(TextBoxRegNr.Text))
+            {
+                index = MainForm.Main.LaatsteIndex();
+                index++;
+                save_nieuwe_index = true;
+            }
+            else
+            {
+                index = int.Parse(TextBoxRegNr.Text);
+            }
 
             MainForm.Main.LaadData_lijst();
             // save data
@@ -183,10 +193,13 @@ namespace Overbrugging
             // en toevoegen nieuwe
             MainForm.Main.LijstData.Add(MainForm.Main.TempData);
             MainForm.Main.SaveData_lijst();
-            
-            // nieuwe index opslaan
-            MainForm.Main.instellingen[0] = index.ToString();
-            MainForm.Main.SaveInstelingen();
+
+            if (save_nieuwe_index)
+            {
+                // nieuwe index opslaan
+                MainForm.Main.instellingen[0] = index.ToString();
+                MainForm.Main.SaveInstelingen();
+            }
 
             Close();
         }
