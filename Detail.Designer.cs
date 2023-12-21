@@ -87,9 +87,9 @@
             this.label26 = new System.Windows.Forms.Label();
             this.ButVoerUit = new System.Windows.Forms.Button();
             this.ButCancel = new System.Windows.Forms.Button();
-            this.ButSave = new System.Windows.Forms.Button();
+            this.ButSaveWV = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.ButSaveVerw = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.Panel12345.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -142,9 +142,9 @@
             this.LabelType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelType.Location = new System.Drawing.Point(849, 52);
             this.LabelType.Name = "LabelType";
-            this.LabelType.Size = new System.Drawing.Size(248, 24);
+            this.LabelType.Size = new System.Drawing.Size(241, 24);
             this.LabelType.TabIndex = 6;
-            this.LabelType.Text = "Tijdelijke Instalatie Wijzeging";
+            this.LabelType.Text = "Tijdelijke Instalatie Wijziging";
             // 
             // DatumInv
             // 
@@ -425,7 +425,7 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.ButtonIVWVDatumVerw);
-            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.ButSaveVerw);
             this.panel2.Controls.Add(this.DatumVerw);
             this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.TextBoxBijzVerw);
@@ -546,7 +546,7 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.button1);
             this.panel3.Controls.Add(this.ButtonIVWVDatumNu);
-            this.panel3.Controls.Add(this.ButSave);
+            this.panel3.Controls.Add(this.ButSaveWV);
             this.panel3.Controls.Add(this.ButtonType);
             this.panel3.Controls.Add(this.DatumVerloopTIW);
             this.panel3.Controls.Add(this.DatumWv);
@@ -727,16 +727,17 @@
             this.ButCancel.Text = "Cancel";
             this.ButCancel.UseVisualStyleBackColor = true;
             // 
-            // ButSave
+            // ButSaveWV
             // 
-            this.ButSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButSave.Location = new System.Drawing.Point(798, 175);
-            this.ButSave.Name = "ButSave";
-            this.ButSave.Size = new System.Drawing.Size(122, 34);
-            this.ButSave.TabIndex = 7;
-            this.ButSave.Text = "Save";
-            this.ButSave.UseVisualStyleBackColor = true;
-            this.ButSave.Click += new System.EventHandler(this.ButVoerUit_Click);
+            this.ButSaveWV.Enabled = false;
+            this.ButSaveWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButSaveWV.Location = new System.Drawing.Point(798, 175);
+            this.ButSaveWV.Name = "ButSaveWV";
+            this.ButSaveWV.Size = new System.Drawing.Size(122, 34);
+            this.ButSaveWV.TabIndex = 7;
+            this.ButSaveWV.Text = "Save";
+            this.ButSaveWV.UseVisualStyleBackColor = true;
+            this.ButSaveWV.Click += new System.EventHandler(this.ButVoerUit_Click);
             // 
             // button1
             // 
@@ -749,16 +750,17 @@
             this.button1.Text = "Cancel";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // ButSaveVerw
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(798, 172);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(122, 34);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.ButVoerUit_Click);
+            this.ButSaveVerw.Enabled = false;
+            this.ButSaveVerw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButSaveVerw.Location = new System.Drawing.Point(798, 172);
+            this.ButSaveVerw.Name = "ButSaveVerw";
+            this.ButSaveVerw.Size = new System.Drawing.Size(122, 34);
+            this.ButSaveVerw.TabIndex = 7;
+            this.ButSaveVerw.Text = "Save";
+            this.ButSaveVerw.UseVisualStyleBackColor = true;
+            this.ButSaveVerw.Click += new System.EventHandler(this.ButVoerUit_Click);
             // 
             // button3
             // 
@@ -857,9 +859,9 @@
         private System.Windows.Forms.Button ButtonIVWVDatumNu;
         private System.Windows.Forms.Button ButVoerUit;
         private System.Windows.Forms.Button ButCancel;
-        private System.Windows.Forms.Button ButSave;
+        private System.Windows.Forms.Button ButSaveWV;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button ButSaveVerw;
         private System.Windows.Forms.Button button1;
     }
 }

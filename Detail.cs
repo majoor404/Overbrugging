@@ -41,16 +41,28 @@ namespace Overbrugging
             Point loc = this.Location;
             loc.X += 50;
             this.Location = loc;
-            TextBoxRegNr.Text = MainForm.Main.TempData.RegNr.ToString();
+
+            if (MainForm.Main.TempData.RegNr == 0)
+            {
+                TextBoxRegNr.Text = "";
+            }
+            else
+            {
+                TextBoxRegNr.Text = MainForm.Main.TempData.RegNr.ToString();
+            }
             RefreshForm();      // type appart, ook gebruik bij knopje drukken.
             TextBoxSapNr.Focus();
+
+            // als reg nummer bekend is, maak save WV en verwijder actief.
+            ButSaveWV.Enabled = !(string.IsNullOrEmpty(TextBoxRegNr.Text));
+            ButSaveVerw.Enabled = !(string.IsNullOrEmpty(TextBoxRegNr.Text));
         }
 
         private void RefreshForm()
         {
             if (MainForm.Main.TempData.Soort == "TIW")
             {
-                LabelType.Text = "Tijdelijke Instalatie Wijzeging";
+                LabelType.Text = "Tijdelijke Instalatie Wijziging";
                 labelMOC.Visible = false;
                 TextBoxMocNr.Visible = false;
             }
@@ -135,6 +147,9 @@ namespace Overbrugging
 
         private void ButVoerUit_Click(object sender, EventArgs e)
         {
+            int index = MainForm.Main.LaatsteIndex();
+            index++;
+
             MainForm.Main.LaadData_lijst();
             // save data
             MainForm.Main.TempData.DatumInv = DatumInv.Datum;
@@ -147,7 +162,7 @@ namespace Overbrugging
             MainForm.Main.TempData.Naam2 = ComboBoxNaam2.Text;
             MainForm.Main.TempData.Reden = TextBoxRede.Text;
             MainForm.Main.TempData.Uitvoering = TextBoxOplossing.Text;
-            MainForm.Main.TempData.RegNr = int.Parse(TextBoxRegNr.Text);
+            MainForm.Main.TempData.RegNr = index;
             // middelste panel
             MainForm.Main.TempData.DatumWv = DatumWv.Datum;
             MainForm.Main.TempData.NaamWV = ComboBoxIVWV.Text;
@@ -168,6 +183,10 @@ namespace Overbrugging
             // en toevoegen nieuwe
             MainForm.Main.LijstData.Add(MainForm.Main.TempData);
             MainForm.Main.SaveData_lijst();
+            
+            // nieuwe index opslaan
+            MainForm.Main.instellingen[0] = index.ToString();
+            MainForm.Main.SaveInstelingen();
 
             Close();
         }

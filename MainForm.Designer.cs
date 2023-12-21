@@ -48,7 +48,7 @@
             this.comboBoxSectie = new System.Windows.Forms.ComboBox();
             this.ButSettings = new System.Windows.Forms.Button();
             this.ButtonWijzig = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.ButZoek = new System.Windows.Forms.Button();
             this.ButtonNieuw = new System.Windows.Forms.Button();
             this.ButExit = new System.Windows.Forms.Button();
             this.panelMain = new System.Windows.Forms.Panel();
@@ -183,7 +183,7 @@
             this.panelMenu.Controls.Add(this.panel2);
             this.panelMenu.Controls.Add(this.ButSettings);
             this.panelMenu.Controls.Add(this.ButtonWijzig);
-            this.panelMenu.Controls.Add(this.button5);
+            this.panelMenu.Controls.Add(this.ButZoek);
             this.panelMenu.Controls.Add(this.ButtonNieuw);
             this.panelMenu.Controls.Add(this.ButExit);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
@@ -316,16 +316,16 @@
             this.ButtonWijzig.UseVisualStyleBackColor = false;
             this.ButtonWijzig.Click += new System.EventHandler(this.ButtonWijzig_Click);
             // 
-            // button5
+            // ButZoek
             // 
-            this.button5.BackColor = System.Drawing.Color.Transparent;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(10, 168);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(180, 60);
-            this.button5.TabIndex = 17;
-            this.button5.Text = "Zoek";
-            this.button5.UseVisualStyleBackColor = false;
+            this.ButZoek.BackColor = System.Drawing.Color.Transparent;
+            this.ButZoek.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButZoek.Location = new System.Drawing.Point(10, 168);
+            this.ButZoek.Name = "ButZoek";
+            this.ButZoek.Size = new System.Drawing.Size(180, 60);
+            this.ButZoek.TabIndex = 17;
+            this.ButZoek.Text = "Zoek";
+            this.ButZoek.UseVisualStyleBackColor = false;
             // 
             // ButtonNieuw
             // 
@@ -504,9 +504,9 @@
             this.LabelType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelType.Location = new System.Drawing.Point(792, 12);
             this.LabelType.Name = "LabelType";
-            this.LabelType.Size = new System.Drawing.Size(248, 24);
+            this.LabelType.Size = new System.Drawing.Size(241, 24);
             this.LabelType.TabIndex = 29;
-            this.LabelType.Text = "Tijdelijke Instalatie Wijzeging";
+            this.LabelType.Text = "Tijdelijke Instalatie Wijziging";
             // 
             // label19
             // 
@@ -816,7 +816,7 @@
         private System.Windows.Forms.ComboBox comboBoxStatus;
         private System.Windows.Forms.ComboBox comboBoxSectie;
         private System.Windows.Forms.Button ButSettings;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button ButZoek;
         private System.Windows.Forms.Button ButtonNieuw;
         private System.Windows.Forms.Button ButExit;
         private System.Windows.Forms.Panel panelMain;

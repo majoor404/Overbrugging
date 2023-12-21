@@ -18,8 +18,9 @@ namespace Overbrugging
         public List<OverBrugRecord> LijstOverbrugingen = new List<OverBrugRecord> { };
         public List<Data> LijstData = new List<Data>();
         public Data TempData = new Data();
-        public static int LastIndex = 0;
+        //public static int LastIndex = 0;
         public static string datapath = AppDomain.CurrentDomain.BaseDirectory + "Data\\";
+        public List<string> instellingen = new List<string>();
 
         public static MainForm Main;
 
@@ -27,6 +28,7 @@ namespace Overbrugging
         {
             InitializeComponent();
             Main = this;
+            LaadInstelingen();
         }
 
         private void ButImport_Click(object sender, EventArgs e)
@@ -386,12 +388,14 @@ namespace Overbrugging
             labelAantal.Text = LijstData.Count().ToString();
 
             int index = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
-            if (LastIndex == 0)
-            {
-                LastIndex = index;
-            }
 
             VulPreview(index);
+        }
+
+        public int LaatsteIndex()
+        {
+            LaadInstelingen();
+            return int.Parse(instellingen[0]);
         }
 
         private void ButRefresh_Click(object sender, EventArgs e)
@@ -514,6 +518,31 @@ namespace Overbrugging
             }
         }
 
+        public void SaveInstelingen()
+        {
+            string inst = $"{datapath}progdata.ini";
+            try
+            {
+                File.WriteAllLines(inst, instellingen);
+            }
+                catch (IOException)
+                {
+                MessageBox.Show("instelingen file save Error()");
+            }
+        }
+
+        private void LaadInstelingen()
+        {
+            string inst = $"{datapath}progdata.ini";
+            try
+            {
+                instellingen = File.ReadAllLines(inst).ToList();
+            }
+            catch {
+                MessageBox.Show($"{inst} niet aanwezig, exit");
+                Close();
+            }
+        }
         public void LaadData_lijst()
         {
             try
@@ -687,7 +716,7 @@ namespace Overbrugging
 
                 if (Q.Soort == "TIW")
                 {
-                    LabelType.Text = "Tijdelijke Instalatie Wijzeging";
+                    LabelType.Text = "Tijdelijke Instalatie Wijziging";
                 }
                 if (Q.Soort == "MOC")
                 {
@@ -752,8 +781,8 @@ namespace Overbrugging
                 return;
             }
 
-            LastIndex++;
-            TempData.RegNr = LastIndex;
+            //LastIndex++;
+            //TempData.RegNr = LastIndex;
             
             LaadNamen_lijst();
             VulDropDownItems(dt);
