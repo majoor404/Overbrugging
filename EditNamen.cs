@@ -98,5 +98,14 @@ namespace Overbrugging
                 MessageBox.Show($"Personeel nr {TextBoxPersNr.Text} niet gevonden in lijst!");
             }
         }
+
+        private void dataGridView1_BindingContextChanged(object sender, EventArgs e)
+        {
+                CurrencyManager cm = (CurrencyManager)this.dataGridView1.BindingContext[MainForm.Main.NamenLijst];
+                if (cm != null)
+                {
+                    cm.Refresh();
+                }
+        }
     }
 }

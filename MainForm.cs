@@ -1049,5 +1049,14 @@ namespace Overbrugging
             wait(500);
             VulGrid();
         }
+
+        private void dataGridView1_BindingContextChanged(object sender, EventArgs e)
+        {
+            CurrencyManager cm = (CurrencyManager)this.dataGridView1.BindingContext[LijstData];
+            if (cm != null)
+            {
+                cm.Refresh();
+            }
+        }
     }
 }

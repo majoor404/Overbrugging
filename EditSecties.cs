@@ -155,5 +155,24 @@ namespace Overbrugging
                 MessageBox.Show($"Naam {TextBoxInstall.Text} niet gevonden in lijst!");
             }
         }
+
+        private void dataGridViewSecties_BindingContextChanged(object sender, EventArgs e)
+        {
+            CurrencyManager cm = (CurrencyManager)this.dataGridViewSecties.BindingContext[MainForm.Main.SectieLijst];
+            if (cm != null)
+            {
+                cm.Refresh();
+            }
+            
+        }
+
+        private void dataGridViewInstal_BindingContextChanged(object sender, EventArgs e)
+        {
+            CurrencyManager cm = (CurrencyManager)this.dataGridViewInstal.BindingContext[MainForm.Main.InstallatieLijst];
+            if (cm != null)
+            {
+                cm.Refresh();
+            }
+        }
     }
 }

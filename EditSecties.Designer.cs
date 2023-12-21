@@ -61,6 +61,7 @@
             this.dataGridViewSecties.Size = new System.Drawing.Size(287, 298);
             this.dataGridViewSecties.TabIndex = 1;
             this.dataGridViewSecties.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSecties_CellClick);
+            this.dataGridViewSecties.BindingContextChanged += new System.EventHandler(this.dataGridViewSecties_BindingContextChanged);
             // 
             // dataGridViewInstal
             // 
@@ -77,6 +78,7 @@
             this.dataGridViewInstal.Size = new System.Drawing.Size(349, 298);
             this.dataGridViewInstal.TabIndex = 2;
             this.dataGridViewInstal.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewInstal_CellClick);
+            this.dataGridViewInstal.BindingContextChanged += new System.EventHandler(this.dataGridViewInstal_BindingContextChanged);
             // 
             // TextBoxSectie
             // 
