@@ -326,6 +326,7 @@
             this.ButZoek.TabIndex = 17;
             this.ButZoek.Text = "Zoek";
             this.ButZoek.UseVisualStyleBackColor = false;
+            this.ButZoek.Click += new System.EventHandler(this.ButZoek_Click);
             // 
             // ButtonNieuw
             // 

@@ -387,7 +387,9 @@ namespace Overbrugging
 
             labelAantal.Text = LijstData.Count().ToString();
 
-            int index = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+            int index = 0;
+            if (labelAantal.Text != "0")
+                index = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
 
             VulPreview(index);
         }
@@ -974,6 +976,78 @@ namespace Overbrugging
             {
                 Application.DoEvents();
             }
+        }
+
+        private void ButZoek_Click(object sender, EventArgs e)
+        {
+            Zoek zk = new Zoek();
+            zk.ShowDialog();
+            
+            LaadData_lijst();
+            List<Data> temp = new List<Data>();
+            foreach(Data a in LijstData)
+            {
+                if (zk.CBNaam.Checked)
+                {
+                    if (a.Naam1.ToLower().Contains(zk.TBZoek.Text.ToLower()))
+                    {  temp.Add(a);
+                        continue;
+                    }
+                }
+                if (zk.CBReden.Checked)
+                {
+                    if (a.Reden.ToLower().Contains(zk.TBZoek.Text.ToLower()))
+                    {
+                        temp.Add(a);
+                        continue;
+                    }
+                }
+                if (zk.CBOplossing.Checked)
+                {
+                    if (a.Uitvoering.ToLower().Contains(zk.TBZoek.Text.ToLower()))
+                    {
+                        temp.Add(a);
+                        continue;
+                    }
+                }
+                if (zk.CBSap.Checked)
+                {
+                    if (a.SapNr.ToLower().Contains(zk.TBZoek.Text.ToLower()))
+                    {
+                        temp.Add(a);
+                        continue;
+                    }
+                }
+                if (zk.CBMoc.Checked)
+                {
+                    if (a.MocNr.ToLower().Contains(zk.TBZoek.Text.ToLower()))
+                    {
+                        temp.Add(a);
+                        continue;
+                    }
+                }
+                if (zk.CBIVWV.Checked)
+                {
+                    if (a.NaamWV.ToLower().Contains(zk.TBZoek.Text.ToLower()))
+                    {
+                        temp.Add(a);
+                        continue;
+                    }
+                }
+                if (zk.CBNum.Checked)
+                {
+                    int reg;
+                    bool ok = int.TryParse(zk.TBZoek.Text , out reg);
+                    if (ok && a.RegNr == reg)
+                    {
+                        temp.Add(a);
+                        continue;
+                    }
+                }
+            }
+            LijstData = temp;
+            wait(500);
+            VulGrid();
         }
     }
 }
