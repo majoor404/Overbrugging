@@ -33,6 +33,24 @@ namespace Overbrugging
             LaadInstelingen();
         }
 
+        public string ZoekPersnr(string zoek)
+        {
+            if (string.IsNullOrEmpty(zoek))
+            {
+                return "";
+            }
+
+            try
+            {
+                NamenFunties Q = MainForm.Main.NamenLijst.First(a => a.Naam == zoek);
+                return Q.PersoneelNummer;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
         private void ButImport_Click(object sender, EventArgs e)
         {
             _ = MessageBox.Show("Inlezen Overb1.mdb.csv");
@@ -365,6 +383,9 @@ namespace Overbrugging
             comboBoxSectie.SelectedIndexChanged += ButRefresh_Click;
             comboBoxSoortFilter.SelectedIndexChanged += ButRefresh_Click;
             comboBoxStatus.SelectedIndexChanged += ButRefresh_Click;
+
+            LabelUser.Text = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
+            LabelUserPersnr.Text = ZoekPersnr(LabelUser.Text);
         }
 
         private void VulGrid()

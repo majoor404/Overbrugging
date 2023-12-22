@@ -30,8 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Detail));
             this.Panel12345 = new System.Windows.Forms.Panel();
+            this.ButCancel = new System.Windows.Forms.Button();
+            this.ButVoerUit = new System.Windows.Forms.Button();
             this.LabelType = new System.Windows.Forms.Label();
-            this.DatumInv = new Overbrugging.DatumPicker();
             this.TextBoxOplossing = new System.Windows.Forms.TextBox();
             this.TextBoxRede = new System.Windows.Forms.TextBox();
             this.ComboBoxNaam2 = new System.Windows.Forms.ComboBox();
@@ -60,8 +61,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.ButtonIVWVDatumVerw = new System.Windows.Forms.Button();
-            this.DatumVerw = new Overbrugging.DatumPicker();
+            this.ButSaveVerw = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.TextBoxBijzVerw = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -71,10 +73,10 @@
             this.label19 = new System.Windows.Forms.Label();
             this.TextBoxPersNrVerw = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.ButtonIVWVDatumNu = new System.Windows.Forms.Button();
+            this.ButSaveWV = new System.Windows.Forms.Button();
             this.ButtonType = new System.Windows.Forms.Button();
-            this.DatumVerloopTIW = new Overbrugging.DatumPicker();
-            this.DatumWv = new Overbrugging.DatumPicker();
             this.label21 = new System.Windows.Forms.Label();
             this.TextBoxBijzIVWV = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
@@ -85,12 +87,10 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
-            this.ButVoerUit = new System.Windows.Forms.Button();
-            this.ButCancel = new System.Windows.Forms.Button();
-            this.ButSaveWV = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.ButSaveVerw = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.DatumVerloopTIW = new Overbrugging.DatumPicker();
+            this.DatumWv = new Overbrugging.DatumPicker();
+            this.DatumVerw = new Overbrugging.DatumPicker();
+            this.DatumInv = new Overbrugging.DatumPicker();
             this.Panel12345.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -136,6 +136,28 @@
             this.Panel12345.Size = new System.Drawing.Size(1264, 417);
             this.Panel12345.TabIndex = 0;
             // 
+            // ButCancel
+            // 
+            this.ButCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.ButCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButCancel.Location = new System.Drawing.Point(1107, 370);
+            this.ButCancel.Name = "ButCancel";
+            this.ButCancel.Size = new System.Drawing.Size(122, 34);
+            this.ButCancel.TabIndex = 7;
+            this.ButCancel.Text = "Cancel";
+            this.ButCancel.UseVisualStyleBackColor = true;
+            // 
+            // ButVoerUit
+            // 
+            this.ButVoerUit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButVoerUit.Location = new System.Drawing.Point(794, 372);
+            this.ButVoerUit.Name = "ButVoerUit";
+            this.ButVoerUit.Size = new System.Drawing.Size(122, 34);
+            this.ButVoerUit.TabIndex = 7;
+            this.ButVoerUit.Text = "VoerUit";
+            this.ButVoerUit.UseVisualStyleBackColor = true;
+            this.ButVoerUit.Click += new System.EventHandler(this.ButVoerUit_Click);
+            // 
             // LabelType
             // 
             this.LabelType.AutoSize = true;
@@ -145,14 +167,6 @@
             this.LabelType.Size = new System.Drawing.Size(241, 24);
             this.LabelType.TabIndex = 6;
             this.LabelType.Text = "Tijdelijke Instalatie Wijziging";
-            // 
-            // DatumInv
-            // 
-            this.DatumInv.Datum = "";
-            this.DatumInv.Location = new System.Drawing.Point(159, 88);
-            this.DatumInv.Name = "DatumInv";
-            this.DatumInv.Size = new System.Drawing.Size(137, 42);
-            this.DatumInv.TabIndex = 5;
             // 
             // TextBoxOplossing
             // 
@@ -183,7 +197,7 @@
             this.ComboBoxNaam2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxNaam2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxNaam2.FormattingEnabled = true;
-            this.ComboBoxNaam2.Location = new System.Drawing.Point(1075, 133);
+            this.ComboBoxNaam2.Location = new System.Drawing.Point(860, 133);
             this.ComboBoxNaam2.Name = "ComboBoxNaam2";
             this.ComboBoxNaam2.Size = new System.Drawing.Size(161, 26);
             this.ComboBoxNaam2.TabIndex = 3;
@@ -213,7 +227,7 @@
             this.ComboBoxNaam1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxNaam1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxNaam1.FormattingEnabled = true;
-            this.ComboBoxNaam1.Location = new System.Drawing.Point(1074, 91);
+            this.ComboBoxNaam1.Location = new System.Drawing.Point(859, 91);
             this.ComboBoxNaam1.Name = "ComboBoxNaam1";
             this.ComboBoxNaam1.Size = new System.Drawing.Size(161, 26);
             this.ComboBoxNaam1.TabIndex = 3;
@@ -223,7 +237,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(791, 99);
+            this.label11.Location = new System.Drawing.Point(1034, 94);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(56, 18);
             this.label11.TabIndex = 0;
@@ -232,7 +246,7 @@
             // TextBoxPersnr1
             // 
             this.TextBoxPersnr1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPersnr1.Location = new System.Drawing.Point(853, 96);
+            this.TextBoxPersnr1.Location = new System.Drawing.Point(1096, 91);
             this.TextBoxPersnr1.Name = "TextBoxPersnr1";
             this.TextBoxPersnr1.ReadOnly = true;
             this.TextBoxPersnr1.Size = new System.Drawing.Size(133, 24);
@@ -249,7 +263,7 @@
             // TextBoxPersnr2
             // 
             this.TextBoxPersnr2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPersnr2.Location = new System.Drawing.Point(853, 133);
+            this.TextBoxPersnr2.Location = new System.Drawing.Point(1097, 133);
             this.TextBoxPersnr2.Name = "TextBoxPersnr2";
             this.TextBoxPersnr2.ReadOnly = true;
             this.TextBoxPersnr2.Size = new System.Drawing.Size(133, 24);
@@ -267,7 +281,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(1010, 91);
+            this.label13.Location = new System.Drawing.Point(795, 91);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(48, 18);
             this.label13.TabIndex = 0;
@@ -294,7 +308,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(1010, 133);
+            this.label14.Location = new System.Drawing.Point(795, 133);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(48, 18);
             this.label14.TabIndex = 0;
@@ -304,7 +318,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(791, 133);
+            this.label12.Location = new System.Drawing.Point(1035, 133);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(56, 18);
             this.label12.TabIndex = 0;
@@ -441,6 +455,17 @@
             this.panel2.Size = new System.Drawing.Size(1264, 221);
             this.panel2.TabIndex = 1;
             // 
+            // button3
+            // 
+            this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(1107, 173);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(122, 34);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Cancel";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // ButtonIVWVDatumVerw
             // 
             this.ButtonIVWVDatumVerw.Location = new System.Drawing.Point(303, 111);
@@ -451,13 +476,17 @@
             this.ButtonIVWVDatumVerw.UseVisualStyleBackColor = true;
             this.ButtonIVWVDatumVerw.Click += new System.EventHandler(this.ButtonIVWVDatumVerw_Click);
             // 
-            // DatumVerw
+            // ButSaveVerw
             // 
-            this.DatumVerw.Datum = "";
-            this.DatumVerw.Location = new System.Drawing.Point(159, 114);
-            this.DatumVerw.Name = "DatumVerw";
-            this.DatumVerw.Size = new System.Drawing.Size(137, 42);
-            this.DatumVerw.TabIndex = 5;
+            this.ButSaveVerw.Enabled = false;
+            this.ButSaveVerw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButSaveVerw.Location = new System.Drawing.Point(798, 172);
+            this.ButSaveVerw.Name = "ButSaveVerw";
+            this.ButSaveVerw.Size = new System.Drawing.Size(122, 34);
+            this.ButSaveVerw.TabIndex = 7;
+            this.ButSaveVerw.Text = "Save";
+            this.ButSaveVerw.UseVisualStyleBackColor = true;
+            this.ButSaveVerw.Click += new System.EventHandler(this.ButVoerUit_Click);
             // 
             // label16
             // 
@@ -501,6 +530,7 @@
             this.ComboBoxNaamVerw.Size = new System.Drawing.Size(137, 26);
             this.ComboBoxNaamVerw.TabIndex = 3;
             this.ComboBoxNaamVerw.SelectedIndexChanged += new System.EventHandler(this.ComboBoxNaamVerw_SelectedIndexChanged);
+            this.ComboBoxNaamVerw.TextChanged += new System.EventHandler(this.ComboBoxNaamVerw_TextChanged);
             // 
             // label20
             // 
@@ -566,9 +596,20 @@
             this.panel3.Size = new System.Drawing.Size(1264, 221);
             this.panel3.TabIndex = 2;
             // 
+            // button1
+            // 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(1107, 175);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(122, 34);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Cancel";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // ButtonIVWVDatumNu
             // 
-            this.ButtonIVWVDatumNu.Location = new System.Drawing.Point(302, 52);
+            this.ButtonIVWVDatumNu.Location = new System.Drawing.Point(302, 159);
             this.ButtonIVWVDatumNu.Name = "ButtonIVWVDatumNu";
             this.ButtonIVWVDatumNu.Size = new System.Drawing.Size(30, 30);
             this.ButtonIVWVDatumNu.TabIndex = 9;
@@ -576,32 +617,28 @@
             this.ButtonIVWVDatumNu.UseVisualStyleBackColor = true;
             this.ButtonIVWVDatumNu.Click += new System.EventHandler(this.ButtonIVWVDatumNu_Click);
             // 
+            // ButSaveWV
+            // 
+            this.ButSaveWV.Enabled = false;
+            this.ButSaveWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButSaveWV.Location = new System.Drawing.Point(798, 175);
+            this.ButSaveWV.Name = "ButSaveWV";
+            this.ButSaveWV.Size = new System.Drawing.Size(122, 34);
+            this.ButSaveWV.TabIndex = 7;
+            this.ButSaveWV.Text = "Save";
+            this.ButSaveWV.UseVisualStyleBackColor = true;
+            this.ButSaveWV.Click += new System.EventHandler(this.ButVoerUit_Click);
+            // 
             // ButtonType
             // 
             this.ButtonType.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonType.Location = new System.Drawing.Point(515, 104);
+            this.ButtonType.Location = new System.Drawing.Point(159, 104);
             this.ButtonType.Name = "ButtonType";
             this.ButtonType.Size = new System.Drawing.Size(137, 31);
             this.ButtonType.TabIndex = 8;
             this.ButtonType.Text = "Type";
             this.ButtonType.UseVisualStyleBackColor = true;
             this.ButtonType.Click += new System.EventHandler(this.ButtonType_Click);
-            // 
-            // DatumVerloopTIW
-            // 
-            this.DatumVerloopTIW.Datum = "";
-            this.DatumVerloopTIW.Location = new System.Drawing.Point(515, 55);
-            this.DatumVerloopTIW.Name = "DatumVerloopTIW";
-            this.DatumVerloopTIW.Size = new System.Drawing.Size(137, 42);
-            this.DatumVerloopTIW.TabIndex = 7;
-            // 
-            // DatumWv
-            // 
-            this.DatumWv.Datum = "";
-            this.DatumWv.Location = new System.Drawing.Point(159, 55);
-            this.DatumWv.Name = "DatumWv";
-            this.DatumWv.Size = new System.Drawing.Size(137, 42);
-            this.DatumWv.TabIndex = 6;
             // 
             // label21
             // 
@@ -629,7 +666,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(354, 60);
+            this.label24.Location = new System.Drawing.Point(354, 167);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(136, 18);
             this.label24.TabIndex = 0;
@@ -639,7 +676,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(11, 57);
+            this.label22.Location = new System.Drawing.Point(11, 164);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(52, 18);
             this.label22.TabIndex = 0;
@@ -650,7 +687,7 @@
             this.ComboBoxIVWV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxIVWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxIVWV.FormattingEnabled = true;
-            this.ComboBoxIVWV.Location = new System.Drawing.Point(159, 111);
+            this.ComboBoxIVWV.Location = new System.Drawing.Point(159, 60);
             this.ComboBoxIVWV.Name = "ComboBoxIVWV";
             this.ComboBoxIVWV.Size = new System.Drawing.Size(137, 26);
             this.ComboBoxIVWV.TabIndex = 3;
@@ -660,7 +697,7 @@
             // 
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(11, 166);
+            this.label27.Location = new System.Drawing.Point(356, 63);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(56, 18);
             this.label27.TabIndex = 0;
@@ -669,7 +706,7 @@
             // TextBoxPersNrIVWV
             // 
             this.TextBoxPersNrIVWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPersNrIVWV.Location = new System.Drawing.Point(159, 163);
+            this.TextBoxPersNrIVWV.Location = new System.Drawing.Point(504, 60);
             this.TextBoxPersNrIVWV.Name = "TextBoxPersNrIVWV";
             this.TextBoxPersNrIVWV.ReadOnly = true;
             this.TextBoxPersNrIVWV.Size = new System.Drawing.Size(137, 24);
@@ -689,7 +726,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(354, 109);
+            this.label25.Location = new System.Drawing.Point(11, 110);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(40, 18);
             this.label25.TabIndex = 0;
@@ -699,79 +736,43 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(11, 111);
+            this.label26.Location = new System.Drawing.Point(11, 60);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(48, 18);
             this.label26.TabIndex = 0;
             this.label26.Text = "Naam";
             // 
-            // ButVoerUit
+            // DatumVerloopTIW
             // 
-            this.ButVoerUit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButVoerUit.Location = new System.Drawing.Point(794, 372);
-            this.ButVoerUit.Name = "ButVoerUit";
-            this.ButVoerUit.Size = new System.Drawing.Size(122, 34);
-            this.ButVoerUit.TabIndex = 7;
-            this.ButVoerUit.Text = "VoerUit";
-            this.ButVoerUit.UseVisualStyleBackColor = true;
-            this.ButVoerUit.Click += new System.EventHandler(this.ButVoerUit_Click);
+            this.DatumVerloopTIW.Datum = "";
+            this.DatumVerloopTIW.Location = new System.Drawing.Point(515, 162);
+            this.DatumVerloopTIW.Name = "DatumVerloopTIW";
+            this.DatumVerloopTIW.Size = new System.Drawing.Size(137, 42);
+            this.DatumVerloopTIW.TabIndex = 7;
             // 
-            // ButCancel
+            // DatumWv
             // 
-            this.ButCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.ButCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButCancel.Location = new System.Drawing.Point(1107, 370);
-            this.ButCancel.Name = "ButCancel";
-            this.ButCancel.Size = new System.Drawing.Size(122, 34);
-            this.ButCancel.TabIndex = 7;
-            this.ButCancel.Text = "Cancel";
-            this.ButCancel.UseVisualStyleBackColor = true;
+            this.DatumWv.Datum = "";
+            this.DatumWv.Location = new System.Drawing.Point(159, 162);
+            this.DatumWv.Name = "DatumWv";
+            this.DatumWv.Size = new System.Drawing.Size(137, 42);
+            this.DatumWv.TabIndex = 6;
             // 
-            // ButSaveWV
+            // DatumVerw
             // 
-            this.ButSaveWV.Enabled = false;
-            this.ButSaveWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButSaveWV.Location = new System.Drawing.Point(798, 175);
-            this.ButSaveWV.Name = "ButSaveWV";
-            this.ButSaveWV.Size = new System.Drawing.Size(122, 34);
-            this.ButSaveWV.TabIndex = 7;
-            this.ButSaveWV.Text = "Save";
-            this.ButSaveWV.UseVisualStyleBackColor = true;
-            this.ButSaveWV.Click += new System.EventHandler(this.ButVoerUit_Click);
+            this.DatumVerw.Datum = "";
+            this.DatumVerw.Location = new System.Drawing.Point(159, 114);
+            this.DatumVerw.Name = "DatumVerw";
+            this.DatumVerw.Size = new System.Drawing.Size(137, 42);
+            this.DatumVerw.TabIndex = 5;
             // 
-            // button1
+            // DatumInv
             // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1107, 175);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(122, 34);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // ButSaveVerw
-            // 
-            this.ButSaveVerw.Enabled = false;
-            this.ButSaveVerw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButSaveVerw.Location = new System.Drawing.Point(798, 172);
-            this.ButSaveVerw.Name = "ButSaveVerw";
-            this.ButSaveVerw.Size = new System.Drawing.Size(122, 34);
-            this.ButSaveVerw.TabIndex = 7;
-            this.ButSaveVerw.Text = "Save";
-            this.ButSaveVerw.UseVisualStyleBackColor = true;
-            this.ButSaveVerw.Click += new System.EventHandler(this.ButVoerUit_Click);
-            // 
-            // button3
-            // 
-            this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(1107, 173);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(122, 34);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Cancel";
-            this.button3.UseVisualStyleBackColor = true;
+            this.DatumInv.Datum = "";
+            this.DatumInv.Location = new System.Drawing.Point(159, 88);
+            this.DatumInv.Name = "DatumInv";
+            this.DatumInv.Size = new System.Drawing.Size(137, 42);
+            this.DatumInv.TabIndex = 5;
             // 
             // Detail
             // 

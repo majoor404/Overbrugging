@@ -94,6 +94,8 @@ namespace Overbrugging
         private void ComboBoxIVWV_SelectedIndexChanged(object sender, EventArgs e)
         {
             TextBoxPersNrIVWV.Text = ZoekPersnr(ComboBoxIVWV.Text);
+            if (DatumWv.TB.Text == " --/--/----")
+                ButtonIVWVDatumNu_Click(this, null);
         }
 
         private void ComboBoxNaamVerw_SelectedIndexChanged(object sender, EventArgs e)
@@ -195,6 +197,12 @@ namespace Overbrugging
             MainForm.Main.SaveData_lijst();
 
             Close();
+        }
+
+        private void ComboBoxNaamVerw_TextChanged(object sender, EventArgs e)
+        {
+            if(DatumVerw.TB.Text == " --/--/----")
+                DatumVerw.TB.Text = DateTime.Now.ToShortDateString();
         }
     }
 }
