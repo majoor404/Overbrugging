@@ -88,7 +88,7 @@ namespace Overbrugging
                     // save
                     MainForm.Main.SaveDataNamen_lijst();
                     //
-                    MainForm.Main.wait(500);
+                    //MainForm.Main.Wait(500);
                     // refresh
                     dataGridView1.Refresh();
                 }
@@ -99,13 +99,13 @@ namespace Overbrugging
             }
         }
 
-        private void dataGridView1_BindingContextChanged(object sender, EventArgs e)
-        {
-                CurrencyManager cm = (CurrencyManager)this.dataGridView1.BindingContext[MainForm.Main.NamenLijst];
-                if (cm != null)
-                {
-                    cm.Refresh();
-                }
-        }
+        //private void dataGridView1_BindingContextChanged(object sender, EventArgs e)
+        //{
+        //        CurrencyManager cm = (CurrencyManager)this.dataGridView1.BindingContext[MainForm.Main.NamenLijst];
+        //        if (cm != null)
+        //        {
+        //            cm.Refresh();
+        //        }
+        //}
     }
 }

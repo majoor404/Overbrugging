@@ -1,5 +1,6 @@
 ﻿using Melding;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -368,10 +369,11 @@ namespace Overbrugging
 
         private void VulGrid()
         {
-            StopRedraw.SuspendDrawing(panelMain);
+            //StopRedraw.SuspendDrawing(panelMain);
             //dataGridView1.SuspendLayout();
-
-            dataGridView1.DataSource = LijstData;
+            
+            if (LijstData.Count > 0)
+                dataGridView1.DataSource = LijstData;
 
             if (dataGridView1.Columns["Nr"].DataPropertyName == "")
             {
@@ -386,7 +388,7 @@ namespace Overbrugging
             }
 
             //dataGridView1.ResumeLayout();
-            StopRedraw.ResumeDrawing(panelMain);
+            //StopRedraw.ResumeDrawing(panelMain);
 
             labelAantal.Text = LijstData.Count().ToString();
 
@@ -797,7 +799,7 @@ namespace Overbrugging
             // open dialog
             _ = dt.ShowDialog();
             
-            MainForm.Main.wait(500);
+            //MainForm.Main.wait(500);
 
             //refresh
             ButRefresh_Click(this, null);
@@ -881,7 +883,7 @@ namespace Overbrugging
                 // open dialog
                 _ = dt.ShowDialog();
 
-                wait(500);
+                //wait(500);
             }
             catch
             {
@@ -960,7 +962,7 @@ namespace Overbrugging
             }
         }
 
-        public void wait(int milliseconds)
+        public void Wait(int milliseconds)
         {
             var timer1 = new System.Windows.Forms.Timer();
             if (milliseconds == 0 || milliseconds < 0) return;
@@ -987,6 +989,8 @@ namespace Overbrugging
             zk.ShowDialog();
             
             LaadData_lijst();
+            dataGridView1.DataSource = null;
+            
             List<Data> temp = new List<Data>();
             foreach(Data a in LijstData)
             {
@@ -1039,9 +1043,16 @@ namespace Overbrugging
                 }
                 if (zk.CBNum.Checked)
                 {
-                    int reg;
-                    bool ok = int.TryParse(zk.TBZoek.Text , out reg);
+                    bool ok = int.TryParse(zk.TBZoek.Text, out int reg);
                     if (ok && a.RegNr == reg)
+                    {
+                        temp.Add(a);
+                        continue;
+                    }
+                }
+                if (zk.CBInst.Checked)
+                {
+                    if (a.Installatie.ToLower().Contains(zk.TBZoek.Text.ToLower()))
                     {
                         temp.Add(a);
                         continue;
@@ -1049,11 +1060,11 @@ namespace Overbrugging
                 }
             }
             LijstData = temp;
-            wait(500);
+            //wait(500);
             VulGrid();
         }
 
-        private void dataGridView1_BindingContextChanged(object sender, EventArgs e)
+        private void DataGridView1_BindingContextChanged(object sender, EventArgs e)
         {
             CurrencyManager cm = (CurrencyManager)this.dataGridView1.BindingContext[LijstData];
             if (cm != null)
@@ -1062,11 +1073,11 @@ namespace Overbrugging
             }
             else
             {
-                _ = MessageBox.Show("Asdsgsghsh");
+                _ = MessageBox.Show("dataGridView1_BindingContextChanged error");
             }
         }
 
-        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void DataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             //DataGridViewColumn newColumn = dataGridView1.Columns[e.ColumnIndex];
             //DataGridViewColumn oldColumn = dataGridView1.SortedColumn;

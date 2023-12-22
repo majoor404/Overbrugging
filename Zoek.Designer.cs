@@ -39,6 +39,7 @@
             this.CBIVWV = new System.Windows.Forms.CheckBox();
             this.ButZoek = new System.Windows.Forms.Button();
             this.CBNum = new System.Windows.Forms.CheckBox();
+            this.CBInst = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -66,7 +67,7 @@
             this.TBZoek.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TBZoek.Location = new System.Drawing.Point(85, 25);
             this.TBZoek.Name = "TBZoek";
-            this.TBZoek.Size = new System.Drawing.Size(463, 24);
+            this.TBZoek.Size = new System.Drawing.Size(338, 24);
             this.TBZoek.TabIndex = 1;
             // 
             // CBNaam
@@ -151,7 +152,7 @@
             // 
             this.ButZoek.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.ButZoek.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButZoek.Location = new System.Drawing.Point(354, 175);
+            this.ButZoek.Location = new System.Drawing.Point(229, 174);
             this.ButZoek.Name = "ButZoek";
             this.ButZoek.Size = new System.Drawing.Size(194, 78);
             this.ButZoek.TabIndex = 3;
@@ -164,19 +165,33 @@
             this.CBNum.Checked = true;
             this.CBNum.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CBNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CBNum.Location = new System.Drawing.Point(85, 259);
+            this.CBNum.Location = new System.Drawing.Point(246, 119);
             this.CBNum.Name = "CBNum";
             this.CBNum.Size = new System.Drawing.Size(156, 22);
             this.CBNum.TabIndex = 2;
             this.CBNum.Text = "Registratie nummer";
             this.CBNum.UseVisualStyleBackColor = true;
             // 
+            // CBInst
+            // 
+            this.CBInst.AutoSize = true;
+            this.CBInst.Checked = true;
+            this.CBInst.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CBInst.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CBInst.Location = new System.Drawing.Point(246, 87);
+            this.CBInst.Name = "CBInst";
+            this.CBInst.Size = new System.Drawing.Size(87, 22);
+            this.CBInst.TabIndex = 2;
+            this.CBInst.Text = "Installatie";
+            this.CBInst.UseVisualStyleBackColor = true;
+            // 
             // Zoek
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 307);
+            this.ClientSize = new System.Drawing.Size(454, 280);
             this.Controls.Add(this.ButZoek);
+            this.Controls.Add(this.CBInst);
             this.Controls.Add(this.CBNum);
             this.Controls.Add(this.CBIVWV);
             this.Controls.Add(this.CBMoc);
@@ -208,5 +223,6 @@
         public System.Windows.Forms.CheckBox CBMoc;
         public System.Windows.Forms.CheckBox CBIVWV;
         public System.Windows.Forms.CheckBox CBNum;
+        public System.Windows.Forms.CheckBox CBInst;
     }
 }

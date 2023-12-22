@@ -17,12 +17,14 @@ namespace Overbrugging
         private void EditSecties_Shown(object sender, EventArgs e)
         {
             MainForm.Main.LaadSecties_lijst();
-            dataGridViewSecties.DataSource = MainForm.Main.SectieLijst;
+            if(MainForm.Main.SectieLijst.Count > 0)
+                dataGridViewSecties.DataSource = MainForm.Main.SectieLijst;
             dataGridViewSecties.Columns[0].Visible = false;   // index
             dataGridViewSecties.RowHeadersVisible = false;
 
             MainForm.Main.LaadInstallaties_lijst();
-            dataGridViewInstal.DataSource = MainForm.Main.InstallatieLijst;
+            if(MainForm.Main.InstallatieLijst.Count > 0)
+                dataGridViewInstal.DataSource = MainForm.Main.InstallatieLijst;
             dataGridViewInstal.Columns[0].Visible = false;   // index
             dataGridViewInstal.RowHeadersVisible = false;
 
@@ -31,7 +33,7 @@ namespace Overbrugging
             FiterInstalOpSectie(sectie);
         }
 
-        private void dataGridViewSecties_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridViewSecties_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             string sectie = dataGridViewSecties.Rows[e.RowIndex].Cells[1].Value.ToString();
             TextBoxSectie.Text = sectie;
@@ -56,7 +58,7 @@ namespace Overbrugging
             }
         }
 
-        private void dataGridViewInstal_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridViewInstal_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             TextBoxSectie.Text = dataGridViewInstal.Rows[e.RowIndex].Cells[2].Value.ToString();
             TextBoxInstall.Text = dataGridViewInstal.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -71,14 +73,16 @@ namespace Overbrugging
 
         private void ButSaveSec_Click(object sender, EventArgs e)
         {
-            Secties N = new Secties();
-            N.Index = "@@@@";
-            N.Naam = TextBoxSectie.Text;
+            Secties N = new Secties
+            {
+                Index = "@@@@",
+                Naam = TextBoxSectie.Text
+            };
 
             MainForm.Main.SectieLijst.Add(N);
             MainForm.Main.SaveDataSecties_lijst();
 
-            MainForm.Main.wait(500);
+            //MainForm.Main.Wait(500);
             EditSecties_Shown(this, null);
         }
 
@@ -101,7 +105,7 @@ namespace Overbrugging
                     MainForm.Main.SectieLijst.Remove(Record);
                     // save
                     MainForm.Main.SaveDataSecties_lijst();
-                    MainForm.Main.wait(500);
+                    //MainForm.Main.Wait(500);
                     // refresh
                     EditSecties_Shown(this, null);
                 }
@@ -120,14 +124,16 @@ namespace Overbrugging
 
         private void ButSaveInstall_Click(object sender, EventArgs e)
         {
-            InstallatieOnderdeel N = new InstallatieOnderdeel();
-            N.Index = "@@@@";
-            N.Instal = TextBoxInstall.Text;
-            N.Sectie = TextBoxSectie.Text;
+            InstallatieOnderdeel N = new InstallatieOnderdeel
+            {
+                Index = "@@@@",
+                Instal = TextBoxInstall.Text,
+                Sectie = TextBoxSectie.Text
+            };
 
             MainForm.Main.InstallatieLijst.Add(N);
             MainForm.Main.SaveDataInstallaties_lijst();
-            MainForm.Main.wait(500);
+            //MainForm.Main.Wait(500);
 
             EditSecties_Shown(this, null);
         }
@@ -145,7 +151,7 @@ namespace Overbrugging
                     MainForm.Main.InstallatieLijst.Remove(Record);
                     // save
                     MainForm.Main.SaveDataInstallaties_lijst();
-                    MainForm.Main.wait(500);
+                    //MainForm.Main.Wait(500);
                     // refresh
                     EditSecties_Shown(this, null);
                 }
@@ -153,25 +159,6 @@ namespace Overbrugging
             catch
             {
                 MessageBox.Show($"Naam {TextBoxInstall.Text} niet gevonden in lijst!");
-            }
-        }
-
-        private void dataGridViewSecties_BindingContextChanged(object sender, EventArgs e)
-        {
-            CurrencyManager cm = (CurrencyManager)this.dataGridViewSecties.BindingContext[MainForm.Main.SectieLijst];
-            if (cm != null)
-            {
-                cm.Refresh();
-            }
-            
-        }
-
-        private void dataGridViewInstal_BindingContextChanged(object sender, EventArgs e)
-        {
-            CurrencyManager cm = (CurrencyManager)this.dataGridViewInstal.BindingContext[MainForm.Main.InstallatieLijst];
-            if (cm != null)
-            {
-                cm.Refresh();
             }
         }
     }
