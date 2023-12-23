@@ -91,7 +91,6 @@
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="StopRedraw.cs" />
     <Compile Include="Zoek.cs">
       <SubType>Form</SubType>
     </Compile>

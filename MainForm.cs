@@ -24,6 +24,9 @@ namespace Overbrugging
         public static string datapath = AppDomain.CurrentDomain.BaseDirectory + "Data\\";
         public List<string> instellingen = new List<string>();
 
+        DataGridViewColumn oldColumn = null; // voor sorteer
+        SortOrder SortRichting = SortOrder.None;
+
         public static MainForm Main;
 
         public MainForm()
@@ -272,6 +275,23 @@ namespace Overbrugging
             }
         }
 
+        private bool ZoekIV(string zoek)
+        {
+            if (string.IsNullOrEmpty(zoek))
+            {
+                return false;
+            }
+
+            try
+            {
+                NamenFunties Q = NamenLijst.First(a => a.PersoneelNummer == zoek);
+                return Q.IVWV;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public Data ZoekDataRecord(int nr)
         {
             Data Q = new Data();
@@ -361,16 +381,16 @@ namespace Overbrugging
             _ = dataGridView1.Columns.Add("Datum", "Datum inv.");
             dataGridView1.Columns[1].Width = 100;
             _ = dataGridView1.Columns.Add("Soort", "Soort");
-            dataGridView1.Columns[2].Width = 60;
+            dataGridView1.Columns[2].Width = 70;
             _ = dataGridView1.Columns.Add("Sectie", "Sectie");
             dataGridView1.Columns[3].Width = 60;
 
             _ = dataGridView1.Columns.Add("Installatie", "Installatie");
             dataGridView1.Columns[4].Width = 110;
             _ = dataGridView1.Columns.Add("InstalatieDeel", "Instalatie Deel");
-            dataGridView1.Columns[5].Width = 180;
+            dataGridView1.Columns[5].Width = 175;
             _ = dataGridView1.Columns.Add("Rede", "Rede");
-            dataGridView1.Columns[6].Width = 360;
+            dataGridView1.Columns[6].Width = 350;
 
             _ = dataGridView1.Columns.Add("DatumVerl", "Verloopt");
             dataGridView1.Columns[7].Width = 100;
@@ -385,14 +405,16 @@ namespace Overbrugging
             comboBoxStatus.SelectedIndexChanged += ButRefresh_Click;
 
             LabelUser.Text = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
-            LabelUserPersnr.Text = ZoekPersnr(LabelUser.Text);
+            string pers = ZoekPersnr(LabelUser.Text);
+            if (pers == "")
+                pers = "000000";
+            UserPersnrEnFuntie.Checked = ZoekIV(pers);
+            UserPersnrEnFuntie.Text = pers;
+
         }
 
         private void VulGrid()
         {
-            //StopRedraw.SuspendDrawing(panelMain);
-            //dataGridView1.SuspendLayout();
-            
             if (LijstData.Count > 0)
                 dataGridView1.DataSource = LijstData;
 
@@ -407,9 +429,6 @@ namespace Overbrugging
                 dataGridView1.Columns["Rede"].DataPropertyName = "Reden";
                 dataGridView1.Columns["DatumVerl"].DataPropertyName = "UitersteDatum";
             }
-
-            //dataGridView1.ResumeLayout();
-            //StopRedraw.ResumeDrawing(panelMain);
 
             labelAantal.Text = LijstData.Count().ToString();
 
@@ -819,7 +838,7 @@ namespace Overbrugging
 
             // open dialog
             _ = dt.ShowDialog();
-            
+
             //MainForm.Main.wait(500);
 
             //refresh
@@ -983,42 +1002,43 @@ namespace Overbrugging
             }
         }
 
-        public void Wait(int milliseconds)
-        {
-            var timer1 = new System.Windows.Forms.Timer();
-            if (milliseconds == 0 || milliseconds < 0) return;
+        //public void Wait(int milliseconds)
+        //{
+        //    var timer1 = new System.Windows.Forms.Timer();
+        //    if (milliseconds == 0 || milliseconds < 0) return;
 
-            timer1.Interval = milliseconds;
-            timer1.Enabled = true;
-            timer1.Start();
+        //    timer1.Interval = milliseconds;
+        //    timer1.Enabled = true;
+        //    timer1.Start();
 
-            timer1.Tick += (s, e) =>
-            {
-                timer1.Enabled = false;
-                timer1.Stop();
-            };
+        //    timer1.Tick += (s, e) =>
+        //    {
+        //        timer1.Enabled = false;
+        //        timer1.Stop();
+        //    };
 
-            while (timer1.Enabled)
-            {
-                Application.DoEvents();
-            }
-        }
+        //    while (timer1.Enabled)
+        //    {
+        //        Application.DoEvents();
+        //    }
+        //}
 
         private void ButZoek_Click(object sender, EventArgs e)
         {
             Zoek zk = new Zoek();
             zk.ShowDialog();
-            
+
             LaadData_lijst();
             dataGridView1.DataSource = null;
-            
+
             List<Data> temp = new List<Data>();
-            foreach(Data a in LijstData)
+            foreach (Data a in LijstData)
             {
                 if (zk.CBNaam.Checked)
                 {
                     if (a.Naam1.ToLower().Contains(zk.TBZoek.Text.ToLower()))
-                    {  temp.Add(a);
+                    {
+                        temp.Add(a);
                         continue;
                     }
                 }
@@ -1084,69 +1104,60 @@ namespace Overbrugging
             //wait(500);
             VulGrid();
         }
-
-        private void DataGridView1_BindingContextChanged(object sender, EventArgs e)
+        private void DataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            CurrencyManager cm = (CurrencyManager)this.dataGridView1.BindingContext[LijstData];
-            if (cm != null)
+            DataGridViewColumn newColumn = dataGridView1.Columns[e.ColumnIndex];
+            ListSortDirection direction;
+
+            // If oldColumn is null, then the DataGridView is not sorted.
+            if (oldColumn != null)
             {
-                cm.Refresh();
+                // Sort the same column again, reversing the SortOrder.
+                if (oldColumn == newColumn)
+                {
+                    if (SortRichting == SortOrder.Ascending)
+                    {
+                        SortRichting = SortOrder.Descending;
+                        direction = ListSortDirection.Descending;
+                    }
+                    else
+                    {
+                        SortRichting = SortOrder.Ascending;
+                        direction = ListSortDirection.Ascending;
+                    }
+                }
+                else
+                {
+                    // Sort a new column and remove the old SortGlyph.
+                    direction = ListSortDirection.Ascending;
+                    SortRichting = SortOrder.Ascending;
+                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                }
             }
             else
             {
-                _ = MessageBox.Show("dataGridView1_BindingContextChanged error");
+                direction = ListSortDirection.Ascending;
+                SortRichting = SortOrder.Ascending;
+
             }
-        }
 
-        private void DataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //DataGridViewColumn newColumn = dataGridView1.Columns[e.ColumnIndex];
-            //DataGridViewColumn oldColumn = dataGridView1.SortedColumn;
-            //ListSortDirection direction;
+            oldColumn = newColumn;
 
-            //// If oldColumn is null, then the DataGridView is not sorted.
-            //if (oldColumn != null)
-            //{
-            //    // Sort the same column again, reversing the SortOrder.
-            //    if (oldColumn == newColumn &&
-            //        dataGridView1.SortOrder == SortOrder.Ascending)
-            //    {
-            //        direction = ListSortDirection.Descending;
-            //    }
-            //    else
-            //    {
-            //        // Sort a new column and remove the old SortGlyph.
-            //        direction = ListSortDirection.Ascending;
-            //        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
-            //    }
-            //}
-            //else
-            //{
-            //    direction = ListSortDirection.Ascending;
-            //    oldColumn = newColumn;
-            //}
-
-            
             //// Sort the selected column.
-            //Sort(newColumn, direction);
+            Sort(newColumn, direction);
 
-            //newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
+            if (LijstData.Count > 0)
+                dataGridView1.DataSource = LijstData;
 
-            //VulGrid();
+            if (SortRichting == SortOrder.Ascending)
+                newColumn.HeaderCell.SortGlyphDirection = SortOrder.Ascending;
+            else
+                newColumn.HeaderCell.SortGlyphDirection = SortOrder.Descending;
         }
 
         private void Sort(DataGridViewColumn newColumn, ListSortDirection richting)
         {
-            
-            //dataGridView1.Columns["Datum"].DataPropertyName = "DatumInv";
-            
-            //dataGridView1.Columns["Sectie"].DataPropertyName = "Sectie";
-            //dataGridView1.Columns["Installatie"].DataPropertyName = "Installatie";
-            //dataGridView1.Columns["InstalatieDeel"].DataPropertyName = "InstallatieDeel";
-            //dataGridView1.Columns["Rede"].DataPropertyName = "Reden";
-            //dataGridView1.Columns["DatumVerl"].DataPropertyName = "UitersteDatum";
-
-            if(newColumn.DataPropertyName == "Regnr")
+            if (newColumn.DataPropertyName == "Regnr")
             {
                 if (richting == ListSortDirection.Ascending)
                 {
@@ -1157,6 +1168,21 @@ namespace Overbrugging
                     LijstData = LijstData.OrderByDescending(o => o.RegNr).ToList();
                 }
             }
+
+            if (newColumn.DataPropertyName == "DatumInv")
+            {
+
+                //SortOpDatum();
+                //if (richting == ListSortDirection.Ascending)
+                //{
+                //    LijstData = LijstData.OrderBy(o => o.DatumInv).ToList();
+                //}
+                //else
+                //{
+                //    LijstData = LijstData.OrderByDescending(o => o.DatumInv).ToList();
+                //}
+            }
+
             if (newColumn.DataPropertyName == "Soort")
             {
                 if (richting == ListSortDirection.Ascending)
@@ -1168,8 +1194,87 @@ namespace Overbrugging
                     LijstData = LijstData.OrderByDescending(o => o.Soort).ToList();
                 }
             }
+
+            if (newColumn.DataPropertyName == "Sectie")
+            {
+                if (richting == ListSortDirection.Ascending)
+                {
+                    LijstData = LijstData.OrderBy(o => o.Sectie).ToList();
+                }
+                else
+                {
+                    LijstData = LijstData.OrderByDescending(o => o.Sectie).ToList();
+                }
+            }
+
+            if (newColumn.DataPropertyName == "Installatie")
+            {
+                if (richting == ListSortDirection.Ascending)
+                {
+                    LijstData = LijstData.OrderBy(o => o.Installatie).ToList();
+                }
+                else
+                {
+                    LijstData = LijstData.OrderByDescending(o => o.Installatie).ToList();
+                }
+            }
+
+            if (newColumn.DataPropertyName == "InstallatieDeel")
+            {
+                if (richting == ListSortDirection.Ascending)
+                {
+                    LijstData = LijstData.OrderBy(o => o.InstallatieDeel).ToList();
+                }
+                else
+                {
+                    LijstData = LijstData.OrderByDescending(o => o.InstallatieDeel).ToList();
+                }
+            }
+
+            if (newColumn.DataPropertyName == "Reden")
+            {
+                if (richting == ListSortDirection.Ascending)
+                {
+                    LijstData = LijstData.OrderBy(o => o.Reden).ToList();
+                }
+                else
+                {
+                    LijstData = LijstData.OrderByDescending(o => o.Reden).ToList();
+
+                }
+            }
+            //if (newColumn.DataPropertyName == "UitersteDatum")
         }
 
-        
+        public void SortOpDatum()
+        {
+            DateTime dt1 = new DateTime();
+            DateTime dt2 = new DateTime();
+
+            var n = LijstData.Count();
+            for (int i = 0; i < n - 1; i++)
+            {
+                for (int j = 0; j < n - i - 1; j++)
+                {
+                    dt1 = GetDateTime(LijstData[i].DatumInv);
+                    dt2 = GetDateTime(LijstData[j].DatumInv);
+
+                    if (dt1 > dt2)
+                    {
+                        var tempVar = LijstData[j];
+                        LijstData[j] = LijstData[j + 1];
+                        LijstData[j + 1] = tempVar;
+                    }
+                }
+            }
+        }
+
+        private DateTime GetDateTime(string  datum) // 21-12-2023 9-11-2023 20-1-2023
+        {
+            DateTime ret = DateTime.MinValue;
+
+
+            return ret;
+        }
     }
 }
