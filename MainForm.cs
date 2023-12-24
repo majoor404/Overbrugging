@@ -254,7 +254,20 @@ namespace Overbrugging
             }
             // verwijder tijd
             int pos = Datum.IndexOf(" ");
-            return Datum.Substring(0, pos);
+
+            Datum = Datum.Substring(0, pos);
+
+            string[] temp = Datum.Split('-');
+
+            int Dag = int.Parse(temp[0]);
+            int Maand = int.Parse(temp[1]);
+            int Jaar = int.Parse(temp[2]);
+
+            DateTime ret = new DateTime(Jaar, Maand, Dag);
+
+            var dat = ret.ToString("dd-MM-yyyy");
+
+            return dat;
         }
 
         private string ZoekSectie(string zoek)
@@ -352,6 +365,8 @@ namespace Overbrugging
             FormMelding md = new FormMelding(FormMelding.Type.Info, "Overbruging 2.0", "R.Majoor");
             md.Show();
 
+            // laad namen
+            LaadNamen_lijst();
             // laad secties
             LaadSecties_lijst();
             // laad installaties
@@ -404,13 +419,34 @@ namespace Overbrugging
             comboBoxSoortFilter.SelectedIndexChanged += ButRefresh_Click;
             comboBoxStatus.SelectedIndexChanged += ButRefresh_Click;
 
-            LabelUser.Text = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
-            string pers = ZoekPersnr(LabelUser.Text);
-            if (pers == "")
-                pers = "000000";
-            UserPersnrEnFuntie.Checked = ZoekIV(pers);
-            UserPersnrEnFuntie.Text = pers;
+            var inlognaam = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
 
+            if (inlognaam == "ronal")
+                inlognaam = "a590588";
+            
+            // is bv dan a590588
+
+            if (inlognaam.Length == 7)
+            {
+                inlognaam = inlognaam.ToLower();
+                if (inlognaam[0] == 'a')
+                {
+                    inlognaam = inlognaam.Substring(1);
+                }
+            }
+            
+            IsIVer.Checked = ZoekIV(inlognaam);
+            IsIVer.Text = inlognaam;
+            
+            try
+            {
+                NamenFunties Q = NamenLijst.First(a => a.PersoneelNummer == inlognaam);
+                LabelUser.Text = Q.Naam;
+            }
+            catch
+            {
+                LabelUser.Text  = "Gebruiker niet in lijst";
+            }
         }
 
         private void VulGrid()
@@ -648,6 +684,8 @@ namespace Overbrugging
             {
                 GC.Collect();
             }
+
+            NamenLijst = NamenLijst.OrderBy(o => o.PersoneelNummer).ToList();
         }
 
         public void LaadInstallaties_lijst()
@@ -697,6 +735,11 @@ namespace Overbrugging
 
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            //if(!IsIVer.Checked)
+            //{
+            //    MessageBox.Show("Geen rechten");
+            //    return;
+            //}
             try
             {
                 // zoek record
@@ -1275,6 +1318,11 @@ namespace Overbrugging
 
 
             return ret;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

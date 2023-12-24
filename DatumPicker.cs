@@ -53,7 +53,7 @@ namespace Overbrugging
 
         private void DT_ValueChanged(object sender, EventArgs e)
         {
-            TB.Text = DT.Value.ToShortDateString();
+            TB.Text = DT.Value.ToString("dd-MM-yyyy");
         }
     }
 }

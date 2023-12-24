@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelTop = new System.Windows.Forms.Panel();
+            this.IsIVer = new System.Windows.Forms.CheckBox();
             this.labelAantal = new System.Windows.Forms.Label();
             this.LabelUser = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -89,7 +90,6 @@
             this.TB2 = new System.Windows.Forms.TextBox();
             this.TB1 = new System.Windows.Forms.TextBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.UserPersnrEnFuntie = new System.Windows.Forms.CheckBox();
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -102,7 +102,7 @@
             // 
             this.panelTop.BackColor = System.Drawing.SystemColors.Control;
             this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelTop.Controls.Add(this.UserPersnrEnFuntie);
+            this.panelTop.Controls.Add(this.IsIVer);
             this.panelTop.Controls.Add(this.labelAantal);
             this.panelTop.Controls.Add(this.LabelUser);
             this.panelTop.Controls.Add(this.label5);
@@ -114,6 +114,19 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1264, 53);
             this.panelTop.TabIndex = 0;
+            // 
+            // IsIVer
+            // 
+            this.IsIVer.AutoCheck = false;
+            this.IsIVer.AutoSize = true;
+            this.IsIVer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IsIVer.Location = new System.Drawing.Point(1172, 17);
+            this.IsIVer.Name = "IsIVer";
+            this.IsIVer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.IsIVer.Size = new System.Drawing.Size(75, 22);
+            this.IsIVer.TabIndex = 2;
+            this.IsIVer.Text = "123456";
+            this.IsIVer.UseVisualStyleBackColor = true;
             // 
             // labelAantal
             // 
@@ -130,7 +143,7 @@
             this.LabelUser.AutoSize = true;
             this.LabelUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelUser.ForeColor = System.Drawing.Color.Black;
-            this.LabelUser.Location = new System.Drawing.Point(1036, 17);
+            this.LabelUser.Location = new System.Drawing.Point(1020, 17);
             this.LabelUser.Name = "LabelUser";
             this.LabelUser.Size = new System.Drawing.Size(75, 18);
             this.LabelUser.TabIndex = 0;
@@ -407,6 +420,7 @@
             this.dataGridView1.ShowRowErrors = false;
             this.dataGridView1.Size = new System.Drawing.Size(1047, 468);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
             this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_ColumnHeaderMouseClick);
             this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_RowEnter);
@@ -789,19 +803,6 @@
             this.linkLabel1.Text = "https://github.com/majoor404/Overbrugging";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
-            // UserPersnrEnFuntie
-            // 
-            this.UserPersnrEnFuntie.AutoCheck = false;
-            this.UserPersnrEnFuntie.AutoSize = true;
-            this.UserPersnrEnFuntie.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserPersnrEnFuntie.Location = new System.Drawing.Point(1172, 15);
-            this.UserPersnrEnFuntie.Name = "UserPersnrEnFuntie";
-            this.UserPersnrEnFuntie.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.UserPersnrEnFuntie.Size = new System.Drawing.Size(75, 22);
-            this.UserPersnrEnFuntie.TabIndex = 2;
-            this.UserPersnrEnFuntie.Text = "123456";
-            this.UserPersnrEnFuntie.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -890,7 +891,7 @@
         public System.Windows.Forms.TextBox TBDINV;
         private System.Windows.Forms.Button ButRefresh;
         private System.Windows.Forms.Label LabelUser;
-        public System.Windows.Forms.CheckBox UserPersnrEnFuntie;
+        public System.Windows.Forms.CheckBox IsIVer;
     }
 }
 

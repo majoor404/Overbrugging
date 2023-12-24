@@ -54,8 +54,8 @@ namespace Overbrugging
             TextBoxSapNr.Focus();
 
             // als reg nummer bekend is, maak save WV en verwijder actief.
-            ButSaveWV.Enabled = !(string.IsNullOrEmpty(TextBoxRegNr.Text));
-            ButSaveVerw.Enabled = !(string.IsNullOrEmpty(TextBoxRegNr.Text));
+            ButSaveWV.Enabled = !(string.IsNullOrEmpty(TextBoxRegNr.Text)) && (MainForm.Main.IsIVer.Checked);
+            ButSaveVerw.Enabled = !(string.IsNullOrEmpty(TextBoxRegNr.Text)) && (MainForm.Main.IsIVer.Checked);
         }
 
         private void RefreshForm()
@@ -149,6 +149,37 @@ namespace Overbrugging
 
         private void ButVoerUit_Click(object sender, EventArgs e)
         {
+            // als wel datum iv maar geen naam
+            if((DatumWv.TB.Text != " --/--/----") && (ComboBoxIVWV.Text == ""))
+            {
+                MessageBox.Show("Datum en Naam IV/WV niet ingevuld");
+                return;
+            }
+
+            if ((DatumVerw.TB.Text != " --/--/----") && (ComboBoxNaamVerw.Text == ""))
+            {
+                MessageBox.Show("Datum en Naam IV/WV niet ingevuld");
+                return;
+            }
+
+            if(ComboBoxNaam1.Text == "" && ComboBoxNaam2.Text == "")
+            {
+                MessageBox.Show("Geen namen ingevuld Aangemaakt");
+                return;
+            }
+
+            if (ComboBoxSectie.Text == "")
+            {
+                MessageBox.Show("Geen Sectie gekozen");
+                return;
+            }
+
+            if (ComboSectieDeel.Text == "")
+            {
+                MessageBox.Show("Geen Instalatie gekozen");
+                return;
+            }
+
             int index;
             //bool save_nieuwe_index = false;
             if (string.IsNullOrEmpty(TextBoxRegNr.Text))
