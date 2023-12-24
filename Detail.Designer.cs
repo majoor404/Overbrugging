@@ -60,7 +60,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.PanelVerwijderen = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.ButtonIVWVDatumVerw = new System.Windows.Forms.Button();
             this.ButSaveVerw = new System.Windows.Forms.Button();
@@ -72,7 +72,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.TextBoxPersNrVerw = new System.Windows.Forms.TextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.PanelWV = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.ButtonIVWVDatumNu = new System.Windows.Forms.Button();
             this.ButSaveWV = new System.Windows.Forms.Button();
@@ -92,8 +92,8 @@
             this.DatumVerw = new Overbrugging.DatumPicker();
             this.DatumInv = new Overbrugging.DatumPicker();
             this.Panel12345.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.PanelVerwijderen.SuspendLayout();
+            this.PanelWV.SuspendLayout();
             this.SuspendLayout();
             // 
             // Panel12345
@@ -434,26 +434,26 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Aangemaakt";
             // 
-            // panel2
+            // PanelVerwijderen
             // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.ButtonIVWVDatumVerw);
-            this.panel2.Controls.Add(this.ButSaveVerw);
-            this.panel2.Controls.Add(this.DatumVerw);
-            this.panel2.Controls.Add(this.label16);
-            this.panel2.Controls.Add(this.TextBoxBijzVerw);
-            this.panel2.Controls.Add(this.label17);
-            this.panel2.Controls.Add(this.ComboBoxNaamVerw);
-            this.panel2.Controls.Add(this.label20);
-            this.panel2.Controls.Add(this.label18);
-            this.panel2.Controls.Add(this.label19);
-            this.panel2.Controls.Add(this.TextBoxPersNrVerw);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 638);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1264, 221);
-            this.panel2.TabIndex = 1;
+            this.PanelVerwijderen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelVerwijderen.Controls.Add(this.button3);
+            this.PanelVerwijderen.Controls.Add(this.ButtonIVWVDatumVerw);
+            this.PanelVerwijderen.Controls.Add(this.ButSaveVerw);
+            this.PanelVerwijderen.Controls.Add(this.DatumVerw);
+            this.PanelVerwijderen.Controls.Add(this.label16);
+            this.PanelVerwijderen.Controls.Add(this.TextBoxBijzVerw);
+            this.PanelVerwijderen.Controls.Add(this.label17);
+            this.PanelVerwijderen.Controls.Add(this.ComboBoxNaamVerw);
+            this.PanelVerwijderen.Controls.Add(this.label20);
+            this.PanelVerwijderen.Controls.Add(this.label18);
+            this.PanelVerwijderen.Controls.Add(this.label19);
+            this.PanelVerwijderen.Controls.Add(this.TextBoxPersNrVerw);
+            this.PanelVerwijderen.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PanelVerwijderen.Location = new System.Drawing.Point(0, 638);
+            this.PanelVerwijderen.Name = "PanelVerwijderen";
+            this.PanelVerwijderen.Size = new System.Drawing.Size(1264, 221);
+            this.PanelVerwijderen.TabIndex = 1;
             // 
             // button3
             // 
@@ -571,30 +571,30 @@
             this.TextBoxPersNrVerw.Size = new System.Drawing.Size(133, 24);
             this.TextBoxPersNrVerw.TabIndex = 1;
             // 
-            // panel3
+            // PanelWV
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.button1);
-            this.panel3.Controls.Add(this.ButtonIVWVDatumNu);
-            this.panel3.Controls.Add(this.ButSaveWV);
-            this.panel3.Controls.Add(this.ButtonType);
-            this.panel3.Controls.Add(this.DatumVerloopTIW);
-            this.panel3.Controls.Add(this.DatumWv);
-            this.panel3.Controls.Add(this.label21);
-            this.panel3.Controls.Add(this.TextBoxBijzIVWV);
-            this.panel3.Controls.Add(this.label24);
-            this.panel3.Controls.Add(this.label22);
-            this.panel3.Controls.Add(this.ComboBoxIVWV);
-            this.panel3.Controls.Add(this.label27);
-            this.panel3.Controls.Add(this.TextBoxPersNrIVWV);
-            this.panel3.Controls.Add(this.label23);
-            this.panel3.Controls.Add(this.label25);
-            this.panel3.Controls.Add(this.label26);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 417);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1264, 221);
-            this.panel3.TabIndex = 2;
+            this.PanelWV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelWV.Controls.Add(this.button1);
+            this.PanelWV.Controls.Add(this.ButtonIVWVDatumNu);
+            this.PanelWV.Controls.Add(this.ButSaveWV);
+            this.PanelWV.Controls.Add(this.ButtonType);
+            this.PanelWV.Controls.Add(this.DatumVerloopTIW);
+            this.PanelWV.Controls.Add(this.DatumWv);
+            this.PanelWV.Controls.Add(this.label21);
+            this.PanelWV.Controls.Add(this.TextBoxBijzIVWV);
+            this.PanelWV.Controls.Add(this.label24);
+            this.PanelWV.Controls.Add(this.label22);
+            this.PanelWV.Controls.Add(this.ComboBoxIVWV);
+            this.PanelWV.Controls.Add(this.label27);
+            this.PanelWV.Controls.Add(this.TextBoxPersNrIVWV);
+            this.PanelWV.Controls.Add(this.label23);
+            this.PanelWV.Controls.Add(this.label25);
+            this.PanelWV.Controls.Add(this.label26);
+            this.PanelWV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelWV.Location = new System.Drawing.Point(0, 417);
+            this.PanelWV.Name = "PanelWV";
+            this.PanelWV.Size = new System.Drawing.Size(1264, 221);
+            this.PanelWV.TabIndex = 2;
             // 
             // button1
             // 
@@ -779,8 +779,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 859);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.PanelWV);
+            this.Controls.Add(this.PanelVerwijderen);
             this.Controls.Add(this.Panel12345);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -792,10 +792,10 @@
             this.Shown += new System.EventHandler(this.Detail_Shown);
             this.Panel12345.ResumeLayout(false);
             this.Panel12345.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.PanelVerwijderen.ResumeLayout(false);
+            this.PanelVerwijderen.PerformLayout();
+            this.PanelWV.ResumeLayout(false);
+            this.PanelWV.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -830,7 +830,7 @@
         public System.Windows.Forms.TextBox TextBoxPersnr1;
         public System.Windows.Forms.TextBox TextBoxOplossing;
         public System.Windows.Forms.TextBox TextBoxRede;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel PanelVerwijderen;
         private System.Windows.Forms.Label label16;
         public System.Windows.Forms.TextBox TextBoxBijzVerw;
         private System.Windows.Forms.Label label17;
@@ -839,7 +839,7 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         public System.Windows.Forms.TextBox TextBoxPersNrVerw;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel PanelWV;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         public System.Windows.Forms.TextBox TextBoxBijzIVWV;

@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -231,7 +233,7 @@ namespace Overbrugging
                     a.Reserve5 = "";
                     a.Reserve6 = "";
                     a.Reserve7 = "";
-                    a.Reserve8 = "";
+                    a.DatumTemp = DateTime.Now;
 
                     LijstData.Add(a);
                 }
@@ -410,6 +412,9 @@ namespace Overbrugging
             _ = dataGridView1.Columns.Add("DatumVerl", "Verloopt");
             dataGridView1.Columns[7].Width = 100;
 
+            _ = dataGridView1.Columns.Add("DatumTemp", "DatumTemp");
+            dataGridView1.Columns[8].Width = 100;
+
             dataGridView1.RowHeadersVisible = false;
 
             ButRefresh_Click(this, null);
@@ -446,6 +451,8 @@ namespace Overbrugging
             catch
             {
                 LabelUser.Text  = "Gebruiker niet in lijst";
+                LabelUser.ForeColor = Color.Teal;
+                 
             }
         }
 
@@ -464,6 +471,7 @@ namespace Overbrugging
                 dataGridView1.Columns["InstalatieDeel"].DataPropertyName = "InstallatieDeel";
                 dataGridView1.Columns["Rede"].DataPropertyName = "Reden";
                 dataGridView1.Columns["DatumVerl"].DataPropertyName = "UitersteDatum";
+                dataGridView1.Columns["DatumTemp"].DataPropertyName = "DatumTemp";
             }
 
             labelAantal.Text = LijstData.Count().ToString();
@@ -1214,16 +1222,15 @@ namespace Overbrugging
 
             if (newColumn.DataPropertyName == "DatumInv")
             {
+                foreach (Data q in LijstData)
+                {
+                    q.DatumTemp = GetDateTime(q.DatumInv);
+                }
 
-                //SortOpDatum();
-                //if (richting == ListSortDirection.Ascending)
-                //{
-                //    LijstData = LijstData.OrderBy(o => o.DatumInv).ToList();
-                //}
-                //else
-                //{
-                //    LijstData = LijstData.OrderByDescending(o => o.DatumInv).ToList();
-                //}
+                if (richting == ListSortDirection.Ascending)
+                    LijstData = LijstData.OrderBy(o => o.DatumTemp).ToList();
+                else
+                    LijstData = LijstData.OrderByDescending(o => o.DatumTemp).ToList();
             }
 
             if (newColumn.DataPropertyName == "Soort")
@@ -1286,43 +1293,31 @@ namespace Overbrugging
 
                 }
             }
-            //if (newColumn.DataPropertyName == "UitersteDatum")
-        }
-
-        public void SortOpDatum()
-        {
-            DateTime dt1 = new DateTime();
-            DateTime dt2 = new DateTime();
-
-            var n = LijstData.Count();
-            for (int i = 0; i < n - 1; i++)
+            if (newColumn.DataPropertyName == "UitersteDatum")
             {
-                for (int j = 0; j < n - i - 1; j++)
+                foreach (Data q in LijstData)
                 {
-                    dt1 = GetDateTime(LijstData[i].DatumInv);
-                    dt2 = GetDateTime(LijstData[j].DatumInv);
-
-                    if (dt1 > dt2)
-                    {
-                        var tempVar = LijstData[j];
-                        LijstData[j] = LijstData[j + 1];
-                        LijstData[j + 1] = tempVar;
-                    }
+                    q.DatumTemp = GetDateTime(q.UitersteDatum);
                 }
+
+                if (richting == ListSortDirection.Ascending)
+                    LijstData = LijstData.OrderBy(o => o.DatumTemp).ToList();
+                else
+                    LijstData = LijstData.OrderByDescending(o => o.DatumTemp).ToList();
             }
         }
 
-        private DateTime GetDateTime(string  datum) // 21-12-2023 9-11-2023 20-1-2023
+        private DateTime GetDateTime(string  datum) // 21-12-2023 09-11-2023 20-01-2023
         {
-            DateTime ret = DateTime.MinValue;
-
-
+            if(string.IsNullOrEmpty(datum))
+            {
+                return DateTime.Now;
+            }
+            int jaar = int.Parse(datum.Substring(6,4));
+            int maand = int.Parse(datum.Substring(3, 2));
+            int dag = int.Parse(datum.Substring(0, 2));
+            DateTime ret = new DateTime(jaar,maand,dag);
             return ret;
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

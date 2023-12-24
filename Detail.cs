@@ -56,6 +56,10 @@ namespace Overbrugging
             // als reg nummer bekend is, maak save WV en verwijder actief.
             ButSaveWV.Enabled = !(string.IsNullOrEmpty(TextBoxRegNr.Text)) && (MainForm.Main.IsIVer.Checked);
             ButSaveVerw.Enabled = !(string.IsNullOrEmpty(TextBoxRegNr.Text)) && (MainForm.Main.IsIVer.Checked);
+
+            // als geen iv/wv dan niks invullen bij wv of afsluiten.
+            PanelWV.Enabled = MainForm.Main.IsIVer.Checked;
+            PanelVerwijderen.Enabled = MainForm.Main.IsIVer.Checked;
         }
 
         private void RefreshForm()
@@ -129,12 +133,12 @@ namespace Overbrugging
         private void ButtonIVWVDatumNu_Click(object sender, EventArgs e)
         {
             DateTime nu  = DateTime.Now;
-            DatumWv.TB.Text = nu.ToShortDateString();
+            DatumWv.TB.Text = nu.ToString("dd-MM-yyyy");
             // verloop op + 1 week en dan op woensdag
             nu = nu.AddDays(7);
             while(nu.DayOfWeek !=  DayOfWeek.Wednesday)
                 nu = nu.AddDays(1);
-            DatumVerloopTIW.TB.Text = nu.ToShortDateString();
+            DatumVerloopTIW.TB.Text = nu.ToString("dd-MM-yyyy");
         }
 
         private void ButtonIVWVDatumVerw_Click(object sender, EventArgs e)

@@ -59,6 +59,6 @@ namespace Overbrugging
         public string Reserve5 { get; set; }
         public string Reserve6 { get; set; }
         public string Reserve7 { get; set; }
-        public string Reserve8 { get; set; }
+        public DateTime DatumTemp { get; set; }
     }
 }
