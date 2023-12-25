@@ -33,7 +33,6 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.IsIVer = new System.Windows.Forms.CheckBox();
             this.labelAantal = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.LabelUser = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -92,6 +91,8 @@
             this.TB2 = new System.Windows.Forms.TextBox();
             this.TB1 = new System.Windows.Forms.TextBox();
             this.LabelNietAfgetekendWV = new System.Windows.Forms.Label();
+            this.IVWVVraag = new System.Windows.Forms.LinkLabel();
+            this.LabelDatumVerlopen = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -104,10 +105,11 @@
             // 
             this.panelTop.BackColor = System.Drawing.SystemColors.Control;
             this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelTop.Controls.Add(this.IVWVVraag);
             this.panelTop.Controls.Add(this.IsIVer);
+            this.panelTop.Controls.Add(this.LabelDatumVerlopen);
             this.panelTop.Controls.Add(this.LabelNietAfgetekendWV);
             this.panelTop.Controls.Add(this.labelAantal);
-            this.panelTop.Controls.Add(this.label3);
             this.panelTop.Controls.Add(this.LabelUser);
             this.panelTop.Controls.Add(this.label5);
             this.panelTop.Controls.Add(this.label4);
@@ -141,18 +143,6 @@
             this.labelAantal.Size = new System.Drawing.Size(32, 18);
             this.labelAantal.TabIndex = 1;
             this.labelAantal.Text = "000";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(1196, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 18);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "IV/WV ?";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // LabelUser
             // 
@@ -829,6 +819,29 @@
             this.LabelNietAfgetekendWV.TabIndex = 1;
             this.LabelNietAfgetekendWV.Text = "000";
             // 
+            // IVWVVraag
+            // 
+            this.IVWVVraag.AutoSize = true;
+            this.IVWVVraag.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IVWVVraag.LinkColor = System.Drawing.Color.Black;
+            this.IVWVVraag.Location = new System.Drawing.Point(1200, 19);
+            this.IVWVVraag.Name = "IVWVVraag";
+            this.IVWVVraag.Size = new System.Drawing.Size(60, 18);
+            this.IVWVVraag.TabIndex = 3;
+            this.IVWVVraag.TabStop = true;
+            this.IVWVVraag.Text = "IV/WV ?";
+            this.IVWVVraag.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.IVWVVraag_LinkClicked);
+            // 
+            // LabelDatumVerlopen
+            // 
+            this.LabelDatumVerlopen.AutoSize = true;
+            this.LabelDatumVerlopen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelDatumVerlopen.Location = new System.Drawing.Point(773, 19);
+            this.LabelDatumVerlopen.Name = "LabelDatumVerlopen";
+            this.LabelDatumVerlopen.Size = new System.Drawing.Size(32, 18);
+            this.LabelDatumVerlopen.TabIndex = 1;
+            this.LabelDatumVerlopen.Text = "000";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -916,9 +929,10 @@
         public System.Windows.Forms.TextBox TBDINV;
         private System.Windows.Forms.Button ButRefresh;
         public System.Windows.Forms.CheckBox IsIVer;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label LabelUser;
         private System.Windows.Forms.Label LabelNietAfgetekendWV;
+        private System.Windows.Forms.LinkLabel IVWVVraag;
+        private System.Windows.Forms.Label LabelDatumVerlopen;
     }
 }
 

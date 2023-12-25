@@ -26,6 +26,9 @@ namespace Overbrugging
         public static string datapath = AppDomain.CurrentDomain.BaseDirectory + "Data\\";
         public List<string> instellingen = new List<string>();
 
+        public int NietAfgetekendWv = 0;
+        public int VerlopenData = 0;
+
         DataGridViewColumn oldColumn = null; // voor sorteer
         SortOrder SortRichting = SortOrder.None;
 
@@ -474,6 +477,8 @@ namespace Overbrugging
                 dataGridView1.Columns["DatumTemp"].DataPropertyName = "DatumTemp";
             }
 
+            dataGridView1.Columns[8].Visible = false;   // DatumTemp
+
             labelAantal.Text = LijstData.Count().ToString();
 
             int index = 0;
@@ -491,7 +496,10 @@ namespace Overbrugging
             // laad alle overbrugingen
             LaadData_lijst();
 
-            LabelNietAfgetekendWV.Text = TelData().ToString();
+            TelData();
+            
+            LabelNietAfgetekendWV.Text = NietAfgetekendWv.ToString();
+            LabelDatumVerlopen.Text = VerlopenData.ToString();
 
             // filter op status
             LijstData = comboBoxStatus.Text == "Niet Verwijderd"
@@ -516,17 +524,21 @@ namespace Overbrugging
             VulGrid();
         }
 
-        private int TelData()
+        private void TelData()
         {
-            int aantal = 0;
+            NietAfgetekendWv = 0;
+            VerlopenData = 0;
+            DateTime nu = DateTime.Now;
             foreach (Data a in LijstData)
             {
-                if(a.DatumWv == string.Empty)
-                {
-                    aantal++;
-                }
+                a.DatumTemp = GetDateTime(a.UitersteDatum);
+                
+                if (a.DatumWv == string.Empty) // aantal niet afgetekend Wv
+                    NietAfgetekendWv++;
+
+                if (a.DatumTemp < nu && a.DatumVerw == "")    // datum verlopen
+                    VerlopenData++;
             }
-            return aantal;
         }
 
         public void SaveData_lijst()
@@ -1335,7 +1347,7 @@ namespace Overbrugging
             return ret;
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void IVWVVraag_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MessageBox.Show("Door inlognaam windows (personeel nr)\nKrijg u rechten voor invoer\nOf als u WV of IV bent verwijderen.");
         }

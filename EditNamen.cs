@@ -15,7 +15,9 @@ namespace Overbrugging
         private void EditNamen_Shown(object sender, EventArgs e)
         {
             MainForm.Main.LaadNamen_lijst();
-            dataGridView1.DataSource = MainForm.Main.NamenLijst;
+            dataGridView1.DataSource = null;
+            if (MainForm.Main.NamenLijst.Count > 0)
+                dataGridView1.DataSource = MainForm.Main.NamenLijst;
 
             dataGridView1.Columns[0].Visible = false;   // index
 
@@ -65,7 +67,7 @@ namespace Overbrugging
             // save
             MainForm.Main.SaveDataNamen_lijst();
             // refresh
-            dataGridView1.Refresh();
+            EditNamen_Shown(this, null);
         }
 
         private void ButNew_Click(object sender, EventArgs e)
@@ -94,7 +96,7 @@ namespace Overbrugging
                     // save
                     MainForm.Main.SaveDataNamen_lijst();
                     // refresh
-                    dataGridView1.Refresh();
+                    EditNamen_Shown(this, null);
                 }
             }
             catch
