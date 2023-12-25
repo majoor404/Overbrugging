@@ -33,6 +33,8 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.IsIVer = new System.Windows.Forms.CheckBox();
             this.labelAantal = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.LabelUser = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -57,6 +59,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.TextBoxBijzIVWV = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label24 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -88,9 +91,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.TB2 = new System.Windows.Forms.TextBox();
             this.TB1 = new System.Windows.Forms.TextBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.LabelUser = new System.Windows.Forms.Label();
+            this.LabelNietAfgetekendWV = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -104,6 +105,7 @@
             this.panelTop.BackColor = System.Drawing.SystemColors.Control;
             this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelTop.Controls.Add(this.IsIVer);
+            this.panelTop.Controls.Add(this.LabelNietAfgetekendWV);
             this.panelTop.Controls.Add(this.labelAantal);
             this.panelTop.Controls.Add(this.label3);
             this.panelTop.Controls.Add(this.LabelUser);
@@ -136,9 +138,32 @@
             this.labelAantal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAantal.Location = new System.Drawing.Point(355, 18);
             this.labelAantal.Name = "labelAantal";
-            this.labelAantal.Size = new System.Drawing.Size(46, 18);
+            this.labelAantal.Size = new System.Drawing.Size(32, 18);
             this.labelAantal.TabIndex = 1;
-            this.labelAantal.Text = "label6";
+            this.labelAantal.Text = "000";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(1196, 18);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 18);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "IV/WV ?";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // LabelUser
+            // 
+            this.LabelUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelUser.ForeColor = System.Drawing.Color.Black;
+            this.LabelUser.Location = new System.Drawing.Point(935, 18);
+            this.LabelUser.Name = "LabelUser";
+            this.LabelUser.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.LabelUser.Size = new System.Drawing.Size(174, 18);
+            this.LabelUser.TabIndex = 0;
+            this.LabelUser.Text = "naam inlog";
             // 
             // label5
             // 
@@ -481,6 +506,18 @@
             this.label23.TabIndex = 37;
             this.label23.Text = "Aanvullingen";
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel1.Location = new System.Drawing.Point(824, 443);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(218, 13);
+            this.linkLabel1.TabIndex = 1;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "https://github.com/majoor404/Overbrugging";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
+            // 
             // label24
             // 
             this.label24.AutoSize = true;
@@ -782,39 +819,15 @@
             this.TB1.Size = new System.Drawing.Size(480, 114);
             this.TB1.TabIndex = 0;
             // 
-            // linkLabel1
+            // LabelNietAfgetekendWV
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel1.Location = new System.Drawing.Point(824, 443);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(218, 13);
-            this.linkLabel1.TabIndex = 1;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "https://github.com/majoor404/Overbrugging";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(1196, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 18);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "IV/WV ?";
-            // 
-            // LabelUser
-            // 
-            this.LabelUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelUser.ForeColor = System.Drawing.Color.Black;
-            this.LabelUser.Location = new System.Drawing.Point(935, 18);
-            this.LabelUser.Name = "LabelUser";
-            this.LabelUser.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.LabelUser.Size = new System.Drawing.Size(174, 18);
-            this.LabelUser.TabIndex = 0;
-            this.LabelUser.Text = "naam inlog";
+            this.LabelNietAfgetekendWV.AutoSize = true;
+            this.LabelNietAfgetekendWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelNietAfgetekendWV.Location = new System.Drawing.Point(592, 18);
+            this.LabelNietAfgetekendWV.Name = "LabelNietAfgetekendWV";
+            this.LabelNietAfgetekendWV.Size = new System.Drawing.Size(32, 18);
+            this.LabelNietAfgetekendWV.TabIndex = 1;
+            this.LabelNietAfgetekendWV.Text = "000";
             // 
             // MainForm
             // 
@@ -905,6 +918,7 @@
         public System.Windows.Forms.CheckBox IsIVer;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label LabelUser;
+        private System.Windows.Forms.Label LabelNietAfgetekendWV;
     }
 }
 

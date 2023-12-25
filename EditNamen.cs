@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Overbrugging
@@ -19,6 +20,11 @@ namespace Overbrugging
             dataGridView1.Columns[0].Visible = false;   // index
 
             dataGridView1.RowHeadersVisible = false;
+
+            TextBoxNaam.Text = dataGridView1.Rows[0].Cells[2].Value.ToString();
+            TextBoxPersNr.Text = dataGridView1.Rows[0].Cells[1].Value.ToString();
+            TextBoxTeam.Text = dataGridView1.Rows[0].Cells[3].Value.ToString();
+            CheckBoxIvWv.Checked = dataGridView1.Rows[0].Cells[4].Value.ToString() == "True";
         }
 
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -87,8 +93,6 @@ namespace Overbrugging
                     MainForm.Main.SorteerNaamOpNaam();
                     // save
                     MainForm.Main.SaveDataNamen_lijst();
-                    //
-                    //MainForm.Main.Wait(500);
                     // refresh
                     dataGridView1.Refresh();
                 }
@@ -98,14 +102,5 @@ namespace Overbrugging
                 MessageBox.Show($"Personeel nr {TextBoxPersNr.Text} niet gevonden in lijst!");
             }
         }
-
-        //private void dataGridView1_BindingContextChanged(object sender, EventArgs e)
-        //{
-        //        CurrencyManager cm = (CurrencyManager)this.dataGridView1.BindingContext[MainForm.Main.NamenLijst];
-        //        if (cm != null)
-        //        {
-        //            cm.Refresh();
-        //        }
-        //}
     }
 }

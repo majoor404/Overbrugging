@@ -109,66 +109,66 @@ namespace Overbrugging
                     OudeLijst.Add(ov);
                 }
 
-                _ = MessageBox.Show("Inlezen Namen.mdb.csv");
+                //_ = MessageBox.Show("Inlezen Namen.mdb.csv");
 
-                string[] namenTekst = File.ReadAllLines($"Namen.mdb.csv");
-                NamenLijst.Clear();
+                //string[] namenTekst = File.ReadAllLines($"Namen.mdb.csv");
+                //NamenLijst.Clear();
 
 
-                for (int i = 0; namenTekst.Count() > i; i++)
-                {
-                    NamenFunties nf = new NamenFunties();
-                    items = namenTekst[i].Split(';');
-                    int count = 0;
-                    nf.Index = items[count++];
-                    nf.PersoneelNummer = items[count++];
-                    nf.Naam = items[count++];
-                    nf.Team = items[count++];
-                    count++;    // funtie niet meer gebruiken
-                    nf.IVWV = items[count++] == "True";
+                //for (int i = 0; namenTekst.Count() > i; i++)
+                //{
+                //    NamenFunties nf = new NamenFunties();
+                //    items = namenTekst[i].Split(';');
+                //    int count = 0;
+                //    nf.Index = items[count++];
+                //    nf.PersoneelNummer = items[count++];
+                //    nf.Naam = items[count++];
+                //    nf.Team = items[count++];
+                //    count++;    // funtie niet meer gebruiken
+                //    nf.IVWV = items[count++] == "True";
 
-                    NamenLijst.Add(nf);
-                }
+                //    NamenLijst.Add(nf);
+                //}
 
-                _ = MessageBox.Show("Save namen lijst");
-                SaveDataNamen_lijst();
+                //_ = MessageBox.Show("Save namen lijst");
+                //SaveDataNamen_lijst();
 
-                _ = MessageBox.Show("Inlezen SectieTabel.mdb.csv");
+                //_ = MessageBox.Show("Inlezen SectieTabel.mdb.csv");
 
-                string[] SectieTekst = File.ReadAllLines($"SectieTabel.mdb.csv");
-                SectieLijst.Clear();
+                //string[] SectieTekst = File.ReadAllLines($"SectieTabel.mdb.csv");
+                //SectieLijst.Clear();
 
-                for (int i = 0; SectieTekst.Count() > i; i++)
-                {
-                    Secties sc = new Secties();
-                    items = SectieTekst[i].Split(';');
-                    int count = 0;
-                    sc.Index = items[count++];
-                    sc.Naam = items[count++];
-                    SectieLijst.Add(sc);
-                }
+                //for (int i = 0; SectieTekst.Count() > i; i++)
+                //{
+                //    Secties sc = new Secties();
+                //    items = SectieTekst[i].Split(';');
+                //    int count = 0;
+                //    sc.Index = items[count++];
+                //    sc.Naam = items[count++];
+                //    SectieLijst.Add(sc);
+                //}
 
-                _ = MessageBox.Show("Save secties lijst");
-                SaveDataSecties_lijst();
+                //_ = MessageBox.Show("Save secties lijst");
+                //SaveDataSecties_lijst();
 
-                _ = MessageBox.Show("Inlezen InstallatieTabel.mdb.csv");
+                //_ = MessageBox.Show("Inlezen InstallatieTabel.mdb.csv");
 
-                string[] InstallatieTekst = File.ReadAllLines($"InstallatieTabel.mdb.csv");
-                InstallatieLijst.Clear();
+                //string[] InstallatieTekst = File.ReadAllLines($"InstallatieTabel.mdb.csv");
+                //InstallatieLijst.Clear();
 
-                for (int i = 0; InstallatieTekst.Count() > i; i++)
-                {
-                    InstallatieOnderdeel iso = new InstallatieOnderdeel();
-                    items = InstallatieTekst[i].Split(';');
-                    int count = 0;
-                    iso.Index = items[count++];
-                    iso.Instal = items[count++];
-                    iso.Sectie = ZoekSectie(items[count++]);
-                    InstallatieLijst.Add(iso);
-                }
+                //for (int i = 0; InstallatieTekst.Count() > i; i++)
+                //{
+                //    InstallatieOnderdeel iso = new InstallatieOnderdeel();
+                //    items = InstallatieTekst[i].Split(';');
+                //    int count = 0;
+                //    iso.Index = items[count++];
+                //    iso.Instal = items[count++];
+                //    iso.Sectie = ZoekSectie(items[count++]);
+                //    InstallatieLijst.Add(iso);
+                //}
 
-                _ = MessageBox.Show("Save Installatie lijst");
-                SaveDataInstallaties_lijst();
+                //_ = MessageBox.Show("Save Installatie lijst");
+                //SaveDataInstallaties_lijst();
 
 
                 _ = MessageBox.Show("Dan nu samen voegen tot nieuwe opslag class.");
@@ -491,6 +491,8 @@ namespace Overbrugging
             // laad alle overbrugingen
             LaadData_lijst();
 
+            LabelNietAfgetekendWV.Text = TelData().ToString();
+
             // filter op status
             LijstData = comboBoxStatus.Text == "Niet Verwijderd"
                 ? LijstData.Where(x => x.DatumVerw == string.Empty).ToList()
@@ -512,6 +514,19 @@ namespace Overbrugging
             //LijstData = LijstData.OrderByDescending(o => o.RegNr).ToList();
 
             VulGrid();
+        }
+
+        private int TelData()
+        {
+            int aantal = 0;
+            foreach (Data a in LijstData)
+            {
+                if(a.DatumWv == string.Empty)
+                {
+                    aantal++;
+                }
+            }
+            return aantal;
         }
 
         public void SaveData_lijst()
@@ -1318,6 +1333,11 @@ namespace Overbrugging
             int dag = int.Parse(datum.Substring(0, 2));
             DateTime ret = new DateTime(jaar,maand,dag);
             return ret;
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Door inlognaam windows (personeel nr)\nKrijg u rechten voor invoer\nOf als u WV of IV bent verwijderen.");
         }
     }
 }
