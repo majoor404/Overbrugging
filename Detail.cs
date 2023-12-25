@@ -60,6 +60,9 @@ namespace Overbrugging
             // als geen iv/wv dan niks invullen bij wv of afsluiten.
             PanelWV.Enabled = MainForm.Main.IsIVer.Checked;
             PanelVerwijderen.Enabled = MainForm.Main.IsIVer.Checked;
+
+            TextBoxRede.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
+            TextBoxOplossing.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
         }
 
         private void RefreshForm()
@@ -238,6 +241,19 @@ namespace Overbrugging
         {
             if(DatumVerw.TB.Text == " --/--/----")
                 DatumVerw.TB.Text = DateTime.Now.ToShortDateString();
+        }
+
+        private void InvoerVeranderenTerwijlGoedGekeurd(object sender, EventArgs e)
+        {
+            // als data veranderd, maar is al goedgekeurd en niet afgesloten,
+            // verwijder de VW data
+            if(ComboBoxIVWV.Text != "" && TextBoxRegNr.Text != "" && ComboBoxNaamVerw.Text == "")
+            {
+                ComboBoxIVWV.Items.Add("");
+                ComboBoxIVWV.Text = "";
+                DatumWv.TB.Text = " --/--/----";
+                DatumVerloopTIW.TB.Text = " --/--/----";
+            }
         }
     }
 }

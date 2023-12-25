@@ -235,7 +235,7 @@ namespace Overbrugging
                     a.Reserve4 = "";
                     a.Reserve5 = "";
                     a.Reserve6 = "";
-                    a.Reserve7 = "";
+                    a.Kleur = false;
                     a.DatumTemp = DateTime.Now;
 
                     LijstData.Add(a);
@@ -417,6 +417,8 @@ namespace Overbrugging
 
             _ = dataGridView1.Columns.Add("DatumTemp", "DatumTemp");
             dataGridView1.Columns[8].Width = 100;
+            _ = dataGridView1.Columns.Add("Kleur", "Kleur");
+            dataGridView1.Columns[8].Width = 100;
 
             dataGridView1.RowHeadersVisible = false;
 
@@ -475,15 +477,24 @@ namespace Overbrugging
                 dataGridView1.Columns["Rede"].DataPropertyName = "Reden";
                 dataGridView1.Columns["DatumVerl"].DataPropertyName = "UitersteDatum";
                 dataGridView1.Columns["DatumTemp"].DataPropertyName = "DatumTemp";
+                dataGridView1.Columns["Kleur"].DataPropertyName = "Kleur";
+
             }
 
             dataGridView1.Columns[8].Visible = false;   // DatumTemp
+            dataGridView1.Columns[9].Visible = false;   // Kleur
 
             labelAantal.Text = LijstData.Count().ToString();
 
             int index = 0;
             if (labelAantal.Text != "0")
                 index = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+                if (row.Cells[9].Value.ToString() == "True")
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(243, 221, 228); // Azure;
+                }
 
             VulPreview(index);
         }
@@ -532,12 +543,19 @@ namespace Overbrugging
             foreach (Data a in LijstData)
             {
                 a.DatumTemp = GetDateTime(a.UitersteDatum);
-                
+                a.Kleur = false;
+
                 if (a.DatumWv == string.Empty) // aantal niet afgetekend Wv
+                {
                     NietAfgetekendWv++;
+                    a.Kleur = true;
+                }
 
                 if (a.DatumTemp < nu && a.DatumVerw == "")    // datum verlopen
+                {
                     VerlopenData++;
+                    a.Kleur = true;
+                }
             }
         }
 
@@ -751,12 +769,12 @@ namespace Overbrugging
                 EditNamen ed = new EditNamen();
                 _ = ed.ShowDialog();
             }
-            if (ret == DialogResult.Cancel)
+            if (ret == DialogResult.Abort)
             {
                 EditSecties editSecties = new EditSecties();
                 _ = editSecties.ShowDialog();
             }
-            if (ret == DialogResult.Abort)
+            if (ret == DialogResult.Retry)
             {
                 ButImport_Click(this, null);
             }
