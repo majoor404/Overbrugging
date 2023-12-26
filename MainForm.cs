@@ -31,6 +31,17 @@ namespace Overbrugging
 
         DataGridViewColumn oldColumn = null; // voor sorteer
         SortOrder SortRichting = SortOrder.None;
+        
+        public int[,] teldata = new int[7, 8]; // voor wachtrapport 7 rijen (soort) van 8 kolomen (secties)
+
+        enum SectieNaam
+        {
+            SecRst,SecCon,SecPbi,SecPvk,SecCgm,SecSkv,SecAov,SecAlg
+        }
+        enum Rij
+        {
+            RowOverb,RowMetWerkv,RowTiw,RowMoc,RowOverbVerl,RowTiwVerl,RowMocVerl
+        }
 
         public static MainForm Main;
 
@@ -177,6 +188,7 @@ namespace Overbrugging
                 _ = MessageBox.Show("Dan nu samen voegen tot nieuwe opslag class.");
 
                 LijstData.Clear();
+                
                 foreach (OudeOverbrugging o in OudeLijst)
                 {
                     Data a = new Data
@@ -186,7 +198,7 @@ namespace Overbrugging
                         SapNr = o.SrsNr,
                         MocNr = o.MocRsNr
                     };
-
+                    
                     labelAantal.Text = a.RegNr.ToString();
                     labelAantal.Refresh();
 
@@ -260,19 +272,23 @@ namespace Overbrugging
             // verwijder tijd
             int pos = Datum.IndexOf(" ");
 
-            Datum = Datum.Substring(0, pos);
+            if (pos > 0)
+            {
+                Datum = Datum.Substring(0, pos);
 
-            string[] temp = Datum.Split('-');
+                string[] temp = Datum.Split('-');
 
-            int Dag = int.Parse(temp[0]);
-            int Maand = int.Parse(temp[1]);
-            int Jaar = int.Parse(temp[2]);
+                int Dag = int.Parse(temp[0]);
+                int Maand = int.Parse(temp[1]);
+                int Jaar = int.Parse(temp[2]);
 
-            DateTime ret = new DateTime(Jaar, Maand, Dag);
+                DateTime ret = new DateTime(Jaar, Maand, Dag);
 
-            var dat = ret.ToString("dd-MM-yyyy");
+                var dat = ret.ToString("dd-MM-yyyy");
 
-            return dat;
+                return dat;
+            }
+            return "";
         }
 
         private string ZoekSectie(string zoek)
@@ -403,14 +419,14 @@ namespace Overbrugging
             _ = dataGridView1.Columns.Add("Soort", "Soort");
             dataGridView1.Columns[2].Width = 70;
             _ = dataGridView1.Columns.Add("Sectie", "Sectie");
-            dataGridView1.Columns[3].Width = 60;
+            dataGridView1.Columns[3].Width = 70;
 
             _ = dataGridView1.Columns.Add("Installatie", "Installatie");
             dataGridView1.Columns[4].Width = 110;
             _ = dataGridView1.Columns.Add("InstalatieDeel", "Instalatie Deel");
             dataGridView1.Columns[5].Width = 175;
             _ = dataGridView1.Columns.Add("Rede", "Rede");
-            dataGridView1.Columns[6].Width = 350;
+            dataGridView1.Columns[6].Width = 340;
 
             _ = dataGridView1.Columns.Add("DatumVerl", "Verloopt");
             dataGridView1.Columns[7].Width = 100;
@@ -490,11 +506,7 @@ namespace Overbrugging
             if (labelAantal.Text != "0")
                 index = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-                if (row.Cells[9].Value.ToString() == "True")
-                {
-                    row.DefaultCellStyle.BackColor = Color.FromArgb(243, 221, 228); // Azure;
-                }
+            KleurAfwijkingen();
 
             VulPreview(index);
         }
@@ -502,6 +514,7 @@ namespace Overbrugging
         private void ButRefresh_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = null;
+            Wait(500);
             dataGridView1.Rows.Clear();
 
             // laad alle overbrugingen
@@ -537,6 +550,74 @@ namespace Overbrugging
 
         private void TelData()
         {
+            /*
+              lijstTemp->LoadFromFile(dir + "overbrug.ini");
+            // overbrugingen zonder werkvergunning
+            ZoekSelVervangString("%#RST", lijstTemp->Strings[0]);
+            ZoekSelVervangString("%#CON", lijstTemp->Strings[1]);
+            ZoekSelVervangString("%#PBI", lijstTemp->Strings[2]);
+            ZoekSelVervangString("%#PVK", lijstTemp->Strings[3]);
+            ZoekSelVervangString("%#CGM", lijstTemp->Strings[4]);
+            ZoekSelVervangString("%#SKV", lijstTemp->Strings[5]);
+            ZoekSelVervangString("%#ALG",  lijstTemp->Strings[6]); // algemeen.
+            ZoekSelVervangString("%#AOV", lijstTemp->Strings[7]);
+            // overbrugingen met werkvergunning
+            ZoekSelVervangString("%#RSTW", lijstTemp->Strings[8]);
+            ZoekSelVervangString("%#CONW", lijstTemp->Strings[9]);
+            ZoekSelVervangString("%#PBIW", lijstTemp->Strings[10]);
+            ZoekSelVervangString("%#PVKW", lijstTemp->Strings[11]);
+            ZoekSelVervangString("%#CGMW", lijstTemp->Strings[12]);
+            ZoekSelVervangString("%#SKVW", lijstTemp->Strings[13]);
+            ZoekSelVervangString("%#ALGW",  lijstTemp->Strings[14]); // algemeen.
+            ZoekSelVervangString("%#AOVW", lijstTemp->Strings[15]);
+            // overbrugingen verlopen
+            ZoekSelVervangString("%#RSTV", lijstTemp->Strings[16]);
+            ZoekSelVervangString("%#CONV", lijstTemp->Strings[17]);
+            ZoekSelVervangString("%#PBIV", lijstTemp->Strings[18]);
+            ZoekSelVervangString("%#PVKV", lijstTemp->Strings[19]);
+            ZoekSelVervangString("%#CGMV", lijstTemp->Strings[20]);
+            ZoekSelVervangString("%#SKVV", lijstTemp->Strings[21]);
+            ZoekSelVervangString("%#ALGV",  lijstTemp->Strings[22]); // algemeen.
+            ZoekSelVervangString("%#AOVV", lijstTemp->Strings[23]);
+            // tiw
+            ZoekSelVervangString("%#RSTT", lijstTemp->Strings[24]);
+            ZoekSelVervangString("%#CONT", lijstTemp->Strings[25]);
+            ZoekSelVervangString("%#PBIT", lijstTemp->Strings[26]);
+            ZoekSelVervangString("%#PVKT", lijstTemp->Strings[27]);
+            ZoekSelVervangString("%#CGMT", lijstTemp->Strings[28]);
+            ZoekSelVervangString("%#SKVT", lijstTemp->Strings[29]);
+            ZoekSelVervangString("%#ALGT",  lijstTemp->Strings[30]); // algemeen.
+            ZoekSelVervangString("%#AOVT", lijstTemp->Strings[31]);
+            // tiw verlopen
+            ZoekSelVervangString("%#RSTTV", lijstTemp->Strings[32]);
+            ZoekSelVervangString("%#CONTV", lijstTemp->Strings[33]);
+            ZoekSelVervangString("%#PBITV", lijstTemp->Strings[34]);
+            ZoekSelVervangString("%#PVKTV", lijstTemp->Strings[35]);
+            ZoekSelVervangString("%#CGMTV", lijstTemp->Strings[36]);
+            ZoekSelVervangString("%#SKVTV", lijstTemp->Strings[37]);
+            ZoekSelVervangString("%#ALGTV",  lijstTemp->Strings[38]); // algemeen.
+            ZoekSelVervangString("%#AOVTV", lijstTemp->Strings[39]);
+            // MOC staat voor Management Of Change
+            ZoekSelVervangString("%#RSTMOC", lijstTemp->Strings[40]);
+            ZoekSelVervangString("%#CONMOC", lijstTemp->Strings[41]);
+            ZoekSelVervangString("%#PBIMOC", lijstTemp->Strings[42]);
+            ZoekSelVervangString("%#PVKMOC", lijstTemp->Strings[43]);
+            ZoekSelVervangString("%#CGMMOC", lijstTemp->Strings[44]);
+            ZoekSelVervangString("%#SKVMOC", lijstTemp->Strings[45]);
+            ZoekSelVervangString("%#ALGMOC",  lijstTemp->Strings[46]); // algemeen.
+            ZoekSelVervangString("%#AOVMOC", lijstTemp->Strings[47]);
+            // MOC staat voor Management Of Change verlopen.
+            ZoekSelVervangString("%#RSTMOCV", lijstTemp->Strings[48]);
+            ZoekSelVervangString("%#CONMOCV", lijstTemp->Strings[49]);
+            ZoekSelVervangString("%#PBIMOCV", lijstTemp->Strings[50]);
+            ZoekSelVervangString("%#PVKMOCV", lijstTemp->Strings[51]);
+            ZoekSelVervangString("%#CGMMOCV", lijstTemp->Strings[52]);
+            ZoekSelVervangString("%#SKVMOCV", lijstTemp->Strings[53]);
+            ZoekSelVervangString("%#ALGMOCV",  lijstTemp->Strings[54]); // algemeen.
+            ZoekSelVervangString("%#AOVMOCV", lijstTemp->Strings[55]); 
+             */
+
+
             NietAfgetekendWv = 0;
             VerlopenData = 0;
             DateTime nu = DateTime.Now;
@@ -555,6 +636,78 @@ namespace Overbrugging
                 {
                     VerlopenData++;
                     a.Kleur = true;
+                }
+                if(a.Sectie == "RST" && a.DatumVerw == "")
+                {
+                    if (a.Soort == "TIW")
+                        teldata[(int)Rij.RowTiw, (int)SectieNaam.SecRst]++;
+                    if (a.Soort == "MOC")
+                        teldata[(int)Rij.RowMoc,(int)SectieNaam.SecRst]++;
+                    if (a.Soort == "OVERB")
+                        teldata[(int)Rij.RowOverb,(int)SectieNaam.SecRst]++;
+                }
+                if (a.Sectie == "CON" && a.DatumVerw == "")
+                {
+                    if (a.Soort == "TIW")
+                        teldata[(int)Rij.RowTiw, (int)SectieNaam.SecCon]++;
+                    if (a.Soort == "MOC")
+                        teldata[(int)Rij.RowMoc, (int)SectieNaam.SecCon]++;
+                    if (a.Soort == "OVERB")
+                        teldata[(int)Rij.RowOverb, (int)SectieNaam.SecCon]++;
+                }
+                if (a.Sectie == "PBI" && a.DatumVerw == "")
+                {
+                    if (a.Soort == "TIW")
+                        teldata[(int)Rij.RowTiw, (int)SectieNaam.SecPbi]++;
+                    if (a.Soort == "MOC")
+                        teldata[(int)Rij.RowMoc, (int)SectieNaam.SecPbi]++;
+                    if (a.Soort == "OVERB")
+                        teldata[(int)Rij.RowOverb, (int)SectieNaam.SecPbi]++;
+                }
+                if (a.Sectie == "PVK" && a.DatumVerw == "")
+                {
+                    if (a.Soort == "TIW")
+                        teldata[(int)Rij.RowTiw, (int)SectieNaam.SecPvk]++;
+                    if (a.Soort == "MOC")
+                        teldata[(int)Rij.RowMoc, (int)SectieNaam.SecPvk]++;
+                    if (a.Soort == "OVERB")
+                        teldata[(int)Rij.RowOverb, (int)SectieNaam.SecPvk]++;
+                }
+                if (a.Sectie == "CGM" && a.DatumVerw == "")
+                {
+                    if (a.Soort == "TIW")
+                        teldata[(int)Rij.RowTiw, (int)SectieNaam.SecCgm]++;
+                    if (a.Soort == "MOC")
+                        teldata[(int)Rij.RowMoc, (int)SectieNaam.SecCgm]++;
+                    if (a.Soort == "OVERB")
+                        teldata[(int)Rij.RowOverb, (int)SectieNaam.SecCgm]++;
+                }
+                if (a.Sectie == "SKV" && a.DatumVerw == "")
+                {
+                    if (a.Soort == "TIW")
+                        teldata[(int)Rij.RowTiw, (int)SectieNaam.SecSkv]++;
+                    if (a.Soort == "MOC")
+                        teldata[(int)Rij.RowMoc, (int)SectieNaam.SecSkv]++;
+                    if (a.Soort == "OVERB")
+                        teldata[(int)Rij.RowOverb, (int)SectieNaam.SecSkv]++;
+                }
+                if (a.Sectie == "AOV" && a.DatumVerw == "")
+                {
+                    if (a.Soort == "TIW")
+                        teldata[(int)Rij.RowTiw, (int)SectieNaam.SecAov]++;
+                    if (a.Soort == "MOC")
+                        teldata[(int)Rij.RowMoc, (int)SectieNaam.SecAov]++;
+                    if (a.Soort == "OVERB")
+                        teldata[(int)Rij.RowOverb, (int)SectieNaam.SecAov]++;
+                }
+                if (a.Sectie == "ALG" && a.DatumVerw == "")
+                {
+                    if (a.Soort == "TIW")
+                        teldata[(int)Rij.RowTiw, (int)SectieNaam.SecAlg]++;
+                    if (a.Soort == "MOC")
+                        teldata[(int)Rij.RowMoc, (int)SectieNaam.SecAlg]++;
+                    if (a.Soort == "OVERB")
+                        teldata[(int)Rij.RowOverb, (int)SectieNaam.SecAlg]++;
                 }
             }
         }
@@ -935,8 +1088,6 @@ namespace Overbrugging
             // open dialog
             _ = dt.ShowDialog();
 
-            //MainForm.Main.wait(500);
-
             //refresh
             ButRefresh_Click(this, null);
         }
@@ -1019,7 +1170,8 @@ namespace Overbrugging
                 // open dialog
                 _ = dt.ShowDialog();
 
-                //wait(500);
+                //refresh
+                ButRefresh_Click(this, null);
             }
             catch
             {
@@ -1098,26 +1250,26 @@ namespace Overbrugging
             }
         }
 
-        //public void Wait(int milliseconds)
-        //{
-        //    var timer1 = new System.Windows.Forms.Timer();
-        //    if (milliseconds == 0 || milliseconds < 0) return;
+        public void Wait(int milliseconds)
+        {
+            var timer1 = new System.Windows.Forms.Timer();
+            if (milliseconds == 0 || milliseconds < 0) return;
 
-        //    timer1.Interval = milliseconds;
-        //    timer1.Enabled = true;
-        //    timer1.Start();
+            timer1.Interval = milliseconds;
+            timer1.Enabled = true;
+            timer1.Start();
 
-        //    timer1.Tick += (s, e) =>
-        //    {
-        //        timer1.Enabled = false;
-        //        timer1.Stop();
-        //    };
+            timer1.Tick += (s, e) =>
+            {
+                timer1.Enabled = false;
+                timer1.Stop();
+            };
 
-        //    while (timer1.Enabled)
-        //    {
-        //        Application.DoEvents();
-        //    }
-        //}
+            while (timer1.Enabled)
+            {
+                Application.DoEvents();
+            }
+        }
 
         private void ButZoek_Click(object sender, EventArgs e)
         {
@@ -1249,6 +1401,19 @@ namespace Overbrugging
                 newColumn.HeaderCell.SortGlyphDirection = SortOrder.Ascending;
             else
                 newColumn.HeaderCell.SortGlyphDirection = SortOrder.Descending;
+
+            KleurAfwijkingen();
+
+            Wait(300);
+        }
+
+        private void KleurAfwijkingen()
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+                if (row.Cells[9].Value.ToString() == "True")
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(243, 221, 228); // Azure;
+                }
         }
 
         private void Sort(DataGridViewColumn newColumn, ListSortDirection richting)
