@@ -25,6 +25,7 @@ namespace Overbrugging
         public int LastIndex = 0;
         public static string datapath = AppDomain.CurrentDomain.BaseDirectory + "Data\\";
         public List<string> instellingen = new List<string>();
+        public DateTime verloopdatum = DateTime.Now.AddDays(1);
 
         public int NietAfgetekendWv = 0;
         public int VerlopenData = 0;
@@ -632,7 +633,7 @@ namespace Overbrugging
                     a.Kleur = true;
                 }
 
-                if (a.DatumTemp < nu && a.DatumVerw == "")    // datum verlopen
+                if (a.DatumTemp < verloopdatum && a.DatumVerw == "")    // datum verlopen
                 {
                     VerlopenData++;
                     a.Kleur = true;
@@ -640,7 +641,11 @@ namespace Overbrugging
                 if(a.Sectie == "RST" && a.DatumVerw == "")
                 {
                     if (a.Soort == "TIW")
+                    {
                         teldata[(int)Rij.RowTiw, (int)SectieNaam.SecRst]++;
+                        //if(a.UitersteDatum > verloopdatum)
+                        //    teldata[(int)Rij.RowOverbVerl, (int)SectieNaam.SecRst]++;
+                    }
                     if (a.Soort == "MOC")
                         teldata[(int)Rij.RowMoc,(int)SectieNaam.SecRst]++;
                     if (a.Soort == "OVERB")
