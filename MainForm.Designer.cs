@@ -31,7 +31,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelTop = new System.Windows.Forms.Panel();
+            this.IVWVVraag = new System.Windows.Forms.LinkLabel();
             this.IsIVer = new System.Windows.Forms.CheckBox();
+            this.LabelDatumVerlopen = new System.Windows.Forms.Label();
+            this.LabelNietAfgetekendWV = new System.Windows.Forms.Label();
             this.labelAantal = new System.Windows.Forms.Label();
             this.LabelUser = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -90,9 +93,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.TB2 = new System.Windows.Forms.TextBox();
             this.TB1 = new System.Windows.Forms.TextBox();
-            this.LabelNietAfgetekendWV = new System.Windows.Forms.Label();
-            this.IVWVVraag = new System.Windows.Forms.LinkLabel();
-            this.LabelDatumVerlopen = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -121,6 +121,19 @@
             this.panelTop.Size = new System.Drawing.Size(1264, 53);
             this.panelTop.TabIndex = 0;
             // 
+            // IVWVVraag
+            // 
+            this.IVWVVraag.AutoSize = true;
+            this.IVWVVraag.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IVWVVraag.LinkColor = System.Drawing.Color.Black;
+            this.IVWVVraag.Location = new System.Drawing.Point(1200, 19);
+            this.IVWVVraag.Name = "IVWVVraag";
+            this.IVWVVraag.Size = new System.Drawing.Size(60, 18);
+            this.IVWVVraag.TabIndex = 3;
+            this.IVWVVraag.TabStop = true;
+            this.IVWVVraag.Text = "IV/WV ?";
+            this.IVWVVraag.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.IVWVVraag_LinkClicked);
+            // 
             // IsIVer
             // 
             this.IsIVer.AutoCheck = false;
@@ -133,6 +146,26 @@
             this.IsIVer.TabIndex = 2;
             this.IsIVer.Text = "123456";
             this.IsIVer.UseVisualStyleBackColor = true;
+            // 
+            // LabelDatumVerlopen
+            // 
+            this.LabelDatumVerlopen.AutoSize = true;
+            this.LabelDatumVerlopen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelDatumVerlopen.Location = new System.Drawing.Point(773, 19);
+            this.LabelDatumVerlopen.Name = "LabelDatumVerlopen";
+            this.LabelDatumVerlopen.Size = new System.Drawing.Size(32, 18);
+            this.LabelDatumVerlopen.TabIndex = 1;
+            this.LabelDatumVerlopen.Text = "000";
+            // 
+            // LabelNietAfgetekendWV
+            // 
+            this.LabelNietAfgetekendWV.AutoSize = true;
+            this.LabelNietAfgetekendWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelNietAfgetekendWV.Location = new System.Drawing.Point(592, 18);
+            this.LabelNietAfgetekendWV.Name = "LabelNietAfgetekendWV";
+            this.LabelNietAfgetekendWV.Size = new System.Drawing.Size(32, 18);
+            this.LabelNietAfgetekendWV.TabIndex = 1;
+            this.LabelNietAfgetekendWV.Text = "000";
             // 
             // labelAantal
             // 
@@ -808,39 +841,6 @@
             this.TB1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.TB1.Size = new System.Drawing.Size(480, 114);
             this.TB1.TabIndex = 0;
-            // 
-            // LabelNietAfgetekendWV
-            // 
-            this.LabelNietAfgetekendWV.AutoSize = true;
-            this.LabelNietAfgetekendWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelNietAfgetekendWV.Location = new System.Drawing.Point(592, 18);
-            this.LabelNietAfgetekendWV.Name = "LabelNietAfgetekendWV";
-            this.LabelNietAfgetekendWV.Size = new System.Drawing.Size(32, 18);
-            this.LabelNietAfgetekendWV.TabIndex = 1;
-            this.LabelNietAfgetekendWV.Text = "000";
-            // 
-            // IVWVVraag
-            // 
-            this.IVWVVraag.AutoSize = true;
-            this.IVWVVraag.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IVWVVraag.LinkColor = System.Drawing.Color.Black;
-            this.IVWVVraag.Location = new System.Drawing.Point(1200, 19);
-            this.IVWVVraag.Name = "IVWVVraag";
-            this.IVWVVraag.Size = new System.Drawing.Size(60, 18);
-            this.IVWVVraag.TabIndex = 3;
-            this.IVWVVraag.TabStop = true;
-            this.IVWVVraag.Text = "IV/WV ?";
-            this.IVWVVraag.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.IVWVVraag_LinkClicked);
-            // 
-            // LabelDatumVerlopen
-            // 
-            this.LabelDatumVerlopen.AutoSize = true;
-            this.LabelDatumVerlopen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelDatumVerlopen.Location = new System.Drawing.Point(773, 19);
-            this.LabelDatumVerlopen.Name = "LabelDatumVerlopen";
-            this.LabelDatumVerlopen.Size = new System.Drawing.Size(32, 18);
-            this.LabelDatumVerlopen.TabIndex = 1;
-            this.LabelDatumVerlopen.Text = "000";
             // 
             // MainForm
             // 
