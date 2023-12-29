@@ -656,6 +656,29 @@ namespace Overbrugging
             }
         }
 
+        private void WachtRapportDataSave()
+        {
+            try
+            {
+                LaadInstelingen();
+                // opslag plek is string 2.
+                string opslag = instellingen[1];
+                opslag = opslag + "\\Overbrug.ini";
+                List<string> DataFile = new List<string>();
+                for (int i = 0; i < 7; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        DataFile.Add(teldata[i, j].ToString());
+                    }
+                }
+                File.WriteAllLines(opslag, DataFile);
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void TelSectie(Data a, string StrSectie, int IntSectie)
         {
             if (a.Sectie != StrSectie)
@@ -1490,6 +1513,12 @@ namespace Overbrugging
         private void IVWVVraag_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             _ = MessageBox.Show("Door inlognaam windows (personeel nr)\nKrijg u rechten voor invoer\nOf als u WV of IV bent verwijderen.");
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // save data voor wachtrapport
+            WachtRapportDataSave();
         }
     }
 }
