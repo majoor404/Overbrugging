@@ -901,7 +901,7 @@ namespace Overbrugging
                 GC.Collect();
             }
 
-            NamenLijst = NamenLijst.OrderBy(o => o.PersoneelNummer).ToList();
+            NamenLijst = NamenLijst.OrderBy(o => o.Naam).ToList();
         }
 
         public void LaadInstallaties_lijst()
@@ -1112,8 +1112,10 @@ namespace Overbrugging
 
         private void VulNamenIVWVPersoneel(Detail dt)
         {
+            dt.ComboBoxIVWV.Items.Clear();
             List<NamenFunties> IVWVFilter = new List<NamenFunties>();
             IVWVFilter = NamenLijst.Where(x => x.IVWV == true).ToList();
+            IVWVFilter = IVWVFilter.OrderBy(o => o.Naam).ToList();
             for (int i = 0; i < IVWVFilter.Count; i++)
             {
                 _ = dt.ComboBoxIVWV.Items.Add(IVWVFilter[i].Naam);
