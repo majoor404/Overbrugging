@@ -1,6 +1,5 @@
 ﻿using Melding;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +7,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Security.Policy;
 using System.Windows.Forms;
 
 namespace Overbrugging
@@ -29,19 +27,19 @@ namespace Overbrugging
 
         public int NietAfgetekendWv = 0;
         public int VerlopenData = 0;
+        private DataGridViewColumn oldColumn = null; // voor sorteer
+        private SortOrder SortRichting = SortOrder.None;
 
-        DataGridViewColumn oldColumn = null; // voor sorteer
-        SortOrder SortRichting = SortOrder.None;
-        
         public int[,] teldata = new int[7, 8]; // voor wachtrapport 7 rijen (soort) van 8 kolomen (secties)
 
-        enum SectieNaam
+        private enum SectieNaam
         {
-            SecRst,SecCon,SecPbi,SecPvk,SecCgm,SecSkv,SecAov,SecAlg
+            SecRst, SecCon, SecPbi, SecPvk, SecCgm, SecSkv, SecAov, SecAlg
         }
-        enum Rij
+
+        private enum Rij
         {
-            RowOverb,RowMetWerkv,RowTiw,RowMoc,RowOverbVerl,RowTiwVerl,RowMocVerl
+            RowOverb, RowMetWerkv, RowTiw, RowMoc, RowOverbVerl, RowTiwVerl, RowMocVerl
         }
 
         public static MainForm Main;
@@ -189,7 +187,7 @@ namespace Overbrugging
                 _ = MessageBox.Show("Dan nu samen voegen tot nieuwe opslag class.");
 
                 LijstData.Clear();
-                
+
                 foreach (OudeOverbrugging o in OudeLijst)
                 {
                     Data a = new Data
@@ -199,7 +197,7 @@ namespace Overbrugging
                         SapNr = o.SrsNr,
                         MocNr = o.MocRsNr
                     };
-                    
+
                     labelAantal.Text = a.RegNr.ToString();
                     labelAantal.Refresh();
 
@@ -285,7 +283,7 @@ namespace Overbrugging
 
                 DateTime ret = new DateTime(Jaar, Maand, Dag);
 
-                var dat = ret.ToString("dd-MM-yyyy");
+                string dat = ret.ToString("dd-MM-yyyy");
 
                 return dat;
             }
@@ -401,7 +399,9 @@ namespace Overbrugging
                 foreach (Secties item in SectieLijst)
                 {
                     if (!string.IsNullOrEmpty(item.Naam))
+                    {
                         _ = comboBoxSectie.Items.Add(item.Naam);
+                    }
                 }
                 comboBoxSectie.SelectedIndex = 0;
             }
@@ -446,11 +446,13 @@ namespace Overbrugging
             comboBoxSoortFilter.SelectedIndexChanged += ButRefresh_Click;
             comboBoxStatus.SelectedIndexChanged += ButRefresh_Click;
 
-            var inlognaam = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
+            string inlognaam = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
 
             if (inlognaam == "ronal")
+            {
                 inlognaam = "a590588";
-            
+            }
+
             // is bv dan a590588
 
             if (inlognaam.Length == 7)
@@ -461,10 +463,10 @@ namespace Overbrugging
                     inlognaam = inlognaam.Substring(1);
                 }
             }
-            
+
             IsIVer.Checked = ZoekIV(inlognaam);
             IsIVer.Text = inlognaam;
-            
+
             try
             {
                 NamenFunties Q = NamenLijst.First(a => a.PersoneelNummer == inlognaam);
@@ -472,16 +474,18 @@ namespace Overbrugging
             }
             catch
             {
-                LabelUser.Text  = "Gebruiker niet in lijst";
+                LabelUser.Text = "Gebruiker niet in lijst";
                 LabelUser.ForeColor = Color.Teal;
-                 
+
             }
         }
 
         private void VulGrid()
         {
             if (LijstData.Count > 0)
+            {
                 dataGridView1.DataSource = LijstData;
+            }
 
             if (dataGridView1.Columns["Nr"].DataPropertyName == "")
             {
@@ -505,7 +509,9 @@ namespace Overbrugging
 
             int index = 0;
             if (labelAantal.Text != "0")
+            {
                 index = int.Parse(dataGridView1.SelectedCells[0].Value.ToString());
+            }
 
             KleurAfwijkingen();
 
@@ -515,14 +521,14 @@ namespace Overbrugging
         private void ButRefresh_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = null;
-            Wait(500);
+            Wait(300);
             dataGridView1.Rows.Clear();
 
             // laad alle overbrugingen
             LaadData_lijst();
 
             TelData();
-            
+
             LabelNietAfgetekendWV.Text = NietAfgetekendWv.ToString();
             LabelDatumVerlopen.Text = VerlopenData.ToString();
 
@@ -621,7 +627,7 @@ namespace Overbrugging
 
             NietAfgetekendWv = 0;
             VerlopenData = 0;
-            DateTime nu = DateTime.Now;
+            _ = DateTime.Now;
             foreach (Data a in LijstData)
             {
                 a.DatumTemp = GetDateTime(a.UitersteDatum);
@@ -638,85 +644,61 @@ namespace Overbrugging
                     VerlopenData++;
                     a.Kleur = true;
                 }
-                if(a.Sectie == "RST" && a.DatumVerw == "")
-                {
-                    if (a.Soort == "TIW")
-                    {
-                        teldata[(int)Rij.RowTiw, (int)SectieNaam.SecRst]++;
-                        //if(a.UitersteDatum > verloopdatum)
-                        //    teldata[(int)Rij.RowOverbVerl, (int)SectieNaam.SecRst]++;
-                    }
-                    if (a.Soort == "MOC")
-                        teldata[(int)Rij.RowMoc,(int)SectieNaam.SecRst]++;
-                    if (a.Soort == "OVERB")
-                        teldata[(int)Rij.RowOverb,(int)SectieNaam.SecRst]++;
-                }
-                if (a.Sectie == "CON" && a.DatumVerw == "")
-                {
-                    if (a.Soort == "TIW")
-                        teldata[(int)Rij.RowTiw, (int)SectieNaam.SecCon]++;
-                    if (a.Soort == "MOC")
-                        teldata[(int)Rij.RowMoc, (int)SectieNaam.SecCon]++;
-                    if (a.Soort == "OVERB")
-                        teldata[(int)Rij.RowOverb, (int)SectieNaam.SecCon]++;
-                }
-                if (a.Sectie == "PBI" && a.DatumVerw == "")
-                {
-                    if (a.Soort == "TIW")
-                        teldata[(int)Rij.RowTiw, (int)SectieNaam.SecPbi]++;
-                    if (a.Soort == "MOC")
-                        teldata[(int)Rij.RowMoc, (int)SectieNaam.SecPbi]++;
-                    if (a.Soort == "OVERB")
-                        teldata[(int)Rij.RowOverb, (int)SectieNaam.SecPbi]++;
-                }
-                if (a.Sectie == "PVK" && a.DatumVerw == "")
-                {
-                    if (a.Soort == "TIW")
-                        teldata[(int)Rij.RowTiw, (int)SectieNaam.SecPvk]++;
-                    if (a.Soort == "MOC")
-                        teldata[(int)Rij.RowMoc, (int)SectieNaam.SecPvk]++;
-                    if (a.Soort == "OVERB")
-                        teldata[(int)Rij.RowOverb, (int)SectieNaam.SecPvk]++;
-                }
-                if (a.Sectie == "CGM" && a.DatumVerw == "")
-                {
-                    if (a.Soort == "TIW")
-                        teldata[(int)Rij.RowTiw, (int)SectieNaam.SecCgm]++;
-                    if (a.Soort == "MOC")
-                        teldata[(int)Rij.RowMoc, (int)SectieNaam.SecCgm]++;
-                    if (a.Soort == "OVERB")
-                        teldata[(int)Rij.RowOverb, (int)SectieNaam.SecCgm]++;
-                }
-                if (a.Sectie == "SKV" && a.DatumVerw == "")
-                {
-                    if (a.Soort == "TIW")
-                        teldata[(int)Rij.RowTiw, (int)SectieNaam.SecSkv]++;
-                    if (a.Soort == "MOC")
-                        teldata[(int)Rij.RowMoc, (int)SectieNaam.SecSkv]++;
-                    if (a.Soort == "OVERB")
-                        teldata[(int)Rij.RowOverb, (int)SectieNaam.SecSkv]++;
-                }
-                if (a.Sectie == "AOV" && a.DatumVerw == "")
-                {
-                    if (a.Soort == "TIW")
-                        teldata[(int)Rij.RowTiw, (int)SectieNaam.SecAov]++;
-                    if (a.Soort == "MOC")
-                        teldata[(int)Rij.RowMoc, (int)SectieNaam.SecAov]++;
-                    if (a.Soort == "OVERB")
-                        teldata[(int)Rij.RowOverb, (int)SectieNaam.SecAov]++;
-                }
-                if (a.Sectie == "ALG" && a.DatumVerw == "")
-                {
-                    if (a.Soort == "TIW")
-                        teldata[(int)Rij.RowTiw, (int)SectieNaam.SecAlg]++;
-                    if (a.Soort == "MOC")
-                        teldata[(int)Rij.RowMoc, (int)SectieNaam.SecAlg]++;
-                    if (a.Soort == "OVERB")
-                        teldata[(int)Rij.RowOverb, (int)SectieNaam.SecAlg]++;
-                }
+
+                TelSectie(a, "RST", (int)SectieNaam.SecRst);
+                TelSectie(a, "CON", (int)SectieNaam.SecCon);
+                TelSectie(a, "PBI", (int)SectieNaam.SecPbi);
+                TelSectie(a, "PVK", (int)SectieNaam.SecPvk);
+                TelSectie(a, "CGM", (int)SectieNaam.SecCgm);
+                TelSectie(a, "SKV", (int)SectieNaam.SecSkv);
+                TelSectie(a, "AOV", (int)SectieNaam.SecAov);
+                TelSectie(a, "ALG", (int)SectieNaam.SecAlg);
             }
         }
 
+        private void TelSectie(Data a, string StrSectie, int IntSectie)
+        {
+            if (a.Sectie != StrSectie)
+            {
+                return;
+            }
+
+            if (a.DatumVerw != "")
+            {
+                return;
+            }
+
+            if (a.Soort == "TIW")
+            {
+                teldata[(int)Rij.RowTiw, IntSectie]++;
+                if (a.DatumTemp < verloopdatum)
+                {
+                    teldata[(int)Rij.RowTiwVerl, IntSectie]++;
+                }
+
+                return;
+            }
+            if (a.Soort == "MOC")
+            {
+                teldata[(int)Rij.RowMoc, IntSectie]++;
+                if (a.DatumTemp < verloopdatum)
+                {
+                    teldata[(int)Rij.RowMocVerl, IntSectie]++;
+                }
+
+                return;
+            }
+            if (a.Soort == "OVERB")
+            {
+                teldata[(int)Rij.RowOverb, IntSectie]++;
+                if (a.DatumTemp < verloopdatum)
+                {
+                    teldata[(int)Rij.RowOverbVerl, IntSectie]++;
+                }
+
+                return;
+            }
+        }
         public void SaveData_lijst()
         {
             try
@@ -815,7 +797,7 @@ namespace Overbrugging
             }
             catch (IOException)
             {
-                MessageBox.Show("instelingen file save Error()");
+                _ = MessageBox.Show("instelingen file save Error()");
             }
         }
 
@@ -828,7 +810,7 @@ namespace Overbrugging
             }
             catch
             {
-                MessageBox.Show($"{inst} niet aanwezig, exit");
+                _ = MessageBox.Show($"{inst} niet aanwezig, exit");
                 Close();
             }
         }
@@ -1257,8 +1239,11 @@ namespace Overbrugging
 
         public void Wait(int milliseconds)
         {
-            var timer1 = new System.Windows.Forms.Timer();
-            if (milliseconds == 0 || milliseconds < 0) return;
+            Timer timer1 = new System.Windows.Forms.Timer();
+            if (milliseconds == 0 || milliseconds < 0)
+            {
+                return;
+            }
 
             timer1.Interval = milliseconds;
             timer1.Enabled = true;
@@ -1279,7 +1264,7 @@ namespace Overbrugging
         private void ButZoek_Click(object sender, EventArgs e)
         {
             Zoek zk = new Zoek();
-            zk.ShowDialog();
+            _ = zk.ShowDialog();
 
             LaadData_lijst();
             dataGridView1.DataSource = null;
@@ -1354,7 +1339,6 @@ namespace Overbrugging
                 }
             }
             LijstData = temp;
-            //wait(500);
             VulGrid();
         }
         private void DataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -1400,12 +1384,11 @@ namespace Overbrugging
             Sort(newColumn, direction);
 
             if (LijstData.Count > 0)
+            {
                 dataGridView1.DataSource = LijstData;
+            }
 
-            if (SortRichting == SortOrder.Ascending)
-                newColumn.HeaderCell.SortGlyphDirection = SortOrder.Ascending;
-            else
-                newColumn.HeaderCell.SortGlyphDirection = SortOrder.Descending;
+            newColumn.HeaderCell.SortGlyphDirection = SortRichting == SortOrder.Ascending ? SortOrder.Ascending : SortOrder.Descending;
 
             KleurAfwijkingen();
 
@@ -1415,24 +1398,21 @@ namespace Overbrugging
         private void KleurAfwijkingen()
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
                 if (row.Cells[9].Value.ToString() == "True")
                 {
                     row.DefaultCellStyle.BackColor = Color.FromArgb(243, 221, 228); // Azure;
                 }
+            }
         }
 
         private void Sort(DataGridViewColumn newColumn, ListSortDirection richting)
         {
             if (newColumn.DataPropertyName == "Regnr")
             {
-                if (richting == ListSortDirection.Ascending)
-                {
-                    LijstData = LijstData.OrderBy(o => o.RegNr).ToList();
-                }
-                else
-                {
-                    LijstData = LijstData.OrderByDescending(o => o.RegNr).ToList();
-                }
+                LijstData = richting == ListSortDirection.Ascending
+                    ? LijstData.OrderBy(o => o.RegNr).ToList()
+                    : LijstData.OrderByDescending(o => o.RegNr).ToList();
             }
 
             if (newColumn.DataPropertyName == "DatumInv")
@@ -1442,71 +1422,44 @@ namespace Overbrugging
                     q.DatumTemp = GetDateTime(q.DatumInv);
                 }
 
-                if (richting == ListSortDirection.Ascending)
-                    LijstData = LijstData.OrderBy(o => o.DatumTemp).ToList();
-                else
-                    LijstData = LijstData.OrderByDescending(o => o.DatumTemp).ToList();
+                LijstData = richting == ListSortDirection.Ascending
+                    ? LijstData.OrderBy(o => o.DatumTemp).ToList()
+                    : LijstData.OrderByDescending(o => o.DatumTemp).ToList();
             }
 
             if (newColumn.DataPropertyName == "Soort")
             {
-                if (richting == ListSortDirection.Ascending)
-                {
-                    LijstData = LijstData.OrderBy(o => o.Soort).ToList();
-                }
-                else
-                {
-                    LijstData = LijstData.OrderByDescending(o => o.Soort).ToList();
-                }
+                LijstData = richting == ListSortDirection.Ascending
+                    ? LijstData.OrderBy(o => o.Soort).ToList()
+                    : LijstData.OrderByDescending(o => o.Soort).ToList();
             }
 
             if (newColumn.DataPropertyName == "Sectie")
             {
-                if (richting == ListSortDirection.Ascending)
-                {
-                    LijstData = LijstData.OrderBy(o => o.Sectie).ToList();
-                }
-                else
-                {
-                    LijstData = LijstData.OrderByDescending(o => o.Sectie).ToList();
-                }
+                LijstData = richting == ListSortDirection.Ascending
+                    ? LijstData.OrderBy(o => o.Sectie).ToList()
+                    : LijstData.OrderByDescending(o => o.Sectie).ToList();
             }
 
             if (newColumn.DataPropertyName == "Installatie")
             {
-                if (richting == ListSortDirection.Ascending)
-                {
-                    LijstData = LijstData.OrderBy(o => o.Installatie).ToList();
-                }
-                else
-                {
-                    LijstData = LijstData.OrderByDescending(o => o.Installatie).ToList();
-                }
+                LijstData = richting == ListSortDirection.Ascending
+                    ? LijstData.OrderBy(o => o.Installatie).ToList()
+                    : LijstData.OrderByDescending(o => o.Installatie).ToList();
             }
 
             if (newColumn.DataPropertyName == "InstallatieDeel")
             {
-                if (richting == ListSortDirection.Ascending)
-                {
-                    LijstData = LijstData.OrderBy(o => o.InstallatieDeel).ToList();
-                }
-                else
-                {
-                    LijstData = LijstData.OrderByDescending(o => o.InstallatieDeel).ToList();
-                }
+                LijstData = richting == ListSortDirection.Ascending
+                    ? LijstData.OrderBy(o => o.InstallatieDeel).ToList()
+                    : LijstData.OrderByDescending(o => o.InstallatieDeel).ToList();
             }
 
             if (newColumn.DataPropertyName == "Reden")
             {
-                if (richting == ListSortDirection.Ascending)
-                {
-                    LijstData = LijstData.OrderBy(o => o.Reden).ToList();
-                }
-                else
-                {
-                    LijstData = LijstData.OrderByDescending(o => o.Reden).ToList();
-
-                }
+                LijstData = richting == ListSortDirection.Ascending
+                    ? LijstData.OrderBy(o => o.Reden).ToList()
+                    : LijstData.OrderByDescending(o => o.Reden).ToList();
             }
             if (newColumn.DataPropertyName == "UitersteDatum")
             {
@@ -1515,29 +1468,28 @@ namespace Overbrugging
                     q.DatumTemp = GetDateTime(q.UitersteDatum);
                 }
 
-                if (richting == ListSortDirection.Ascending)
-                    LijstData = LijstData.OrderBy(o => o.DatumTemp).ToList();
-                else
-                    LijstData = LijstData.OrderByDescending(o => o.DatumTemp).ToList();
+                LijstData = richting == ListSortDirection.Ascending
+                    ? LijstData.OrderBy(o => o.DatumTemp).ToList()
+                    : LijstData.OrderByDescending(o => o.DatumTemp).ToList();
             }
         }
 
-        private DateTime GetDateTime(string  datum) // 21-12-2023 09-11-2023 20-01-2023
+        private DateTime GetDateTime(string datum) // 21-12-2023 09-11-2023 20-01-2023
         {
-            if(string.IsNullOrEmpty(datum))
+            if (string.IsNullOrEmpty(datum))
             {
                 return DateTime.Now;
             }
-            int jaar = int.Parse(datum.Substring(6,4));
+            int jaar = int.Parse(datum.Substring(6, 4));
             int maand = int.Parse(datum.Substring(3, 2));
             int dag = int.Parse(datum.Substring(0, 2));
-            DateTime ret = new DateTime(jaar,maand,dag);
+            DateTime ret = new DateTime(jaar, maand, dag);
             return ret;
         }
 
         private void IVWVVraag_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("Door inlognaam windows (personeel nr)\nKrijg u rechten voor invoer\nOf als u WV of IV bent verwijderen.");
+            _ = MessageBox.Show("Door inlognaam windows (personeel nr)\nKrijg u rechten voor invoer\nOf als u WV of IV bent verwijderen.");
         }
     }
 }
