@@ -42,9 +42,10 @@
             // 
             this.buttonNaam.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonNaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNaam.Location = new System.Drawing.Point(12, 12);
+            this.buttonNaam.Location = new System.Drawing.Point(18, 17);
+            this.buttonNaam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonNaam.Name = "buttonNaam";
-            this.buttonNaam.Size = new System.Drawing.Size(207, 44);
+            this.buttonNaam.Size = new System.Drawing.Size(310, 61);
             this.buttonNaam.TabIndex = 0;
             this.buttonNaam.Text = "Edit Namen/Funtie";
             this.buttonNaam.UseVisualStyleBackColor = true;
@@ -53,9 +54,10 @@
             // 
             this.buttonSecties.DialogResult = System.Windows.Forms.DialogResult.Abort;
             this.buttonSecties.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSecties.Location = new System.Drawing.Point(12, 72);
+            this.buttonSecties.Location = new System.Drawing.Point(18, 100);
+            this.buttonSecties.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonSecties.Name = "buttonSecties";
-            this.buttonSecties.Size = new System.Drawing.Size(207, 44);
+            this.buttonSecties.Size = new System.Drawing.Size(310, 61);
             this.buttonSecties.TabIndex = 0;
             this.buttonSecties.Text = "Edit Secties";
             this.buttonSecties.UseVisualStyleBackColor = true;
@@ -64,9 +66,10 @@
             // 
             this.buttonImport.DialogResult = System.Windows.Forms.DialogResult.Retry;
             this.buttonImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonImport.Location = new System.Drawing.Point(12, 366);
+            this.buttonImport.Location = new System.Drawing.Point(18, 507);
+            this.buttonImport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonImport.Name = "buttonImport";
-            this.buttonImport.Size = new System.Drawing.Size(207, 44);
+            this.buttonImport.Size = new System.Drawing.Size(310, 61);
             this.buttonImport.TabIndex = 0;
             this.buttonImport.Text = "Import oude overbrugprog.";
             this.buttonImport.UseVisualStyleBackColor = true;
@@ -75,7 +78,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(136, 204);
+            this.label1.Location = new System.Drawing.Point(21, 356);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 18);
             this.label1.TabIndex = 1;
@@ -85,7 +89,8 @@
             // 
             this.LabelBuildData.AutoSize = true;
             this.LabelBuildData.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelBuildData.Location = new System.Drawing.Point(13, 240);
+            this.LabelBuildData.Location = new System.Drawing.Point(21, 384);
+            this.LabelBuildData.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelBuildData.Name = "LabelBuildData";
             this.LabelBuildData.Size = new System.Drawing.Size(56, 18);
             this.LabelBuildData.TabIndex = 1;
@@ -94,9 +99,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Overbrugging.Properties.Resources.info;
-            this.pictureBox1.Location = new System.Drawing.Point(16, 133);
+            this.pictureBox1.Location = new System.Drawing.Point(24, 184);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 89);
+            this.pictureBox1.Size = new System.Drawing.Size(150, 150);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -105,7 +111,8 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 269);
+            this.label2.Location = new System.Drawing.Point(21, 429);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(148, 18);
             this.label2.TabIndex = 1;
@@ -113,9 +120,9 @@
             // 
             // Settings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(232, 422);
+            this.ClientSize = new System.Drawing.Size(348, 584);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.LabelBuildData);
             this.Controls.Add(this.label2);
@@ -123,7 +130,9 @@
             this.Controls.Add(this.buttonImport);
             this.Controls.Add(this.buttonSecties);
             this.Controls.Add(this.buttonNaam);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Settings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";

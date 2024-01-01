@@ -84,7 +84,7 @@ namespace Melding
                 if (meldingY < schermhoog - Height - 10)
                 {
                     status = StatusForm.show;
-                    close = 110;
+                    close = 150;
                 }
             }
             if (status == StatusForm.show)

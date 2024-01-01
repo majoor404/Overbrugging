@@ -630,20 +630,7 @@ namespace Overbrugging
             _ = DateTime.Now;
             foreach (Data a in LijstData)
             {
-                a.DatumTemp = GetDateTime(a.UitersteDatum);
-                a.Kleur = false;
-
-                if (a.DatumWv == string.Empty) // aantal niet afgetekend Wv
-                {
-                    NietAfgetekendWv++;
-                    a.Kleur = true;
-                }
-
-                if (a.DatumTemp < verloopdatum && a.DatumVerw == "")    // datum verlopen
-                {
-                    VerlopenData++;
-                    a.Kleur = true;
-                }
+                BepaalOfKleur(a);
 
                 TelSectie(a, "RST", (int)SectieNaam.SecRst);
                 TelSectie(a, "CON", (int)SectieNaam.SecCon);
@@ -653,6 +640,24 @@ namespace Overbrugging
                 TelSectie(a, "SKV", (int)SectieNaam.SecSkv);
                 TelSectie(a, "AOV", (int)SectieNaam.SecAov);
                 TelSectie(a, "ALG", (int)SectieNaam.SecAlg);
+            }
+        }
+
+        private void BepaalOfKleur(Data a)
+        {
+            a.DatumTemp = GetDateTime(a.UitersteDatum);
+            a.Kleur = false;
+
+            if (a.DatumWv == string.Empty) // aantal niet afgetekend Wv
+            {
+                NietAfgetekendWv++;
+                a.Kleur = true;
+            }
+
+            if (a.DatumTemp < verloopdatum && a.DatumVerw == "")    // datum verlopen
+            {
+                VerlopenData++;
+                a.Kleur = true;
             }
         }
 
@@ -734,7 +739,7 @@ namespace Overbrugging
                     GC.Collect();
 
                     // Melding
-                    FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Data");
+                    FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Save Data Lijst.");
                     md.Show();
                 }
             }
@@ -757,7 +762,7 @@ namespace Overbrugging
                     GC.Collect();
 
                     // Melding
-                    FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Namen");
+                    FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Save Namen Lijst.");
                     md.Show();
                 }
             }
@@ -779,7 +784,7 @@ namespace Overbrugging
                     GC.Collect();
 
                     // Melding
-                    FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Sectie's");
+                    FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Save Sectie's Lijst.");
                     md.Show();
                 }
             }
@@ -801,7 +806,7 @@ namespace Overbrugging
                     GC.Collect();
 
                     // Melding
-                    FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Instalatie's");
+                    FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Save Instalatie's Lijst.");
                     md.Show();
                 }
             }
@@ -1039,6 +1044,10 @@ namespace Overbrugging
                 TBDWVV.Text = Q.UitersteDatum;
                 TBNWV.Text = Q.NaamWV;
                 TextBoxBijzIVWV.Text = Q.BijzonderhedenWV;
+
+                TBNVerw.Text = Q.Naamverw;
+                TBDVerw.Text = Q.DatumVerw;
+                TBTVerw.Text = Q.BijzonderhedenVerw;
             }
             catch
             {
@@ -1058,6 +1067,9 @@ namespace Overbrugging
                 TBDWVV.Text = string.Empty;
                 TBNWV.Text = string.Empty;
                 TextBoxBijzIVWV.Text = string.Empty;
+                TBNVerw.Text = string.Empty;
+                TBDVerw.Text = string.Empty;
+                TBTVerw.Text = string.Empty;
             }
         }
 
@@ -1363,6 +1375,10 @@ namespace Overbrugging
                     }
                 }
             }
+            
+            foreach (Data a in temp)
+                BepaalOfKleur(a);
+            
             LijstData = temp;
             VulGrid();
         }

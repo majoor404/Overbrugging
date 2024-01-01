@@ -93,6 +93,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.TB2 = new System.Windows.Forms.TextBox();
             this.TB1 = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.TBNVerw = new System.Windows.Forms.TextBox();
+            this.TBDVerw = new System.Windows.Forms.TextBox();
+            this.TBTVerw = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -447,7 +452,7 @@
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.GridColor = System.Drawing.Color.CornflowerBlue;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 460);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 496);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -456,7 +461,7 @@
             this.dataGridView1.ShowCellToolTips = false;
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(1047, 468);
+            this.dataGridView1.Size = new System.Drawing.Size(1047, 432);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
             this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_ColumnHeaderMouseClick);
@@ -465,11 +470,13 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.TextBoxBijzIVWV);
             this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.linkLabel1);
             this.panel1.Controls.Add(this.label24);
             this.panel1.Controls.Add(this.label18);
+            this.panel1.Controls.Add(this.label25);
             this.panel1.Controls.Add(this.label26);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.LabelType);
@@ -484,9 +491,12 @@
             this.panel1.Controls.Add(this.TBN1);
             this.panel1.Controls.Add(this.TBSEC);
             this.panel1.Controls.Add(this.TBMOC);
+            this.panel1.Controls.Add(this.TBTVerw);
+            this.panel1.Controls.Add(this.TBDVerw);
             this.panel1.Controls.Add(this.TBSAP);
             this.panel1.Controls.Add(this.TBNWV);
             this.panel1.Controls.Add(this.TBDWVV);
+            this.panel1.Controls.Add(this.TBNVerw);
             this.panel1.Controls.Add(this.TBDWV);
             this.panel1.Controls.Add(this.TBDINV);
             this.panel1.Controls.Add(this.label17);
@@ -502,7 +512,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1047, 460);
+            this.panel1.Size = new System.Drawing.Size(1047, 496);
             this.panel1.TabIndex = 2;
             // 
             // TextBoxBijzIVWV
@@ -511,7 +521,7 @@
             this.TextBoxBijzIVWV.AcceptsTab = true;
             this.TextBoxBijzIVWV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TextBoxBijzIVWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxBijzIVWV.Location = new System.Drawing.Point(545, 328);
+            this.TextBoxBijzIVWV.Location = new System.Drawing.Point(544, 304);
             this.TextBoxBijzIVWV.Multiline = true;
             this.TextBoxBijzIVWV.Name = "TextBoxBijzIVWV";
             this.TextBoxBijzIVWV.ReadOnly = true;
@@ -523,7 +533,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(435, 331);
+            this.label23.Location = new System.Drawing.Point(434, 307);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(89, 18);
             this.label23.TabIndex = 37;
@@ -533,7 +543,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel1.Location = new System.Drawing.Point(824, 443);
+            this.linkLabel1.Location = new System.Drawing.Point(818, 473);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(218, 13);
             this.linkLabel1.TabIndex = 1;
@@ -545,7 +555,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(19, 376);
+            this.label24.Location = new System.Drawing.Point(18, 352);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(136, 18);
             this.label24.TabIndex = 35;
@@ -555,7 +565,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(19, 331);
+            this.label18.Location = new System.Drawing.Point(21, 307);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(52, 18);
             this.label18.TabIndex = 31;
@@ -565,7 +575,7 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(19, 412);
+            this.label26.Location = new System.Drawing.Point(18, 388);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(48, 18);
             this.label26.TabIndex = 32;
@@ -575,7 +585,7 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.Black;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Location = new System.Drawing.Point(15, 313);
+            this.panel3.Location = new System.Drawing.Point(14, 289);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1009, 3);
             this.panel3.TabIndex = 30;
@@ -706,7 +716,7 @@
             // TBNWV
             // 
             this.TBNWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBNWV.Location = new System.Drawing.Point(229, 414);
+            this.TBNWV.Location = new System.Drawing.Point(228, 390);
             this.TBNWV.Name = "TBNWV";
             this.TBNWV.ReadOnly = true;
             this.TBNWV.Size = new System.Drawing.Size(137, 24);
@@ -715,7 +725,7 @@
             // TBDWVV
             // 
             this.TBDWVV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBDWVV.Location = new System.Drawing.Point(229, 373);
+            this.TBDWVV.Location = new System.Drawing.Point(228, 349);
             this.TBDWVV.Name = "TBDWVV";
             this.TBDWVV.ReadOnly = true;
             this.TBDWVV.Size = new System.Drawing.Size(137, 24);
@@ -724,7 +734,7 @@
             // TBDWV
             // 
             this.TBDWV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBDWV.Location = new System.Drawing.Point(229, 331);
+            this.TBDWV.Location = new System.Drawing.Point(231, 307);
             this.TBDWV.Name = "TBDWV";
             this.TBDWV.ReadOnly = true;
             this.TBDWV.Size = new System.Drawing.Size(137, 24);
@@ -802,7 +812,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(542, 171);
+            this.label6.Location = new System.Drawing.Point(541, 147);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(157, 18);
             this.label6.TabIndex = 1;
@@ -812,7 +822,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(12, 170);
+            this.label9.Location = new System.Drawing.Point(422, 143);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(51, 18);
             this.label9.TabIndex = 2;
@@ -822,7 +832,7 @@
             // 
             this.TB2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TB2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TB2.Location = new System.Drawing.Point(545, 191);
+            this.TB2.Location = new System.Drawing.Point(544, 167);
             this.TB2.Multiline = true;
             this.TB2.Name = "TB2";
             this.TB2.ReadOnly = true;
@@ -834,13 +844,59 @@
             // 
             this.TB1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TB1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TB1.Location = new System.Drawing.Point(15, 191);
+            this.TB1.Location = new System.Drawing.Point(14, 167);
             this.TB1.Multiline = true;
             this.TB1.Name = "TB1";
             this.TB1.ReadOnly = true;
             this.TB1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.TB1.Size = new System.Drawing.Size(480, 114);
             this.TB1.TabIndex = 0;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Black;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Location = new System.Drawing.Point(24, 428);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1009, 3);
+            this.panel4.TabIndex = 39;
+            // 
+            // TBNVerw
+            // 
+            this.TBNVerw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBNVerw.Location = new System.Drawing.Point(24, 446);
+            this.TBNVerw.Name = "TBNVerw";
+            this.TBNVerw.ReadOnly = true;
+            this.TBNVerw.Size = new System.Drawing.Size(137, 24);
+            this.TBNVerw.TabIndex = 12;
+            // 
+            // TBDVerw
+            // 
+            this.TBDVerw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBDVerw.Location = new System.Drawing.Point(231, 444);
+            this.TBDVerw.Name = "TBDVerw";
+            this.TBDVerw.ReadOnly = true;
+            this.TBDVerw.Size = new System.Drawing.Size(137, 24);
+            this.TBDVerw.TabIndex = 12;
+            // 
+            // TBTVerw
+            // 
+            this.TBTVerw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBTVerw.Location = new System.Drawing.Point(544, 446);
+            this.TBTVerw.Name = "TBTVerw";
+            this.TBTVerw.ReadOnly = true;
+            this.TBTVerw.Size = new System.Drawing.Size(460, 24);
+            this.TBTVerw.TabIndex = 12;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(435, 446);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(76, 18);
+            this.label25.TabIndex = 32;
+            this.label25.Text = "Verwijderd";
             // 
             // MainForm
             // 
@@ -934,6 +990,11 @@
         private System.Windows.Forms.Label LabelNietAfgetekendWV;
         private System.Windows.Forms.LinkLabel IVWVVraag;
         private System.Windows.Forms.Label LabelDatumVerlopen;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label25;
+        public System.Windows.Forms.TextBox TBTVerw;
+        public System.Windows.Forms.TextBox TBDVerw;
+        public System.Windows.Forms.TextBox TBNVerw;
     }
 }
 
