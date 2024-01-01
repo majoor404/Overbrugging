@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -253,6 +256,39 @@ namespace Overbrugging
                 ComboBoxIVWV.Text = "";
                 DatumWv.TB.Text = " --/--/----";
                 DatumVerloopTIW.TB.Text = " --/--/----";
+            }
+        }
+
+        private void ButPrint_Click(object sender, EventArgs e)
+        {
+            string tempfile = System.IO.Path.GetTempPath() + "overb.jpg";
+            if (CaptureForm(tempfile))
+            {
+                if (File.Exists(tempfile))
+                {
+                    _ = Process.Start(tempfile);
+                }
+            }
+        }
+
+        private bool CaptureForm(string file)
+        {
+            try
+            {
+                Rectangle bounds = Bounds;
+                using (Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height))
+                {
+                    using (Graphics g = Graphics.FromImage(bitmap))
+                    {
+                        g.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
+                    }
+                    bitmap.Save(file, ImageFormat.Jpeg);
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }
