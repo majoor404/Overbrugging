@@ -549,97 +549,17 @@ namespace Overbrugging
                 LijstData = LijstData.Where(x => x.Soort == comboBoxSoortFilter.Text).ToList();
             }
 
-            // sorteer (ziet nu in laaddata)
-            //LijstData = LijstData.OrderByDescending(o => o.RegNr).ToList();
-
             VulGrid();
         }
 
         private void TelData()
         {
-            /*
-              lijstTemp->LoadFromFile(dir + "overbrug.ini");
-            // overbrugingen zonder werkvergunning
-            ZoekSelVervangString("%#RST", lijstTemp->Strings[0]);
-            ZoekSelVervangString("%#CON", lijstTemp->Strings[1]);
-            ZoekSelVervangString("%#PBI", lijstTemp->Strings[2]);
-            ZoekSelVervangString("%#PVK", lijstTemp->Strings[3]);
-            ZoekSelVervangString("%#CGM", lijstTemp->Strings[4]);
-            ZoekSelVervangString("%#SKV", lijstTemp->Strings[5]);
-            ZoekSelVervangString("%#ALG",  lijstTemp->Strings[6]); // algemeen.
-            ZoekSelVervangString("%#AOV", lijstTemp->Strings[7]);
-            // overbrugingen met werkvergunning
-            ZoekSelVervangString("%#RSTW", lijstTemp->Strings[8]);
-            ZoekSelVervangString("%#CONW", lijstTemp->Strings[9]);
-            ZoekSelVervangString("%#PBIW", lijstTemp->Strings[10]);
-            ZoekSelVervangString("%#PVKW", lijstTemp->Strings[11]);
-            ZoekSelVervangString("%#CGMW", lijstTemp->Strings[12]);
-            ZoekSelVervangString("%#SKVW", lijstTemp->Strings[13]);
-            ZoekSelVervangString("%#ALGW",  lijstTemp->Strings[14]); // algemeen.
-            ZoekSelVervangString("%#AOVW", lijstTemp->Strings[15]);
-            // overbrugingen verlopen
-            ZoekSelVervangString("%#RSTV", lijstTemp->Strings[16]);
-            ZoekSelVervangString("%#CONV", lijstTemp->Strings[17]);
-            ZoekSelVervangString("%#PBIV", lijstTemp->Strings[18]);
-            ZoekSelVervangString("%#PVKV", lijstTemp->Strings[19]);
-            ZoekSelVervangString("%#CGMV", lijstTemp->Strings[20]);
-            ZoekSelVervangString("%#SKVV", lijstTemp->Strings[21]);
-            ZoekSelVervangString("%#ALGV",  lijstTemp->Strings[22]); // algemeen.
-            ZoekSelVervangString("%#AOVV", lijstTemp->Strings[23]);
-            // tiw
-            ZoekSelVervangString("%#RSTT", lijstTemp->Strings[24]);
-            ZoekSelVervangString("%#CONT", lijstTemp->Strings[25]);
-            ZoekSelVervangString("%#PBIT", lijstTemp->Strings[26]);
-            ZoekSelVervangString("%#PVKT", lijstTemp->Strings[27]);
-            ZoekSelVervangString("%#CGMT", lijstTemp->Strings[28]);
-            ZoekSelVervangString("%#SKVT", lijstTemp->Strings[29]);
-            ZoekSelVervangString("%#ALGT",  lijstTemp->Strings[30]); // algemeen.
-            ZoekSelVervangString("%#AOVT", lijstTemp->Strings[31]);
-            // tiw verlopen
-            ZoekSelVervangString("%#RSTTV", lijstTemp->Strings[32]);
-            ZoekSelVervangString("%#CONTV", lijstTemp->Strings[33]);
-            ZoekSelVervangString("%#PBITV", lijstTemp->Strings[34]);
-            ZoekSelVervangString("%#PVKTV", lijstTemp->Strings[35]);
-            ZoekSelVervangString("%#CGMTV", lijstTemp->Strings[36]);
-            ZoekSelVervangString("%#SKVTV", lijstTemp->Strings[37]);
-            ZoekSelVervangString("%#ALGTV",  lijstTemp->Strings[38]); // algemeen.
-            ZoekSelVervangString("%#AOVTV", lijstTemp->Strings[39]);
-            // MOC staat voor Management Of Change
-            ZoekSelVervangString("%#RSTMOC", lijstTemp->Strings[40]);
-            ZoekSelVervangString("%#CONMOC", lijstTemp->Strings[41]);
-            ZoekSelVervangString("%#PBIMOC", lijstTemp->Strings[42]);
-            ZoekSelVervangString("%#PVKMOC", lijstTemp->Strings[43]);
-            ZoekSelVervangString("%#CGMMOC", lijstTemp->Strings[44]);
-            ZoekSelVervangString("%#SKVMOC", lijstTemp->Strings[45]);
-            ZoekSelVervangString("%#ALGMOC",  lijstTemp->Strings[46]); // algemeen.
-            ZoekSelVervangString("%#AOVMOC", lijstTemp->Strings[47]);
-            // MOC staat voor Management Of Change verlopen.
-            ZoekSelVervangString("%#RSTMOCV", lijstTemp->Strings[48]);
-            ZoekSelVervangString("%#CONMOCV", lijstTemp->Strings[49]);
-            ZoekSelVervangString("%#PBIMOCV", lijstTemp->Strings[50]);
-            ZoekSelVervangString("%#PVKMOCV", lijstTemp->Strings[51]);
-            ZoekSelVervangString("%#CGMMOCV", lijstTemp->Strings[52]);
-            ZoekSelVervangString("%#SKVMOCV", lijstTemp->Strings[53]);
-            ZoekSelVervangString("%#ALGMOCV",  lijstTemp->Strings[54]); // algemeen.
-            ZoekSelVervangString("%#AOVMOCV", lijstTemp->Strings[55]); 
-             */
-
-
             NietAfgetekendWv = 0;
             VerlopenData = 0;
             _ = DateTime.Now;
             foreach (Data a in LijstData)
             {
                 BepaalOfKleur(a);
-
-                TelSectie(a, "RST", (int)SectieNaam.SecRst);
-                TelSectie(a, "CON", (int)SectieNaam.SecCon);
-                TelSectie(a, "PBI", (int)SectieNaam.SecPbi);
-                TelSectie(a, "PVK", (int)SectieNaam.SecPvk);
-                TelSectie(a, "CGM", (int)SectieNaam.SecCgm);
-                TelSectie(a, "SKV", (int)SectieNaam.SecSkv);
-                TelSectie(a, "AOV", (int)SectieNaam.SecAov);
-                TelSectie(a, "ALG", (int)SectieNaam.SecAlg);
             }
         }
 
@@ -669,6 +589,29 @@ namespace Overbrugging
                 // opslag plek is string 2.
                 string opslag = instellingen[1];
                 opslag = opslag + "\\Overbrug.ini";
+
+                LaadData_lijst();
+
+                for (int i = 0; i < 7; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        teldata[i, j] = 0;
+                    }
+                }
+
+                foreach (Data a in LijstData)
+                {
+                    TelSectie(a, "RST", (int)SectieNaam.SecRst);
+                    TelSectie(a, "CON", (int)SectieNaam.SecCon);
+                    TelSectie(a, "PBI", (int)SectieNaam.SecPbi);
+                    TelSectie(a, "PVK", (int)SectieNaam.SecPvk);
+                    TelSectie(a, "CGM", (int)SectieNaam.SecCgm);
+                    TelSectie(a, "SKV", (int)SectieNaam.SecSkv);
+                    TelSectie(a, "AOV", (int)SectieNaam.SecAov);
+                    TelSectie(a, "ALG", (int)SectieNaam.SecAlg);
+                }
+
                 List<string> DataFile = new List<string>();
                 for (int i = 0; i < 7; i++)
                 {
