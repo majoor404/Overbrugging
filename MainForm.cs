@@ -900,11 +900,6 @@ namespace Overbrugging
 
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if(!IsIVer.Checked)
-            //{
-            //    MessageBox.Show("Geen rechten");
-            //    return;
-            //}
             try
             {
                 // zoek record
@@ -913,12 +908,10 @@ namespace Overbrugging
 
                 // maak formulier
                 Detail dt = new Detail();
-                //dt.TextBoxRegNr.Text = TempData.RegNr.ToString();
-                //dt.TextBoxRegNr.Enabled = false;
 
-                // vullen dropdown items
-                dt.ComboBoxSectie.Text = TempData.Sectie; // daarvoor heb ik wel sectie nodig.
-                VulDropDownItems(dt);
+                // vullen dropdown items ZIT NU IN VulDatailForm
+                //dt.ComboBoxSectie.Text = TempData.Sectie; // daarvoor heb ik wel sectie nodig.
+                //VulDropDownItems(dt);
 
                 VulDatailForm(dt, TempData);
 
