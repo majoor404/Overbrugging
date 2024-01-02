@@ -588,7 +588,7 @@ namespace Overbrugging
                 LaadInstelingen();
                 // opslag plek is string 2.
                 string opslag = instellingen[1];
-                opslag = opslag + "\\Overbrug.ini";
+                opslag += "\\Overbrug.ini";
 
                 LaadData_lijst();
 
@@ -621,9 +621,10 @@ namespace Overbrugging
                     }
                 }
                 File.WriteAllLines(opslag, DataFile);
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                _ = MessageBox.Show(ex.Message);
             }
         }
 
@@ -1318,10 +1319,12 @@ namespace Overbrugging
                     }
                 }
             }
-            
+
             foreach (Data a in temp)
+            {
                 BepaalOfKleur(a);
-            
+            }
+
             LijstData = temp;
             VulGrid();
         }
