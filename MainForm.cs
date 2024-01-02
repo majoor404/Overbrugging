@@ -1123,8 +1123,8 @@ namespace Overbrugging
                 dt.TextBoxRegNr.Enabled = false;
 
                 // vullen dropdown items
-                dt.ComboBoxSectie.Text = Q.Sectie; // daarvoor heb ik wel sectie nodig.
-                VulDropDownItems(dt);
+                //dt.ComboBoxSectie.Text = Q.Sectie; // daarvoor heb ik wel sectie nodig.
+                //VulDropDownItems(dt);
 
                 VulDatailForm(dt, Q);
 
