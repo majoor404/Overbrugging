@@ -1361,18 +1361,20 @@ namespace Overbrugging
             oldColumn = newColumn;
 
             //// Sort the selected column.
-            Sort(newColumn, direction);
-
-            if (LijstData.Count > 0)
+            if (Sort(newColumn, direction))
             {
-                dataGridView1.DataSource = LijstData;
+
+                Wait(300);
+
+                if (LijstData.Count > 0)
+                {
+                    dataGridView1.DataSource = LijstData;
+                }
+
+                newColumn.HeaderCell.SortGlyphDirection = SortRichting == SortOrder.Ascending ? SortOrder.Ascending : SortOrder.Descending;
+
+                KleurAfwijkingen();
             }
-
-            newColumn.HeaderCell.SortGlyphDirection = SortRichting == SortOrder.Ascending ? SortOrder.Ascending : SortOrder.Descending;
-
-            KleurAfwijkingen();
-
-            Wait(300);
         }
 
         private void KleurAfwijkingen()
@@ -1386,72 +1388,77 @@ namespace Overbrugging
             }
         }
 
-        private void Sort(DataGridViewColumn newColumn, ListSortDirection richting)
+        private bool Sort(DataGridViewColumn newColumn, ListSortDirection richting)
         {
-            if (newColumn.DataPropertyName == "Regnr")
+            try
             {
-                LijstData = richting == ListSortDirection.Ascending
-                    ? LijstData.OrderBy(o => o.RegNr).ToList()
-                    : LijstData.OrderByDescending(o => o.RegNr).ToList();
-            }
-
-            if (newColumn.DataPropertyName == "DatumInv")
-            {
-                foreach (Data q in LijstData)
+                if (newColumn.DataPropertyName == "Regnr")
                 {
-                    q.DatumTemp = GetDateTime(q.DatumInv);
+                    LijstData = richting == ListSortDirection.Ascending
+                        ? LijstData.OrderBy(o => o.RegNr).ToList()
+                        : LijstData.OrderByDescending(o => o.RegNr).ToList();
                 }
 
-                LijstData = richting == ListSortDirection.Ascending
-                    ? LijstData.OrderBy(o => o.DatumTemp).ToList()
-                    : LijstData.OrderByDescending(o => o.DatumTemp).ToList();
-            }
-
-            if (newColumn.DataPropertyName == "Soort")
-            {
-                LijstData = richting == ListSortDirection.Ascending
-                    ? LijstData.OrderBy(o => o.Soort).ToList()
-                    : LijstData.OrderByDescending(o => o.Soort).ToList();
-            }
-
-            if (newColumn.DataPropertyName == "Sectie")
-            {
-                LijstData = richting == ListSortDirection.Ascending
-                    ? LijstData.OrderBy(o => o.Sectie).ToList()
-                    : LijstData.OrderByDescending(o => o.Sectie).ToList();
-            }
-
-            if (newColumn.DataPropertyName == "Installatie")
-            {
-                LijstData = richting == ListSortDirection.Ascending
-                    ? LijstData.OrderBy(o => o.Installatie).ToList()
-                    : LijstData.OrderByDescending(o => o.Installatie).ToList();
-            }
-
-            if (newColumn.DataPropertyName == "InstallatieDeel")
-            {
-                LijstData = richting == ListSortDirection.Ascending
-                    ? LijstData.OrderBy(o => o.InstallatieDeel).ToList()
-                    : LijstData.OrderByDescending(o => o.InstallatieDeel).ToList();
-            }
-
-            if (newColumn.DataPropertyName == "Reden")
-            {
-                LijstData = richting == ListSortDirection.Ascending
-                    ? LijstData.OrderBy(o => o.Reden).ToList()
-                    : LijstData.OrderByDescending(o => o.Reden).ToList();
-            }
-            if (newColumn.DataPropertyName == "UitersteDatum")
-            {
-                foreach (Data q in LijstData)
+                if (newColumn.DataPropertyName == "DatumInv")
                 {
-                    q.DatumTemp = GetDateTime(q.UitersteDatum);
+                    foreach (Data q in LijstData)
+                    {
+                        q.DatumTemp = GetDateTime(q.DatumInv);
+                    }
+
+                    LijstData = richting == ListSortDirection.Ascending
+                        ? LijstData.OrderBy(o => o.DatumTemp).ToList()
+                        : LijstData.OrderByDescending(o => o.DatumTemp).ToList();
                 }
 
-                LijstData = richting == ListSortDirection.Ascending
-                    ? LijstData.OrderBy(o => o.DatumTemp).ToList()
-                    : LijstData.OrderByDescending(o => o.DatumTemp).ToList();
+                if (newColumn.DataPropertyName == "Soort")
+                {
+                    LijstData = richting == ListSortDirection.Ascending
+                        ? LijstData.OrderBy(o => o.Soort).ToList()
+                        : LijstData.OrderByDescending(o => o.Soort).ToList();
+                }
+
+                if (newColumn.DataPropertyName == "Sectie")
+                {
+                    LijstData = richting == ListSortDirection.Ascending
+                        ? LijstData.OrderBy(o => o.Sectie).ToList()
+                        : LijstData.OrderByDescending(o => o.Sectie).ToList();
+                }
+
+                if (newColumn.DataPropertyName == "Installatie")
+                {
+                    LijstData = richting == ListSortDirection.Ascending
+                        ? LijstData.OrderBy(o => o.Installatie).ToList()
+                        : LijstData.OrderByDescending(o => o.Installatie).ToList();
+                }
+
+                if (newColumn.DataPropertyName == "InstallatieDeel")
+                {
+                    LijstData = richting == ListSortDirection.Ascending
+                        ? LijstData.OrderBy(o => o.InstallatieDeel).ToList()
+                        : LijstData.OrderByDescending(o => o.InstallatieDeel).ToList();
+                }
+
+                if (newColumn.DataPropertyName == "Reden")
+                {
+                    LijstData = richting == ListSortDirection.Ascending
+                        ? LijstData.OrderBy(o => o.Reden).ToList()
+                        : LijstData.OrderByDescending(o => o.Reden).ToList();
+                }
+                if (newColumn.DataPropertyName == "UitersteDatum")
+                {
+                    foreach (Data q in LijstData)
+                    {
+                        q.DatumTemp = GetDateTime(q.UitersteDatum);
+                    }
+
+                    LijstData = richting == ListSortDirection.Ascending
+                        ? LijstData.OrderBy(o => o.DatumTemp).ToList()
+                        : LijstData.OrderByDescending(o => o.DatumTemp).ToList();
+                }
+                return true;
             }
+            catch {  return false; }
         }
 
         private DateTime GetDateTime(string datum) // 21-12-2023 09-11-2023 20-01-2023
