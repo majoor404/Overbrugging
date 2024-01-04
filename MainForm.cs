@@ -1476,7 +1476,7 @@ namespace Overbrugging
 
         private void IVWVVraag_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            _ = MessageBox.Show("Door inlognaam windows (personeel nr)\nKrijg u rechten voor invoer\nOf als u WV of IV bent verwijderen.");
+            _ = MessageBox.Show("Door inlognaam windows (personeel nr)\nKrijg u rechten voor invoer\nAls u WV of IV bent kunt u ook overnemen.");
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
