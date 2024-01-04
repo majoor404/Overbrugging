@@ -32,7 +32,9 @@
             this.Panel12345 = new System.Windows.Forms.Panel();
             this.ButCancel = new System.Windows.Forms.Button();
             this.ButVoerUit = new System.Windows.Forms.Button();
+            this.ButPrint = new System.Windows.Forms.Button();
             this.LabelType = new System.Windows.Forms.Label();
+            this.DatumInv = new Overbrugging.DatumPicker();
             this.TextBoxOplossing = new System.Windows.Forms.TextBox();
             this.TextBoxRede = new System.Windows.Forms.TextBox();
             this.ComboBoxNaam2 = new System.Windows.Forms.ComboBox();
@@ -64,6 +66,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.ButtonIVWVDatumVerw = new System.Windows.Forms.Button();
             this.ButSaveVerw = new System.Windows.Forms.Button();
+            this.DatumVerw = new Overbrugging.DatumPicker();
             this.label16 = new System.Windows.Forms.Label();
             this.TextBoxBijzVerw = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -76,9 +79,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.ButtonIVWVDatumNu = new System.Windows.Forms.Button();
             this.ButSaveWV = new System.Windows.Forms.Button();
-            this.ButtonType = new System.Windows.Forms.Button();
+            this.DatumVerloopTIW = new Overbrugging.DatumPicker();
+            this.DatumWv = new Overbrugging.DatumPicker();
             this.label21 = new System.Windows.Forms.Label();
             this.TextBoxBijzIVWV = new System.Windows.Forms.TextBox();
+            this.CBSoort = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.ComboBoxIVWV = new System.Windows.Forms.ComboBox();
@@ -87,11 +92,6 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
-            this.ButPrint = new System.Windows.Forms.Button();
-            this.DatumVerloopTIW = new Overbrugging.DatumPicker();
-            this.DatumWv = new Overbrugging.DatumPicker();
-            this.DatumVerw = new Overbrugging.DatumPicker();
-            this.DatumInv = new Overbrugging.DatumPicker();
             this.Panel12345.SuspendLayout();
             this.PanelVerwijderen.SuspendLayout();
             this.PanelWV.SuspendLayout();
@@ -160,6 +160,17 @@
             this.ButVoerUit.UseVisualStyleBackColor = true;
             this.ButVoerUit.Click += new System.EventHandler(this.ButVoerUit_Click);
             // 
+            // ButPrint
+            // 
+            this.ButPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButPrint.Location = new System.Drawing.Point(14, 372);
+            this.ButPrint.Name = "ButPrint";
+            this.ButPrint.Size = new System.Drawing.Size(122, 34);
+            this.ButPrint.TabIndex = 7;
+            this.ButPrint.Text = "Print";
+            this.ButPrint.UseVisualStyleBackColor = true;
+            this.ButPrint.Click += new System.EventHandler(this.ButPrint_Click);
+            // 
             // LabelType
             // 
             this.LabelType.AutoSize = true;
@@ -169,6 +180,14 @@
             this.LabelType.Size = new System.Drawing.Size(241, 24);
             this.LabelType.TabIndex = 6;
             this.LabelType.Text = "Tijdelijke Instalatie Wijziging";
+            // 
+            // DatumInv
+            // 
+            this.DatumInv.Datum = "";
+            this.DatumInv.Location = new System.Drawing.Point(159, 88);
+            this.DatumInv.Name = "DatumInv";
+            this.DatumInv.Size = new System.Drawing.Size(137, 42);
+            this.DatumInv.TabIndex = 5;
             // 
             // TextBoxOplossing
             // 
@@ -490,6 +509,14 @@
             this.ButSaveVerw.UseVisualStyleBackColor = true;
             this.ButSaveVerw.Click += new System.EventHandler(this.ButVoerUit_Click);
             // 
+            // DatumVerw
+            // 
+            this.DatumVerw.Datum = "";
+            this.DatumVerw.Location = new System.Drawing.Point(159, 114);
+            this.DatumVerw.Name = "DatumVerw";
+            this.DatumVerw.Size = new System.Drawing.Size(137, 42);
+            this.DatumVerw.TabIndex = 5;
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -579,11 +606,11 @@
             this.PanelWV.Controls.Add(this.button1);
             this.PanelWV.Controls.Add(this.ButtonIVWVDatumNu);
             this.PanelWV.Controls.Add(this.ButSaveWV);
-            this.PanelWV.Controls.Add(this.ButtonType);
             this.PanelWV.Controls.Add(this.DatumVerloopTIW);
             this.PanelWV.Controls.Add(this.DatumWv);
             this.PanelWV.Controls.Add(this.label21);
             this.PanelWV.Controls.Add(this.TextBoxBijzIVWV);
+            this.PanelWV.Controls.Add(this.CBSoort);
             this.PanelWV.Controls.Add(this.label24);
             this.PanelWV.Controls.Add(this.label22);
             this.PanelWV.Controls.Add(this.ComboBoxIVWV);
@@ -631,16 +658,21 @@
             this.ButSaveWV.UseVisualStyleBackColor = true;
             this.ButSaveWV.Click += new System.EventHandler(this.ButVoerUit_Click);
             // 
-            // ButtonType
+            // DatumVerloopTIW
             // 
-            this.ButtonType.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonType.Location = new System.Drawing.Point(159, 104);
-            this.ButtonType.Name = "ButtonType";
-            this.ButtonType.Size = new System.Drawing.Size(137, 31);
-            this.ButtonType.TabIndex = 8;
-            this.ButtonType.Text = "Type";
-            this.ButtonType.UseVisualStyleBackColor = true;
-            this.ButtonType.Click += new System.EventHandler(this.ButtonType_Click);
+            this.DatumVerloopTIW.Datum = "";
+            this.DatumVerloopTIW.Location = new System.Drawing.Point(515, 162);
+            this.DatumVerloopTIW.Name = "DatumVerloopTIW";
+            this.DatumVerloopTIW.Size = new System.Drawing.Size(137, 42);
+            this.DatumVerloopTIW.TabIndex = 7;
+            // 
+            // DatumWv
+            // 
+            this.DatumWv.Datum = "";
+            this.DatumWv.Location = new System.Drawing.Point(159, 162);
+            this.DatumWv.Name = "DatumWv";
+            this.DatumWv.Size = new System.Drawing.Size(137, 42);
+            this.DatumWv.TabIndex = 6;
             // 
             // label21
             // 
@@ -663,6 +695,22 @@
             this.TextBoxBijzIVWV.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.TextBoxBijzIVWV.Size = new System.Drawing.Size(435, 106);
             this.TextBoxBijzIVWV.TabIndex = 4;
+            // 
+            // CBSoort
+            // 
+            this.CBSoort.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CBSoort.FormattingEnabled = true;
+            this.CBSoort.Items.AddRange(new object[] {
+            "TIW",
+            "OVERB",
+            "MOC"});
+            this.CBSoort.Location = new System.Drawing.Point(159, 107);
+            this.CBSoort.Name = "CBSoort";
+            this.CBSoort.Size = new System.Drawing.Size(137, 26);
+            this.CBSoort.TabIndex = 1;
+            this.CBSoort.Text = "TIW";
+            this.CBSoort.SelectedIndexChanged += new System.EventHandler(this.CBSoort_SelectedIndexChanged);
+            this.CBSoort.TextChanged += new System.EventHandler(this.CBSoort_TextChanged);
             // 
             // label24
             // 
@@ -744,49 +792,6 @@
             this.label26.TabIndex = 0;
             this.label26.Text = "Naam";
             // 
-            // ButPrint
-            // 
-            this.ButPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButPrint.Location = new System.Drawing.Point(14, 372);
-            this.ButPrint.Name = "ButPrint";
-            this.ButPrint.Size = new System.Drawing.Size(122, 34);
-            this.ButPrint.TabIndex = 7;
-            this.ButPrint.Text = "Print";
-            this.ButPrint.UseVisualStyleBackColor = true;
-            this.ButPrint.Click += new System.EventHandler(this.ButPrint_Click);
-            // 
-            // DatumVerloopTIW
-            // 
-            this.DatumVerloopTIW.Datum = "";
-            this.DatumVerloopTIW.Location = new System.Drawing.Point(515, 162);
-            this.DatumVerloopTIW.Name = "DatumVerloopTIW";
-            this.DatumVerloopTIW.Size = new System.Drawing.Size(137, 42);
-            this.DatumVerloopTIW.TabIndex = 7;
-            // 
-            // DatumWv
-            // 
-            this.DatumWv.Datum = "";
-            this.DatumWv.Location = new System.Drawing.Point(159, 162);
-            this.DatumWv.Name = "DatumWv";
-            this.DatumWv.Size = new System.Drawing.Size(137, 42);
-            this.DatumWv.TabIndex = 6;
-            // 
-            // DatumVerw
-            // 
-            this.DatumVerw.Datum = "";
-            this.DatumVerw.Location = new System.Drawing.Point(159, 114);
-            this.DatumVerw.Name = "DatumVerw";
-            this.DatumVerw.Size = new System.Drawing.Size(137, 42);
-            this.DatumVerw.TabIndex = 5;
-            // 
-            // DatumInv
-            // 
-            this.DatumInv.Datum = "";
-            this.DatumInv.Location = new System.Drawing.Point(159, 88);
-            this.DatumInv.Name = "DatumInv";
-            this.DatumInv.Size = new System.Drawing.Size(137, 42);
-            this.DatumInv.TabIndex = 5;
-            // 
             // Detail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -867,7 +872,6 @@
         public DatumPicker DatumVerw;
         public DatumPicker DatumVerloopTIW;
         public DatumPicker DatumWv;
-        public System.Windows.Forms.Button ButtonType;
         public System.Windows.Forms.Label LabelType;
         private System.Windows.Forms.Button ButtonIVWVDatumVerw;
         private System.Windows.Forms.Button ButtonIVWVDatumNu;
@@ -878,5 +882,6 @@
         private System.Windows.Forms.Button ButSaveVerw;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button ButPrint;
+        public System.Windows.Forms.ComboBox CBSoort;
     }
 }

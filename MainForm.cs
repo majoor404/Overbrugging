@@ -1167,7 +1167,7 @@ namespace Overbrugging
                 dt.ComboBoxIVWV.Text = Q.NaamWV;
                 dt.DatumVerloopTIW.Datum = Q.UitersteDatum;
                 dt.TextBoxBijzIVWV.Text = Q.BijzonderhedenWV;
-                dt.ButtonType.Text = Q.Soort;
+                dt.CBSoort.Text = Q.Soort;
                 // onderste panel
                 dt.DatumVerw.Datum = Q.DatumVerw;
                 dt.ComboBoxNaamVerw.Text = Q.Naamverw;

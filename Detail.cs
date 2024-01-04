@@ -17,27 +17,27 @@ namespace Overbrugging
             InitializeComponent();
         }
 
-        private void ButtonType_Click(object sender, EventArgs e)
-        {
-            KeuzeType KS = new KeuzeType();
-            DialogResult ret = KS.ShowDialog();
-            if (ret == DialogResult.OK)
-            {
-                // TIW
-                MainForm.Main.TempData.Soort = "TIW";
-            }
-            if (ret == DialogResult.Yes)
-            {
-                //OVERB
-                MainForm.Main.TempData.Soort = "OVERB";
-            }
-            if (ret == DialogResult.Abort)
-            {
-                //MOC
-                MainForm.Main.TempData.Soort = "MOC";
-            }
-            RefreshForm();
-        }
+        //private void ButtonType_Click(object sender, EventArgs e)
+        //{
+        //    KeuzeType KS = new KeuzeType();
+        //    DialogResult ret = KS.ShowDialog();
+        //    if (ret == DialogResult.OK)
+        //    {
+        //        // TIW
+        //        MainForm.Main.TempData.Soort = "TIW";
+        //    }
+        //    if (ret == DialogResult.Yes)
+        //    {
+        //        //OVERB
+        //        MainForm.Main.TempData.Soort = "OVERB";
+        //    }
+        //    if (ret == DialogResult.Abort)
+        //    {
+        //        //MOC
+        //        MainForm.Main.TempData.Soort = "MOC";
+        //    }
+        //    RefreshForm();
+        //}
 
         private void Detail_Shown(object sender, EventArgs e)
         {
@@ -88,7 +88,7 @@ namespace Overbrugging
                 labelMOC.Visible = false;
                 TextBoxMocNr.Visible = false;
             }
-            ButtonType.Text = MainForm.Main.TempData.Soort;
+            CBSoort.Text = MainForm.Main.TempData.Soort;
         }
 
         private void ComboBoxNaam1_SelectedIndexChanged(object sender, EventArgs e)
@@ -152,11 +152,6 @@ namespace Overbrugging
             DatumVerw.TB.Text = DateTime.Now.ToShortDateString();
         }
 
-        private void Detail_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            
-        }
-
         private void ButVoerUit_Click(object sender, EventArgs e)
         {
             // als wel datum iv maar geen naam
@@ -190,6 +185,30 @@ namespace Overbrugging
                 return;
             }
 
+            if(CBSoort.Text == "")
+            {
+                KeuzeType KS = new KeuzeType();
+                DialogResult ret = KS.ShowDialog();
+                if (ret == DialogResult.OK)
+                {
+                    // TIW
+                    CBSoort.Text = "TIW";
+                    MainForm.Main.TempData.Soort = "TIW";
+                }
+                if (ret == DialogResult.Yes)
+                {
+                    //OVERB
+                    CBSoort.Text = "OVERB";
+                    MainForm.Main.TempData.Soort = "OVERB";
+                }
+                if (ret == DialogResult.Abort)
+                {
+                    //MOC
+                    CBSoort.Text = "MOC";
+                    MainForm.Main.TempData.Soort = "MOC";
+                }
+            }
+
             int index;
             //bool save_nieuwe_index = false;
             if (string.IsNullOrEmpty(TextBoxRegNr.Text))
@@ -221,7 +240,7 @@ namespace Overbrugging
             MainForm.Main.TempData.NaamWV = ComboBoxIVWV.Text;
             MainForm.Main.TempData.UitersteDatum = DatumVerloopTIW.Datum;
             MainForm.Main.TempData.BijzonderhedenWV = TextBoxBijzIVWV.Text;
-            MainForm.Main.TempData.Soort = ButtonType.Text;
+            MainForm.Main.TempData.Soort = CBSoort.Text;
             // onderste panel
             MainForm.Main.TempData.DatumVerw = DatumVerw.Datum;
             MainForm.Main.TempData.Naamverw = ComboBoxNaamVerw.Text;
@@ -289,6 +308,63 @@ namespace Overbrugging
             catch
             {
                 return false;
+            }
+        }
+
+        private void CBSoort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if(!(CBSoort.Text == "TIW" || CBSoort.Text == "OVERB" || CBSoort.Text == "MOC"))
+            //{
+            //    KeuzeType KS = new KeuzeType();
+            //    DialogResult ret = KS.ShowDialog();
+            //    if (ret == DialogResult.OK)
+            //    {
+            //        // TIW
+            //        CBSoort.Text = "TIW";
+            //        MainForm.Main.TempData.Soort = "TIW";
+            //    }
+            //    if (ret == DialogResult.Yes)
+            //    {
+            //        //OVERB
+            //        CBSoort.Text = "OVERB";
+            //        MainForm.Main.TempData.Soort = "OVERB";
+            //    }
+            //    if (ret == DialogResult.Abort)
+            //    {
+            //        //MOC
+            //        CBSoort.Text = "MOC";
+            //        MainForm.Main.TempData.Soort = "MOC";
+            //    }
+            //}
+
+            MainForm.Main.TempData.Soort = CBSoort.Text;
+            RefreshForm();
+        }
+
+        private void CBSoort_TextChanged(object sender, EventArgs e)
+        {
+            if (!(CBSoort.Text == "TIW" || CBSoort.Text == "OVERB" || CBSoort.Text == "MOC"))
+            {
+                KeuzeType KS = new KeuzeType();
+                DialogResult ret = KS.ShowDialog();
+                if (ret == DialogResult.OK)
+                {
+                    // TIW
+                    CBSoort.Text = "TIW";
+                    MainForm.Main.TempData.Soort = "TIW";
+                }
+                if (ret == DialogResult.Yes)
+                {
+                    //OVERB
+                    CBSoort.Text = "OVERB";
+                    MainForm.Main.TempData.Soort = "OVERB";
+                }
+                if (ret == DialogResult.Abort)
+                {
+                    //MOC
+                    CBSoort.Text = "MOC";
+                    MainForm.Main.TempData.Soort = "MOC";
+                }
             }
         }
     }
