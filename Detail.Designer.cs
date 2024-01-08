@@ -92,6 +92,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
+            this.ButPrintUitvoering = new System.Windows.Forms.Button();
             this.Panel12345.SuspendLayout();
             this.PanelVerwijderen.SuspendLayout();
             this.PanelWV.SuspendLayout();
@@ -102,6 +103,7 @@
             this.Panel12345.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Panel12345.Controls.Add(this.ButCancel);
             this.Panel12345.Controls.Add(this.ButVoerUit);
+            this.Panel12345.Controls.Add(this.ButPrintUitvoering);
             this.Panel12345.Controls.Add(this.ButPrint);
             this.Panel12345.Controls.Add(this.LabelType);
             this.Panel12345.Controls.Add(this.DatumInv);
@@ -167,7 +169,7 @@
             this.ButPrint.Name = "ButPrint";
             this.ButPrint.Size = new System.Drawing.Size(122, 34);
             this.ButPrint.TabIndex = 7;
-            this.ButPrint.Text = "Print";
+            this.ButPrint.Text = "Print Formulier";
             this.ButPrint.UseVisualStyleBackColor = true;
             this.ButPrint.Click += new System.EventHandler(this.ButPrint_Click);
             // 
@@ -792,6 +794,17 @@
             this.label26.TabIndex = 0;
             this.label26.Text = "Naam";
             // 
+            // ButPrintUitvoering
+            // 
+            this.ButPrintUitvoering.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButPrintUitvoering.Location = new System.Drawing.Point(159, 372);
+            this.ButPrintUitvoering.Name = "ButPrintUitvoering";
+            this.ButPrintUitvoering.Size = new System.Drawing.Size(122, 34);
+            this.ButPrintUitvoering.TabIndex = 7;
+            this.ButPrintUitvoering.Text = "Print Uitvoering";
+            this.ButPrintUitvoering.UseVisualStyleBackColor = true;
+            this.ButPrintUitvoering.Click += new System.EventHandler(this.ButPrintUitvoering_Click);
+            // 
             // Detail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -883,5 +896,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button ButPrint;
         public System.Windows.Forms.ComboBox CBSoort;
+        private System.Windows.Forms.Button ButPrintUitvoering;
     }
 }

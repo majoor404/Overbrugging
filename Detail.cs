@@ -138,11 +138,11 @@ namespace Overbrugging
 
         private void ButtonIVWVDatumNu_Click(object sender, EventArgs e)
         {
-            DateTime nu  = DateTime.Now;
+            DateTime nu = DateTime.Now;
             DatumWv.TB.Text = nu.ToString("dd-MM-yyyy");
             // verloop op + 1 week en dan op woensdag
             nu = nu.AddDays(7);
-            while(nu.DayOfWeek !=  DayOfWeek.Wednesday)
+            while (nu.DayOfWeek != DayOfWeek.Wednesday)
                 nu = nu.AddDays(1);
             DatumVerloopTIW.TB.Text = nu.ToString("dd-MM-yyyy");
         }
@@ -155,7 +155,7 @@ namespace Overbrugging
         private void ButVoerUit_Click(object sender, EventArgs e)
         {
             // als wel datum iv maar geen naam
-            if((DatumWv.TB.Text != " --/--/----") && (ComboBoxIVWV.Text == ""))
+            if ((DatumWv.TB.Text != " --/--/----") && (ComboBoxIVWV.Text == ""))
             {
                 MessageBox.Show("Datum en Naam IV/WV niet ingevuld");
                 return;
@@ -167,7 +167,7 @@ namespace Overbrugging
                 return;
             }
 
-            if(ComboBoxNaam1.Text == "" && ComboBoxNaam2.Text == "")
+            if (ComboBoxNaam1.Text == "" && ComboBoxNaam2.Text == "")
             {
                 MessageBox.Show("Geen namen ingevuld Aangemaakt");
                 return;
@@ -185,7 +185,7 @@ namespace Overbrugging
                 return;
             }
 
-            if(CBSoort.Text == "")
+            if (CBSoort.Text == "")
             {
                 KeuzeType KS = new KeuzeType();
                 DialogResult ret = KS.ShowDialog();
@@ -261,7 +261,7 @@ namespace Overbrugging
 
         private void ComboBoxNaamVerw_TextChanged(object sender, EventArgs e)
         {
-            if(DatumVerw.TB.Text == " --/--/----")
+            if (DatumVerw.TB.Text == " --/--/----")
                 DatumVerw.TB.Text = DateTime.Now.ToShortDateString();
         }
 
@@ -269,7 +269,7 @@ namespace Overbrugging
         {
             // als data veranderd, maar is al goedgekeurd en niet afgesloten,
             // verwijder de VW data
-            if(ComboBoxIVWV.Text != "" && TextBoxRegNr.Text != "" && ComboBoxNaamVerw.Text == "")
+            if (ComboBoxIVWV.Text != "" && TextBoxRegNr.Text != "" && ComboBoxNaamVerw.Text == "")
             {
                 ComboBoxIVWV.Items.Add("");
                 ComboBoxIVWV.Text = "";
@@ -366,6 +366,50 @@ namespace Overbrugging
                     MainForm.Main.TempData.Soort = "MOC";
                 }
             }
+        }
+
+        private void ButPrintUitvoering_Click(object sender, EventArgs e)
+        {
+            UitvoeringPrintForm UVP = new UitvoeringPrintForm();
+            UVP.Uitvoering.Text = TextBoxOplossing.Text;
+            UVP.Uitvoering.SelectionStart = 0;
+            Point LO = this.Location;
+            LO.X += 100;
+            LO.Y += 100;
+            UVP.Location = LO;
+            UVP.Show();
+            Wait(500);
+            string tempfile = System.IO.Path.GetTempPath() + "overb.jpg";
+            if (CaptureForm(tempfile))
+            {
+                if (File.Exists(tempfile))
+                {
+                    _ = Process.Start(tempfile);
+                }
+            }
+            UVP.Close();
+        }
+
+        public void Wait(int milliseconds)
+        {
+            var timer1 = new System.Windows.Forms.Timer();
+            if (milliseconds == 0 || milliseconds < 0) return;
+
+            timer1.Interval = milliseconds;
+            timer1.Enabled = true;
+            timer1.Start();
+
+            timer1.Tick += (s, e) =>
+            {
+                timer1.Enabled = false;
+                timer1.Stop();
+            };
+
+            while (timer1.Enabled)
+            {
+                Application.DoEvents();
+            }
+
         }
     }
 }

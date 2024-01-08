@@ -91,6 +91,12 @@
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="UitvoeringPrintForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UitvoeringPrintForm.Designer.cs">
+      <DependentUpon>UitvoeringPrintForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Zoek.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +151,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UitvoeringPrintForm.resx">
+      <DependentUpon>UitvoeringPrintForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Zoek.resx">
       <DependentUpon>Zoek.cs</DependentUpon>
     </EmbeddedResource>
