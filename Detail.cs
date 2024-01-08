@@ -6,6 +6,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Overbrugging
 {
@@ -16,28 +17,6 @@ namespace Overbrugging
         {
             InitializeComponent();
         }
-
-        //private void ButtonType_Click(object sender, EventArgs e)
-        //{
-        //    KeuzeType KS = new KeuzeType();
-        //    DialogResult ret = KS.ShowDialog();
-        //    if (ret == DialogResult.OK)
-        //    {
-        //        // TIW
-        //        MainForm.Main.TempData.Soort = "TIW";
-        //    }
-        //    if (ret == DialogResult.Yes)
-        //    {
-        //        //OVERB
-        //        MainForm.Main.TempData.Soort = "OVERB";
-        //    }
-        //    if (ret == DialogResult.Abort)
-        //    {
-        //        //MOC
-        //        MainForm.Main.TempData.Soort = "MOC";
-        //    }
-        //    RefreshForm();
-        //}
 
         private void Detail_Shown(object sender, EventArgs e)
         {
@@ -66,6 +45,7 @@ namespace Overbrugging
 
             TextBoxRede.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
             TextBoxOplossing.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
+
         }
 
         private void RefreshForm()

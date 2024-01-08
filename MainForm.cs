@@ -24,6 +24,8 @@ namespace Overbrugging
         public static string datapath = AppDomain.CurrentDomain.BaseDirectory + "Data\\";
         public List<string> instellingen = new List<string>();
         public DateTime verloopdatum = DateTime.Now.AddDays(1);
+        public AutoCompleteStringCollection mycolIVWV = new AutoCompleteStringCollection();
+        public AutoCompleteStringCollection mycol = new AutoCompleteStringCollection();
 
         public int NietAfgetekendWv = 0;
         public int VerlopenData = 0;
@@ -1061,26 +1063,32 @@ namespace Overbrugging
 
         private void VulNamenIVWVPersoneel(Detail dt)
         {
+            mycolIVWV.Clear();
+            mycolIVWV.Add("");
             dt.ComboBoxIVWV.Items.Clear();
+            dt.ComboBoxNaamVerw.Items.Clear();
             List<NamenFunties> IVWVFilter = new List<NamenFunties>();
             IVWVFilter = NamenLijst.Where(x => x.IVWV == true).ToList();
             IVWVFilter = IVWVFilter.OrderBy(o => o.Naam).ToList();
             for (int i = 0; i < IVWVFilter.Count; i++)
             {
                 _ = dt.ComboBoxIVWV.Items.Add(IVWVFilter[i].Naam);
+                _ = dt.ComboBoxNaamVerw.Items.Add(IVWVFilter[i].Naam);
+                mycolIVWV.Add(IVWVFilter[i].Naam);
             }
         }
 
         private void VulNamenPersoneel(Detail dt)
         {
+            mycol.Clear();
+            mycol.Add(" ");
             dt.ComboBoxNaam1.Items.Clear();
             dt.ComboBoxNaam2.Items.Clear();
-            dt.ComboBoxNaamVerw.Items.Clear();
             for (int i = 0; i < NamenLijst.Count; i++)
             {
                 _ = dt.ComboBoxNaam1.Items.Add(NamenLijst[i].Naam);
                 _ = dt.ComboBoxNaam2.Items.Add(NamenLijst[i].Naam);
-                _ = dt.ComboBoxNaamVerw.Items.Add(NamenLijst[i].Naam);
+                mycol.Add(NamenLijst[i].Naam);
             }
         }
 
@@ -1172,6 +1180,20 @@ namespace Overbrugging
                 dt.DatumVerw.Datum = Q.DatumVerw;
                 dt.ComboBoxNaamVerw.Text = Q.Naamverw;
                 dt.TextBoxBijzVerw.Text = Q.BijzonderhedenVerw;
+
+                dt.ComboBoxIVWV.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                dt.ComboBoxIVWV.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                dt.ComboBoxIVWV.AutoCompleteCustomSource = mycolIVWV;
+                dt.ComboBoxNaamVerw.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                dt.ComboBoxNaamVerw.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                dt.ComboBoxNaamVerw.AutoCompleteCustomSource = mycolIVWV;
+
+                dt.ComboBoxNaam1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                dt.ComboBoxNaam1.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                dt.ComboBoxNaam1.AutoCompleteCustomSource = mycol;
+                dt.ComboBoxNaam2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                dt.ComboBoxNaam2.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                dt.ComboBoxNaam2.AutoCompleteCustomSource = mycol;
             }
             catch
             {
@@ -1458,7 +1480,7 @@ namespace Overbrugging
                 }
                 return true;
             }
-            catch {  return false; }
+            catch { return false; }
         }
 
         private DateTime GetDateTime(string datum) // 21-12-2023 09-11-2023 20-01-2023
