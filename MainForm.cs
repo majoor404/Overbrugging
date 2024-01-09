@@ -124,66 +124,66 @@ namespace Overbrugging
                     OudeLijst.Add(ov);
                 }
 
-                //_ = MessageBox.Show("Inlezen Namen.mdb.csv");
+                _ = MessageBox.Show("Inlezen Namen.mdb.csv");
 
-                //string[] namenTekst = File.ReadAllLines($"Namen.mdb.csv");
-                //NamenLijst.Clear();
+                string[] namenTekst = File.ReadAllLines($"Namen.mdb.csv");
+                NamenLijst.Clear();
 
 
-                //for (int i = 0; namenTekst.Count() > i; i++)
-                //{
-                //    NamenFunties nf = new NamenFunties();
-                //    items = namenTekst[i].Split(';');
-                //    int count = 0;
-                //    nf.Index = items[count++];
-                //    nf.PersoneelNummer = items[count++];
-                //    nf.Naam = items[count++];
-                //    nf.Team = items[count++];
-                //    count++;    // funtie niet meer gebruiken
-                //    nf.IVWV = items[count++] == "True";
+                for (int i = 0; namenTekst.Count() > i; i++)
+                {
+                    NamenFunties nf = new NamenFunties();
+                    items = namenTekst[i].Split(';');
+                    int count = 0;
+                    nf.Index = items[count++];
+                    nf.PersoneelNummer = items[count++];
+                    nf.Naam = items[count++];
+                    nf.Team = items[count++];
+                    count++;    // funtie niet meer gebruiken
+                    nf.IVWV = items[count++] == "True";
 
-                //    NamenLijst.Add(nf);
-                //}
+                    NamenLijst.Add(nf);
+                }
 
-                //_ = MessageBox.Show("Save namen lijst");
-                //SaveDataNamen_lijst();
+                _ = MessageBox.Show("Save namen lijst");
+                SaveDataNamen_lijst();
 
-                //_ = MessageBox.Show("Inlezen SectieTabel.mdb.csv");
+                _ = MessageBox.Show("Inlezen SectieTabel.mdb.csv");
 
-                //string[] SectieTekst = File.ReadAllLines($"SectieTabel.mdb.csv");
-                //SectieLijst.Clear();
+                string[] SectieTekst = File.ReadAllLines($"SectieTabel.mdb.csv");
+                SectieLijst.Clear();
 
-                //for (int i = 0; SectieTekst.Count() > i; i++)
-                //{
-                //    Secties sc = new Secties();
-                //    items = SectieTekst[i].Split(';');
-                //    int count = 0;
-                //    sc.Index = items[count++];
-                //    sc.Naam = items[count++];
-                //    SectieLijst.Add(sc);
-                //}
+                for (int i = 0; SectieTekst.Count() > i; i++)
+                {
+                    Secties sc = new Secties();
+                    items = SectieTekst[i].Split(';');
+                    int count = 0;
+                    sc.Index = items[count++];
+                    sc.Naam = items[count++];
+                    SectieLijst.Add(sc);
+                }
 
-                //_ = MessageBox.Show("Save secties lijst");
-                //SaveDataSecties_lijst();
+                _ = MessageBox.Show("Save secties lijst");
+                SaveDataSecties_lijst();
 
-                //_ = MessageBox.Show("Inlezen InstallatieTabel.mdb.csv");
+                _ = MessageBox.Show("Inlezen InstallatieTabel.mdb.csv");
 
-                //string[] InstallatieTekst = File.ReadAllLines($"InstallatieTabel.mdb.csv");
-                //InstallatieLijst.Clear();
+                string[] InstallatieTekst = File.ReadAllLines($"InstallatieTabel.mdb.csv");
+                InstallatieLijst.Clear();
 
-                //for (int i = 0; InstallatieTekst.Count() > i; i++)
-                //{
-                //    InstallatieOnderdeel iso = new InstallatieOnderdeel();
-                //    items = InstallatieTekst[i].Split(';');
-                //    int count = 0;
-                //    iso.Index = items[count++];
-                //    iso.Instal = items[count++];
-                //    iso.Sectie = ZoekSectie(items[count++]);
-                //    InstallatieLijst.Add(iso);
-                //}
+                for (int i = 0; InstallatieTekst.Count() > i; i++)
+                {
+                    InstallatieOnderdeel iso = new InstallatieOnderdeel();
+                    items = InstallatieTekst[i].Split(';');
+                    int count = 0;
+                    iso.Index = items[count++];
+                    iso.Instal = items[count++];
+                    iso.Sectie = ZoekSectie(items[count++]);
+                    InstallatieLijst.Add(iso);
+                }
 
-                //_ = MessageBox.Show("Save Installatie lijst");
-                //SaveDataInstallaties_lijst();
+                _ = MessageBox.Show("Save Installatie lijst");
+                SaveDataInstallaties_lijst();
 
 
                 _ = MessageBox.Show("Dan nu samen voegen tot nieuwe opslag class.");
@@ -1044,6 +1044,8 @@ namespace Overbrugging
             LaadNamen_lijst();
             VulDropDownItems(dt);
 
+            AutoAanvulNamen(dt);
+
             TempData.DatumInv = dt.DatumInv.Datum = DateTime.Now.ToShortDateString();
 
             // open dialog
@@ -1180,25 +1182,30 @@ namespace Overbrugging
                 dt.DatumVerw.Datum = Q.DatumVerw;
                 dt.ComboBoxNaamVerw.Text = Q.Naamverw;
                 dt.TextBoxBijzVerw.Text = Q.BijzonderhedenVerw;
-
-                dt.ComboBoxIVWV.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                dt.ComboBoxIVWV.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                dt.ComboBoxIVWV.AutoCompleteCustomSource = mycolIVWV;
-                dt.ComboBoxNaamVerw.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                dt.ComboBoxNaamVerw.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                dt.ComboBoxNaamVerw.AutoCompleteCustomSource = mycolIVWV;
-
-                dt.ComboBoxNaam1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                dt.ComboBoxNaam1.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                dt.ComboBoxNaam1.AutoCompleteCustomSource = mycol;
-                dt.ComboBoxNaam2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                dt.ComboBoxNaam2.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                dt.ComboBoxNaam2.AutoCompleteCustomSource = mycol;
+                
+                AutoAanvulNamen(dt);
             }
             catch
             {
                 _ = MessageBox.Show($"Error VulDetailForm");
             }
+        }
+
+        private void AutoAanvulNamen(Detail dt)
+        {
+            dt.ComboBoxIVWV.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            dt.ComboBoxIVWV.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            dt.ComboBoxIVWV.AutoCompleteCustomSource = mycolIVWV;
+            dt.ComboBoxNaamVerw.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            dt.ComboBoxNaamVerw.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            dt.ComboBoxNaamVerw.AutoCompleteCustomSource = mycolIVWV;
+
+            dt.ComboBoxNaam1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            dt.ComboBoxNaam1.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            dt.ComboBoxNaam1.AutoCompleteCustomSource = mycol;
+            dt.ComboBoxNaam2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            dt.ComboBoxNaam2.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            dt.ComboBoxNaam2.AutoCompleteCustomSource = mycol;
         }
 
         private void Backup(string file)
