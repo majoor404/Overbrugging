@@ -53,20 +53,14 @@ namespace Overbrugging
             if (MainForm.Main.TempData.Soort == "TIW")
             {
                 LabelType.Text = "Tijdelijke Instalatie Wijziging";
-                labelMOC.Visible = false;
-                TextBoxMocNr.Visible = false;
             }
             if (MainForm.Main.TempData.Soort == "MOC")
             {
                 LabelType.Text = "Management Of Change";
-                labelMOC.Visible = true;
-                TextBoxMocNr.Visible = true;
             }
             if (MainForm.Main.TempData.Soort == "OVERB")
             {
                 LabelType.Text = "Overbruging";
-                labelMOC.Visible = false;
-                TextBoxMocNr.Visible = false;
             }
             CBSoort.Text = MainForm.Main.TempData.Soort;
         }
