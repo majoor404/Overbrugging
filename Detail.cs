@@ -46,6 +46,7 @@ namespace Overbrugging
             TextBoxRede.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
             TextBoxOplossing.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
 
+            CBSoort.SelectedIndexChanged += CBSoort_SelectedIndexChanged;
         }
 
         private void RefreshForm()
@@ -183,6 +184,16 @@ namespace Overbrugging
                 }
             }
 
+            if(CBSoort.Text == "TIW" || CBSoort.Text == "OVERB")
+            {
+                if(TextBoxMocNr.Text != "")
+                {
+                    MessageBox.Show("Er is een MOC nummer ingevuld, maak er dus een MOC van.");
+                    CBSoort.Text = "MOC";
+                    MainForm.Main.TempData.Soort = "MOC";
+                }
+            }
+
             int index;
             //bool save_nieuwe_index = false;
             if (string.IsNullOrEmpty(TextBoxRegNr.Text))
@@ -287,59 +298,8 @@ namespace Overbrugging
 
         private void CBSoort_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if(!(CBSoort.Text == "TIW" || CBSoort.Text == "OVERB" || CBSoort.Text == "MOC"))
-            //{
-            //    KeuzeType KS = new KeuzeType();
-            //    DialogResult ret = KS.ShowDialog();
-            //    if (ret == DialogResult.OK)
-            //    {
-            //        // TIW
-            //        CBSoort.Text = "TIW";
-            //        MainForm.Main.TempData.Soort = "TIW";
-            //    }
-            //    if (ret == DialogResult.Yes)
-            //    {
-            //        //OVERB
-            //        CBSoort.Text = "OVERB";
-            //        MainForm.Main.TempData.Soort = "OVERB";
-            //    }
-            //    if (ret == DialogResult.Abort)
-            //    {
-            //        //MOC
-            //        CBSoort.Text = "MOC";
-            //        MainForm.Main.TempData.Soort = "MOC";
-            //    }
-            //}
-
             MainForm.Main.TempData.Soort = CBSoort.Text;
             RefreshForm();
-        }
-
-        private void CBSoort_TextChanged(object sender, EventArgs e)
-        {
-            if (!(CBSoort.Text == "TIW" || CBSoort.Text == "OVERB" || CBSoort.Text == "MOC"))
-            {
-                KeuzeType KS = new KeuzeType();
-                DialogResult ret = KS.ShowDialog();
-                if (ret == DialogResult.OK)
-                {
-                    // TIW
-                    CBSoort.Text = "TIW";
-                    MainForm.Main.TempData.Soort = "TIW";
-                }
-                if (ret == DialogResult.Yes)
-                {
-                    //OVERB
-                    CBSoort.Text = "OVERB";
-                    MainForm.Main.TempData.Soort = "OVERB";
-                }
-                if (ret == DialogResult.Abort)
-                {
-                    //MOC
-                    CBSoort.Text = "MOC";
-                    MainForm.Main.TempData.Soort = "MOC";
-                }
-            }
         }
 
         private void ButPrintUitvoering_Click(object sender, EventArgs e)
