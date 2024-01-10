@@ -59,11 +59,13 @@
             this.panelMain = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.TextBoxBijzIVWV = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label24 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.LabelType = new System.Windows.Forms.Label();
@@ -78,9 +80,12 @@
             this.TBN1 = new System.Windows.Forms.TextBox();
             this.TBSEC = new System.Windows.Forms.TextBox();
             this.TBMOC = new System.Windows.Forms.TextBox();
+            this.TBTVerw = new System.Windows.Forms.TextBox();
+            this.TBDVerw = new System.Windows.Forms.TextBox();
             this.TBSAP = new System.Windows.Forms.TextBox();
             this.TBNWV = new System.Windows.Forms.TextBox();
             this.TBDWVV = new System.Windows.Forms.TextBox();
+            this.TBNVerw = new System.Windows.Forms.TextBox();
             this.TBDWV = new System.Windows.Forms.TextBox();
             this.TBDINV = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -93,11 +98,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.TB2 = new System.Windows.Forms.TextBox();
             this.TB1 = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.TBNVerw = new System.Windows.Forms.TextBox();
-            this.TBDVerw = new System.Windows.Forms.TextBox();
-            this.TBTVerw = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -515,6 +515,15 @@
             this.panel1.Size = new System.Drawing.Size(1047, 496);
             this.panel1.TabIndex = 2;
             // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Black;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Location = new System.Drawing.Point(24, 428);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1009, 3);
+            this.panel4.TabIndex = 39;
+            // 
             // TextBoxBijzIVWV
             // 
             this.TextBoxBijzIVWV.AcceptsReturn = true;
@@ -570,6 +579,16 @@
             this.label18.Size = new System.Drawing.Size(52, 18);
             this.label18.TabIndex = 31;
             this.label18.Text = "Datum";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(435, 446);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(76, 18);
+            this.label25.TabIndex = 32;
+            this.label25.Text = "Verwijderd";
             // 
             // label26
             // 
@@ -704,6 +723,24 @@
             this.TBMOC.Size = new System.Drawing.Size(137, 24);
             this.TBMOC.TabIndex = 12;
             // 
+            // TBTVerw
+            // 
+            this.TBTVerw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBTVerw.Location = new System.Drawing.Point(544, 446);
+            this.TBTVerw.Name = "TBTVerw";
+            this.TBTVerw.ReadOnly = true;
+            this.TBTVerw.Size = new System.Drawing.Size(460, 24);
+            this.TBTVerw.TabIndex = 12;
+            // 
+            // TBDVerw
+            // 
+            this.TBDVerw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBDVerw.Location = new System.Drawing.Point(231, 444);
+            this.TBDVerw.Name = "TBDVerw";
+            this.TBDVerw.ReadOnly = true;
+            this.TBDVerw.Size = new System.Drawing.Size(137, 24);
+            this.TBDVerw.TabIndex = 12;
+            // 
             // TBSAP
             // 
             this.TBSAP.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -730,6 +767,15 @@
             this.TBDWVV.ReadOnly = true;
             this.TBDWVV.Size = new System.Drawing.Size(137, 24);
             this.TBDWVV.TabIndex = 12;
+            // 
+            // TBNVerw
+            // 
+            this.TBNVerw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBNVerw.Location = new System.Drawing.Point(24, 446);
+            this.TBNVerw.Name = "TBNVerw";
+            this.TBNVerw.ReadOnly = true;
+            this.TBNVerw.Size = new System.Drawing.Size(137, 24);
+            this.TBNVerw.TabIndex = 12;
             // 
             // TBDWV
             // 
@@ -852,52 +898,6 @@
             this.TB1.Size = new System.Drawing.Size(480, 114);
             this.TB1.TabIndex = 0;
             // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.Black;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Location = new System.Drawing.Point(24, 428);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1009, 3);
-            this.panel4.TabIndex = 39;
-            // 
-            // TBNVerw
-            // 
-            this.TBNVerw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBNVerw.Location = new System.Drawing.Point(24, 446);
-            this.TBNVerw.Name = "TBNVerw";
-            this.TBNVerw.ReadOnly = true;
-            this.TBNVerw.Size = new System.Drawing.Size(137, 24);
-            this.TBNVerw.TabIndex = 12;
-            // 
-            // TBDVerw
-            // 
-            this.TBDVerw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBDVerw.Location = new System.Drawing.Point(231, 444);
-            this.TBDVerw.Name = "TBDVerw";
-            this.TBDVerw.ReadOnly = true;
-            this.TBDVerw.Size = new System.Drawing.Size(137, 24);
-            this.TBDVerw.TabIndex = 12;
-            // 
-            // TBTVerw
-            // 
-            this.TBTVerw.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBTVerw.Location = new System.Drawing.Point(544, 446);
-            this.TBTVerw.Name = "TBTVerw";
-            this.TBTVerw.ReadOnly = true;
-            this.TBTVerw.Size = new System.Drawing.Size(460, 24);
-            this.TBTVerw.TabIndex = 12;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(435, 446);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(76, 18);
-            this.label25.TabIndex = 32;
-            this.label25.Text = "Verwijderd";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -986,7 +986,6 @@
         public System.Windows.Forms.TextBox TBDINV;
         private System.Windows.Forms.Button ButRefresh;
         public System.Windows.Forms.CheckBox IsIVer;
-        private System.Windows.Forms.Label LabelUser;
         private System.Windows.Forms.Label LabelNietAfgetekendWV;
         private System.Windows.Forms.LinkLabel IVWVVraag;
         private System.Windows.Forms.Label LabelDatumVerlopen;
@@ -995,6 +994,7 @@
         public System.Windows.Forms.TextBox TBTVerw;
         public System.Windows.Forms.TextBox TBDVerw;
         public System.Windows.Forms.TextBox TBNVerw;
+        public System.Windows.Forms.Label LabelUser;
     }
 }
 

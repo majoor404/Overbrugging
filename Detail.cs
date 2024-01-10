@@ -120,11 +120,14 @@ namespace Overbrugging
             while (nu.DayOfWeek != DayOfWeek.Wednesday)
                 nu = nu.AddDays(1);
             DatumVerloopTIW.TB.Text = nu.ToString("dd-MM-yyyy");
+
+            ComboBoxIVWV.Text = MainForm.Main.LabelUser.Text;
         }
 
         private void ButtonIVWVDatumVerw_Click(object sender, EventArgs e)
         {
             DatumVerw.TB.Text = DateTime.Now.ToShortDateString();
+            ComboBoxNaamVerw.Text = MainForm.Main.LabelUser.Text;
         }
 
         private void ButVoerUit_Click(object sender, EventArgs e)

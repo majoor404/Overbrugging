@@ -26,6 +26,7 @@ namespace Overbrugging
         public DateTime verloopdatum = DateTime.Now.AddDays(1);
         public AutoCompleteStringCollection mycolIVWV = new AutoCompleteStringCollection();
         public AutoCompleteStringCollection mycol = new AutoCompleteStringCollection();
+        public string inlognaam = "";
 
         public int NietAfgetekendWv = 0;
         public int VerlopenData = 0;
@@ -448,7 +449,7 @@ namespace Overbrugging
             comboBoxSoortFilter.SelectedIndexChanged += ButRefresh_Click;
             comboBoxStatus.SelectedIndexChanged += ButRefresh_Click;
 
-            string inlognaam = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
+            inlognaam = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[1];
 
             if (inlognaam == "ronal")
             {
@@ -1125,18 +1126,18 @@ namespace Overbrugging
             {
                 // zoek record
                 int regNr = int.Parse(GeselRegNr.Text);
-                Data Q = ZoekDataRecord(regNr);
+                TempData = ZoekDataRecord(regNr);
 
                 // maak formulier
                 Detail dt = new Detail();
-                dt.TextBoxRegNr.Text = Q.RegNr.ToString();
+                dt.TextBoxRegNr.Text = TempData.RegNr.ToString();
                 dt.TextBoxRegNr.Enabled = false;
 
                 // vullen dropdown items
                 //dt.ComboBoxSectie.Text = Q.Sectie; // daarvoor heb ik wel sectie nodig.
                 //VulDropDownItems(dt);
 
-                VulDatailForm(dt, Q);
+                VulDatailForm(dt, TempData);
 
                 // open dialog
                 _ = dt.ShowDialog();
