@@ -204,10 +204,12 @@ namespace Overbrugging
                 index = MainForm.Main.LastIndex;
                 index++;
                 //save_nieuwe_index = true;
+                MainForm.Main.Log.LogRegel($"Nieuw record {index}");
             }
             else
             {
                 index = int.Parse(TextBoxRegNr.Text);
+                MainForm.Main.Log.LogRegel($"Wijzig record {index}");
             }
 
             MainForm.Main.LaadData_lijst();
@@ -347,6 +349,24 @@ namespace Overbrugging
                 Application.DoEvents();
             }
 
+        }
+
+        private void ButVoerUit_Click_1(object sender, EventArgs e)
+        {
+            MainForm.Main.Log.LogRegel("Voeruit knop ingedrukt.");
+            ButVoerUit_Click(this, null);
+        }
+
+        private void ButSaveWV_Click(object sender, EventArgs e)
+        {
+            MainForm.Main.Log.LogRegel("Save knop IV/WV ingedrukt.");
+            ButVoerUit_Click(this, null);
+        }
+
+        private void ButSaveVerw_Click(object sender, EventArgs e)
+        {
+            MainForm.Main.Log.LogRegel("Save knop Verwijder ingedrukt.");
+            ButVoerUit_Click(this, null);
         }
     }
 }

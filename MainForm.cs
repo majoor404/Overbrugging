@@ -28,6 +28,8 @@ namespace Overbrugging
         public AutoCompleteStringCollection mycol = new AutoCompleteStringCollection();
         public string inlognaam = "";
 
+        public Logging Log = new Logging();
+
         public int NietAfgetekendWv = 0;
         public int VerlopenData = 0;
         private DataGridViewColumn oldColumn = null; // voor sorteer
@@ -469,6 +471,10 @@ namespace Overbrugging
 
             IsIVer.Checked = ZoekIV(inlognaam);
             IsIVer.Text = inlognaam;
+
+            Log.Locatie = AppDomain.CurrentDomain.BaseDirectory + "Data\\Log.txt";
+            Log.MaxRegels = 3000;
+            
 
             try
             {
