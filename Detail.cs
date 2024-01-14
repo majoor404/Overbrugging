@@ -359,14 +359,40 @@ namespace Overbrugging
 
         private void ButSaveWV_Click(object sender, EventArgs e)
         {
-            MainForm.Main.Log.LogRegel("Save knop IV/WV ingedrukt.");
-            ButVoerUit_Click(this, null);
+            if (DatumWv.Datum == "")
+            {
+                MessageBox.Show("Nog niet afgetekend door IV/WV");
+            }
+            else
+            {
+                MainForm.Main.Log.LogRegel("Save knop IV/WV ingedrukt.");
+                ButVoerUit_Click(this, null);
+            }
         }
 
         private void ButSaveVerw_Click(object sender, EventArgs e)
         {
-            MainForm.Main.Log.LogRegel("Save knop Verwijder ingedrukt.");
-            ButVoerUit_Click(this, null);
+            if (DatumWv.Datum == "")
+            {
+                MessageBox.Show("Nog niet afgetekend door IV/WV");
+                return;
+            }
+
+            if(DatumVerw.Datum == "")
+            {
+                MessageBox.Show("Geen datum ingevuld waarneer verwijderd");
+                return;
+            }
+
+            if(ComboBoxNaamVerw.Text == "")
+            {
+                MessageBox.Show("Geen Naam ingevuld wie verwijderd");
+                return;
+            }
+
+                MainForm.Main.Log.LogRegel("Save knop Verwijder ingedrukt.");
+                ButVoerUit_Click(this, null);
+            
         }
     }
 }
