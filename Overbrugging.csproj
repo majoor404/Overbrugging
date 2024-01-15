@@ -80,6 +80,12 @@
       <DependentUpon>KeuzeType.cs</DependentUpon>
     </Compile>
     <Compile Include="Logging.cs" />
+    <Compile Include="LogView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogView.Designer.cs">
+      <DependentUpon>LogView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Melding.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KeuzeType.resx">
       <DependentUpon>KeuzeType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogView.resx">
+      <DependentUpon>LogView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Melding.resx">
       <DependentUpon>Melding.cs</DependentUpon>

@@ -12,7 +12,7 @@ namespace Overbrugging
 
         public string Locatie { get; set; } = string.Empty;
 
-        public int MaxRegels { get; set; } = 5000;
+        public int MaxRegels { get; set; } = 500;
 
         public Logging() { }
 

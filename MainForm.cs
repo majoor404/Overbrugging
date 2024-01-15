@@ -473,8 +473,8 @@ namespace Overbrugging
             IsIVer.Text = inlognaam;
 
             Log.Locatie = AppDomain.CurrentDomain.BaseDirectory + "Data\\Log.txt";
-            Log.MaxRegels = 3000;
-            
+            Log.MaxRegels = 5000;
+
 
             try
             {
@@ -899,6 +899,14 @@ namespace Overbrugging
             {
                 ButImport_Click(this, null);
             }
+            if (ret == DialogResult.Ignore)
+            {
+                // log view
+                LogView LV = new LogView();
+                LV.TB.Text = File.ReadAllText(Log.Locatie);
+                _ = LV.ShowDialog();
+            }
+
             ButRefresh_Click(this, null);
         }
 
@@ -1073,7 +1081,7 @@ namespace Overbrugging
         private void VulNamenIVWVPersoneel(Detail dt)
         {
             mycolIVWV.Clear();
-            mycolIVWV.Add("");
+            _ = mycolIVWV.Add("");
             dt.ComboBoxIVWV.Items.Clear();
             dt.ComboBoxNaamVerw.Items.Clear();
             List<NamenFunties> IVWVFilter = new List<NamenFunties>();
@@ -1083,21 +1091,21 @@ namespace Overbrugging
             {
                 _ = dt.ComboBoxIVWV.Items.Add(IVWVFilter[i].Naam);
                 _ = dt.ComboBoxNaamVerw.Items.Add(IVWVFilter[i].Naam);
-                mycolIVWV.Add(IVWVFilter[i].Naam);
+                _ = mycolIVWV.Add(IVWVFilter[i].Naam);
             }
         }
 
         private void VulNamenPersoneel(Detail dt)
         {
             mycol.Clear();
-            mycol.Add(" ");
+            _ = mycol.Add(" ");
             dt.ComboBoxNaam1.Items.Clear();
             dt.ComboBoxNaam2.Items.Clear();
             for (int i = 0; i < NamenLijst.Count; i++)
             {
                 _ = dt.ComboBoxNaam1.Items.Add(NamenLijst[i].Naam);
                 _ = dt.ComboBoxNaam2.Items.Add(NamenLijst[i].Naam);
-                mycol.Add(NamenLijst[i].Naam);
+                _ = mycol.Add(NamenLijst[i].Naam);
             }
         }
 
@@ -1189,7 +1197,7 @@ namespace Overbrugging
                 dt.DatumVerw.Datum = Q.DatumVerw;
                 dt.ComboBoxNaamVerw.Text = Q.Naamverw;
                 dt.TextBoxBijzVerw.Text = Q.BijzonderhedenVerw;
-                
+
                 AutoAanvulNamen(dt);
             }
             catch
