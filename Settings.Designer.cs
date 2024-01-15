@@ -43,7 +43,7 @@
             // 
             this.buttonNaam.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonNaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNaam.Location = new System.Drawing.Point(13, 290);
+            this.buttonNaam.Location = new System.Drawing.Point(18, 218);
             this.buttonNaam.Margin = new System.Windows.Forms.Padding(4);
             this.buttonNaam.Name = "buttonNaam";
             this.buttonNaam.Size = new System.Drawing.Size(310, 61);
@@ -55,7 +55,7 @@
             // 
             this.buttonSecties.DialogResult = System.Windows.Forms.DialogResult.Abort;
             this.buttonSecties.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSecties.Location = new System.Drawing.Point(13, 359);
+            this.buttonSecties.Location = new System.Drawing.Point(18, 287);
             this.buttonSecties.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSecties.Name = "buttonSecties";
             this.buttonSecties.Size = new System.Drawing.Size(310, 61);
@@ -79,7 +79,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 185);
+            this.label1.Location = new System.Drawing.Point(15, 177);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 18);
@@ -90,7 +90,7 @@
             // 
             this.LabelBuildData.AutoSize = true;
             this.LabelBuildData.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelBuildData.Location = new System.Drawing.Point(10, 213);
+            this.LabelBuildData.Location = new System.Drawing.Point(106, 177);
             this.LabelBuildData.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelBuildData.Name = "LabelBuildData";
             this.LabelBuildData.Size = new System.Drawing.Size(56, 18);
@@ -101,7 +101,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 242);
+            this.label2.Location = new System.Drawing.Point(187, 145);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(148, 18);
@@ -112,7 +112,7 @@
             // 
             this.ButLogView.DialogResult = System.Windows.Forms.DialogResult.Ignore;
             this.ButLogView.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButLogView.Location = new System.Drawing.Point(13, 428);
+            this.ButLogView.Location = new System.Drawing.Point(18, 356);
             this.ButLogView.Margin = new System.Windows.Forms.Padding(4);
             this.ButLogView.Name = "ButLogView";
             this.ButLogView.Size = new System.Drawing.Size(310, 61);
@@ -122,8 +122,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Overbrugging.Properties.Resources.info;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 13);
+            this.pictureBox1.Image = global::Overbrugging.Properties.Resources.notebook_4;
+            this.pictureBox1.Location = new System.Drawing.Point(18, 13);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(150, 150);

@@ -188,6 +188,7 @@
     <None Include="finish.png" />
     <None Include="info.png" />
     <None Include="notes.png" />
+    <None Include="notebook-4.png" />
     <Content Include="overbrug.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
