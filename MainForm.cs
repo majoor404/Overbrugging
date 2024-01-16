@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -1527,6 +1528,36 @@ namespace Overbrugging
         {
             // save data voor wachtrapport
             WachtRapportDataSave();
+        }
+
+        private void BTMocNodig_Click(object sender, EventArgs e)
+        {
+            LaadInstelingen();
+            // moc nodig link op plek 3
+            try
+            {
+                string mocnodig = instellingen[2];
+                _ = Process.Start(mocnodig);
+            }
+            catch
+            {
+                MessageBox.Show("Link MOC nodig niet aanwezig!");
+            }
+        }
+
+        private void BTMOCAanmaken_Click(object sender, EventArgs e)
+        {
+            LaadInstelingen();
+            // moc nodig link op plek 4
+            try
+            {
+                string mocaanmaken = instellingen[3];
+                _ = Process.Start(mocaanmaken);
+            }
+            catch
+            {
+                MessageBox.Show("Link MOC aanmaken niet aanwezig!");
+            }
         }
     }
 }
