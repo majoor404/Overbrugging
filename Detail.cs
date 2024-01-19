@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Overbrugging
 {
@@ -20,24 +18,17 @@ namespace Overbrugging
 
         private void Detail_Shown(object sender, EventArgs e)
         {
-            Point loc = this.Location;
+            Point loc = Location;
             loc.X += 50;
-            this.Location = loc;
+            Location = loc;
 
-            if (MainForm.Main.TempData.RegNr == 0)
-            {
-                TextBoxRegNr.Text = "";
-            }
-            else
-            {
-                TextBoxRegNr.Text = MainForm.Main.TempData.RegNr.ToString();
-            }
+            TextBoxRegNr.Text = MainForm.Main.TempData.RegNr == 0 ? "" : MainForm.Main.TempData.RegNr.ToString();
             RefreshForm();      // type appart, ook gebruik bij knopje drukken.
-            TextBoxSapNr.Focus();
+            _ = TextBoxSapNr.Focus();
 
             // als reg nummer bekend is, maak save WV en verwijder actief.
-            ButSaveWV.Enabled = !(string.IsNullOrEmpty(TextBoxRegNr.Text)) && (MainForm.Main.IsIVer.Checked);
-            ButSaveVerw.Enabled = !(string.IsNullOrEmpty(TextBoxRegNr.Text)) && (MainForm.Main.IsIVer.Checked);
+            ButSaveWV.Enabled = !string.IsNullOrEmpty(TextBoxRegNr.Text) && MainForm.Main.IsIVer.Checked;
+            ButSaveVerw.Enabled = !string.IsNullOrEmpty(TextBoxRegNr.Text) && MainForm.Main.IsIVer.Checked;
 
             // als geen iv/wv dan niks invullen bij wv of afsluiten.
             PanelWV.Enabled = MainForm.Main.IsIVer.Checked;
@@ -80,7 +71,9 @@ namespace Overbrugging
         {
             TextBoxPersNrIVWV.Text = ZoekPersnr(ComboBoxIVWV.Text);
             if (DatumWv.TB.Text == " --/--/----")
+            {
                 ButtonIVWVDatumNu_Click(this, null);
+            }
         }
 
         private void ComboBoxNaamVerw_SelectedIndexChanged(object sender, EventArgs e)
@@ -118,7 +111,10 @@ namespace Overbrugging
             // verloop op + 1 week en dan op woensdag
             nu = nu.AddDays(7);
             while (nu.DayOfWeek != DayOfWeek.Wednesday)
+            {
                 nu = nu.AddDays(1);
+            }
+
             DatumVerloopTIW.TB.Text = nu.ToString("dd-MM-yyyy");
 
             ComboBoxIVWV.Text = MainForm.Main.LabelUser.Text;
@@ -135,31 +131,31 @@ namespace Overbrugging
             // als wel datum iv maar geen naam
             if ((DatumWv.TB.Text != " --/--/----") && (ComboBoxIVWV.Text == ""))
             {
-                MessageBox.Show("Datum en Naam IV/WV niet ingevuld");
+                _ = MessageBox.Show("Datum en Naam IV/WV niet ingevuld");
                 return;
             }
 
             if ((DatumVerw.TB.Text != " --/--/----") && (ComboBoxNaamVerw.Text == ""))
             {
-                MessageBox.Show("Datum en Naam IV/WV niet ingevuld");
+                _ = MessageBox.Show("Datum en Naam IV/WV niet ingevuld");
                 return;
             }
 
             if (ComboBoxNaam1.Text == "" && ComboBoxNaam2.Text == "")
             {
-                MessageBox.Show("Geen namen ingevuld Aangemaakt");
+                _ = MessageBox.Show("Geen namen ingevuld Aangemaakt");
                 return;
             }
 
             if (ComboBoxSectie.Text == "")
             {
-                MessageBox.Show("Geen Sectie gekozen");
+                _ = MessageBox.Show("Geen Sectie gekozen");
                 return;
             }
 
             if (ComboSectieDeel.Text == "")
             {
-                MessageBox.Show("Geen Instalatie gekozen");
+                _ = MessageBox.Show("Geen Instalatie gekozen");
                 return;
             }
 
@@ -187,11 +183,11 @@ namespace Overbrugging
                 }
             }
 
-            if(CBSoort.Text == "TIW" || CBSoort.Text == "OVERB")
+            if (CBSoort.Text == "TIW" || CBSoort.Text == "OVERB")
             {
-                if(TextBoxMocNr.Text != "")
+                if (TextBoxMocNr.Text != "")
                 {
-                    MessageBox.Show("Er is een MOC nummer ingevuld, maak er dus een MOC van.");
+                    _ = MessageBox.Show("Er is een MOC nummer ingevuld, maak er dus een MOC van.");
                     CBSoort.Text = "MOC";
                     MainForm.Main.TempData.Soort = "MOC";
                 }
@@ -204,12 +200,12 @@ namespace Overbrugging
                 index = MainForm.Main.LastIndex;
                 index++;
                 //save_nieuwe_index = true;
-                MainForm.Main.Log.LogRegel($"Nieuw record {index}");
+                MainForm.Main.Log.LogRegel($"Nieuw record {index} door {MainForm.Main.LabelUser.Text}");
             }
             else
             {
                 index = int.Parse(TextBoxRegNr.Text);
-                MainForm.Main.Log.LogRegel($"Wijzig record {index}");
+                MainForm.Main.Log.LogRegel($"Wijzig record {index} door {MainForm.Main.LabelUser.Text}");
             }
 
             MainForm.Main.LaadData_lijst();
@@ -239,7 +235,7 @@ namespace Overbrugging
             try
             {
                 Data temp = MainForm.Main.LijstData.First(a => a.RegNr == MainForm.Main.TempData.RegNr);
-                MainForm.Main.LijstData.Remove(temp);
+                _ = MainForm.Main.LijstData.Remove(temp);
             }
             catch { }
             // en toevoegen nieuwe
@@ -252,7 +248,9 @@ namespace Overbrugging
         private void ComboBoxNaamVerw_TextChanged(object sender, EventArgs e)
         {
             if (DatumVerw.TB.Text == " --/--/----")
+            {
                 DatumVerw.TB.Text = DateTime.Now.ToShortDateString();
+            }
         }
 
         private void InvoerVeranderenTerwijlGoedGekeurd(object sender, EventArgs e)
@@ -261,7 +259,7 @@ namespace Overbrugging
             // verwijder de VW data
             if (ComboBoxIVWV.Text != "" && TextBoxRegNr.Text != "" && ComboBoxNaamVerw.Text == "")
             {
-                ComboBoxIVWV.Items.Add("");
+                _ = ComboBoxIVWV.Items.Add("");
                 ComboBoxIVWV.Text = "";
                 DatumWv.TB.Text = " --/--/----";
                 DatumVerloopTIW.TB.Text = " --/--/----";
@@ -312,7 +310,7 @@ namespace Overbrugging
             UitvoeringPrintForm UVP = new UitvoeringPrintForm();
             UVP.Uitvoering.Text = TextBoxOplossing.Text;
             UVP.Uitvoering.SelectionStart = 0;
-            Point LO = this.Location;
+            Point LO = Location;
             LO.X += 100;
             LO.Y += 100;
             UVP.Location = LO;
@@ -331,8 +329,11 @@ namespace Overbrugging
 
         public void Wait(int milliseconds)
         {
-            var timer1 = new System.Windows.Forms.Timer();
-            if (milliseconds == 0 || milliseconds < 0) return;
+            Timer timer1 = new System.Windows.Forms.Timer();
+            if (milliseconds == 0 || milliseconds < 0)
+            {
+                return;
+            }
 
             timer1.Interval = milliseconds;
             timer1.Enabled = true;
@@ -353,7 +354,7 @@ namespace Overbrugging
 
         private void ButVoerUit_Click_1(object sender, EventArgs e)
         {
-            MainForm.Main.Log.LogRegel("Voeruit knop ingedrukt.");
+            MainForm.Main.Log.LogRegel($"Voeruit knop ingedrukt. Door {MainForm.Main.LabelUser.Text}");
             ButVoerUit_Click(this, null);
         }
 
@@ -361,11 +362,11 @@ namespace Overbrugging
         {
             if (DatumWv.Datum == "")
             {
-                MessageBox.Show("Nog niet afgetekend door IV/WV");
+                _ = MessageBox.Show("Nog niet afgetekend door IV/WV");
             }
             else
             {
-                MainForm.Main.Log.LogRegel("Save knop IV/WV ingedrukt.");
+                MainForm.Main.Log.LogRegel("Save knop IV/WV ingedrukt. Door {MainForm.Main.LabelUser.Text}");
                 ButVoerUit_Click(this, null);
             }
         }
@@ -374,25 +375,25 @@ namespace Overbrugging
         {
             if (DatumWv.Datum == "")
             {
-                MessageBox.Show("Nog niet afgetekend door IV/WV");
+                _ = MessageBox.Show("Nog niet afgetekend door IV/WV");
                 return;
             }
 
-            if(DatumVerw.Datum == "")
+            if (DatumVerw.Datum == "")
             {
-                MessageBox.Show("Geen datum ingevuld waarneer verwijderd");
+                _ = MessageBox.Show("Geen datum ingevuld waarneer verwijderd");
                 return;
             }
 
-            if(ComboBoxNaamVerw.Text == "")
+            if (ComboBoxNaamVerw.Text == "")
             {
-                MessageBox.Show("Geen Naam ingevuld wie verwijderd");
+                _ = MessageBox.Show("Geen Naam ingevuld wie verwijderd");
                 return;
             }
 
-                MainForm.Main.Log.LogRegel("Save knop Verwijder ingedrukt.");
-                ButVoerUit_Click(this, null);
-            
+            MainForm.Main.Log.LogRegel($"Save knop Verwijder ingedrukt. Door {MainForm.Main.LabelUser.Text}");
+            ButVoerUit_Click(this, null);
+
         }
     }
 }
