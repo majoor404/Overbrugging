@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelTop = new System.Windows.Forms.Panel();
@@ -42,6 +43,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BTMOCAanmaken = new System.Windows.Forms.Button();
+            this.BTMocNodig = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.ButRefresh = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
@@ -98,16 +102,15 @@
             this.label9 = new System.Windows.Forms.Label();
             this.TB2 = new System.Windows.Forms.TextBox();
             this.TB1 = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.BTMocNodig = new System.Windows.Forms.Button();
-            this.BTMOCAanmaken = new System.Windows.Forms.Button();
+            this.KillTimer = new System.Windows.Forms.Timer(this.components);
+            this.KillTijdLabel = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
@@ -244,6 +247,7 @@
             // panelMenu
             // 
             this.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelMenu.Controls.Add(this.KillTijdLabel);
             this.panelMenu.Controls.Add(this.groupBox1);
             this.panelMenu.Controls.Add(this.panel2);
             this.panelMenu.Controls.Add(this.ButSettings);
@@ -256,6 +260,38 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(213, 932);
             this.panelMenu.TabIndex = 4;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.BTMOCAanmaken);
+            this.groupBox1.Controls.Add(this.BTMocNodig);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(12, 582);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(178, 144);
+            this.groupBox1.TabIndex = 24;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = " MOC ? ";
+            // 
+            // BTMOCAanmaken
+            // 
+            this.BTMOCAanmaken.Location = new System.Drawing.Point(8, 84);
+            this.BTMOCAanmaken.Name = "BTMOCAanmaken";
+            this.BTMOCAanmaken.Size = new System.Drawing.Size(153, 45);
+            this.BTMOCAanmaken.TabIndex = 0;
+            this.BTMOCAanmaken.Text = "MOC Aanmaken";
+            this.BTMOCAanmaken.UseVisualStyleBackColor = true;
+            this.BTMOCAanmaken.Click += new System.EventHandler(this.BTMOCAanmaken_Click);
+            // 
+            // BTMocNodig
+            // 
+            this.BTMocNodig.Location = new System.Drawing.Point(8, 33);
+            this.BTMocNodig.Name = "BTMocNodig";
+            this.BTMocNodig.Size = new System.Drawing.Size(153, 45);
+            this.BTMocNodig.TabIndex = 0;
+            this.BTMocNodig.Text = "MOC nodig ?";
+            this.BTMocNodig.UseVisualStyleBackColor = true;
+            this.BTMocNodig.Click += new System.EventHandler(this.BTMocNodig_Click);
             // 
             // panel2
             // 
@@ -903,37 +939,20 @@
             this.TB1.Size = new System.Drawing.Size(480, 114);
             this.TB1.TabIndex = 0;
             // 
-            // groupBox1
+            // KillTimer
             // 
-            this.groupBox1.Controls.Add(this.BTMOCAanmaken);
-            this.groupBox1.Controls.Add(this.BTMocNodig);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 582);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(178, 144);
-            this.groupBox1.TabIndex = 24;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = " MOC ? ";
+            this.KillTimer.Enabled = true;
+            this.KillTimer.Interval = 60000;
+            this.KillTimer.Tick += new System.EventHandler(this.KillTimer_Tick);
             // 
-            // BTMocNodig
+            // KillTijdLabel
             // 
-            this.BTMocNodig.Location = new System.Drawing.Point(8, 33);
-            this.BTMocNodig.Name = "BTMocNodig";
-            this.BTMocNodig.Size = new System.Drawing.Size(153, 45);
-            this.BTMocNodig.TabIndex = 0;
-            this.BTMocNodig.Text = "MOC nodig ?";
-            this.BTMocNodig.UseVisualStyleBackColor = true;
-            this.BTMocNodig.Click += new System.EventHandler(this.BTMocNodig_Click);
-            // 
-            // BTMOCAanmaken
-            // 
-            this.BTMOCAanmaken.Location = new System.Drawing.Point(8, 84);
-            this.BTMOCAanmaken.Name = "BTMOCAanmaken";
-            this.BTMOCAanmaken.Size = new System.Drawing.Size(153, 45);
-            this.BTMOCAanmaken.TabIndex = 0;
-            this.BTMOCAanmaken.Text = "MOC Aanmaken";
-            this.BTMOCAanmaken.UseVisualStyleBackColor = true;
-            this.BTMOCAanmaken.Click += new System.EventHandler(this.BTMOCAanmaken_Click);
+            this.KillTijdLabel.AutoSize = true;
+            this.KillTijdLabel.Location = new System.Drawing.Point(4, 912);
+            this.KillTijdLabel.Name = "KillTijdLabel";
+            this.KillTijdLabel.Size = new System.Drawing.Size(19, 13);
+            this.KillTijdLabel.TabIndex = 25;
+            this.KillTijdLabel.Text = "29";
             // 
             // MainForm
             // 
@@ -952,13 +971,14 @@
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             this.panelMenu.ResumeLayout(false);
+            this.panelMenu.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panelMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1036,6 +1056,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button BTMOCAanmaken;
         private System.Windows.Forms.Button BTMocNodig;
+        private System.Windows.Forms.Timer KillTimer;
+        private System.Windows.Forms.Label KillTijdLabel;
     }
 }
 

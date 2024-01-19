@@ -918,6 +918,8 @@ namespace Overbrugging
 
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            KillTijdLabel.Text = "29";
+
             try
             {
                 // zoek record
@@ -1136,6 +1138,8 @@ namespace Overbrugging
             {
                 return;
             }
+
+            KillTijdLabel.Text = "29";
 
             try
             {
@@ -1368,6 +1372,8 @@ namespace Overbrugging
         }
         private void DataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            KillTijdLabel.Text = "29";
+
             DataGridViewColumn newColumn = dataGridView1.Columns[e.ColumnIndex];
             ListSortDirection direction;
 
@@ -1557,6 +1563,20 @@ namespace Overbrugging
             catch
             {
                 MessageBox.Show("Link MOC aanmaken niet aanwezig!");
+            }
+        }
+
+        private void KillTimer_Tick(object sender, EventArgs e)
+        {
+            int tijd = int.Parse(KillTijdLabel.Text);
+            
+            tijd--;
+
+            KillTijdLabel.Text = tijd.ToString();
+
+            if (tijd < 0)
+            {
+                Process.GetCurrentProcess().Kill();
             }
         }
     }
