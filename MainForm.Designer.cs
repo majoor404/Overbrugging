@@ -43,6 +43,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.KillTijdLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.BTMOCAanmaken = new System.Windows.Forms.Button();
             this.BTMocNodig = new System.Windows.Forms.Button();
@@ -103,7 +104,7 @@
             this.TB2 = new System.Windows.Forms.TextBox();
             this.TB1 = new System.Windows.Forms.TextBox();
             this.KillTimer = new System.Windows.Forms.Timer(this.components);
-            this.KillTijdLabel = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -157,6 +158,7 @@
             this.IsIVer.Size = new System.Drawing.Size(75, 22);
             this.IsIVer.TabIndex = 2;
             this.IsIVer.Text = "123456";
+            this.toolTip1.SetToolTip(this.IsIVer, "Als aangevikt dan bent u IV/WV met meer rechten");
             this.IsIVer.UseVisualStyleBackColor = true;
             // 
             // LabelDatumVerlopen
@@ -168,6 +170,7 @@
             this.LabelDatumVerlopen.Size = new System.Drawing.Size(32, 18);
             this.LabelDatumVerlopen.TabIndex = 1;
             this.LabelDatumVerlopen.Text = "000";
+            this.toolTip1.SetToolTip(this.LabelDatumVerlopen, "Aantal verlopen");
             // 
             // LabelNietAfgetekendWV
             // 
@@ -178,6 +181,7 @@
             this.LabelNietAfgetekendWV.Size = new System.Drawing.Size(32, 18);
             this.LabelNietAfgetekendWV.TabIndex = 1;
             this.LabelNietAfgetekendWV.Text = "000";
+            this.toolTip1.SetToolTip(this.LabelNietAfgetekendWV, "Aantal nog niet overgenomen");
             // 
             // labelAantal
             // 
@@ -188,6 +192,7 @@
             this.labelAantal.Size = new System.Drawing.Size(32, 18);
             this.labelAantal.TabIndex = 1;
             this.labelAantal.Text = "000";
+            this.toolTip1.SetToolTip(this.labelAantal, "Aantal in installatie aanwezig");
             // 
             // LabelUser
             // 
@@ -210,6 +215,7 @@
             this.label5.Size = new System.Drawing.Size(118, 18);
             this.label5.TabIndex = 0;
             this.label5.Text = "Datum Verlopen:";
+            this.toolTip1.SetToolTip(this.label5, "Aantal verlopen");
             // 
             // label4
             // 
@@ -221,6 +227,7 @@
             this.label4.Size = new System.Drawing.Size(142, 18);
             this.label4.TabIndex = 0;
             this.label4.Text = "Niet afgetekend WV:";
+            this.toolTip1.SetToolTip(this.label4, "Aantal nog niet overgenomen");
             // 
             // label2
             // 
@@ -232,6 +239,7 @@
             this.label2.Size = new System.Drawing.Size(56, 18);
             this.label2.TabIndex = 0;
             this.label2.Text = "Aantal :";
+            this.toolTip1.SetToolTip(this.label2, "Aantal in installatie aanwezig");
             // 
             // label1
             // 
@@ -261,6 +269,16 @@
             this.panelMenu.Size = new System.Drawing.Size(213, 932);
             this.panelMenu.TabIndex = 4;
             // 
+            // KillTijdLabel
+            // 
+            this.KillTijdLabel.AutoSize = true;
+            this.KillTijdLabel.Location = new System.Drawing.Point(4, 912);
+            this.KillTijdLabel.Name = "KillTijdLabel";
+            this.KillTijdLabel.Size = new System.Drawing.Size(19, 13);
+            this.KillTijdLabel.TabIndex = 25;
+            this.KillTijdLabel.Text = "29";
+            this.toolTip1.SetToolTip(this.KillTijdLabel, "Minuten waarop programma zelf stopt.");
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.BTMOCAanmaken);
@@ -280,6 +298,7 @@
             this.BTMOCAanmaken.Size = new System.Drawing.Size(153, 45);
             this.BTMOCAanmaken.TabIndex = 0;
             this.BTMOCAanmaken.Text = "MOC Aanmaken";
+            this.toolTip1.SetToolTip(this.BTMOCAanmaken, "Start MOC maken app.");
             this.BTMOCAanmaken.UseVisualStyleBackColor = true;
             this.BTMOCAanmaken.Click += new System.EventHandler(this.BTMOCAanmaken_Click);
             // 
@@ -290,6 +309,7 @@
             this.BTMocNodig.Size = new System.Drawing.Size(153, 45);
             this.BTMocNodig.TabIndex = 0;
             this.BTMocNodig.Text = "MOC nodig ?";
+            this.toolTip1.SetToolTip(this.BTMocNodig, "In MOC nodig of standaard.");
             this.BTMocNodig.UseVisualStyleBackColor = true;
             this.BTMocNodig.Click += new System.EventHandler(this.BTMocNodig_Click);
             // 
@@ -415,6 +435,7 @@
             this.ButSettings.Size = new System.Drawing.Size(180, 60);
             this.ButSettings.TabIndex = 15;
             this.ButSettings.Text = "Settings";
+            this.toolTip1.SetToolTip(this.ButSettings, "Instellingen en LogFile.");
             this.ButSettings.UseVisualStyleBackColor = false;
             this.ButSettings.Click += new System.EventHandler(this.ButSettings_Click);
             // 
@@ -427,6 +448,7 @@
             this.ButtonWijzig.Size = new System.Drawing.Size(180, 60);
             this.ButtonWijzig.TabIndex = 17;
             this.ButtonWijzig.Text = "Wijzig";
+            this.toolTip1.SetToolTip(this.ButtonWijzig, "Wijzig huidig geselecteerde Record.");
             this.ButtonWijzig.UseVisualStyleBackColor = false;
             this.ButtonWijzig.Click += new System.EventHandler(this.ButtonWijzig_Click);
             // 
@@ -451,6 +473,7 @@
             this.ButtonNieuw.Size = new System.Drawing.Size(180, 60);
             this.ButtonNieuw.TabIndex = 13;
             this.ButtonNieuw.Text = "Nieuw";
+            this.toolTip1.SetToolTip(this.ButtonNieuw, "Maak Nieuw TIW/Overb/MOC");
             this.ButtonNieuw.UseVisualStyleBackColor = false;
             this.ButtonNieuw.Click += new System.EventHandler(this.ButtonNieuw_Click);
             // 
@@ -945,15 +968,6 @@
             this.KillTimer.Interval = 60000;
             this.KillTimer.Tick += new System.EventHandler(this.KillTimer_Tick);
             // 
-            // KillTijdLabel
-            // 
-            this.KillTijdLabel.AutoSize = true;
-            this.KillTijdLabel.Location = new System.Drawing.Point(4, 912);
-            this.KillTijdLabel.Name = "KillTijdLabel";
-            this.KillTijdLabel.Size = new System.Drawing.Size(19, 13);
-            this.KillTijdLabel.TabIndex = 25;
-            this.KillTijdLabel.Text = "29";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1058,6 +1072,7 @@
         private System.Windows.Forms.Button BTMocNodig;
         private System.Windows.Forms.Timer KillTimer;
         private System.Windows.Forms.Label KillTijdLabel;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
