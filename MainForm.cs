@@ -1518,6 +1518,11 @@ namespace Overbrugging
             {
                 return DateTime.Now;
             }
+            if(datum.Length != 10)
+            {
+                MessageBox.Show($"Datum string is fout, niet 10 char\n{datum}");
+                return DateTime.Now;
+            }
             int jaar = int.Parse(datum.Substring(6, 4));
             int maand = int.Parse(datum.Substring(3, 2));
             int dag = int.Parse(datum.Substring(0, 2));
