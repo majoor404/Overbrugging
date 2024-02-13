@@ -1574,7 +1574,7 @@ namespace Overbrugging
 
             KillTijdLabel.Text = tijd.ToString();
 
-            if (tijd < 0)
+            if (tijd < 0 || File.Exists("kill.ini"))
             {
                 Process.GetCurrentProcess().Kill();
             }
