@@ -158,14 +158,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button buttonNaam;
-        private System.Windows.Forms.Button buttonSecties;
-        private System.Windows.Forms.Button buttonImport;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label LabelBuildData;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button ButLogView;
+        public System.Windows.Forms.Button buttonNaam;
+        public System.Windows.Forms.Button buttonSecties;
+        public System.Windows.Forms.Button buttonImport;
     }
 }

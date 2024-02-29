@@ -395,5 +395,23 @@ namespace Overbrugging
             ButVoerUit_Click(this, null);
 
         }
+
+        private void ComboBoxNaam1_TextChanged(object sender, EventArgs e)
+        {
+            if(ComboBoxNaam1.Text == "")
+                TextBoxPersnr1.Text = string.Empty;
+        }
+
+        private void ComboBoxNaam2_TextChanged(object sender, EventArgs e)
+        {
+            if (ComboBoxNaam2.Text == "")
+                TextBoxPersnr2.Text = string.Empty;
+        }
+
+        private void ComboBoxIVWV_TextChanged(object sender, EventArgs e)
+        {
+            if (ComboBoxIVWV.Text == "")
+                TextBoxPersNrIVWV.Text = string.Empty;
+        }
     }
 }

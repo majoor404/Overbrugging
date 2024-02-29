@@ -473,6 +473,13 @@ namespace Overbrugging
             IsIVer.Checked = ZoekIV(inlognaam);
             IsIVer.Text = inlognaam;
 
+            // in oude database stond ik als niet IV. Anders kan ik dit niet aanpassen.
+            if (inlognaam == "590588" && !IsIVer.Checked)
+            {
+                IsIVer.Checked = true;
+                MessageBox.Show("Zet IV aan in database ronald.");
+            }
+
             Log.Locatie = AppDomain.CurrentDomain.BaseDirectory + "Data\\Log.txt";
             Log.MaxRegels = 5000;
 
@@ -885,6 +892,11 @@ namespace Overbrugging
         private void ButSettings_Click(object sender, EventArgs e)
         {
             Settings settings = new Settings();
+
+            settings.buttonNaam.Enabled = IsIVer.Checked;
+            settings.buttonSecties.Enabled = IsIVer.Checked;
+            settings.buttonImport.Enabled = inlognaam == "590588";
+
             DialogResult ret = settings.ShowDialog();
             if (ret == DialogResult.OK)
             {

@@ -434,7 +434,7 @@
             this.ButSettings.Name = "ButSettings";
             this.ButSettings.Size = new System.Drawing.Size(180, 60);
             this.ButSettings.TabIndex = 15;
-            this.ButSettings.Text = "Settings";
+            this.ButSettings.Text = "Settings / Log File";
             this.toolTip1.SetToolTip(this.ButSettings, "Instellingen en LogFile.");
             this.ButSettings.UseVisualStyleBackColor = false;
             this.ButSettings.Click += new System.EventHandler(this.ButSettings_Click);
