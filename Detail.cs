@@ -29,6 +29,7 @@ namespace Overbrugging
             // als reg nummer bekend is, maak save WV en verwijder actief.
             ButSaveWV.Enabled = !string.IsNullOrEmpty(TextBoxRegNr.Text) && MainForm.Main.IsIVer.Checked;
             ButSaveVerw.Enabled = !string.IsNullOrEmpty(TextBoxRegNr.Text) && MainForm.Main.IsIVer.Checked;
+            ButtonHeropen.Visible = ButSaveVerw.Enabled && (DatumVerw.TB.Text != " --/--/----");
 
             // als geen iv/wv dan niks invullen bij wv of afsluiten.
             PanelWV.Enabled = MainForm.Main.IsIVer.Checked;
@@ -412,6 +413,26 @@ namespace Overbrugging
         {
             if (ComboBoxIVWV.Text == "")
                 TextBoxPersNrIVWV.Text = string.Empty;
+        }
+
+        private void ButtonHeropen_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show($"Heropen deze afgesloten TIW/Overb?\nAlle velden van werkverandwoordelijke en verwijderd\nworden leeg geveegd in dit record", "Vraagje", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                ComboBoxIVWV.Text = "";
+                DatumWv.TB.Text = " --/--/----";
+                DatumVerloopTIW.TB.Text = " --/--/----";
+                ComboBoxNaamVerw.Text = "";
+                DatumVerw.TB.Text = " --/--/----";
+
+                TextBoxBijzIVWV.Text = "";
+                TextBoxBijzVerw.Text = "";
+
+                MainForm.Main.Log.LogRegel($"Afgesloten Record {TextBoxRegNr.Text} weer geopend door {MainForm.Main.LabelUser.Text}");
+                ButVoerUit_Click(this, null);
+            }
         }
     }
 }
