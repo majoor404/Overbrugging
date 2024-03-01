@@ -367,7 +367,7 @@ namespace Overbrugging
             }
             else
             {
-                MainForm.Main.Log.LogRegel("Save knop IV/WV ingedrukt. Door {MainForm.Main.LabelUser.Text}");
+                MainForm.Main.Log.LogRegel($"Save knop IV/WV ingedrukt. Door {MainForm.Main.LabelUser.Text}");
                 ButVoerUit_Click(this, null);
             }
         }
