@@ -7,8 +7,12 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows.Controls;
 using System.Windows.Forms;
+using Label = System.Windows.Forms.Label;
 
 namespace Overbrugging
 {
@@ -38,6 +42,22 @@ namespace Overbrugging
 
         public int[,] teldata = new int[7, 8]; // voor wachtrapport 7 rijen (soort) van 8 kolomen (secties)
 
+        private readonly System.Drawing.Font SmallFont = new System.Drawing.Font("Microsoft Sans Serif", 8);
+        public bool Scalling = false;  // als main scherm verkleind is.
+        public float ScreenScalingFactor = 1;
+        int LogicalScreenHeight;
+        int LogicalScreenWeight;
+
+        [DllImport("gdi32.dll")]
+        private static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
+        public enum DeviceCap
+        {
+            VERTRES = 10,
+            DESKTOPVERTRES = 117,
+            HORZRES = 8,
+            DESKTOPHORZRES = 118,
+        }
+
         private enum SectieNaam
         {
             SecRst, SecCon, SecPbi, SecPvk, SecCgm, SecSkv, SecAov, SecAlg
@@ -55,25 +75,185 @@ namespace Overbrugging
             InitializeComponent();
             Main = this;
             LaadInstelingen();
-        }
-
-        public string ZoekPersnr(string zoek)
-        {
-            if (string.IsNullOrEmpty(zoek))
-            {
-                return "";
-            }
-
+            PanelShrink.Visible = false;
             try
             {
-                NamenFunties Q = MainForm.Main.NamenLijst.First(a => a.Naam == zoek);
-                return Q.PersoneelNummer;
+                // test monitor grote
+                Graphics g = Graphics.FromHwnd(IntPtr.Zero);
+                IntPtr desktop = g.GetHdc();
+                LogicalScreenHeight = GetDeviceCaps(desktop, (int)DeviceCap.VERTRES);
+                int PhysicalScreenHeight = GetDeviceCaps(desktop, (int)DeviceCap.DESKTOPVERTRES);
+                LogicalScreenWeight = GetDeviceCaps(desktop, (int)DeviceCap.HORZRES);
+
+                ScreenScalingFactor = PhysicalScreenHeight / (float)LogicalScreenHeight;
+
+                if (LogicalScreenWeight < 1850 || LogicalScreenHeight < 1040 || ScreenScalingFactor != 1) // 1920 * 1080 bij 1 scaling
+                {
+                    Scalling = true;
+                    PanelShrink.Visible = true;
+                    PanelShrink.Location = panel1.Location;
+                    panel1.Size = PanelShrink.Size;
+                }
             }
-            catch
-            {
-                return "";
-            }
+            catch { }
+
         }
+
+        private void ScaleMainVenster(float ScreenScalingFactor, int LogicalScreenHeight, int LogicalScreenWeight)
+        {
+            //MessageBox.Show($"Resolutie anders dan verwacht\nDeze pc heeft {LogicalScreenWeight} * {LogicalScreenHeight} met Font grote {ScreenScalingFactor * 100}%\nPas eea aan, maar kan afwijken of niet passen.");
+
+            // buttons op panel menu
+            foreach (System.Windows.Forms.Button button in panelMenu.Controls.OfType<System.Windows.Forms.Button>())
+            {
+                ShrinkButton(button);
+            }
+
+            // locatie panel 2
+            ShrinkPanel(panel2);
+
+            // combo box in panel 2
+            foreach (System.Windows.Forms.ComboBox button in panel2.Controls.OfType<System.Windows.Forms.ComboBox>())
+            {
+                ShrinkComboBox(button);
+            }
+
+            // label in panel 2
+            foreach (Label label in panel2.Controls.OfType<Label>())
+            {
+                ShrinkLabel(label);
+            }
+
+            foreach (System.Windows.Forms.Button button in groupBox1.Controls.OfType<System.Windows.Forms.Button>())
+            {
+                ShrinkButton(button);
+            }
+
+            ShrinkGroupBox(groupBox1);
+
+            ShrinkPanel(panelMenu);
+
+            //foreach (Label label in panel1.Controls.OfType<Label>())
+            //{
+            //    ShrinkLabel(label);
+            //}
+
+            //foreach (System.Windows.Forms.TextBox tb in panel1.Controls.OfType<System.Windows.Forms.TextBox>())
+            //{
+            //    ShrinkTextBox(tb);
+            //}
+
+            //foreach (Label label in panel1.Controls.OfType<Label>())
+            //{
+            //    ShrinkLabel(label);
+            //}
+
+            //ShrinkPanel(panel1);
+            //ShrinkPanel(panel3);
+            //ShrinkPanel(panel4);
+
+            Main.Size = new System.Drawing.Size(1900, 1060);
+            WindowState = FormWindowState.Maximized;
+
+        }
+
+        //private void ShrinkTextBox(System.Windows.Forms.TextBox tb)
+        //{
+        //    tb.Font = SmallFont;
+        //    tb.Width = 50; // (int)(tb.Width / ScreenScalingFactor);
+        //    //tb.Height = (int)(tb.Height / ScreenScalingFactor); ivm small font auto
+
+        //    Point LocNieuw = new Point(0, 0);
+        //    LocNieuw = tb.Location;
+        //    LocNieuw.Y = (int)(tb.Location.Y / ScreenScalingFactor);
+        //    LocNieuw.X = (int)(tb.Location.X / ScreenScalingFactor);
+        //    tb.Location = LocNieuw;
+        //}
+
+        private void ShrinkGroupBox(System.Windows.Forms.GroupBox panel2)
+        {
+            panel2.Font = SmallFont;
+            Point LocNieuw = new Point(0, 0);
+            LocNieuw = panel2.Location;
+            LocNieuw.Y = (int)(panel2.Location.Y / ScreenScalingFactor);
+            LocNieuw.X = (int)(panel2.Location.X / ScreenScalingFactor);
+            panel2.Location = LocNieuw;
+
+            Size SizeNew = new Size(0, 0);
+            SizeNew = panel2.Size;
+            SizeNew.Width = (int)(SizeNew.Width / ScreenScalingFactor);
+            SizeNew.Height = (int)(SizeNew.Height / ScreenScalingFactor);
+            panel2.Size = SizeNew;
+        }
+
+        private void ShrinkPanel(System.Windows.Forms.Panel panel2)
+        {
+            Point LocNieuw = new Point(0, 0);
+            LocNieuw = panel2.Location;
+            LocNieuw.Y = (int)(panel2.Location.Y / ScreenScalingFactor);
+            LocNieuw.X = (int)(panel2.Location.X / ScreenScalingFactor);
+            panel2.Location = LocNieuw;
+
+            Size SizeNew = new Size(0, 0);
+            SizeNew = panel2.Size;
+            SizeNew.Width = (int)(SizeNew.Width / ScreenScalingFactor);
+            SizeNew.Height = (int)(SizeNew.Height / ScreenScalingFactor);
+            panel2.Size = SizeNew;
+        }
+
+        private void ShrinkLabel(Label label)
+        {
+            label.Font = SmallFont;
+            Point LocNieuw = new Point(0, 0);
+            LocNieuw = label.Location;
+            LocNieuw.Y = (int)(label.Location.Y / ScreenScalingFactor);
+            LocNieuw.X = (int)(label.Location.X / ScreenScalingFactor);
+            label.Location = LocNieuw;
+            label.AutoSize = false;
+        }
+        private void ShrinkButton(System.Windows.Forms.Button button) 
+        {
+            button.Width = (int)(button.Width / ScreenScalingFactor);
+            button.Height = (int)(button.Height / ScreenScalingFactor);
+
+            Point LocNieuw = new Point(0, 0);
+            LocNieuw = button.Location;
+            LocNieuw.Y = (int)(button.Location.Y / ScreenScalingFactor);
+            LocNieuw.X = (int)(button.Location.X / ScreenScalingFactor);
+            button.Location = LocNieuw;
+
+            button.Font = SmallFont;
+        }
+
+        private void ShrinkComboBox(System.Windows.Forms.ComboBox button)
+        {
+            button.Font = SmallFont;
+            button.Width = (int)(button.Width / ScreenScalingFactor);
+            //button.Height = (int)(button.Height / ScreenScalingFactor);
+            Point LocNieuw = new Point(0, 0);
+            LocNieuw = button.Location;
+            LocNieuw.Y = (int)(button.Location.Y / ScreenScalingFactor);
+            LocNieuw.X = (int)(button.Location.X / ScreenScalingFactor);
+            button.Location = LocNieuw;
+        }
+
+        //public string ZoekPersnr(string zoek)
+        //{
+        //    if (string.IsNullOrEmpty(zoek))
+        //    {
+        //        return "";
+        //    }
+
+        //    try
+        //    {
+        //        NamenFunties Q = MainForm.Main.NamenLijst.First(a => a.Naam == zoek);
+        //        return Q.PersoneelNummer;
+        //    }
+        //    catch
+        //    {
+        //        return "";
+        //    }
+        //}
 
         private void ButImport_Click(object sender, EventArgs e)
         {
@@ -388,6 +568,9 @@ namespace Overbrugging
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
+            if (Scalling)
+                ScaleMainVenster(ScreenScalingFactor, LogicalScreenHeight, LogicalScreenWeight);
+
             FormMelding md = new FormMelding(FormMelding.Type.Info, "Overbruging 2.0", "R.Majoor");
             md.Show();
 
@@ -1017,6 +1200,42 @@ namespace Overbrugging
                 TBNVerw.Text = Q.Naamverw;
                 TBDVerw.Text = Q.DatumVerw;
                 TBTVerw.Text = Q.BijzonderhedenVerw;
+
+                if(Scalling)
+                {
+                    TB1S.Text = Q.Reden;
+                    TB2S.Text = Q.Uitvoering;
+                    GeselRegNrS.Text = index.ToString();
+                    TBDINVS.Text = Q.DatumInv;
+                    TBSAPS.Text = Q.SapNr;
+                    TBMOCS.Text = Q.MocNr;
+                    TBSECS.Text = Q.Sectie;
+                    TBINSTS.Text = Q.Installatie;
+                    TBINSTDS.Text = Q.InstallatieDeel;
+                    TBN1S.Text = Q.Naam1;
+                    TBN2S.Text = Q.Naam2;
+
+                    if (Q.Soort == "TIW")
+                    {
+                        LabelTypeS.Text = "Tijdelijke Instalatie Wijziging";
+                    }
+                    if (Q.Soort == "MOC")
+                    {
+                        LabelTypeS.Text = "Management Of Change";
+                    }
+                    if (Q.Soort == "OVERB")
+                    {
+                        LabelTypeS.Text = "Overbruging";
+                    }
+                    TBDWVS.Text = Q.DatumWv;
+                    TBDWVVS.Text = Q.UitersteDatum;
+                    TBNWVS.Text = Q.NaamWV;
+                    TextBoxBijzIVWVS.Text = Q.BijzonderhedenWV;
+
+                    TBNVerwS.Text = Q.Naamverw;
+                    TBDVerwS.Text = Q.DatumVerw;
+                    TBTVerwS.Text = Q.BijzonderhedenVerw;
+                }
             }
             catch
             {
