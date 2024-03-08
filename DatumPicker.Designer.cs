@@ -61,7 +61,7 @@
             this.Controls.Add(this.TB);
             this.Controls.Add(this.DT);
             this.Name = "DatumPicker";
-            this.Size = new System.Drawing.Size(137, 31);
+            this.Size = new System.Drawing.Size(137, 24);
             this.ResumeLayout(false);
             this.PerformLayout();
 

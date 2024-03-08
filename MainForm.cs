@@ -133,25 +133,6 @@ namespace Overbrugging
 
             ShrinkPanel(panelMenu);
 
-            //foreach (Label label in panel1.Controls.OfType<Label>())
-            //{
-            //    ShrinkLabel(label);
-            //}
-
-            //foreach (System.Windows.Forms.TextBox tb in panel1.Controls.OfType<System.Windows.Forms.TextBox>())
-            //{
-            //    ShrinkTextBox(tb);
-            //}
-
-            //foreach (Label label in panel1.Controls.OfType<Label>())
-            //{
-            //    ShrinkLabel(label);
-            //}
-
-            //ShrinkPanel(panel1);
-            //ShrinkPanel(panel3);
-            //ShrinkPanel(panel4);
-
             Main.Size = new System.Drawing.Size(1900, 1060);
             WindowState = FormWindowState.Maximized;
 
@@ -1122,16 +1103,28 @@ namespace Overbrugging
                 TempData = ZoekDataRecord(regNr);
 
                 // maak formulier
+                DetailSmall dts = new DetailSmall();
                 Detail dt = new Detail();
 
-                // vullen dropdown items ZIT NU IN VulDatailForm
-                //dt.ComboBoxSectie.Text = TempData.Sectie; // daarvoor heb ik wel sectie nodig.
-                //VulDropDownItems(dt);
+                if (!Scalling)
+                {
+                    dt.TextBoxRegNr.Text = TempData.RegNr.ToString();
+                    dt.TextBoxRegNr.Enabled = false;
 
-                VulDatailForm(dt, TempData);
+                    VulDatailForm(dt, TempData);
 
-                // open dialog
-                _ = dt.ShowDialog();
+                    _ = dt.ShowDialog();
+
+                }
+                else
+                {
+                    dts.TextBoxRegNr.Text = TempData.RegNr.ToString();
+                    dts.TextBoxRegNr.Enabled = false;
+
+                    VulDatailFormSmall(dts, TempData);
+
+                    _ = dts.ShowDialog();
+                }
 
                 //refresh
                 ButRefresh_Click(this, null);
@@ -1310,9 +1303,34 @@ namespace Overbrugging
             VulSectiesOnderdeelDropDown(dt);
             VulNamenPersoneel(dt);
             VulNamenIVWVPersoneel(dt);
-        }  // vullen dropdown items
+        }
+
+        public void VulDropDownItemsSmall(DetailSmall dt)
+        {
+            VulSectiesDropDownSmall(dt);
+            VulSectiesOnderdeelDropDownSmall(dt);
+            VulNamenPersoneelSmall(dt);
+            VulNamenIVWVPersoneelSmall(dt);
+        }
 
         private void VulNamenIVWVPersoneel(Detail dt)
+        {
+            mycolIVWV.Clear();
+            _ = mycolIVWV.Add("");
+            dt.ComboBoxIVWV.Items.Clear();
+            dt.ComboBoxNaamVerw.Items.Clear();
+            List<NamenFunties> IVWVFilter = new List<NamenFunties>();
+            IVWVFilter = NamenLijst.Where(x => x.IVWV == true).ToList();
+            IVWVFilter = IVWVFilter.OrderBy(o => o.Naam).ToList();
+            for (int i = 0; i < IVWVFilter.Count; i++)
+            {
+                _ = dt.ComboBoxIVWV.Items.Add(IVWVFilter[i].Naam);
+                _ = dt.ComboBoxNaamVerw.Items.Add(IVWVFilter[i].Naam);
+                _ = mycolIVWV.Add(IVWVFilter[i].Naam);
+            }
+        }
+
+        private void VulNamenIVWVPersoneelSmall(DetailSmall dt)
         {
             mycolIVWV.Clear();
             _ = mycolIVWV.Add("");
@@ -1343,6 +1361,20 @@ namespace Overbrugging
             }
         }
 
+        private void VulNamenPersoneelSmall(DetailSmall dt)
+        {
+            mycol.Clear();
+            _ = mycol.Add(" ");
+            dt.ComboBoxNaam1.Items.Clear();
+            dt.ComboBoxNaam2.Items.Clear();
+            for (int i = 0; i < NamenLijst.Count; i++)
+            {
+                _ = dt.ComboBoxNaam1.Items.Add(NamenLijst[i].Naam);
+                _ = dt.ComboBoxNaam2.Items.Add(NamenLijst[i].Naam);
+                _ = mycol.Add(NamenLijst[i].Naam);
+            }
+        }
+
         public void VulSectiesOnderdeelDropDown(Detail dt)
         {
             List<InstallatieOnderdeel> InstallatieLijstFilter = new List<InstallatieOnderdeel>();
@@ -1354,7 +1386,27 @@ namespace Overbrugging
             }
         }
 
+        public void VulSectiesOnderdeelDropDownSmall(DetailSmall dt)
+        {
+            List<InstallatieOnderdeel> InstallatieLijstFilter = new List<InstallatieOnderdeel>();
+            InstallatieLijstFilter = InstallatieLijst.Where(x => x.Sectie == dt.ComboBoxSectie.Text).ToList();
+            dt.ComboSectieDeel.Items.Clear();
+            for (int i = 0; i < InstallatieLijstFilter.Count; i++)
+            {
+                _ = dt.ComboSectieDeel.Items.Add(InstallatieLijstFilter[i].Instal);
+            }
+        }
+
         private void VulSectiesDropDown(Detail dt)
+        {
+            dt.ComboBoxSectie.Items.Clear();
+            for (int i = 0; i < MainForm.Main.SectieLijst.Count; i++)
+            {
+                _ = dt.ComboBoxSectie.Items.Add(MainForm.Main.SectieLijst[i].Naam);
+            }
+        }
+
+        private void VulSectiesDropDownSmall(DetailSmall dt)
         {
             dt.ComboBoxSectie.Items.Clear();
             for (int i = 0; i < MainForm.Main.SectieLijst.Count; i++)
@@ -1379,18 +1431,29 @@ namespace Overbrugging
                 TempData = ZoekDataRecord(regNr);
 
                 // maak formulier
+                DetailSmall dts = new DetailSmall();
                 Detail dt = new Detail();
-                dt.TextBoxRegNr.Text = TempData.RegNr.ToString();
-                dt.TextBoxRegNr.Enabled = false;
 
-                // vullen dropdown items
-                //dt.ComboBoxSectie.Text = Q.Sectie; // daarvoor heb ik wel sectie nodig.
-                //VulDropDownItems(dt);
+                if (!Scalling)
+                {
+                    dt.TextBoxRegNr.Text = TempData.RegNr.ToString();
+                    dt.TextBoxRegNr.Enabled = false;
 
-                VulDatailForm(dt, TempData);
+                    VulDatailForm(dt, TempData);
 
-                // open dialog
-                _ = dt.ShowDialog();
+                    _ = dt.ShowDialog();
+
+                    
+                }
+                else
+                {
+                    dts.TextBoxRegNr.Text = TempData.RegNr.ToString();
+                    dts.TextBoxRegNr.Enabled = false;
+
+                    VulDatailFormSmall(dts, TempData);
+
+                    _ = dts.ShowDialog();
+                }
 
                 //refresh
                 ButRefresh_Click(this, null);
@@ -1442,7 +1505,63 @@ namespace Overbrugging
             }
         }
 
+        private void VulDatailFormSmall(DetailSmall dt, Data Q)
+        {
+            try
+            {
+                LaadNamen_lijst();
+
+                // vullen dropdown items
+                dt.ComboBoxSectie.Text = Q.Sectie; // daarvoor heb ik wel sectie nodig.
+                VulDropDownItemsSmall(dt);
+
+                // bovenste panel vullen met data
+                dt.DatumInv.Datum = Q.DatumInv;
+                dt.TextBoxSapNr.Text = Q.SapNr;
+                dt.TextBoxMocNr.Text = Q.MocNr;
+                dt.ComboSectieDeel.Text = Q.Installatie;
+                dt.TextBoxInstDeel.Text = Q.InstallatieDeel;
+                dt.ComboBoxNaam1.Text = Q.Naam1;
+                dt.ComboBoxNaam2.Text = Q.Naam2;
+                dt.TextBoxRede.Text = Q.Reden;
+                dt.TextBoxOplossing.Text = Q.Uitvoering;
+                // middelste panel
+                dt.DatumWv.Datum = Q.DatumWv;
+                dt.ComboBoxIVWV.Text = Q.NaamWV;
+                dt.DatumVerloopTIW.Datum = Q.UitersteDatum;
+                dt.TextBoxBijzIVWV.Text = Q.BijzonderhedenWV;
+                dt.CBSoort.Text = Q.Soort;
+                // onderste panel
+                dt.DatumVerw.Datum = Q.DatumVerw;
+                dt.ComboBoxNaamVerw.Text = Q.Naamverw;
+                dt.TextBoxBijzVerw.Text = Q.BijzonderhedenVerw;
+
+                AutoAanvulNamenSmall(dt);
+            }
+            catch
+            {
+                _ = MessageBox.Show($"Error VulDetailForm");
+            }
+        }
+
         private void AutoAanvulNamen(Detail dt)
+        {
+            dt.ComboBoxIVWV.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            dt.ComboBoxIVWV.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            dt.ComboBoxIVWV.AutoCompleteCustomSource = mycolIVWV;
+            dt.ComboBoxNaamVerw.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            dt.ComboBoxNaamVerw.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            dt.ComboBoxNaamVerw.AutoCompleteCustomSource = mycolIVWV;
+
+            dt.ComboBoxNaam1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            dt.ComboBoxNaam1.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            dt.ComboBoxNaam1.AutoCompleteCustomSource = mycol;
+            dt.ComboBoxNaam2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            dt.ComboBoxNaam2.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            dt.ComboBoxNaam2.AutoCompleteCustomSource = mycol;
+        }
+
+        private void AutoAanvulNamenSmall(DetailSmall dt)
         {
             dt.ComboBoxIVWV.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             dt.ComboBoxIVWV.AutoCompleteSource = AutoCompleteSource.CustomSource;
