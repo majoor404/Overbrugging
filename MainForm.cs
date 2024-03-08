@@ -1934,5 +1934,44 @@ namespace Overbrugging
                 Process.GetCurrentProcess().Kill();
             }
         }
+
+        private void LabelDatumVerlopen_Click(object sender, EventArgs e)
+        {
+            LaadData_lijst();
+            dataGridView1.DataSource = null;
+            List<Data> temp = new List<Data>();
+
+            foreach (Data q in LijstData)
+            {
+                q.DatumTemp = GetDateTime(q.UitersteDatum);
+                if (q.DatumTemp < DateTime.Now && q.DatumVerw == string.Empty)
+                {
+                    temp.Add(q);
+                    q.Kleur = true;
+                }
+            }
+            
+            LijstData = temp;
+            VulGrid();
+        }
+
+        private void LabelNietAfgetekendWV_Click(object sender, EventArgs e)
+        {
+            LaadData_lijst();
+            dataGridView1.DataSource = null;
+            List<Data> temp = new List<Data>();
+
+            foreach (Data q in LijstData)
+            {
+                if (q.DatumWv == string.Empty)
+                {
+                    temp.Add(q);
+                    q.Kleur = true;
+                }
+            }
+
+            LijstData = temp;
+            VulGrid();
+        }
     }
 }
