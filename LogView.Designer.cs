@@ -42,13 +42,13 @@
             this.TB.Name = "TB";
             this.TB.ReadOnly = true;
             this.TB.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TB.Size = new System.Drawing.Size(890, 705);
+            this.TB.Size = new System.Drawing.Size(890, 516);
             this.TB.TabIndex = 0;
             // 
             // ButClose
             // 
             this.ButClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButClose.Location = new System.Drawing.Point(593, 729);
+            this.ButClose.Location = new System.Drawing.Point(592, 546);
             this.ButClose.Margin = new System.Windows.Forms.Padding(4);
             this.ButClose.Name = "ButClose";
             this.ButClose.Size = new System.Drawing.Size(310, 61);
@@ -60,7 +60,7 @@
             // TBFilter
             // 
             this.TBFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBFilter.Location = new System.Drawing.Point(13, 747);
+            this.TBFilter.Location = new System.Drawing.Point(12, 564);
             this.TBFilter.Name = "TBFilter";
             this.TBFilter.Size = new System.Drawing.Size(201, 24);
             this.TBFilter.TabIndex = 2;
@@ -68,7 +68,7 @@
             // BTFilter
             // 
             this.BTFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTFilter.Location = new System.Drawing.Point(230, 738);
+            this.BTFilter.Location = new System.Drawing.Point(229, 555);
             this.BTFilter.Name = "BTFilter";
             this.BTFilter.Size = new System.Drawing.Size(115, 43);
             this.BTFilter.TabIndex = 3;
@@ -80,7 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(915, 803);
+            this.ClientSize = new System.Drawing.Size(915, 620);
             this.Controls.Add(this.BTFilter);
             this.Controls.Add(this.TBFilter);
             this.Controls.Add(this.ButClose);

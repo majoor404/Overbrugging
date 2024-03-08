@@ -107,7 +107,9 @@ namespace Overbrugging
             
             SchermIsKleinGemaakt = true;
 
-            //MessageBox.Show($"Resolutie anders dan verwacht\nDeze pc heeft {LogicalScreenWeight} * {LogicalScreenHeight} met Font grote {ScreenScalingFactor * 100}%\nPas eea aan, maar kan afwijken of niet passen.");
+            MessageBox.Show($"Resolutie anders dan verwacht van standaard Tata PC\nDeze pc heeft {LogicalScreenWeight} * {LogicalScreenHeight} met Font grote {ScreenScalingFactor * 100}%\nProgramma probeert eea aan te passen, maar kan afwijken of niet passen.");
+
+            this.Text = "Overbrug gescaled window.";
 
             // buttons op panel menu
             foreach (System.Windows.Forms.Button button in panelMenu.Controls.OfType<System.Windows.Forms.Button>())
@@ -162,14 +164,12 @@ namespace Overbrugging
         private void ShrinkGroupBox(System.Windows.Forms.GroupBox panel2)
         {
             panel2.Font = SmallFont;
-            Point LocNieuw = new Point(0, 0);
-            LocNieuw = panel2.Location;
+            Point LocNieuw = panel2.Location;
             LocNieuw.Y = (int)(panel2.Location.Y / ScreenScalingFactor);
             LocNieuw.X = (int)(panel2.Location.X / ScreenScalingFactor);
             panel2.Location = LocNieuw;
 
-            Size SizeNew = new Size(0, 0);
-            SizeNew = panel2.Size;
+            Size SizeNew = panel2.Size;
             SizeNew.Width = (int)(SizeNew.Width / ScreenScalingFactor);
             SizeNew.Height = (int)(SizeNew.Height / ScreenScalingFactor);
             panel2.Size = SizeNew;
@@ -177,14 +177,12 @@ namespace Overbrugging
 
         private void ShrinkPanel(System.Windows.Forms.Panel panel2)
         {
-            Point LocNieuw = new Point(0, 0);
-            LocNieuw = panel2.Location;
+            Point LocNieuw = panel2.Location;
             LocNieuw.Y = (int)(panel2.Location.Y / ScreenScalingFactor);
             LocNieuw.X = (int)(panel2.Location.X / ScreenScalingFactor);
             panel2.Location = LocNieuw;
 
-            Size SizeNew = new Size(0, 0);
-            SizeNew = panel2.Size;
+            Size SizeNew = panel2.Size;
             SizeNew.Width = (int)(SizeNew.Width / ScreenScalingFactor);
             SizeNew.Height = (int)(SizeNew.Height / ScreenScalingFactor);
             panel2.Size = SizeNew;
@@ -193,8 +191,7 @@ namespace Overbrugging
         private void ShrinkLabel(Label label)
         {
             label.Font = SmallFont;
-            Point LocNieuw = new Point(0, 0);
-            LocNieuw = label.Location;
+            Point LocNieuw = label.Location;
             LocNieuw.Y = (int)(label.Location.Y / ScreenScalingFactor);
             LocNieuw.X = (int)(label.Location.X / ScreenScalingFactor);
             label.Location = LocNieuw;
@@ -205,8 +202,7 @@ namespace Overbrugging
             button.Width = (int)(button.Width / ScreenScalingFactor);
             button.Height = (int)(button.Height / ScreenScalingFactor);
 
-            Point LocNieuw = new Point(0, 0);
-            LocNieuw = button.Location;
+            Point LocNieuw = button.Location;
             LocNieuw.Y = (int)(button.Location.Y / ScreenScalingFactor);
             LocNieuw.X = (int)(button.Location.X / ScreenScalingFactor);
             button.Location = LocNieuw;
@@ -219,8 +215,7 @@ namespace Overbrugging
             button.Font = SmallFont;
             button.Width = (int)(button.Width / ScreenScalingFactor);
             //button.Height = (int)(button.Height / ScreenScalingFactor);
-            Point LocNieuw = new Point(0, 0);
-            LocNieuw = button.Location;
+            Point LocNieuw = button.Location;
             LocNieuw.Y = (int)(button.Location.Y / ScreenScalingFactor);
             LocNieuw.X = (int)(button.Location.X / ScreenScalingFactor);
             button.Location = LocNieuw;
@@ -1267,6 +1262,8 @@ namespace Overbrugging
             KeuzeType KS = new KeuzeType();
             DialogResult retKeuzeForm = KS.ShowDialog();
 
+            // maak formulier
+            DetailSmall dts = new DetailSmall();
             Detail dt = new Detail();
 
             TempData = new Data();
@@ -1292,15 +1289,21 @@ namespace Overbrugging
             }
 
             LaadNamen_lijst();
-            VulDropDownItems(dt);
 
-            AutoAanvulNamen(dt);
-
-            TempData.DatumInv = dt.DatumInv.Datum = DateTime.Now.ToShortDateString();
-
-            // open dialog
-            _ = dt.ShowDialog();
-
+            if (!Scalling)
+            {
+                VulDropDownItems(dt);
+                AutoAanvulNamen(dt);
+                TempData.DatumInv = dt.DatumInv.Datum = DateTime.Now.ToShortDateString();
+                _ = dt.ShowDialog();
+            }
+            else
+            {
+                VulDropDownItemsSmall(dts);
+                AutoAanvulNamenSmall(dts);
+                TempData.DatumInv = dts.DatumInv.Datum = DateTime.Now.ToShortDateString();
+                _ = dts.ShowDialog();
+            }
             //refresh
             ButRefresh_Click(this, null);
         }
