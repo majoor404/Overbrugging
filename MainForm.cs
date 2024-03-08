@@ -47,6 +47,7 @@ namespace Overbrugging
         public float ScreenScalingFactor = 1;
         int LogicalScreenHeight;
         int LogicalScreenWeight;
+        private bool SchermIsKleinGemaakt = false;
 
         [DllImport("gdi32.dll")]
         private static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
@@ -101,6 +102,11 @@ namespace Overbrugging
 
         private void ScaleMainVenster(float ScreenScalingFactor, int LogicalScreenHeight, int LogicalScreenWeight)
         {
+            if (SchermIsKleinGemaakt)
+                return;
+            
+            SchermIsKleinGemaakt = true;
+
             //MessageBox.Show($"Resolutie anders dan verwacht\nDeze pc heeft {LogicalScreenWeight} * {LogicalScreenHeight} met Font grote {ScreenScalingFactor * 100}%\nPas eea aan, maar kan afwijken of niet passen.");
 
             // buttons op panel menu
@@ -108,6 +114,8 @@ namespace Overbrugging
             {
                 ShrinkButton(button);
             }
+
+            ShrinkButton(ButRefresh);
 
             // locatie panel 2
             ShrinkPanel(panel2);
