@@ -7,10 +7,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Windows.Controls;
 using System.Windows.Forms;
 using Label = System.Windows.Forms.Label;
 
@@ -33,6 +31,8 @@ namespace Overbrugging
         public AutoCompleteStringCollection mycol = new AutoCompleteStringCollection();
         public string inlognaam = "";
 
+        public Lock Geblokkerd = new Lock();
+
         public Logging Log = new Logging();
 
         public int NietAfgetekendWv = 0;
@@ -45,8 +45,8 @@ namespace Overbrugging
         private readonly System.Drawing.Font SmallFont = new System.Drawing.Font("Microsoft Sans Serif", 8);
         public bool Scalling = false;  // als main scherm verkleind is.
         public float ScreenScalingFactor = 1;
-        int LogicalScreenHeight;
-        int LogicalScreenWeight;
+        private readonly int LogicalScreenHeight;
+        private readonly int LogicalScreenWeight;
         private bool SchermIsKleinGemaakt = false;
 
         [DllImport("gdi32.dll")]
@@ -103,13 +103,15 @@ namespace Overbrugging
         private void ScaleMainVenster(float ScreenScalingFactor, int LogicalScreenHeight, int LogicalScreenWeight)
         {
             if (SchermIsKleinGemaakt)
+            {
                 return;
-            
+            }
+
             SchermIsKleinGemaakt = true;
 
-            MessageBox.Show($"Resolutie anders dan verwacht van standaard Tata PC\nDeze pc heeft {LogicalScreenWeight} * {LogicalScreenHeight} met Font grote {ScreenScalingFactor * 100}%\nProgramma probeert eea aan te passen, maar kan afwijken of niet passen.");
+            _ = MessageBox.Show($"Resolutie anders dan verwacht van standaard Tata PC\nDeze pc heeft {LogicalScreenWeight} * {LogicalScreenHeight} met Font grote {ScreenScalingFactor * 100}%\nProgramma probeert eea aan te passen, maar kan afwijken of niet passen.");
 
-            this.Text = "Overbrug gescaled window.";
+            Text = "Overbrug gescaled window.";
 
             // buttons op panel menu
             foreach (System.Windows.Forms.Button button in panelMenu.Controls.OfType<System.Windows.Forms.Button>())
@@ -197,7 +199,7 @@ namespace Overbrugging
             label.Location = LocNieuw;
             label.AutoSize = false;
         }
-        private void ShrinkButton(System.Windows.Forms.Button button) 
+        private void ShrinkButton(System.Windows.Forms.Button button)
         {
             button.Width = (int)(button.Width / ScreenScalingFactor);
             button.Height = (int)(button.Height / ScreenScalingFactor);
@@ -553,7 +555,9 @@ namespace Overbrugging
         private void MainForm_Shown(object sender, EventArgs e)
         {
             if (Scalling)
+            {
                 ScaleMainVenster(ScreenScalingFactor, LogicalScreenHeight, LogicalScreenWeight);
+            }
 
             FormMelding md = new FormMelding(FormMelding.Type.Info, "Overbruging 2.0", "R.Majoor");
             md.Show();
@@ -644,7 +648,7 @@ namespace Overbrugging
             if (inlognaam == "590588" && !IsIVer.Checked)
             {
                 IsIVer.Checked = true;
-                MessageBox.Show("Zet IV aan in database ronald.");
+                _ = MessageBox.Show("Zet IV aan in database ronald.");
             }
 
             Log.Locatie = AppDomain.CurrentDomain.BaseDirectory + "Data\\Log.txt";
@@ -1109,6 +1113,20 @@ namespace Overbrugging
                 DetailSmall dts = new DetailSmall();
                 Detail dt = new Detail();
 
+                bool isgelockt = Geblokkerd.IsLock(GeselRegNr.Text);
+
+                if (isgelockt)
+                {
+                    dt.viewonly = true;
+                    dts.viewonly = true;
+                }
+
+                // als een IV of WV blokeer
+                if (IsIVer.Checked && !isgelockt)
+                {
+                    Geblokkerd.SetLock(LabelUser.Text, GeselRegNr.Text);
+                }
+
                 if (!Scalling)
                 {
                     dt.TextBoxRegNr.Text = TempData.RegNr.ToString();
@@ -1128,6 +1146,9 @@ namespace Overbrugging
 
                     _ = dts.ShowDialog();
                 }
+
+                if (IsIVer.Checked && !isgelockt) // alleen als ik zelf gelockt hebt
+                    Geblokkerd.FreeLock(GeselRegNr.Text);
 
                 //refresh
                 ButRefresh_Click(this, null);
@@ -1197,7 +1218,7 @@ namespace Overbrugging
                 TBDVerw.Text = Q.DatumVerw;
                 TBTVerw.Text = Q.BijzonderhedenVerw;
 
-                if(Scalling)
+                if (Scalling)
                 {
                     TB1S.Text = Q.Reden;
                     TB2S.Text = Q.Uitvoering;
@@ -1445,6 +1466,20 @@ namespace Overbrugging
                 DetailSmall dts = new DetailSmall();
                 Detail dt = new Detail();
 
+                bool isgelockt = Geblokkerd.IsLock(GeselRegNr.Text);
+
+                if (isgelockt)
+                {
+                    dt.viewonly = true;
+                    dts.viewonly = true;
+                }
+
+                // als een IV of WV blokeer
+                if (IsIVer.Checked && !isgelockt)
+                {
+                    Geblokkerd.SetLock(LabelUser.Text, GeselRegNr.Text);
+                }
+
                 if (!Scalling)
                 {
                     dt.TextBoxRegNr.Text = TempData.RegNr.ToString();
@@ -1453,8 +1488,6 @@ namespace Overbrugging
                     VulDatailForm(dt, TempData);
 
                     _ = dt.ShowDialog();
-
-                    
                 }
                 else
                 {
@@ -1465,6 +1498,9 @@ namespace Overbrugging
 
                     _ = dts.ShowDialog();
                 }
+
+                if (IsIVer.Checked && !isgelockt)  // alleen als ik zelf gelockt hebt
+                    Geblokkerd.FreeLock(GeselRegNr.Text);
 
                 //refresh
                 ButRefresh_Click(this, null);
@@ -1879,9 +1915,9 @@ namespace Overbrugging
             {
                 return DateTime.Now;
             }
-            if(datum.Length != 10)
+            if (datum.Length != 10)
             {
-                MessageBox.Show($"Datum string is fout, niet 10 char\n{datum}");
+                _ = MessageBox.Show($"Datum string is fout, niet 10 char\n{datum}");
                 return DateTime.Now;
             }
             int jaar = int.Parse(datum.Substring(6, 4));
@@ -1913,7 +1949,7 @@ namespace Overbrugging
             }
             catch
             {
-                MessageBox.Show("Link MOC nodig niet aanwezig!");
+                _ = MessageBox.Show("Link MOC nodig niet aanwezig!");
             }
         }
 
@@ -1928,14 +1964,14 @@ namespace Overbrugging
             }
             catch
             {
-                MessageBox.Show("Link MOC aanmaken niet aanwezig!");
+                _ = MessageBox.Show("Link MOC aanmaken niet aanwezig!");
             }
         }
 
         private void KillTimer_Tick(object sender, EventArgs e)
         {
             int tijd = int.Parse(KillTijdLabel.Text);
-            
+
             tijd--;
 
             KillTijdLabel.Text = tijd.ToString();
@@ -1961,7 +1997,7 @@ namespace Overbrugging
                     q.Kleur = true;
                 }
             }
-            
+
             LijstData = temp;
             VulGrid();
         }

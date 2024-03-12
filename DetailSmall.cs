@@ -11,6 +11,8 @@ namespace Overbrugging
     public partial class DetailSmall : Form
     {
         //public Data HuidigeDataInDetail = new Data();
+        public bool viewonly = false;
+
         public DetailSmall()
         {
             InitializeComponent();
@@ -30,6 +32,12 @@ namespace Overbrugging
             // als geen iv/wv dan niks invullen bij wv of afsluiten.
             PanelWV.Enabled = MainForm.Main.IsIVer.Checked;
             PanelVerwijderen.Enabled = MainForm.Main.IsIVer.Checked;
+
+            // viewonly
+            ButVoerUit.Enabled = !viewonly;
+            ButSaveWV.Enabled = !viewonly;
+            ButSaveVerw.Enabled = !viewonly;
+            ButtonHeropen.Enabled = !viewonly;
 
             TextBoxRede.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
             TextBoxOplossing.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;

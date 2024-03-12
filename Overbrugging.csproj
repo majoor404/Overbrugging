@@ -86,6 +86,7 @@
     <Compile Include="KeuzeType.Designer.cs">
       <DependentUpon>KeuzeType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lock.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="LogView.cs">
       <SubType>Form</SubType>
