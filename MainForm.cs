@@ -150,19 +150,6 @@ namespace Overbrugging
 
         }
 
-        //private void ShrinkTextBox(System.Windows.Forms.TextBox tb)
-        //{
-        //    tb.Font = SmallFont;
-        //    tb.Width = 50; // (int)(tb.Width / ScreenScalingFactor);
-        //    //tb.Height = (int)(tb.Height / ScreenScalingFactor); ivm small font auto
-
-        //    Point LocNieuw = new Point(0, 0);
-        //    LocNieuw = tb.Location;
-        //    LocNieuw.Y = (int)(tb.Location.Y / ScreenScalingFactor);
-        //    LocNieuw.X = (int)(tb.Location.X / ScreenScalingFactor);
-        //    tb.Location = LocNieuw;
-        //}
-
         private void ShrinkGroupBox(System.Windows.Forms.GroupBox panel2)
         {
             panel2.Font = SmallFont;
@@ -653,7 +640,6 @@ namespace Overbrugging
 
             Log.Locatie = AppDomain.CurrentDomain.BaseDirectory + "Data\\Log.txt";
             Log.MaxRegels = 5000;
-
 
             try
             {
