@@ -109,7 +109,7 @@ namespace Overbrugging
 
             SchermIsKleinGemaakt = true;
 
-            _ = MessageBox.Show($"Resolutie anders dan verwacht van standaard Tata PC\nDeze pc heeft {LogicalScreenWeight} * {LogicalScreenHeight} met Font grote {ScreenScalingFactor * 100}%\nProgramma probeert eea aan te passen, maar kan afwijken of niet passen.");
+            //_ = MessageBox.Show($"Resolutie anders dan verwacht van standaard Tata PC\nDeze pc heeft {LogicalScreenWeight} * {LogicalScreenHeight} met Font grote {ScreenScalingFactor * 100}%\nProgramma probeert eea aan te passen, maar kan afwijken of niet passen.");
 
             Text = "Overbrug gescaled window.";
 

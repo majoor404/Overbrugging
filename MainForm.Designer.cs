@@ -316,7 +316,7 @@
             // KillTijdLabel
             // 
             this.KillTijdLabel.AutoSize = true;
-            this.KillTijdLabel.Location = new System.Drawing.Point(4, 912);
+            this.KillTijdLabel.Location = new System.Drawing.Point(0, 0);
             this.KillTijdLabel.Name = "KillTijdLabel";
             this.KillTijdLabel.Size = new System.Drawing.Size(19, 13);
             this.KillTijdLabel.TabIndex = 25;
