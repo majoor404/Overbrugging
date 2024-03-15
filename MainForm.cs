@@ -145,9 +145,15 @@ namespace Overbrugging
 
             ShrinkPanel(panelMenu);
 
-            Main.Size = new System.Drawing.Size(1900, 1060);
-            WindowState = FormWindowState.Maximized;
+            dataGridView1.DefaultCellStyle.Font = SmallFont;
+            foreach (DataGridViewColumn c in dataGridView1.Columns)
+            {
+                c.DefaultCellStyle.Font = SmallFont;
+            }
 
+            Size nieuw = this.Size;
+            nieuw.Height -= 250;
+            this.Size = nieuw;
         }
 
         private void ShrinkGroupBox(System.Windows.Forms.GroupBox panel2)

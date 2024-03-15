@@ -158,6 +158,7 @@
             // 
             this.panelTop.BackColor = System.Drawing.SystemColors.Control;
             this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelTop.Controls.Add(this.KillTijdLabel);
             this.panelTop.Controls.Add(this.IVWVVraag);
             this.panelTop.Controls.Add(this.IsIVer);
             this.panelTop.Controls.Add(this.LabelDatumVerlopen);
@@ -299,7 +300,6 @@
             // panelMenu
             // 
             this.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelMenu.Controls.Add(this.KillTijdLabel);
             this.panelMenu.Controls.Add(this.groupBox1);
             this.panelMenu.Controls.Add(this.panel2);
             this.panelMenu.Controls.Add(this.ButSettings);
@@ -1448,7 +1448,6 @@
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             this.panelMenu.ResumeLayout(false);
-            this.panelMenu.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
