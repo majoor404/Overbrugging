@@ -100,7 +100,7 @@ namespace Overbrugging
 
         }
 
-        private void ScaleMainVenster(float ScreenScalingFactor, int LogicalScreenHeight, int LogicalScreenWeight)
+        private void ScaleMainVenster()
         {
             if (SchermIsKleinGemaakt)
             {
@@ -549,7 +549,7 @@ namespace Overbrugging
         {
             if (Scalling)
             {
-                ScaleMainVenster(ScreenScalingFactor, LogicalScreenHeight, LogicalScreenWeight);
+                ScaleMainVenster();
             }
 
             FormMelding md = new FormMelding(FormMelding.Type.Info, "Overbruging 2.0", "R.Majoor");
@@ -608,6 +608,15 @@ namespace Overbrugging
             dataGridView1.Columns[8].Width = 100;
 
             dataGridView1.RowHeadersVisible = false;
+
+            if(Scalling)
+            {
+                dataGridView1.DefaultCellStyle.Font = SmallFont;
+                foreach (DataGridViewColumn c in dataGridView1.Columns)
+                {
+                    c.DefaultCellStyle.Font = SmallFont;
+                }
+            }
 
             ButRefresh_Click(this, null);
 
