@@ -29,9 +29,13 @@ namespace Overbrugging
             ButSaveVerw.Enabled = !string.IsNullOrEmpty(TextBoxRegNr.Text) && MainForm.Main.IsIVer.Checked;
             ButtonHeropen.Visible = ButSaveVerw.Enabled && (DatumVerw.TB.Text != " --/--/----");
 
-            // als geen iv/wv dan niks invullen bij wv of afsluiten.
+            // als geen iv/wv dan niks invullen bij wv.
             PanelWV.Enabled = MainForm.Main.IsIVer.Checked;
-            PanelVerwijderen.Enabled = MainForm.Main.IsIVer.Checked;
+            //PanelVerwijderen.Enabled = MainForm.Main.IsIVer.Checked;
+
+            //als persoon in lijst, mag die wel afsluiten
+            bool inlijst = MainForm.Main.PersoneelNummerInLijst(MainForm.Main.IsIVer.Text);
+            PanelVerwijderen.Enabled = inlijst;
 
             // viewonly
             ButVoerUit.Enabled = !viewonly;

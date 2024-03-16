@@ -216,23 +216,23 @@ namespace Overbrugging
             button.Location = LocNieuw;
         }
 
-        //public string ZoekPersnr(string zoek)
-        //{
-        //    if (string.IsNullOrEmpty(zoek))
-        //    {
-        //        return "";
-        //    }
+        public string ZoekPersnr(string zoek)
+        {
+            if (string.IsNullOrEmpty(zoek))
+            {
+                return "";
+            }
 
-        //    try
-        //    {
-        //        NamenFunties Q = MainForm.Main.NamenLijst.First(a => a.Naam == zoek);
-        //        return Q.PersoneelNummer;
-        //    }
-        //    catch
-        //    {
-        //        return "";
-        //    }
-        //}
+            try
+            {
+                NamenFunties Q = MainForm.Main.NamenLijst.First(a => a.Naam == zoek);
+                return Q.PersoneelNummer;
+            }
+            catch
+            {
+                return "";
+            }
+        }
 
         private void ButImport_Click(object sender, EventArgs e)
         {
@@ -2015,6 +2015,19 @@ namespace Overbrugging
 
             LijstData = temp;
             VulGrid();
+        }
+
+        public bool PersoneelNummerInLijst(string persNr)
+        {
+            try
+            {
+                NamenFunties Q = NamenLijst.First(a => a.PersoneelNummer == persNr);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
