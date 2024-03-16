@@ -151,9 +151,9 @@ namespace Overbrugging
                 c.DefaultCellStyle.Font = SmallFont;
             }
 
-            Size nieuw = this.Size;
+            Size nieuw = Size;
             nieuw.Height -= 250;
-            this.Size = nieuw;
+            Size = nieuw;
         }
 
         private void ShrinkGroupBox(System.Windows.Forms.GroupBox panel2)
@@ -1140,7 +1140,9 @@ namespace Overbrugging
                 }
 
                 if (IsIVer.Checked && !isgelockt) // alleen als ik zelf gelockt hebt
+                {
                     Geblokkerd.FreeLock(GeselRegNr.Text);
+                }
 
                 //refresh
                 ButRefresh_Click(this, null);
@@ -1492,7 +1494,9 @@ namespace Overbrugging
                 }
 
                 if (IsIVer.Checked && !isgelockt)  // alleen als ik zelf gelockt hebt
+                {
                     Geblokkerd.FreeLock(GeselRegNr.Text);
+                }
 
                 //refresh
                 ButRefresh_Click(this, null);
