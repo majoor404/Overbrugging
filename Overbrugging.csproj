@@ -106,6 +106,7 @@
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tellen.cs" />
     <Compile Include="UitvoeringPrintForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -776,40 +776,19 @@ namespace Overbrugging
             {
                 LaadInstelingen();
                 // opslag plek is string 2.
-                string opslag = instellingen[1];
-                opslag += "\\Overbrug.ini";
 
                 LaadData_lijst();
 
-                for (int i = 0; i < 7; i++)
-                {
-                    for (int j = 0; j < 8; j++)
-                    {
-                        teldata[i, j] = 0;
-                    }
-                }
-
+                Tellen tellen = new Tellen();
+                tellen.VulSectiesVoorTelling();
                 foreach (Data a in LijstData)
                 {
-                    TelSectie(a, "RST", (int)SectieNaam.SecRst);
-                    TelSectie(a, "CON", (int)SectieNaam.SecCon);
-                    TelSectie(a, "PBI", (int)SectieNaam.SecPbi);
-                    TelSectie(a, "PVK", (int)SectieNaam.SecPvk);
-                    TelSectie(a, "CGM", (int)SectieNaam.SecCgm);
-                    TelSectie(a, "SKV", (int)SectieNaam.SecSkv);
-                    TelSectie(a, "AOV", (int)SectieNaam.SecAov);
-                    TelSectie(a, "ALG", (int)SectieNaam.SecAlg);
+                    if(a.DatumVerw == "")
+                        tellen.OpTelData(a);
                 }
+                tellen.SaveOverbrugXml(instellingen[1] + "\\Overbrug.xml");
 
-                List<string> DataFile = new List<string>();
-                for (int i = 0; i < 7; i++)
-                {
-                    for (int j = 0; j < 8; j++)
-                    {
-                        DataFile.Add(teldata[i, j].ToString());
-                    }
-                }
-                File.WriteAllLines(opslag, DataFile);
+                tellen.MaakOudeIniFile(instellingen[1] + "\\Overbrug.ini");
             }
             catch (Exception ex)
             {
@@ -817,49 +796,6 @@ namespace Overbrugging
             }
         }
 
-        private void TelSectie(Data a, string StrSectie, int IntSectie)
-        {
-            if (a.Sectie != StrSectie)
-            {
-                return;
-            }
-
-            if (a.DatumVerw != "")
-            {
-                return;
-            }
-
-            if (a.Soort == "TIW")
-            {
-                teldata[(int)Rij.RowTiw, IntSectie]++;
-                if (a.DatumTemp < verloopdatum)
-                {
-                    teldata[(int)Rij.RowTiwVerl, IntSectie]++;
-                }
-
-                return;
-            }
-            if (a.Soort == "MOC")
-            {
-                teldata[(int)Rij.RowMoc, IntSectie]++;
-                if (a.DatumTemp < verloopdatum)
-                {
-                    teldata[(int)Rij.RowMocVerl, IntSectie]++;
-                }
-
-                return;
-            }
-            if (a.Soort == "OVERB")
-            {
-                teldata[(int)Rij.RowOverb, IntSectie]++;
-                if (a.DatumTemp < verloopdatum)
-                {
-                    teldata[(int)Rij.RowOverbVerl, IntSectie]++;
-                }
-
-                return;
-            }
-        }
         public void SaveData_lijst()
         {
             try
@@ -1914,7 +1850,7 @@ namespace Overbrugging
             catch { return false; }
         }
 
-        private DateTime GetDateTime(string datum) // 21-12-2023 09-11-2023 20-01-2023
+        public DateTime GetDateTime(string datum) // 21-12-2023 09-11-2023 20-01-2023
         {
             if (string.IsNullOrEmpty(datum))
             {
