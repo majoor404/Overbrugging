@@ -40,8 +40,6 @@ namespace Overbrugging
         private DataGridViewColumn oldColumn = null; // voor sorteer
         private SortOrder SortRichting = SortOrder.None;
 
-        //public int[,] teldata = new int[7, 8]; // voor wachtrapport 7 rijen (soort) van 8 kolomen (secties)
-
         private readonly System.Drawing.Font SmallFont = new System.Drawing.Font("Microsoft Sans Serif", 8);
         public bool Scalling = false;  // als main scherm verkleind is.
         public float ScreenScalingFactor = 1;
@@ -58,16 +56,6 @@ namespace Overbrugging
             HORZRES = 8,
             DESKTOPHORZRES = 118,
         }
-
-        //private enum SectieNaam
-        //{
-        //    SecRst, SecCon, SecPbi, SecPvk, SecCgm, SecSkv, SecAov, SecAlg
-        //}
-
-        //private enum Rij
-        //{
-        //    RowOverb, RowMetWerkv, RowTiw, RowMoc, RowOverbVerl, RowTiwVerl, RowMocVerl
-        //}
 
         public static MainForm Main;
 
