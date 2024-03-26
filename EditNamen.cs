@@ -31,6 +31,8 @@ namespace Overbrugging
 
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) // in header geklikt.
+                return;
             TextBoxNaam.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             TextBoxPersNr.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             TextBoxTeam.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();

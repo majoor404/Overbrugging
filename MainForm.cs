@@ -40,7 +40,7 @@ namespace Overbrugging
         private DataGridViewColumn oldColumn = null; // voor sorteer
         private SortOrder SortRichting = SortOrder.None;
 
-        public int[,] teldata = new int[7, 8]; // voor wachtrapport 7 rijen (soort) van 8 kolomen (secties)
+        //public int[,] teldata = new int[7, 8]; // voor wachtrapport 7 rijen (soort) van 8 kolomen (secties)
 
         private readonly System.Drawing.Font SmallFont = new System.Drawing.Font("Microsoft Sans Serif", 8);
         public bool Scalling = false;  // als main scherm verkleind is.
@@ -59,15 +59,15 @@ namespace Overbrugging
             DESKTOPHORZRES = 118,
         }
 
-        private enum SectieNaam
-        {
-            SecRst, SecCon, SecPbi, SecPvk, SecCgm, SecSkv, SecAov, SecAlg
-        }
+        //private enum SectieNaam
+        //{
+        //    SecRst, SecCon, SecPbi, SecPvk, SecCgm, SecSkv, SecAov, SecAlg
+        //}
 
-        private enum Rij
-        {
-            RowOverb, RowMetWerkv, RowTiw, RowMoc, RowOverbVerl, RowTiwVerl, RowMocVerl
-        }
+        //private enum Rij
+        //{
+        //    RowOverb, RowMetWerkv, RowTiw, RowMoc, RowOverbVerl, RowTiwVerl, RowMocVerl
+        //}
 
         public static MainForm Main;
 
@@ -609,7 +609,7 @@ namespace Overbrugging
 
             dataGridView1.RowHeadersVisible = false;
 
-            if(Scalling)
+            if (Scalling)
             {
                 dataGridView1.DefaultCellStyle.Font = SmallFont;
                 foreach (DataGridViewColumn c in dataGridView1.Columns)
@@ -783,8 +783,10 @@ namespace Overbrugging
                 tellen.VulSectiesVoorTelling();
                 foreach (Data a in LijstData)
                 {
-                    if(a.DatumVerw == "")
+                    if (a.DatumVerw == "")
+                    {
                         tellen.OpTelData(a);
+                    }
                 }
                 tellen.SaveOverbrugXml(instellingen[1] + "\\Overbrug.xml");
 
