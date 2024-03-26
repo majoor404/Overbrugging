@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Xml.Serialization;
@@ -107,7 +108,7 @@ namespace Overbrugging
                 NieuweIniFIle[i] = "0";
             }
 
-            foreach(Tel tel in TelLijst)
+            foreach (Tel tel in TelLijst)
             {
                 int index = -1;
                 if(tel.SectieNaam == "RST")
@@ -124,8 +125,20 @@ namespace Overbrugging
                     index = 5;
                 if (tel.SectieNaam == "ALG")
                     index = 6;
-                if (tel.SectieNaam == "AOV")
+                if (tel.SectieNaam == "PG&A - PA")
+                {
                     index = 7;
+                    
+                    //// samenvoegen oude naam met nieuwe naam
+                    //// AOV en PGA&A - PG
+                    //Tel telPG = TelLijst.First(a => a.SectieNaam == "PGA&A - PG");
+                    //tel.OVERB += telPG.OVERB;
+                    //tel.OVERBVerl += telPG.OVERBVerl;
+                    //tel.TIW += telPG.TIW;
+                    //tel.TIWVerl += telPG.TIWVerl;
+                    //tel.MOC += telPG.MOC;
+                    //tel.MOCVerl += telPG.MOCVerl;
+                }
 
                 if (index > -1)
                 {

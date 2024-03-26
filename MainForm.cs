@@ -751,7 +751,7 @@ namespace Overbrugging
                 a.Kleur = true;
             }
 
-            if (a.DatumTemp < verloopdatum && a.DatumVerw == "")    // datum verlopen
+            if (a.DatumTemp.Date < verloopdatum.Date && a.DatumVerw == "")    // datum verlopen
             {
                 VerlopenData++;
                 a.Kleur = true;
@@ -1922,7 +1922,7 @@ namespace Overbrugging
             foreach (Data q in LijstData)
             {
                 q.DatumTemp = GetDateTime(q.UitersteDatum);
-                if (q.DatumTemp < DateTime.Now && q.DatumVerw == string.Empty)
+                if (q.DatumTemp.Date < DateTime.Now.Date && q.DatumVerw == string.Empty)
                 {
                     temp.Add(q);
                     q.Kleur = true;
