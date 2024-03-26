@@ -109,7 +109,7 @@ namespace Overbrugging
 
             foreach(Tel tel in TelLijst)
             {
-                int index = 0;
+                int index = -1;
                 if(tel.SectieNaam == "RST")
                     index = 0;
                 if (tel.SectieNaam == "CON")
@@ -127,13 +127,16 @@ namespace Overbrugging
                 if (tel.SectieNaam == "AOV")
                     index = 7;
 
-                NieuweIniFIle[index] = tel.OVERB.ToString();            // overbrugging
-                NieuweIniFIle[index + 8] = "0";                         // overbrugging met werkvergunning
-                NieuweIniFIle[index + 16] = tel.OVERBVerl.ToString();   // overbrugging verlopen.
-                NieuweIniFIle[index + 24] = tel.TIW.ToString();         // tiw
-                NieuweIniFIle[index + 32] = tel.TIWVerl.ToString();     // tiw verlopen
-                NieuweIniFIle[index + 40] = tel.MOC.ToString();         // moc
-                NieuweIniFIle[index + 48] = tel.MOCVerl.ToString();     // moc verlopen
+                if (index > -1)
+                {
+                    NieuweIniFIle[index] = tel.OVERB.ToString();            // overbrugging
+                    NieuweIniFIle[index + 8] = "0";                         // overbrugging met werkvergunning
+                    NieuweIniFIle[index + 16] = tel.OVERBVerl.ToString();   // overbrugging verlopen.
+                    NieuweIniFIle[index + 24] = tel.TIW.ToString();         // tiw
+                    NieuweIniFIle[index + 32] = tel.TIWVerl.ToString();     // tiw verlopen
+                    NieuweIniFIle[index + 40] = tel.MOC.ToString();         // moc
+                    NieuweIniFIle[index + 48] = tel.MOCVerl.ToString();     // moc verlopen
+                }
 
             }
 
