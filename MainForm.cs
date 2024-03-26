@@ -1279,14 +1279,12 @@ namespace Overbrugging
             mycolIVWV.Clear();
             _ = mycolIVWV.Add("");
             dt.ComboBoxIVWV.Items.Clear();
-            dt.ComboBoxNaamVerw.Items.Clear();
             List<NamenFunties> IVWVFilter = new List<NamenFunties>();
             IVWVFilter = NamenLijst.Where(x => x.IVWV == true).ToList();
             IVWVFilter = IVWVFilter.OrderBy(o => o.Naam).ToList();
             for (int i = 0; i < IVWVFilter.Count; i++)
             {
                 _ = dt.ComboBoxIVWV.Items.Add(IVWVFilter[i].Naam);
-                _ = dt.ComboBoxNaamVerw.Items.Add(IVWVFilter[i].Naam);
                 _ = mycolIVWV.Add(IVWVFilter[i].Naam);
             }
         }
@@ -1296,14 +1294,12 @@ namespace Overbrugging
             mycolIVWV.Clear();
             _ = mycolIVWV.Add("");
             dt.ComboBoxIVWV.Items.Clear();
-            dt.ComboBoxNaamVerw.Items.Clear();
             List<NamenFunties> IVWVFilter = new List<NamenFunties>();
             IVWVFilter = NamenLijst.Where(x => x.IVWV == true).ToList();
             IVWVFilter = IVWVFilter.OrderBy(o => o.Naam).ToList();
             for (int i = 0; i < IVWVFilter.Count; i++)
             {
                 _ = dt.ComboBoxIVWV.Items.Add(IVWVFilter[i].Naam);
-                _ = dt.ComboBoxNaamVerw.Items.Add(IVWVFilter[i].Naam);
                 _ = mycolIVWV.Add(IVWVFilter[i].Naam);
             }
         }
@@ -1314,10 +1310,12 @@ namespace Overbrugging
             _ = mycol.Add(" ");
             dt.ComboBoxNaam1.Items.Clear();
             dt.ComboBoxNaam2.Items.Clear();
+            dt.ComboBoxNaamVerw.Items.Clear();
             for (int i = 0; i < NamenLijst.Count; i++)
             {
                 _ = dt.ComboBoxNaam1.Items.Add(NamenLijst[i].Naam);
                 _ = dt.ComboBoxNaam2.Items.Add(NamenLijst[i].Naam);
+                _ = dt.ComboBoxNaamVerw.Items.Add(NamenLijst[i].Naam);
                 _ = mycol.Add(NamenLijst[i].Naam);
             }
         }
@@ -1328,10 +1326,12 @@ namespace Overbrugging
             _ = mycol.Add(" ");
             dt.ComboBoxNaam1.Items.Clear();
             dt.ComboBoxNaam2.Items.Clear();
+            dt.ComboBoxNaamVerw.Items.Clear();
             for (int i = 0; i < NamenLijst.Count; i++)
             {
                 _ = dt.ComboBoxNaam1.Items.Add(NamenLijst[i].Naam);
                 _ = dt.ComboBoxNaam2.Items.Add(NamenLijst[i].Naam);
+                _ = dt.ComboBoxNaamVerw.Items.Add(NamenLijst[i].Naam);
                 _ = mycol.Add(NamenLijst[i].Naam);
             }
         }
