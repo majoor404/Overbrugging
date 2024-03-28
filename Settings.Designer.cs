@@ -67,13 +67,14 @@
             // 
             this.buttonImport.DialogResult = System.Windows.Forms.DialogResult.Retry;
             this.buttonImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonImport.Location = new System.Drawing.Point(13, 510);
+            this.buttonImport.Location = new System.Drawing.Point(18, 425);
             this.buttonImport.Margin = new System.Windows.Forms.Padding(4);
             this.buttonImport.Name = "buttonImport";
             this.buttonImport.Size = new System.Drawing.Size(310, 61);
             this.buttonImport.TabIndex = 0;
             this.buttonImport.Text = "Import oude overbrugprog.";
             this.buttonImport.UseVisualStyleBackColor = true;
+            this.buttonImport.Visible = false;
             // 
             // label1
             // 
@@ -136,7 +137,7 @@
             this.AcceptButton = this.ButLogView;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(348, 584);
+            this.ClientSize = new System.Drawing.Size(348, 446);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.LabelBuildData);
             this.Controls.Add(this.label2);
