@@ -16,7 +16,7 @@ namespace Overbrugging
 {
     public partial class MainForm : Form
     {
-        public List<OudeOverbrugging> OudeLijst = new List<OudeOverbrugging>();
+        //public List<OudeOverbrugging> OudeLijst = new List<OudeOverbrugging>();
         public List<NamenFunties> NamenLijst { get; set; } = new List<NamenFunties>();
         public List<Secties> SectieLijst = new List<Secties>();
         public List<InstallatieOnderdeel> InstallatieLijst = new List<InstallatieOnderdeel>();
@@ -204,23 +204,23 @@ namespace Overbrugging
             button.Location = LocNieuw;
         }
 
-        public string ZoekPersnr(string zoek)
-        {
-            if (string.IsNullOrEmpty(zoek))
-            {
-                return "";
-            }
+        //public string ZoekPersnr(string zoek)
+        //{
+        //    if (string.IsNullOrEmpty(zoek))
+        //    {
+        //        return "";
+        //    }
 
-            try
-            {
-                NamenFunties Q = MainForm.Main.NamenLijst.First(a => a.Naam == zoek);
-                return Q.PersoneelNummer;
-            }
-            catch
-            {
-                return "";
-            }
-        }
+        //    try
+        //    {
+        //        NamenFunties Q = MainForm.Main.NamenLijst.First(a => a.Naam == zoek);
+        //        return Q.PersoneelNummer;
+        //    }
+        //    catch
+        //    {
+        //        return "";
+        //    }
+        //}
 
         //private void ButImport_Click(object sender, EventArgs e)
         //{
@@ -561,9 +561,9 @@ namespace Overbrugging
                         _ = comboBoxSectie.Items.Add(item.Naam);
                     }
                 }
-                comboBoxSectie.SelectedIndex = 0;
             }
-
+            
+            comboBoxSectie.SelectedIndex = 0;
             comboBoxSoortFilter.SelectedIndex = 0;
             comboBoxStatus.SelectedIndex = 0;
 
