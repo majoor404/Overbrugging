@@ -42,6 +42,7 @@
             this.ListBox.Name = "ListBox";
             this.ListBox.Size = new System.Drawing.Size(376, 310);
             this.ListBox.TabIndex = 0;
+            this.ListBox.DoubleClick += new System.EventHandler(this.ListBox_DoubleClick);
             // 
             // ButVoegToe
             // 
@@ -63,6 +64,7 @@
             this.ButVerwijder.TabIndex = 1;
             this.ButVerwijder.Text = "Delete";
             this.ButVerwijder.UseVisualStyleBackColor = true;
+            this.ButVerwijder.Click += new System.EventHandler(this.ButVerwijder_Click);
             // 
             // Bijlage
             // 

@@ -450,7 +450,13 @@ namespace Overbrugging
                 MessageBox.Show("Bijlage kan pas gemaakt worden als regnr bekend is.");
                 return;
             }
-            MainForm.Main.BijlageToevoegen(TextBoxRegNr.Text);
+            MainForm.Main.BijlageFormOpenenMetJuisteRegnr(TextBoxRegNr.Text);
+            Bijlage.Visible = true;
+        }
+
+        private void Bijlage_Click(object sender, EventArgs e)
+        {
+            MainForm.Main.BijlageFormOpenenMetJuisteRegnr(TextBoxRegNr.Text, false);
         }
     }
 }

@@ -1972,9 +1972,17 @@ namespace Overbrugging
             }
         }
 
-        public void BijlageToevoegen(string ID)
+        public void BijlageFormOpenenMetJuisteRegnr(string ID,bool large=true)
         {
             bijlage.ID = ID;
+            if(!large)
+            {
+                bijlage.Width = 414;
+            }
+            else
+            {
+                bijlage.Width = 627;
+            }
             _ = bijlage.ShowDialog();
         }
     }

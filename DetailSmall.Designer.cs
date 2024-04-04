@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailSmall));
             this.Panel12345 = new System.Windows.Forms.Panel();
+            this.BijlageToevoegen = new System.Windows.Forms.Button();
+            this.Bijlage = new System.Windows.Forms.PictureBox();
             this.ButCancel = new System.Windows.Forms.Button();
             this.ButVoerUit = new System.Windows.Forms.Button();
             this.ButPrintUitvoering = new System.Windows.Forms.Button();
@@ -94,12 +96,10 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
-            this.Bijlage = new System.Windows.Forms.PictureBox();
-            this.BijlageToevoegen = new System.Windows.Forms.Button();
             this.Panel12345.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Bijlage)).BeginInit();
             this.PanelVerwijderen.SuspendLayout();
             this.PanelWV.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Bijlage)).BeginInit();
             this.SuspendLayout();
             // 
             // Panel12345
@@ -145,6 +145,29 @@
             this.Panel12345.Name = "Panel12345";
             this.Panel12345.Size = new System.Drawing.Size(1093, 282);
             this.Panel12345.TabIndex = 0;
+            // 
+            // BijlageToevoegen
+            // 
+            this.BijlageToevoegen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BijlageToevoegen.Location = new System.Drawing.Point(453, 229);
+            this.BijlageToevoegen.Name = "BijlageToevoegen";
+            this.BijlageToevoegen.Size = new System.Drawing.Size(136, 34);
+            this.BijlageToevoegen.TabIndex = 17;
+            this.BijlageToevoegen.Text = "Bijlage";
+            this.BijlageToevoegen.UseVisualStyleBackColor = true;
+            this.BijlageToevoegen.Click += new System.EventHandler(this.BijlageToevoegen_Click);
+            // 
+            // Bijlage
+            // 
+            this.Bijlage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Bijlage.Image = global::Overbrugging.Properties.Resources.attachment;
+            this.Bijlage.Location = new System.Drawing.Point(608, 193);
+            this.Bijlage.Name = "Bijlage";
+            this.Bijlage.Size = new System.Drawing.Size(30, 30);
+            this.Bijlage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Bijlage.TabIndex = 16;
+            this.Bijlage.TabStop = false;
+            this.Bijlage.Click += new System.EventHandler(this.Bijlage_Click);
             // 
             // ButCancel
             // 
@@ -820,28 +843,6 @@
             this.label26.TabIndex = 0;
             this.label26.Text = "Naam";
             // 
-            // Bijlage
-            // 
-            this.Bijlage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Bijlage.Image = global::Overbrugging.Properties.Resources.attachment;
-            this.Bijlage.Location = new System.Drawing.Point(608, 193);
-            this.Bijlage.Name = "Bijlage";
-            this.Bijlage.Size = new System.Drawing.Size(30, 30);
-            this.Bijlage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Bijlage.TabIndex = 16;
-            this.Bijlage.TabStop = false;
-            // 
-            // BijlageToevoegen
-            // 
-            this.BijlageToevoegen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BijlageToevoegen.Location = new System.Drawing.Point(453, 229);
-            this.BijlageToevoegen.Name = "BijlageToevoegen";
-            this.BijlageToevoegen.Size = new System.Drawing.Size(136, 34);
-            this.BijlageToevoegen.TabIndex = 17;
-            this.BijlageToevoegen.Text = "Bijlage Toevoegen";
-            this.BijlageToevoegen.UseVisualStyleBackColor = true;
-            this.BijlageToevoegen.Click += new System.EventHandler(this.BijlageToevoegen_Click);
-            // 
             // DetailSmall
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -860,11 +861,11 @@
             this.Shown += new System.EventHandler(this.Detail_Shown);
             this.Panel12345.ResumeLayout(false);
             this.Panel12345.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Bijlage)).EndInit();
             this.PanelVerwijderen.ResumeLayout(false);
             this.PanelVerwijderen.PerformLayout();
             this.PanelWV.ResumeLayout(false);
             this.PanelWV.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Bijlage)).EndInit();
             this.ResumeLayout(false);
 
         }
