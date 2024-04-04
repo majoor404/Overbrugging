@@ -444,5 +444,15 @@ namespace Overbrugging
                 ButVoerUit_Click(this, null);
             }
         }
+
+        private void BijlageToevoegen_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(TextBoxRegNr.Text))
+            {
+                MessageBox.Show("Bijlage kan pas gemaakt worden als regnr bekend is.");
+                return;
+            }
+            MainForm.Main.BijlageToevoegen(TextBoxRegNr.Text);
+        }
     }
 }

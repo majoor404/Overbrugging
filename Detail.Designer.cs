@@ -30,8 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Detail));
             this.Panel12345 = new System.Windows.Forms.Panel();
+            this.Bijlage = new System.Windows.Forms.PictureBox();
             this.ButCancel = new System.Windows.Forms.Button();
             this.ButVoerUit = new System.Windows.Forms.Button();
+            this.BijlageToevoegen = new System.Windows.Forms.Button();
             this.ButPrintUitvoering = new System.Windows.Forms.Button();
             this.ButPrint = new System.Windows.Forms.Button();
             this.LabelType = new System.Windows.Forms.Label();
@@ -65,6 +67,7 @@
             this.PanelVerwijderen = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.ButtonIVWVDatumVerw = new System.Windows.Forms.Button();
+            this.ButtonHeropen = new System.Windows.Forms.Button();
             this.ButSaveVerw = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.TextBoxBijzVerw = new System.Windows.Forms.TextBox();
@@ -89,12 +92,12 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
-            this.ButtonHeropen = new System.Windows.Forms.Button();
             this.DatumVerloopTIW = new Overbrugging.DatumPicker();
             this.DatumWv = new Overbrugging.DatumPicker();
             this.DatumVerw = new Overbrugging.DatumPicker();
             this.DatumInv = new Overbrugging.DatumPicker();
             this.Panel12345.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Bijlage)).BeginInit();
             this.PanelVerwijderen.SuspendLayout();
             this.PanelWV.SuspendLayout();
             this.SuspendLayout();
@@ -102,8 +105,10 @@
             // Panel12345
             // 
             this.Panel12345.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Panel12345.Controls.Add(this.Bijlage);
             this.Panel12345.Controls.Add(this.ButCancel);
             this.Panel12345.Controls.Add(this.ButVoerUit);
+            this.Panel12345.Controls.Add(this.BijlageToevoegen);
             this.Panel12345.Controls.Add(this.ButPrintUitvoering);
             this.Panel12345.Controls.Add(this.ButPrint);
             this.Panel12345.Controls.Add(this.LabelType);
@@ -141,6 +146,17 @@
             this.Panel12345.Size = new System.Drawing.Size(1264, 417);
             this.Panel12345.TabIndex = 0;
             // 
+            // Bijlage
+            // 
+            this.Bijlage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Bijlage.Image = global::Overbrugging.Properties.Resources.attachment;
+            this.Bijlage.Location = new System.Drawing.Point(748, 324);
+            this.Bijlage.Name = "Bijlage";
+            this.Bijlage.Size = new System.Drawing.Size(40, 40);
+            this.Bijlage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Bijlage.TabIndex = 15;
+            this.Bijlage.TabStop = false;
+            // 
             // ButCancel
             // 
             this.ButCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -162,6 +178,17 @@
             this.ButVoerUit.Text = "VoerUit";
             this.ButVoerUit.UseVisualStyleBackColor = true;
             this.ButVoerUit.Click += new System.EventHandler(this.ButVoerUit_Click_1);
+            // 
+            // BijlageToevoegen
+            // 
+            this.BijlageToevoegen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BijlageToevoegen.Location = new System.Drawing.Point(402, 370);
+            this.BijlageToevoegen.Name = "BijlageToevoegen";
+            this.BijlageToevoegen.Size = new System.Drawing.Size(192, 34);
+            this.BijlageToevoegen.TabIndex = 10;
+            this.BijlageToevoegen.Text = "Bijlage Toevoegen";
+            this.BijlageToevoegen.UseVisualStyleBackColor = true;
+            this.BijlageToevoegen.Click += new System.EventHandler(this.BijlageToevoegen_Click);
             // 
             // ButPrintUitvoering
             // 
@@ -504,6 +531,17 @@
             this.ButtonIVWVDatumVerw.UseVisualStyleBackColor = true;
             this.ButtonIVWVDatumVerw.Click += new System.EventHandler(this.ButtonIVWVDatumVerw_Click);
             // 
+            // ButtonHeropen
+            // 
+            this.ButtonHeropen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonHeropen.Location = new System.Drawing.Point(159, 172);
+            this.ButtonHeropen.Name = "ButtonHeropen";
+            this.ButtonHeropen.Size = new System.Drawing.Size(522, 34);
+            this.ButtonHeropen.TabIndex = 3;
+            this.ButtonHeropen.Text = "Heropen deze afgesloten TIW/MOC/OVERB.";
+            this.ButtonHeropen.UseVisualStyleBackColor = true;
+            this.ButtonHeropen.Click += new System.EventHandler(this.ButtonHeropen_Click);
+            // 
             // ButSaveVerw
             // 
             this.ButSaveVerw.Enabled = false;
@@ -772,17 +810,6 @@
             this.label26.TabIndex = 0;
             this.label26.Text = "Naam";
             // 
-            // ButtonHeropen
-            // 
-            this.ButtonHeropen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonHeropen.Location = new System.Drawing.Point(159, 172);
-            this.ButtonHeropen.Name = "ButtonHeropen";
-            this.ButtonHeropen.Size = new System.Drawing.Size(522, 34);
-            this.ButtonHeropen.TabIndex = 3;
-            this.ButtonHeropen.Text = "Heropen deze afgesloten TIW/MOC/OVERB.";
-            this.ButtonHeropen.UseVisualStyleBackColor = true;
-            this.ButtonHeropen.Click += new System.EventHandler(this.ButtonHeropen_Click);
-            // 
             // DatumVerloopTIW
             // 
             this.DatumVerloopTIW.Datum = "";
@@ -833,6 +860,7 @@
             this.Shown += new System.EventHandler(this.Detail_Shown);
             this.Panel12345.ResumeLayout(false);
             this.Panel12345.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Bijlage)).EndInit();
             this.PanelVerwijderen.ResumeLayout(false);
             this.PanelVerwijderen.PerformLayout();
             this.PanelWV.ResumeLayout(false);
@@ -908,5 +936,7 @@
         public System.Windows.Forms.ComboBox CBSoort;
         private System.Windows.Forms.Button ButPrintUitvoering;
         private System.Windows.Forms.Button ButtonHeropen;
+        private System.Windows.Forms.Button BijlageToevoegen;
+        public System.Windows.Forms.PictureBox Bijlage;
     }
 }

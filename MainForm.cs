@@ -25,6 +25,8 @@ namespace Overbrugging
         public Data TempData = new Data();
         public int LastIndex = 0;
         public static string datapath = AppDomain.CurrentDomain.BaseDirectory + "Data\\";
+        public static string bijlagepath = AppDomain.CurrentDomain.BaseDirectory + "Bijlage\\";
+        public static Bijlage bijlage = new Bijlage();
         public List<string> instellingen = new List<string>();
         public DateTime verloopdatum = DateTime.Now.AddDays(1);
         public AutoCompleteStringCollection mycolIVWV = new AutoCompleteStringCollection();
@@ -86,6 +88,7 @@ namespace Overbrugging
             }
             catch { }
 
+            bijlage.bijlagepath = bijlagepath;
         }
 
         private void ScaleMainVenster()
@@ -1061,7 +1064,7 @@ namespace Overbrugging
                     dt.TextBoxRegNr.Enabled = false;
 
                     VulDatailForm(dt, TempData);
-
+                    dt.Bijlage.Visible = bijlage.BijlageAanwezig(dt.TextBoxRegNr.Text);
                     _ = dt.ShowDialog();
 
                 }
@@ -1071,6 +1074,7 @@ namespace Overbrugging
                     dts.TextBoxRegNr.Enabled = false;
 
                     VulDatailFormSmall(dts, TempData);
+                    dts.Bijlage.Visible = bijlage.BijlageAanwezig(dt.TextBoxRegNr.Text);
 
                     _ = dts.ShowDialog();
                 }
@@ -1416,6 +1420,7 @@ namespace Overbrugging
                     dt.TextBoxRegNr.Enabled = false;
 
                     VulDatailForm(dt, TempData);
+                    dt.Bijlage.Visible = bijlage.BijlageAanwezig(dt.TextBoxRegNr.Text);
 
                     _ = dt.ShowDialog();
                 }
@@ -1425,6 +1430,7 @@ namespace Overbrugging
                     dts.TextBoxRegNr.Enabled = false;
 
                     VulDatailFormSmall(dts, TempData);
+                    dts.Bijlage.Visible = bijlage.BijlageAanwezig(dt.TextBoxRegNr.Text);
 
                     _ = dts.ShowDialog();
                 }
@@ -1923,7 +1929,7 @@ namespace Overbrugging
             foreach (Data q in LijstData)
             {
                 q.DatumTemp = GetDateTime(q.UitersteDatum);
-                if (q.DatumTemp.Date < DateTime.Now.Date && q.DatumVerw == string.Empty)
+                if (q.DatumTemp.Date < DateTime.Now.AddDays(1).Date && q.DatumVerw == string.Empty)
                 {
                     temp.Add(q);
                     q.Kleur = true;
@@ -1964,6 +1970,12 @@ namespace Overbrugging
             {
                 return false;
             }
+        }
+
+        public void BijlageToevoegen(string ID)
+        {
+            bijlage.ID = ID;
+            _ = bijlage.ShowDialog();
         }
     }
 }
