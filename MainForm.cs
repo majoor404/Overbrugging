@@ -1972,7 +1972,7 @@ namespace Overbrugging
             }
         }
 
-        public void BijlageFormOpenenMetJuisteRegnr(string ID,bool large=true)
+        public bool BijlageFormOpenenMetJuisteRegnr(string ID,bool large=true)
         {
             bijlage.ID = ID;
             if(!large)
@@ -1984,6 +1984,8 @@ namespace Overbrugging
                 bijlage.Width = 627;
             }
             _ = bijlage.ShowDialog();
+
+            return bijlage.BijlageAanwezig(ID);
         }
     }
 }
