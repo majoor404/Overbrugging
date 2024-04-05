@@ -42,6 +42,7 @@ namespace Overbrugging
             ButSaveWV.Enabled = !viewonly;
             ButSaveVerw.Enabled = !viewonly;
             ButtonHeropen.Enabled = !viewonly;
+            BijlageToevoegen.Enabled = !viewonly;
 
             TextBoxRede.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
             TextBoxOplossing.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
