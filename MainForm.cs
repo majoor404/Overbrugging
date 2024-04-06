@@ -1116,6 +1116,7 @@ namespace Overbrugging
 
         private void VulPreview(int index)
         {
+            PictureBijlage.Visible = PictureBijlageSmall.Visible = false;
             try
             {
                 Data Q = ZoekDataRecord(index);
@@ -1152,6 +1153,8 @@ namespace Overbrugging
                 TBDVerw.Text = Q.DatumVerw;
                 TBTVerw.Text = Q.BijzonderhedenVerw;
 
+                PictureBijlage.Visible = bijlage.BijlageAanwezig(index.ToString());
+
                 if (Scalling)
                 {
                     TB1S.Text = Q.Reden;
@@ -1186,6 +1189,8 @@ namespace Overbrugging
                     TBNVerwS.Text = Q.Naamverw;
                     TBDVerwS.Text = Q.DatumVerw;
                     TBTVerwS.Text = Q.BijzonderhedenVerw;
+
+                    PictureBijlageSmall.Visible = bijlage.BijlageAanwezig(index.ToString());
                 }
             }
             catch
