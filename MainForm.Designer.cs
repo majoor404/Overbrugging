@@ -64,7 +64,9 @@
             this.panelMain = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.PictureBijlage = new System.Windows.Forms.PictureBox();
             this.PanelShrink = new System.Windows.Forms.Panel();
+            this.PictureBijlageSmall = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.TextBoxBijzIVWVS = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -144,8 +146,6 @@
             this.TB1 = new System.Windows.Forms.TextBox();
             this.KillTimer = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.PictureBijlage = new System.Windows.Forms.PictureBox();
-            this.PictureBijlageSmall = new System.Windows.Forms.PictureBox();
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -153,8 +153,8 @@
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
-            this.PanelShrink.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBijlage)).BeginInit();
+            this.PanelShrink.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBijlageSmall)).BeginInit();
             this.SuspendLayout();
             // 
@@ -324,7 +324,7 @@
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 53);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(213, 932);
+            this.panelMenu.Size = new System.Drawing.Size(213, 888);
             this.panelMenu.TabIndex = 4;
             // 
             // groupBox1
@@ -545,7 +545,7 @@
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(213, 53);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1051, 932);
+            this.panelMain.Size = new System.Drawing.Size(1051, 888);
             this.panelMain.TabIndex = 5;
             // 
             // dataGridView1
@@ -573,7 +573,7 @@
             this.dataGridView1.ShowCellToolTips = false;
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(1047, 432);
+            this.dataGridView1.Size = new System.Drawing.Size(1047, 388);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
             this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_ColumnHeaderMouseClick);
@@ -582,7 +582,6 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.PictureBijlage);
             this.panel1.Controls.Add(this.PanelShrink);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.TextBoxBijzIVWV);
@@ -623,11 +622,22 @@
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.TB2);
             this.panel1.Controls.Add(this.TB1);
+            this.panel1.Controls.Add(this.PictureBijlage);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1047, 496);
             this.panel1.TabIndex = 2;
+            // 
+            // PictureBijlage
+            // 
+            this.PictureBijlage.Image = global::Overbrugging.Properties.Resources.attachment;
+            this.PictureBijlage.Location = new System.Drawing.Point(518, 261);
+            this.PictureBijlage.Name = "PictureBijlage";
+            this.PictureBijlage.Size = new System.Drawing.Size(20, 20);
+            this.PictureBijlage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBijlage.TabIndex = 40;
+            this.PictureBijlage.TabStop = false;
             // 
             // PanelShrink
             // 
@@ -674,6 +684,16 @@
             this.PanelShrink.Name = "PanelShrink";
             this.PanelShrink.Size = new System.Drawing.Size(1033, 329);
             this.PanelShrink.TabIndex = 4;
+            // 
+            // PictureBijlageSmall
+            // 
+            this.PictureBijlageSmall.Image = global::Overbrugging.Properties.Resources.attachment;
+            this.PictureBijlageSmall.Location = new System.Drawing.Point(517, 164);
+            this.PictureBijlageSmall.Name = "PictureBijlageSmall";
+            this.PictureBijlageSmall.Size = new System.Drawing.Size(20, 20);
+            this.PictureBijlageSmall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBijlageSmall.TabIndex = 79;
+            this.PictureBijlageSmall.TabStop = false;
             // 
             // panel5
             // 
@@ -1437,31 +1457,11 @@
             this.KillTimer.Interval = 60000;
             this.KillTimer.Tick += new System.EventHandler(this.KillTimer_Tick);
             // 
-            // PictureBijlage
-            // 
-            this.PictureBijlage.Image = global::Overbrugging.Properties.Resources.attachment;
-            this.PictureBijlage.Location = new System.Drawing.Point(518, 261);
-            this.PictureBijlage.Name = "PictureBijlage";
-            this.PictureBijlage.Size = new System.Drawing.Size(20, 20);
-            this.PictureBijlage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PictureBijlage.TabIndex = 40;
-            this.PictureBijlage.TabStop = false;
-            // 
-            // PictureBijlageSmall
-            // 
-            this.PictureBijlageSmall.Image = global::Overbrugging.Properties.Resources.attachment;
-            this.PictureBijlageSmall.Location = new System.Drawing.Point(517, 164);
-            this.PictureBijlageSmall.Name = "PictureBijlageSmall";
-            this.PictureBijlageSmall.Size = new System.Drawing.Size(20, 20);
-            this.PictureBijlageSmall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PictureBijlageSmall.TabIndex = 79;
-            this.PictureBijlageSmall.TabStop = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 985);
+            this.ClientSize = new System.Drawing.Size(1264, 941);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelTop);
@@ -1481,9 +1481,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBijlage)).EndInit();
             this.PanelShrink.ResumeLayout(false);
             this.PanelShrink.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBijlage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBijlageSmall)).EndInit();
             this.ResumeLayout(false);
 
