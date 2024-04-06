@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Shapes;
 
 namespace Overbrugging
 {
@@ -51,11 +52,14 @@ namespace Overbrugging
              open.Filter = "Files (*.*)|*.*";
             if (open.ShowDialog() == DialogResult.OK)
             {
+                if (!Directory.Exists(bijlagepath))
+                    _ = Directory.CreateDirectory(bijlagepath);
+
                 // er kunnen dus file opgeslagen worden met zelfde naam
                 // dus verander filenaam in een GUID tijdens copy naar bijlage
                 // zet in inifile de orginele naam met daaronder de GUID van file
 
-                string ext = Path.GetExtension(open.FileName);
+                string ext = System.IO.Path.GetExtension(open.FileName);
                 Guid NieuweNaam = Guid.NewGuid();
                 string NaamEnPath = $"{bijlagepath}{NieuweNaam}";
                 File.Copy(open.FileName, NaamEnPath);
@@ -70,7 +74,7 @@ namespace Overbrugging
                     lijst = File.ReadAllLines(file).ToList();
                 }
 
-                lijst.Add(Path.GetFileName(open.FileName));
+                lijst.Add(System.IO.Path.GetFileName(open.FileName));
                 lijst.Add(NaamEnPath);
 
                 // save
@@ -158,7 +162,7 @@ namespace Overbrugging
             string Guid = GetGuid(ListBox.SelectedItem as string);
             if (Guid != null)
             {
-                string newFile = Path.GetTempPath() + ListBox.SelectedItem as string;
+                string newFile = System.IO.Path.GetTempPath() + ListBox.SelectedItem as string;
                 // copy guid naar temp en rename met oude naam
                 try
                 {
@@ -184,8 +188,8 @@ namespace Overbrugging
 
                 if (File.Exists(fileEnPath))
                 {
-                    path = Path.GetDirectoryName(fileEnPath);
-                    file = Path.GetFileName(fileEnPath);
+                    path = System.IO.Path.GetDirectoryName(fileEnPath);
+                    file = System.IO.Path.GetFileName(fileEnPath);
                 }
 
                 if (path == string.Empty)

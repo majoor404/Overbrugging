@@ -452,6 +452,7 @@ namespace Overbrugging
                 return;
             }
             Bijlage.Visible = MainForm.Main.BijlageFormOpenenMetJuisteRegnr(TextBoxRegNr.Text);
+            Wait(300);
         }
 
         private void Bijlage_Click(object sender, EventArgs e)
