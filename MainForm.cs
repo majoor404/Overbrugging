@@ -1992,5 +1992,15 @@ namespace Overbrugging
 
             return bijlage.BijlageAanwezig(ID);
         }
+
+        private void PictureBijlageSmall_Click(object sender, EventArgs e)
+        {
+            MainForm.Main.BijlageFormOpenenMetJuisteRegnr(GeselRegNrS.Text, false);
+        }
+
+        private void PictureBijlage_Click(object sender, EventArgs e)
+        {
+            MainForm.Main.BijlageFormOpenenMetJuisteRegnr(GeselRegNr.Text, false);
+        }
     }
 }
