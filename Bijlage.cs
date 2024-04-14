@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -81,6 +82,8 @@ namespace Overbrugging
                 SaveFile(file, lijst);
 
                 Bijlage_Shown(this, null);
+
+                MainForm.Main.Log.LogRegel($"Bijlage toegevoegd RegNr {ID} door {MainForm.Main.LabelUser.Text}");
             }
         }
 
@@ -111,6 +114,8 @@ namespace Overbrugging
                 File.Delete(Guid);
                 // delete in index file
                 DeleteInIndexFile(ListBox.SelectedItem as string);
+
+                MainForm.Main.Log.LogRegel($"Bijlage verwijderd RegNr {ID} door {MainForm.Main.LabelUser.Text}");
             }
         }
 
