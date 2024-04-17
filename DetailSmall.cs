@@ -364,7 +364,7 @@ namespace Overbrugging
 
         private void ButVoerUit_Click_1(object sender, EventArgs e)
         {
-            MainForm.Main.Log.LogRegel($"Voeruit knop ingedrukt. Door {MainForm.Main.LabelUser.Text}");
+            MainForm.Main.Log.LogRegel($"Invoer aangemaakt knop ingedrukt. Door {MainForm.Main.LabelUser.Text}");
             ButVoerUit_Click(this, null);
         }
 
