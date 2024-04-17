@@ -459,5 +459,14 @@ namespace Overbrugging
         {
             MainForm.Main.BijlageFormOpenenMetJuisteRegnr(TextBoxRegNr.Text, false);
         }
+
+        private void TextBoxBijzIVWV_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // als text van wv veranderd, en naam is anders dan orginele wv, deze aanpassen
+            if (MainForm.Main.LabelUser.Text != ComboBoxIVWV.Text)
+            {
+                ComboBoxIVWV.Text = MainForm.Main.LabelUser.Text;
+            }
+        }
     }
 }

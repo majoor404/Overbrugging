@@ -748,6 +748,7 @@
             this.TextBoxBijzIVWV.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.TextBoxBijzIVWV.Size = new System.Drawing.Size(435, 80);
             this.TextBoxBijzIVWV.TabIndex = 7;
+            this.TextBoxBijzIVWV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxBijzIVWV_KeyPress);
             // 
             // CBSoort
             // 

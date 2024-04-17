@@ -540,6 +540,7 @@
             // panelMain
             // 
             this.panelMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelMain.Controls.Add(this.PanelShrink);
             this.panelMain.Controls.Add(this.dataGridView1);
             this.panelMain.Controls.Add(this.panel1);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -582,7 +583,6 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.PanelShrink);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.TextBoxBijzIVWV);
             this.panel1.Controls.Add(this.label23);
@@ -670,7 +670,7 @@
             this.PanelShrink.Controls.Add(this.label42);
             this.PanelShrink.Controls.Add(this.TB2S);
             this.PanelShrink.Controls.Add(this.TB1S);
-            this.PanelShrink.Location = new System.Drawing.Point(9, 12);
+            this.PanelShrink.Location = new System.Drawing.Point(4, 513);
             this.PanelShrink.Name = "PanelShrink";
             this.PanelShrink.Size = new System.Drawing.Size(1033, 329);
             this.PanelShrink.TabIndex = 4;

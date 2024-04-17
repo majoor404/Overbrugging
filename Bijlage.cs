@@ -48,9 +48,11 @@ namespace Overbrugging
 
         private void ButVoegToe_Click(object sender, EventArgs e)
         {
-            OpenFileDialog open = new OpenFileDialog();
-            open.Title = "Open File";
-             open.Filter = "Files (*.*)|*.*";
+            OpenFileDialog open = new OpenFileDialog
+            {
+                Title = "Open File",
+                Filter = "Files (*.*)|*.*"
+            };
             if (open.ShowDialog() == DialogResult.OK)
             {
                 if (!Directory.Exists(bijlagepath))
@@ -174,7 +176,7 @@ namespace Overbrugging
                     File.Copy(Guid, newFile , true);
 
                     Start(newFile);
-                }catch (Exception ex) { }
+                }catch { }
             }
         }
 

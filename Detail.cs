@@ -410,20 +410,26 @@ namespace Overbrugging
 
         private void ComboBoxNaam1_TextChanged(object sender, EventArgs e)
         {
-            if(ComboBoxNaam1.Text == "")
+            if (ComboBoxNaam1.Text == "")
+            {
                 TextBoxPersnr1.Text = string.Empty;
+            }
         }
 
         private void ComboBoxNaam2_TextChanged(object sender, EventArgs e)
         {
             if (ComboBoxNaam2.Text == "")
+            {
                 TextBoxPersnr2.Text = string.Empty;
+            }
         }
 
         private void ComboBoxIVWV_TextChanged(object sender, EventArgs e)
         {
             if (ComboBoxIVWV.Text == "")
+            {
                 TextBoxPersNrIVWV.Text = string.Empty;
+            }
         }
 
         private void ButtonHeropen_Click(object sender, EventArgs e)
@@ -448,9 +454,9 @@ namespace Overbrugging
 
         private void BijlageToevoegen_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(TextBoxRegNr.Text))
+            if (string.IsNullOrEmpty(TextBoxRegNr.Text))
             {
-                MessageBox.Show("Bijlage kan pas gemaakt worden als regnr bekend is.");
+                _ = MessageBox.Show("Bijlage kan pas gemaakt worden als regnr bekend is.");
                 return;
             }
             Bijlage.Visible = MainForm.Main.BijlageFormOpenenMetJuisteRegnr(TextBoxRegNr.Text);
@@ -459,7 +465,16 @@ namespace Overbrugging
 
         private void Bijlage_Click(object sender, EventArgs e)
         {
-            MainForm.Main.BijlageFormOpenenMetJuisteRegnr(TextBoxRegNr.Text, false);
+            _ = MainForm.Main.BijlageFormOpenenMetJuisteRegnr(TextBoxRegNr.Text, false);
+        }
+
+        private void TextBoxBijzIVWV_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // als text van wv veranderd, en naam is anders dan orginele wv, deze aanpassen
+            if (MainForm.Main.LabelUser.Text != ComboBoxIVWV.Text)
+            {
+                ComboBoxIVWV.Text = MainForm.Main.LabelUser.Text;
+            }
         }
     }
 }
