@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace Overbrugging
@@ -28,7 +27,7 @@ namespace Overbrugging
         }
 
         public static List<Loc> LockList = new List<Loc>();
-        
+
         private readonly string datapath = AppDomain.CurrentDomain.BaseDirectory + "Data\\";
 
         private bool LaadLockFile()
@@ -55,7 +54,7 @@ namespace Overbrugging
                     string xmlTekst = ToXML(LockList);
                     File.WriteAllText($"{datapath}Lock.xml", xmlTekst);
                 }
-                
+
             }
             catch { }
         }
@@ -90,6 +89,13 @@ namespace Overbrugging
                 try
                 {
                     Loc Rec = LockList.First(a => a.Record == Record);
+
+                    // als lock door zelfde gebruiker en zelfde record, gooi ik hem los , zou normaal nooit kunnen ;-)
+                    if (Rec.Naam == MainForm.Main.LabelUser.Text)
+                    {
+                        FreeLock(Record);
+                        return false;
+                    }
 
                     // als lock > 30 minuten, gooi ik hem los.
                     DateTime test = DateTime.Now;
