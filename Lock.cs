@@ -71,9 +71,13 @@ namespace Overbrugging
         {
             if (LaadLockFile())
             {
-                Loc Rec = LockList.First(a => a.Record == Record);
-                _ = LockList.Remove(Rec);
-                SaveLockFile();
+                try
+                {
+                    Loc Rec = LockList.First(a => a.Record == Record);
+                    _ = LockList.Remove(Rec);
+                    SaveLockFile();
+                }
+                catch { };
             }
         }
 
@@ -105,7 +109,7 @@ namespace Overbrugging
                         FreeLock(Record);
                         return false;
                     }
-                    _ = MessageBox.Show($"Record is gelockt\nDoor {Rec.Naam} gestart op {Rec.Starttijd}\nOpen detail in ViewOnly mode.");
+                    _ = MessageBox.Show($"Record is gelockt\nDoor {Rec.Naam} gestart op {Rec.Starttijd}\nIk open detail in ViewOnly mode.\n\nKan vrijgegeven door {Rec.Naam}, of automatisch na {Rec.Starttijd.AddMinutes(30)}");
                     return true;
                 }
                 catch
