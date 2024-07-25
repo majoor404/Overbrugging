@@ -132,7 +132,7 @@ namespace Overbrugging
 
         private void ButtonIVWVDatumVerw_Click(object sender, EventArgs e)
         {
-            DatumVerw.TB.Text = DateTime.Now.ToShortDateString();
+            DatumVerw.TB.Text = MainForm.Main.MajoorString(DateTime.Now);
             ComboBoxNaamVerw.Text = MainForm.Main.LabelUser.Text;
         }
 

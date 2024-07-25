@@ -1291,18 +1291,24 @@ namespace Overbrugging
             {
                 VulDropDownItems(dt);
                 AutoAanvulNamen(dt);
-                TempData.DatumInv = dt.DatumInv.Datum = DateTime.Now.ToShortDateString();
+                TempData.DatumInv = dt.DatumInv.Datum = MajoorString(DateTime.Now);
                 _ = dt.ShowDialog();
             }
             else
             {
                 VulDropDownItemsSmall(dts);
                 AutoAanvulNamenSmall(dts);
-                TempData.DatumInv = dts.DatumInv.Datum = DateTime.Now.ToShortDateString();
+                TempData.DatumInv = dts.DatumInv.Datum = MajoorString(DateTime.Now);
                 _ = dts.ShowDialog();
             }
             //refresh
             ButRefresh_Click(this, null);
+        }
+
+        public string MajoorString(DateTime date)
+        {
+            // zet datum om in formaat dd-mm-jjjj
+            return date.ToString("dd-MM-yyyy");
         }
 
         public void VulDropDownItems(Detail dt)
