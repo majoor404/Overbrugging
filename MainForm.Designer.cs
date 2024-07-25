@@ -62,8 +62,6 @@
             this.ButtonNieuw = new System.Windows.Forms.Button();
             this.ButExit = new System.Windows.Forms.Button();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.PanelShrink = new System.Windows.Forms.Panel();
             this.PictureBijlageSmall = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -104,6 +102,8 @@
             this.label42 = new System.Windows.Forms.Label();
             this.TB2S = new System.Windows.Forms.TextBox();
             this.TB1S = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.TextBoxBijzIVWV = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
@@ -146,15 +146,16 @@
             this.PictureBijlage = new System.Windows.Forms.PictureBox();
             this.KillTimer = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel1.SuspendLayout();
             this.PanelShrink.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBijlageSmall)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBijlage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -548,86 +549,6 @@
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(1051, 917);
             this.panelMain.TabIndex = 5;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.GridColor = System.Drawing.Color.CornflowerBlue;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 496);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.ShowCellErrors = false;
-            this.dataGridView1.ShowCellToolTips = false;
-            this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(1047, 417);
-            this.dataGridView1.TabIndex = 3;
-            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
-            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_ColumnHeaderMouseClick);
-            this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_RowEnter);
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.panel4);
-            this.panel1.Controls.Add(this.TextBoxBijzIVWV);
-            this.panel1.Controls.Add(this.label23);
-            this.panel1.Controls.Add(this.linkLabel1);
-            this.panel1.Controls.Add(this.label24);
-            this.panel1.Controls.Add(this.label18);
-            this.panel1.Controls.Add(this.label25);
-            this.panel1.Controls.Add(this.label26);
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.LabelType);
-            this.panel1.Controls.Add(this.label19);
-            this.panel1.Controls.Add(this.label20);
-            this.panel1.Controls.Add(this.label22);
-            this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.label16);
-            this.panel1.Controls.Add(this.TBINSTD);
-            this.panel1.Controls.Add(this.TBINST);
-            this.panel1.Controls.Add(this.TBN2);
-            this.panel1.Controls.Add(this.TBN1);
-            this.panel1.Controls.Add(this.TBSEC);
-            this.panel1.Controls.Add(this.TBMOC);
-            this.panel1.Controls.Add(this.TBTVerw);
-            this.panel1.Controls.Add(this.TBDVerw);
-            this.panel1.Controls.Add(this.TBSAP);
-            this.panel1.Controls.Add(this.TBNWV);
-            this.panel1.Controls.Add(this.TBDWVV);
-            this.panel1.Controls.Add(this.TBNVerw);
-            this.panel1.Controls.Add(this.TBDWV);
-            this.panel1.Controls.Add(this.TBDINV);
-            this.panel1.Controls.Add(this.label17);
-            this.panel1.Controls.Add(this.GeselRegNr);
-            this.panel1.Controls.Add(this.labelMOC);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.TB2);
-            this.panel1.Controls.Add(this.TB1);
-            this.panel1.Controls.Add(this.PictureBijlage);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1047, 496);
-            this.panel1.TabIndex = 2;
             // 
             // PanelShrink
             // 
@@ -1059,6 +980,86 @@
             this.TB1S.Size = new System.Drawing.Size(480, 72);
             this.TB1S.TabIndex = 40;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.GridColor = System.Drawing.Color.CornflowerBlue;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 496);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.ShowCellErrors = false;
+            this.dataGridView1.ShowCellToolTips = false;
+            this.dataGridView1.ShowEditingIcon = false;
+            this.dataGridView1.ShowRowErrors = false;
+            this.dataGridView1.Size = new System.Drawing.Size(1047, 417);
+            this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
+            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_ColumnHeaderMouseClick);
+            this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_RowEnter);
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.panel4);
+            this.panel1.Controls.Add(this.TextBoxBijzIVWV);
+            this.panel1.Controls.Add(this.label23);
+            this.panel1.Controls.Add(this.linkLabel1);
+            this.panel1.Controls.Add(this.label24);
+            this.panel1.Controls.Add(this.label18);
+            this.panel1.Controls.Add(this.label25);
+            this.panel1.Controls.Add(this.label26);
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.LabelType);
+            this.panel1.Controls.Add(this.label19);
+            this.panel1.Controls.Add(this.label20);
+            this.panel1.Controls.Add(this.label22);
+            this.panel1.Controls.Add(this.label15);
+            this.panel1.Controls.Add(this.label16);
+            this.panel1.Controls.Add(this.TBINSTD);
+            this.panel1.Controls.Add(this.TBINST);
+            this.panel1.Controls.Add(this.TBN2);
+            this.panel1.Controls.Add(this.TBN1);
+            this.panel1.Controls.Add(this.TBSEC);
+            this.panel1.Controls.Add(this.TBMOC);
+            this.panel1.Controls.Add(this.TBTVerw);
+            this.panel1.Controls.Add(this.TBDVerw);
+            this.panel1.Controls.Add(this.TBSAP);
+            this.panel1.Controls.Add(this.TBNWV);
+            this.panel1.Controls.Add(this.TBDWVV);
+            this.panel1.Controls.Add(this.TBNVerw);
+            this.panel1.Controls.Add(this.TBDWV);
+            this.panel1.Controls.Add(this.TBDINV);
+            this.panel1.Controls.Add(this.label17);
+            this.panel1.Controls.Add(this.GeselRegNr);
+            this.panel1.Controls.Add(this.labelMOC);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.label14);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.TB2);
+            this.panel1.Controls.Add(this.TB1);
+            this.panel1.Controls.Add(this.PictureBijlage);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1047, 496);
+            this.panel1.TabIndex = 2;
+            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Black;
@@ -1480,12 +1481,12 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panelMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.PanelShrink.ResumeLayout(false);
             this.PanelShrink.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBijlageSmall)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBijlage)).EndInit();
             this.ResumeLayout(false);
 
@@ -1608,6 +1609,7 @@
         private System.Windows.Forms.TextBox TB1S;
         private System.Windows.Forms.PictureBox PictureBijlage;
         private System.Windows.Forms.PictureBox PictureBijlageSmall;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

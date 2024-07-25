@@ -36,6 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.ButLogView = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ButExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,7 +68,7 @@
             // 
             this.buttonImport.DialogResult = System.Windows.Forms.DialogResult.Retry;
             this.buttonImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonImport.Location = new System.Drawing.Point(18, 425);
+            this.buttonImport.Location = new System.Drawing.Point(18, 494);
             this.buttonImport.Margin = new System.Windows.Forms.Padding(4);
             this.buttonImport.Name = "buttonImport";
             this.buttonImport.Size = new System.Drawing.Size(310, 61);
@@ -132,12 +133,25 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
+            // ButExport
+            // 
+            this.ButExport.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.ButExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButExport.Location = new System.Drawing.Point(18, 425);
+            this.ButExport.Margin = new System.Windows.Forms.Padding(4);
+            this.ButExport.Name = "ButExport";
+            this.ButExport.Size = new System.Drawing.Size(310, 61);
+            this.ButExport.TabIndex = 3;
+            this.ButExport.Text = "Export Data File";
+            this.ButExport.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AcceptButton = this.ButLogView;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(348, 446);
+            this.ClientSize = new System.Drawing.Size(348, 500);
+            this.Controls.Add(this.ButExport);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.LabelBuildData);
             this.Controls.Add(this.label2);
@@ -167,5 +181,6 @@
         public System.Windows.Forms.Button buttonNaam;
         public System.Windows.Forms.Button buttonSecties;
         public System.Windows.Forms.Button buttonImport;
+        public System.Windows.Forms.Button ButExport;
     }
 }

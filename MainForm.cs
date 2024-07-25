@@ -8,8 +8,11 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using Label = System.Windows.Forms.Label;
 
 namespace Overbrugging
@@ -1022,7 +1025,41 @@ namespace Overbrugging
                 _ = LV.ShowDialog();
             }
 
+            if (ret == DialogResult.Yes)
+            {
+                // Export
+                Export();
+            }
+            
             ButRefresh_Click(this, null);
+        }
+
+        private void Export()
+        {
+            // laad
+            LaadData_lijst();
+
+            saveFileDialog1.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 1;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                // zet om naar xml
+                ToXML(LijstData, saveFileDialog1.FileName);
+            }
+        }
+
+        private void ToXML<T>(T obj, string filenaam)
+        {
+            using (StringWriter stringWriter = new StringWriter(new StringBuilder()))
+            {
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+                xmlSerializer.Serialize(stringWriter, obj);
+
+                string DataAlsXml = stringWriter.ToString();
+                File.WriteAllText(filenaam, DataAlsXml);
+            }
         }
 
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
