@@ -260,6 +260,7 @@
             // 
             // ComboSectieDeel
             // 
+            this.ComboSectieDeel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboSectieDeel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboSectieDeel.FormattingEnabled = true;
             this.ComboSectieDeel.Location = new System.Drawing.Point(494, 130);
@@ -269,6 +270,7 @@
             // 
             // ComboBoxSectie
             // 
+            this.ComboBoxSectie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxSectie.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxSectie.FormattingEnabled = true;
             this.ComboBoxSectie.Location = new System.Drawing.Point(494, 88);

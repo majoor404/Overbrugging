@@ -1506,8 +1506,9 @@ namespace Overbrugging
                 LaadNamen_lijst();
 
                 // vullen dropdown items
-                dt.ComboBoxSectie.Text = Q.Sectie; // daarvoor heb ik wel sectie nodig.
                 VulDropDownItems(dt);
+
+                dt.ComboBoxSectie.Text = Q.Sectie; // daarvoor heb ik wel sectie nodig.
 
                 // bovenste panel vullen met data
                 dt.DatumInv.Datum = Q.DatumInv;
@@ -1545,8 +1546,8 @@ namespace Overbrugging
                 LaadNamen_lijst();
 
                 // vullen dropdown items
-                dt.ComboBoxSectie.Text = Q.Sectie; // daarvoor heb ik wel sectie nodig.
                 VulDropDownItemsSmall(dt);
+                dt.ComboBoxSectie.Text = Q.Sectie; // daarvoor heb ik wel sectie nodig.
 
                 // bovenste panel vullen met data
                 dt.DatumInv.Datum = Q.DatumInv;
