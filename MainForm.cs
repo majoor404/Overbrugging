@@ -659,7 +659,6 @@ namespace Overbrugging
             {
                 LabelUser.Text = "Gebruiker niet in lijst";
                 LabelUser.ForeColor = Color.Teal;
-
             }
         }
 
@@ -1084,6 +1083,12 @@ namespace Overbrugging
                 bool isgelockt = Geblokkerd.IsLock(GeselRegNr.Text);
 
                 if (isgelockt)
+                {
+                    dt.viewonly = true;
+                    dts.viewonly = true;
+                }
+
+                if(LabelUser.Text == "Gebruiker niet in lijst")
                 {
                     dt.viewonly = true;
                     dts.viewonly = true;
