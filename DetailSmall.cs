@@ -11,7 +11,7 @@ namespace Overbrugging
     public partial class DetailSmall : Form
     {
         //public Data HuidigeDataInDetail = new Data();
-        public bool viewonly = false;
+        public bool LockMode = false;
 
         public DetailSmall()
         {
@@ -24,25 +24,34 @@ namespace Overbrugging
             RefreshForm();      // type appart, ook gebruik bij knopje drukken.
             _ = TextBoxSapNr.Focus();
 
+            // afhankelijk van rechten zet eea actief            
             // als reg nummer bekend is, maak save WV en verwijder actief.
-            ButSaveWV.Enabled = !string.IsNullOrEmpty(TextBoxRegNr.Text) && MainForm.Main.IsIVer.Checked;
-            ButSaveVerw.Enabled = !string.IsNullOrEmpty(TextBoxRegNr.Text) && MainForm.Main.IsIVer.Checked;
+            ButSaveWV.Enabled = !string.IsNullOrEmpty(TextBoxRegNr.Text) && MainForm.Main.rechten == 2;
+            ButSaveVerw.Enabled = !string.IsNullOrEmpty(TextBoxRegNr.Text) && MainForm.Main.rechten == 2;
             ButtonHeropen.Visible = ButSaveVerw.Enabled && (DatumVerw.TB.Text != " --/--/----");
 
             // als geen iv/wv dan niks invullen bij wv.
-            PanelWV.Enabled = MainForm.Main.IsIVer.Checked;
-            //PanelVerwijderen.Enabled = MainForm.Main.IsIVer.Checked;
+            PanelWV.Enabled = MainForm.Main.rechten == 2;
 
             //als persoon in lijst, mag die wel afsluiten
-            bool inlijst = MainForm.Main.PersoneelNummerInLijst(MainForm.Main.IsIVer.Text);
-            PanelVerwijderen.Enabled = inlijst;
+            PanelVerwijderen.Enabled = MainForm.Main.rechten > 0;
 
-            // viewonly
-            ButVoerUit.Enabled = !viewonly;
-            ButSaveWV.Enabled = !viewonly;
-            ButSaveVerw.Enabled = !viewonly;
-            ButtonHeropen.Enabled = !viewonly;
-            BijlageToevoegen.Enabled = !viewonly;
+            // LockMode
+            ButVoerUit.Enabled = !LockMode;
+            ButSaveWV.Enabled = !LockMode;
+            ButSaveVerw.Enabled = !LockMode;
+            ButtonHeropen.Enabled = !LockMode;
+            BijlageToevoegen.Enabled = !LockMode;
+
+            // rechten 0
+            if (MainForm.Main.rechten == 0)
+            {
+                ButVoerUit.Enabled = false;
+                ButSaveWV.Enabled = false;
+                ButSaveVerw.Enabled = false;
+                ButtonHeropen.Enabled = false;
+                BijlageToevoegen.Enabled = false;
+            }
 
             TextBoxRede.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
             TextBoxOplossing.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;

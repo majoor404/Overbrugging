@@ -36,7 +36,7 @@
             // ButTIW
             // 
             this.ButTIW.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.ButTIW.Location = new System.Drawing.Point(13, 13);
+            this.ButTIW.Location = new System.Drawing.Point(22, 171);
             this.ButTIW.Name = "ButTIW";
             this.ButTIW.Size = new System.Drawing.Size(199, 63);
             this.ButTIW.TabIndex = 0;
@@ -46,7 +46,7 @@
             // ButtonOverb
             // 
             this.ButtonOverb.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.ButtonOverb.Location = new System.Drawing.Point(13, 92);
+            this.ButtonOverb.Location = new System.Drawing.Point(22, 90);
             this.ButtonOverb.Name = "ButtonOverb";
             this.ButtonOverb.Size = new System.Drawing.Size(199, 63);
             this.ButtonOverb.TabIndex = 0;
@@ -56,7 +56,7 @@
             // ButtonMOC
             // 
             this.ButtonMOC.DialogResult = System.Windows.Forms.DialogResult.Abort;
-            this.ButtonMOC.Location = new System.Drawing.Point(12, 171);
+            this.ButtonMOC.Location = new System.Drawing.Point(22, 12);
             this.ButtonMOC.Name = "ButtonMOC";
             this.ButtonMOC.Size = new System.Drawing.Size(199, 63);
             this.ButtonMOC.TabIndex = 0;
@@ -68,7 +68,7 @@
             this.AcceptButton = this.ButTIW;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(224, 254);
+            this.ClientSize = new System.Drawing.Size(237, 262);
             this.Controls.Add(this.ButtonMOC);
             this.Controls.Add(this.ButtonOverb);
             this.Controls.Add(this.ButTIW);

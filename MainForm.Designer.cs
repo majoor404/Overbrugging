@@ -147,6 +147,7 @@
             this.KillTimer = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.RechtenDebug = new System.Windows.Forms.NumericUpDown();
             this.panelTop.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -157,12 +158,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBijlage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RechtenDebug)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.SystemColors.Control;
             this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelTop.Controls.Add(this.RechtenDebug);
             this.panelTop.Controls.Add(this.KillTijdLabel);
             this.panelTop.Controls.Add(this.IVWVVraag);
             this.panelTop.Controls.Add(this.IsIVer);
@@ -1460,6 +1463,15 @@
             this.KillTimer.Interval = 60000;
             this.KillTimer.Tick += new System.EventHandler(this.KillTimer_Tick);
             // 
+            // RechtenDebug
+            // 
+            this.RechtenDebug.Location = new System.Drawing.Point(880, 15);
+            this.RechtenDebug.Name = "RechtenDebug";
+            this.RechtenDebug.Size = new System.Drawing.Size(120, 20);
+            this.RechtenDebug.TabIndex = 26;
+            this.RechtenDebug.Visible = false;
+            this.RechtenDebug.ValueChanged += new System.EventHandler(this.RechtenDebug_ValueChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1488,6 +1500,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBijlage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RechtenDebug)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1610,6 +1623,7 @@
         private System.Windows.Forms.PictureBox PictureBijlage;
         private System.Windows.Forms.PictureBox PictureBijlageSmall;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.NumericUpDown RechtenDebug;
     }
 }
 

@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using Label = System.Windows.Forms.Label;
@@ -35,6 +36,7 @@ namespace Overbrugging
         public AutoCompleteStringCollection mycolIVWV = new AutoCompleteStringCollection();
         public AutoCompleteStringCollection mycol = new AutoCompleteStringCollection();
         public string inlognaam = "";
+        public int rechten = 0;
 
         public Lock Geblokkerd = new Lock();
 
@@ -624,6 +626,7 @@ namespace Overbrugging
             if (inlognaam == "ronal")
             {
                 inlognaam = "a590588";
+                RechtenDebug.Visible = true;
             }
 
             // is bv dan a590588
@@ -654,12 +657,18 @@ namespace Overbrugging
             {
                 NamenFunties Q = NamenLijst.First(a => a.PersoneelNummer == inlognaam);
                 LabelUser.Text = Q.Naam;
+                rechten = 1;
             }
             catch
             {
                 LabelUser.Text = "Gebruiker niet in lijst";
                 LabelUser.ForeColor = Color.Teal;
             }
+
+            if (IsIVer.Checked)
+                rechten = 2;
+
+            RechtenDebug.Value = rechten;
         }
 
         private void VulGrid()
@@ -1084,14 +1093,14 @@ namespace Overbrugging
 
                 if (isgelockt)
                 {
-                    dt.viewonly = true;
-                    dts.viewonly = true;
+                    dt.LockMode = true;
+                    dts.LockMode = true;
                 }
 
                 if(LabelUser.Text == "Gebruiker niet in lijst")
                 {
-                    dt.viewonly = true;
-                    dts.viewonly = true;
+                    dt.LockMode = true;
+                    dts.LockMode = true;
                 }
 
                 // als een IV of WV blokeer
@@ -1457,8 +1466,8 @@ namespace Overbrugging
 
                 if (isgelockt)
                 {
-                    dt.viewonly = true;
-                    dts.viewonly = true;
+                    dt.LockMode = true;
+                    dts.LockMode = true;
                 }
 
                 // als een IV of WV blokeer
@@ -2050,6 +2059,11 @@ namespace Overbrugging
         private void PictureBijlage_Click(object sender, EventArgs e)
         {
             MainForm.Main.BijlageFormOpenenMetJuisteRegnr(GeselRegNr.Text, false);
+        }
+
+        private void RechtenDebug_ValueChanged(object sender, EventArgs e)
+        {
+            rechten = (int)RechtenDebug.Value;
         }
     }
 }
