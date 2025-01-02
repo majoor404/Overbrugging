@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelTop = new System.Windows.Forms.Panel();
+            this.RechtenDebug = new System.Windows.Forms.NumericUpDown();
             this.KillTijdLabel = new System.Windows.Forms.Label();
             this.IVWVVraag = new System.Windows.Forms.LinkLabel();
             this.IsIVer = new System.Windows.Forms.CheckBox();
@@ -147,8 +148,11 @@
             this.KillTimer = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.RechtenDebug = new System.Windows.Forms.NumericUpDown();
+            this.PanelDebug = new System.Windows.Forms.Panel();
+            this.label30 = new System.Windows.Forms.Label();
+            this.CBSmall = new System.Windows.Forms.CheckBox();
             this.panelTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RechtenDebug)).BeginInit();
             this.panelMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -158,14 +162,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBijlage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RechtenDebug)).BeginInit();
+            this.PanelDebug.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.SystemColors.Control;
             this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelTop.Controls.Add(this.RechtenDebug);
+            this.panelTop.Controls.Add(this.PanelDebug);
             this.panelTop.Controls.Add(this.KillTijdLabel);
             this.panelTop.Controls.Add(this.IVWVVraag);
             this.panelTop.Controls.Add(this.IsIVer);
@@ -182,6 +186,14 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1264, 53);
             this.panelTop.TabIndex = 0;
+            // 
+            // RechtenDebug
+            // 
+            this.RechtenDebug.Location = new System.Drawing.Point(116, 26);
+            this.RechtenDebug.Name = "RechtenDebug";
+            this.RechtenDebug.Size = new System.Drawing.Size(72, 20);
+            this.RechtenDebug.TabIndex = 26;
+            this.RechtenDebug.ValueChanged += new System.EventHandler(this.RechtenDebug_ValueChanged);
             // 
             // KillTijdLabel
             // 
@@ -1463,14 +1475,39 @@
             this.KillTimer.Interval = 60000;
             this.KillTimer.Tick += new System.EventHandler(this.KillTimer_Tick);
             // 
-            // RechtenDebug
+            // PanelDebug
             // 
-            this.RechtenDebug.Location = new System.Drawing.Point(880, 15);
-            this.RechtenDebug.Name = "RechtenDebug";
-            this.RechtenDebug.Size = new System.Drawing.Size(120, 20);
-            this.RechtenDebug.TabIndex = 26;
-            this.RechtenDebug.Visible = false;
-            this.RechtenDebug.ValueChanged += new System.EventHandler(this.RechtenDebug_ValueChanged);
+            this.PanelDebug.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelDebug.Controls.Add(this.CBSmall);
+            this.PanelDebug.Controls.Add(this.RechtenDebug);
+            this.PanelDebug.Controls.Add(this.label30);
+            this.PanelDebug.Location = new System.Drawing.Point(821, 0);
+            this.PanelDebug.Name = "PanelDebug";
+            this.PanelDebug.Size = new System.Drawing.Size(203, 51);
+            this.PanelDebug.TabIndex = 26;
+            this.PanelDebug.Visible = false;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.ForeColor = System.Drawing.Color.Black;
+            this.label30.Location = new System.Drawing.Point(27, 26);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(63, 18);
+            this.label30.TabIndex = 0;
+            this.label30.Text = "Rechten";
+            // 
+            // CBSmall
+            // 
+            this.CBSmall.AutoSize = true;
+            this.CBSmall.Location = new System.Drawing.Point(116, 7);
+            this.CBSmall.Name = "CBSmall";
+            this.CBSmall.Size = new System.Drawing.Size(51, 17);
+            this.CBSmall.TabIndex = 27;
+            this.CBSmall.Text = "Small";
+            this.CBSmall.UseVisualStyleBackColor = true;
+            this.CBSmall.CheckedChanged += new System.EventHandler(this.CBSmall_CheckedChanged);
             // 
             // MainForm
             // 
@@ -1488,6 +1525,7 @@
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RechtenDebug)).EndInit();
             this.panelMenu.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -1500,7 +1538,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBijlage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RechtenDebug)).EndInit();
+            this.PanelDebug.ResumeLayout(false);
+            this.PanelDebug.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1624,6 +1663,9 @@
         private System.Windows.Forms.PictureBox PictureBijlageSmall;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.NumericUpDown RechtenDebug;
+        private System.Windows.Forms.Panel PanelDebug;
+        private System.Windows.Forms.CheckBox CBSmall;
+        private System.Windows.Forms.Label label30;
     }
 }
 

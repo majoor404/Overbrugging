@@ -213,6 +213,7 @@ namespace Overbrugging
             }
 
             int index;
+            MainForm.Main.LaadData_lijst();
             //bool save_nieuwe_index = false;
             if (string.IsNullOrEmpty(TextBoxRegNr.Text))
             {
@@ -227,7 +228,7 @@ namespace Overbrugging
                 MainForm.Main.Log.LogRegel($"Wijzig record {index} door {MainForm.Main.LabelUser.Text}");
             }
 
-            MainForm.Main.LaadData_lijst();
+            //MainForm.Main.LaadData_lijst();
             // save data
             MainForm.Main.TempData.DatumInv = DatumInv.Datum;
             MainForm.Main.TempData.SapNr = TextBoxSapNr.Text;

@@ -626,7 +626,6 @@ namespace Overbrugging
             if (inlognaam == "ronal")
             {
                 inlognaam = "a590588";
-                RechtenDebug.Visible = true;
             }
 
             // is bv dan a590588
@@ -668,7 +667,11 @@ namespace Overbrugging
             if (IsIVer.Checked)
                 rechten = 2;
 
-            RechtenDebug.Value = rechten;
+            if (inlognaam == "590588")
+            {
+                PanelDebug.Visible = true;
+                RechtenDebug.Value = rechten;
+            }
         }
 
         private void VulGrid()
@@ -2064,6 +2067,11 @@ namespace Overbrugging
         private void RechtenDebug_ValueChanged(object sender, EventArgs e)
         {
             rechten = (int)RechtenDebug.Value;
+        }
+
+        private void CBSmall_CheckedChanged(object sender, EventArgs e)
+        {
+            Scalling = CBSmall.Checked;
         }
     }
 }
