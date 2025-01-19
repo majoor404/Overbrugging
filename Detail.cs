@@ -208,7 +208,7 @@ namespace Overbrugging
             {
                 if (TextBoxMocNr.Text != "")
                 {
-                    _ = MessageBox.Show("Er is een MOC nummer ingevuld, maak er dus een MOC van.");
+                    _ = MessageBox.Show("Er is een MOC nummer ingevuld, ik maak er dus een MOC van.");
                     CBSoort.Text = "MOC";
                     MainForm.Main.TempData.Soort = "MOC";
                 }
