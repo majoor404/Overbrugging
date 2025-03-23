@@ -60,9 +60,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.RedeMOCLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.HelpTextRedeGeenMOC = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.PanelVerwijderen = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
@@ -83,7 +85,6 @@
             this.ButSaveWV = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.TextBoxBijzIVWV = new System.Windows.Forms.TextBox();
-            this.CBSoort = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.ComboBoxIVWV = new System.Windows.Forms.ComboBox();
@@ -92,6 +93,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
+            this.BTSoort = new System.Windows.Forms.Button();
             this.DatumVerloopTIW = new Overbrugging.DatumPicker();
             this.DatumWv = new Overbrugging.DatumPicker();
             this.DatumVerw = new Overbrugging.DatumPicker();
@@ -136,9 +138,11 @@
             this.Panel12345.Controls.Add(this.label4);
             this.Panel12345.Controls.Add(this.label8);
             this.Panel12345.Controls.Add(this.label7);
+            this.Panel12345.Controls.Add(this.RedeMOCLabel);
             this.Panel12345.Controls.Add(this.label6);
             this.Panel12345.Controls.Add(this.label3);
             this.Panel12345.Controls.Add(this.label2);
+            this.Panel12345.Controls.Add(this.HelpTextRedeGeenMOC);
             this.Panel12345.Controls.Add(this.label1);
             this.Panel12345.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel12345.Location = new System.Drawing.Point(0, 0);
@@ -451,6 +455,16 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "Installatie";
             // 
+            // RedeMOCLabel
+            // 
+            this.RedeMOCLabel.AutoSize = true;
+            this.RedeMOCLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RedeMOCLabel.Location = new System.Drawing.Point(491, 23);
+            this.RedeMOCLabel.Name = "RedeMOCLabel";
+            this.RedeMOCLabel.Size = new System.Drawing.Size(123, 18);
+            this.RedeMOCLabel.TabIndex = 0;
+            this.RedeMOCLabel.Text = "Rede Geen MOC";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -481,11 +495,21 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Registratie nr.";
             // 
+            // HelpTextRedeGeenMOC
+            // 
+            this.HelpTextRedeGeenMOC.AutoSize = true;
+            this.HelpTextRedeGeenMOC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HelpTextRedeGeenMOC.Location = new System.Drawing.Point(344, 23);
+            this.HelpTextRedeGeenMOC.Name = "HelpTextRedeGeenMOC";
+            this.HelpTextRedeGeenMOC.Size = new System.Drawing.Size(131, 18);
+            this.HelpTextRedeGeenMOC.TabIndex = 0;
+            this.HelpTextRedeGeenMOC.Text = "Rede Geen MOC :";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 17);
+            this.label1.Location = new System.Drawing.Point(11, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 24);
             this.label1.TabIndex = 0;
@@ -642,6 +666,7 @@
             // PanelWV
             // 
             this.PanelWV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelWV.Controls.Add(this.BTSoort);
             this.PanelWV.Controls.Add(this.button1);
             this.PanelWV.Controls.Add(this.ButtonIVWVDatumNu);
             this.PanelWV.Controls.Add(this.ButSaveWV);
@@ -649,7 +674,6 @@
             this.PanelWV.Controls.Add(this.DatumWv);
             this.PanelWV.Controls.Add(this.label21);
             this.PanelWV.Controls.Add(this.TextBoxBijzIVWV);
-            this.PanelWV.Controls.Add(this.CBSoort);
             this.PanelWV.Controls.Add(this.label24);
             this.PanelWV.Controls.Add(this.label22);
             this.PanelWV.Controls.Add(this.ComboBoxIVWV);
@@ -719,20 +743,6 @@
             this.TextBoxBijzIVWV.Size = new System.Drawing.Size(435, 106);
             this.TextBoxBijzIVWV.TabIndex = 7;
             this.TextBoxBijzIVWV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxBijzIVWV_KeyPress);
-            // 
-            // CBSoort
-            // 
-            this.CBSoort.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CBSoort.FormattingEnabled = true;
-            this.CBSoort.Items.AddRange(new object[] {
-            "TIW",
-            "OVERB",
-            "MOC"});
-            this.CBSoort.Location = new System.Drawing.Point(159, 107);
-            this.CBSoort.Name = "CBSoort";
-            this.CBSoort.Size = new System.Drawing.Size(137, 26);
-            this.CBSoort.TabIndex = 1;
-            this.CBSoort.Text = "TIW";
             // 
             // label24
             // 
@@ -813,6 +823,17 @@
             this.label26.Size = new System.Drawing.Size(48, 18);
             this.label26.TabIndex = 0;
             this.label26.Text = "Naam";
+            // 
+            // BTSoort
+            // 
+            this.BTSoort.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTSoort.Location = new System.Drawing.Point(159, 105);
+            this.BTSoort.Name = "BTSoort";
+            this.BTSoort.Size = new System.Drawing.Size(137, 28);
+            this.BTSoort.TabIndex = 8;
+            this.BTSoort.Text = "button2";
+            this.BTSoort.UseVisualStyleBackColor = true;
+            this.BTSoort.Click += new System.EventHandler(this.BTSoort_Click);
             // 
             // DatumVerloopTIW
             // 
@@ -937,10 +958,12 @@
         private System.Windows.Forms.Button ButSaveVerw;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button ButPrint;
-        public System.Windows.Forms.ComboBox CBSoort;
         private System.Windows.Forms.Button ButPrintUitvoering;
         private System.Windows.Forms.Button ButtonHeropen;
         private System.Windows.Forms.Button BijlageToevoegen;
         public System.Windows.Forms.PictureBox Bijlage;
+        private System.Windows.Forms.Label RedeMOCLabel;
+        private System.Windows.Forms.Label HelpTextRedeGeenMOC;
+        public System.Windows.Forms.Button BTSoort;
     }
 }

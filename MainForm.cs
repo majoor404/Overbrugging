@@ -8,10 +8,8 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.ComTypes;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using Label = System.Windows.Forms.Label;
@@ -86,9 +84,9 @@ namespace Overbrugging
                 if (LogicalScreenWeight < 1850 || LogicalScreenHeight < 1040 || ScreenScalingFactor != 1) // 1920 * 1080 bij 1 scaling
                 {
                     Scalling = true;
-                    PanelShrink.Visible = true;
-                    PanelShrink.Location = panel1.Location;
-                    panel1.Size = PanelShrink.Size;
+                    //PanelShrink.Visible = true;
+                    //PanelShrink.Location = panel1.Location;
+                    //panel1.Size = PanelShrink.Size;
                 }
             }
             catch { }
@@ -108,6 +106,10 @@ namespace Overbrugging
             //_ = MessageBox.Show($"Resolutie anders dan verwacht van standaard Tata PC\nDeze pc heeft {LogicalScreenWeight} * {LogicalScreenHeight} met Font grote {ScreenScalingFactor * 100}%\nProgramma probeert eea aan te passen, maar kan afwijken of niet passen.");
 
             Text = "Overbrug gescaled window.";
+
+            PanelShrink.Visible = true;
+            PanelShrink.Location = panel1.Location;
+            panel1.Size = PanelShrink.Size;
 
             // buttons op panel menu
             foreach (System.Windows.Forms.Button button in panelMenu.Controls.OfType<System.Windows.Forms.Button>())
@@ -570,7 +572,7 @@ namespace Overbrugging
                     }
                 }
             }
-            
+
             comboBoxSectie.SelectedIndex = 0;
             comboBoxSoortFilter.SelectedIndex = 0;
             comboBoxStatus.SelectedIndex = 0;
@@ -665,7 +667,9 @@ namespace Overbrugging
             }
 
             if (IsIVer.Checked)
+            {
                 rechten = 2;
+            }
 
             if (inlognaam == "590588")
             {
@@ -1041,7 +1045,7 @@ namespace Overbrugging
                 // Export
                 Export();
             }
-            
+
             ButRefresh_Click(this, null);
         }
 
@@ -1100,7 +1104,7 @@ namespace Overbrugging
                     dts.LockMode = true;
                 }
 
-                if(LabelUser.Text == "Gebruiker niet in lijst")
+                if (LabelUser.Text == "Gebruiker niet in lijst")
                 {
                     dt.LockMode = true;
                     dts.LockMode = true;
@@ -1186,17 +1190,25 @@ namespace Overbrugging
                 TBN1.Text = Q.Naam1;
                 TBN2.Text = Q.Naam2;
 
+                string HulpTekst = $"Geen MOC : {Q.Reserve1}";
+                if (Q.Reserve1 == "") HulpTekst = "";
                 if (Q.Soort == "TIW")
                 {
                     LabelType.Text = "Tijdelijke Instalatie Wijziging";
+                    toolTip1.SetToolTip(LabelType, HulpTekst);
+                    toolTip1.SetToolTip(LabelTypeS, HulpTekst);
                 }
                 if (Q.Soort == "MOC")
                 {
                     LabelType.Text = "Management Of Change";
+                    toolTip1.SetToolTip(LabelType, "");
+                    toolTip1.SetToolTip(LabelTypeS, "");
                 }
                 if (Q.Soort == "OVERB")
                 {
                     LabelType.Text = "Overbruging";
+                    toolTip1.SetToolTip(LabelType, HulpTekst);
+                    toolTip1.SetToolTip(LabelTypeS, HulpTekst);
                 }
                 TBDWV.Text = Q.DatumWv;
                 TBDWVV.Text = Q.UitersteDatum;
@@ -1280,7 +1292,10 @@ namespace Overbrugging
             DetailSmall dts = new DetailSmall();
             Detail dt = new Detail();
 
-            TempData = new Data();
+            TempData = new Data
+            {
+                Reserve1 = KS.UitgekozenGeenMocRegel
+            };
 
             if (retKeuzeForm == DialogResult.OK)
             {
@@ -1542,7 +1557,7 @@ namespace Overbrugging
                 dt.ComboBoxIVWV.Text = Q.NaamWV;
                 dt.DatumVerloopTIW.Datum = Q.UitersteDatum;
                 dt.TextBoxBijzIVWV.Text = Q.BijzonderhedenWV;
-                dt.CBSoort.Text = Q.Soort;
+                dt.BTSoort.Text = Q.Soort;
                 // onderste panel
                 dt.DatumVerw.Datum = Q.DatumVerw;
                 dt.ComboBoxNaamVerw.Text = Q.Naamverw;
@@ -1581,7 +1596,7 @@ namespace Overbrugging
                 dt.ComboBoxIVWV.Text = Q.NaamWV;
                 dt.DatumVerloopTIW.Datum = Q.UitersteDatum;
                 dt.TextBoxBijzIVWV.Text = Q.BijzonderhedenWV;
-                dt.CBSoort.Text = Q.Soort;
+                dt.BTSoort.Text = Q.Soort;
                 // onderste panel
                 dt.DatumVerw.Datum = Q.DatumVerw;
                 dt.ComboBoxNaamVerw.Text = Q.Naamverw;
@@ -2038,17 +2053,10 @@ namespace Overbrugging
             }
         }
 
-        public bool BijlageFormOpenenMetJuisteRegnr(string ID,bool large=true)
+        public bool BijlageFormOpenenMetJuisteRegnr(string ID, bool large = true)
         {
             bijlage.ID = ID;
-            if(!large)
-            {
-                bijlage.Width = 414;
-            }
-            else
-            {
-                bijlage.Width = 627;
-            }
+            bijlage.Width = !large ? 414 : 627;
             _ = bijlage.ShowDialog();
 
             return bijlage.BijlageAanwezig(ID);
@@ -2056,12 +2064,12 @@ namespace Overbrugging
 
         private void PictureBijlageSmall_Click(object sender, EventArgs e)
         {
-            MainForm.Main.BijlageFormOpenenMetJuisteRegnr(GeselRegNrS.Text, false);
+            _ = MainForm.Main.BijlageFormOpenenMetJuisteRegnr(GeselRegNrS.Text, false);
         }
 
         private void PictureBijlage_Click(object sender, EventArgs e)
         {
-            MainForm.Main.BijlageFormOpenenMetJuisteRegnr(GeselRegNr.Text, false);
+            _ = MainForm.Main.BijlageFormOpenenMetJuisteRegnr(GeselRegNr.Text, false);
         }
 
         private void RechtenDebug_ValueChanged(object sender, EventArgs e)
@@ -2071,7 +2079,10 @@ namespace Overbrugging
 
         private void CBSmall_CheckedChanged(object sender, EventArgs e)
         {
-            Scalling = CBSmall.Checked;
+            Scalling = true;
+            ScreenScalingFactor = 1.4f;
+            ScaleMainVenster();
+            CBSmall.Enabled = false;
         }
     }
 }

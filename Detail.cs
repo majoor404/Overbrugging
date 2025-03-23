@@ -58,24 +58,30 @@ namespace Overbrugging
             TextBoxRede.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
             TextBoxOplossing.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
 
-            CBSoort.SelectedIndexChanged += CBSoort_SelectedIndexChanged;
+            //CBSoort.SelectedIndexChanged += CBSoort_SelectedIndexChanged;
         }
 
         private void RefreshForm()
         {
+            RedeMOCLabel.Visible = true;
+            HelpTextRedeGeenMOC.Visible = true;
             if (MainForm.Main.TempData.Soort == "TIW")
             {
                 LabelType.Text = "Tijdelijke Instalatie Wijziging";
+                RedeMOCLabel.Text = MainForm.Main.TempData.Reserve1;
             }
             if (MainForm.Main.TempData.Soort == "MOC")
             {
                 LabelType.Text = "Management Of Change";
+                RedeMOCLabel.Visible = false;
+                HelpTextRedeGeenMOC.Visible = false;
             }
             if (MainForm.Main.TempData.Soort == "OVERB")
             {
                 LabelType.Text = "Overbruging";
+                RedeMOCLabel.Text = MainForm.Main.TempData.Reserve1;
             }
-            CBSoort.Text = MainForm.Main.TempData.Soort;
+            BTSoort.Text = MainForm.Main.TempData.Soort;
         }
 
         private void ComboBoxNaam1_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,36 +186,36 @@ namespace Overbrugging
                 return;
             }
 
-            if (CBSoort.Text == "")
+            if (BTSoort.Text == "")
             {
                 KeuzeType KS = new KeuzeType();
                 DialogResult ret = KS.ShowDialog();
                 if (ret == DialogResult.OK)
                 {
                     // TIW
-                    CBSoort.Text = "TIW";
+                    BTSoort.Text = "TIW";
                     MainForm.Main.TempData.Soort = "TIW";
                 }
                 if (ret == DialogResult.Yes)
                 {
                     //OVERB
-                    CBSoort.Text = "OVERB";
+                    BTSoort.Text = "OVERB";
                     MainForm.Main.TempData.Soort = "OVERB";
                 }
                 if (ret == DialogResult.Abort)
                 {
                     //MOC
-                    CBSoort.Text = "MOC";
+                    BTSoort.Text = "MOC";
                     MainForm.Main.TempData.Soort = "MOC";
                 }
             }
 
-            if (CBSoort.Text == "TIW" || CBSoort.Text == "OVERB")
+            if (BTSoort.Text == "TIW" || BTSoort.Text == "OVERB")
             {
                 if (TextBoxMocNr.Text != "")
                 {
                     _ = MessageBox.Show("Er is een MOC nummer ingevuld, ik maak er dus een MOC van.");
-                    CBSoort.Text = "MOC";
+                    BTSoort.Text = "MOC";
                     MainForm.Main.TempData.Soort = "MOC";
                 }
             }
@@ -248,7 +254,7 @@ namespace Overbrugging
             MainForm.Main.TempData.NaamWV = ComboBoxIVWV.Text;
             MainForm.Main.TempData.UitersteDatum = DatumVerloopTIW.Datum;
             MainForm.Main.TempData.BijzonderhedenWV = TextBoxBijzIVWV.Text;
-            MainForm.Main.TempData.Soort = CBSoort.Text;
+            MainForm.Main.TempData.Soort = BTSoort.Text;
             // onderste panel
             MainForm.Main.TempData.DatumVerw = DatumVerw.Datum;
             MainForm.Main.TempData.Naamverw = ComboBoxNaamVerw.Text;
@@ -321,11 +327,7 @@ namespace Overbrugging
             }
         }
 
-        private void CBSoort_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MainForm.Main.TempData.Soort = CBSoort.Text;
-            RefreshForm();
-        }
+        
 
         private void ButPrintUitvoering_Click(object sender, EventArgs e)
         {
@@ -485,6 +487,41 @@ namespace Overbrugging
             {
                 ComboBoxIVWV.Text = MainForm.Main.LabelUser.Text;
             }
+        }
+
+        private void BTSoort_Click(object sender, EventArgs e)
+        {
+            KeuzeType KS = new KeuzeType();
+            DialogResult retKeuzeForm = KS.ShowDialog();
+
+            if (retKeuzeForm == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            if (retKeuzeForm == DialogResult.OK)
+            {
+                // TIW
+                BTSoort.Text = "TIW";
+                MainForm.Main.TempData.Soort = "TIW";
+            }
+            if (retKeuzeForm == DialogResult.Yes)
+            {
+                //OVERB
+                BTSoort.Text = "OVERB";
+                MainForm.Main.TempData.Soort = "OVERB";
+            }
+            if (retKeuzeForm == DialogResult.Abort)
+            {
+                //MOC
+                BTSoort.Text = "MOC";
+                MainForm.Main.TempData.Soort = "MOC";
+            }
+
+            RedeMOCLabel.Text = KS.UitgekozenGeenMocRegel;
+            MainForm.Main.TempData.Reserve1 = RedeMOCLabel.Text;
+
+            RefreshForm();
         }
     }
 }

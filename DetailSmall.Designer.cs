@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailSmall));
             this.Panel12345 = new System.Windows.Forms.Panel();
+            this.RedeMOCLabel = new System.Windows.Forms.Label();
+            this.HelpTextRedeGeenMOC = new System.Windows.Forms.Label();
             this.BijlageToevoegen = new System.Windows.Forms.Button();
             this.Bijlage = new System.Windows.Forms.PictureBox();
             this.ButCancel = new System.Windows.Forms.Button();
@@ -87,7 +89,6 @@
             this.DatumWv = new Overbrugging.DatumPicker();
             this.label21 = new System.Windows.Forms.Label();
             this.TextBoxBijzIVWV = new System.Windows.Forms.TextBox();
-            this.CBSoort = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.ComboBoxIVWV = new System.Windows.Forms.ComboBox();
@@ -96,6 +97,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
+            this.BTSoort = new System.Windows.Forms.Button();
             this.Panel12345.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Bijlage)).BeginInit();
             this.PanelVerwijderen.SuspendLayout();
@@ -105,6 +107,8 @@
             // Panel12345
             // 
             this.Panel12345.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Panel12345.Controls.Add(this.RedeMOCLabel);
+            this.Panel12345.Controls.Add(this.HelpTextRedeGeenMOC);
             this.Panel12345.Controls.Add(this.BijlageToevoegen);
             this.Panel12345.Controls.Add(this.Bijlage);
             this.Panel12345.Controls.Add(this.ButCancel);
@@ -145,6 +149,26 @@
             this.Panel12345.Name = "Panel12345";
             this.Panel12345.Size = new System.Drawing.Size(1093, 282);
             this.Panel12345.TabIndex = 0;
+            // 
+            // RedeMOCLabel
+            // 
+            this.RedeMOCLabel.AutoSize = true;
+            this.RedeMOCLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RedeMOCLabel.Location = new System.Drawing.Point(617, 8);
+            this.RedeMOCLabel.Name = "RedeMOCLabel";
+            this.RedeMOCLabel.Size = new System.Drawing.Size(89, 13);
+            this.RedeMOCLabel.TabIndex = 18;
+            this.RedeMOCLabel.Text = "Rede Geen MOC";
+            // 
+            // HelpTextRedeGeenMOC
+            // 
+            this.HelpTextRedeGeenMOC.AutoSize = true;
+            this.HelpTextRedeGeenMOC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HelpTextRedeGeenMOC.Location = new System.Drawing.Point(470, 8);
+            this.HelpTextRedeGeenMOC.Name = "HelpTextRedeGeenMOC";
+            this.HelpTextRedeGeenMOC.Size = new System.Drawing.Size(95, 13);
+            this.HelpTextRedeGeenMOC.TabIndex = 19;
+            this.HelpTextRedeGeenMOC.Text = "Rede Geen MOC :";
             // 
             // BijlageToevoegen
             // 
@@ -658,6 +682,7 @@
             // PanelWV
             // 
             this.PanelWV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelWV.Controls.Add(this.BTSoort);
             this.PanelWV.Controls.Add(this.button1);
             this.PanelWV.Controls.Add(this.ButtonIVWVDatumNu);
             this.PanelWV.Controls.Add(this.ButSaveWV);
@@ -665,7 +690,6 @@
             this.PanelWV.Controls.Add(this.DatumWv);
             this.PanelWV.Controls.Add(this.label21);
             this.PanelWV.Controls.Add(this.TextBoxBijzIVWV);
-            this.PanelWV.Controls.Add(this.CBSoort);
             this.PanelWV.Controls.Add(this.label24);
             this.PanelWV.Controls.Add(this.label22);
             this.PanelWV.Controls.Add(this.ComboBoxIVWV);
@@ -752,20 +776,6 @@
             this.TextBoxBijzIVWV.TabIndex = 7;
             this.TextBoxBijzIVWV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxBijzIVWV_KeyPress);
             // 
-            // CBSoort
-            // 
-            this.CBSoort.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CBSoort.FormattingEnabled = true;
-            this.CBSoort.Items.AddRange(new object[] {
-            "TIW",
-            "OVERB",
-            "MOC"});
-            this.CBSoort.Location = new System.Drawing.Point(144, 71);
-            this.CBSoort.Name = "CBSoort";
-            this.CBSoort.Size = new System.Drawing.Size(137, 21);
-            this.CBSoort.TabIndex = 1;
-            this.CBSoort.Text = "TIW";
-            // 
             // label24
             // 
             this.label24.AutoSize = true;
@@ -845,6 +855,16 @@
             this.label26.Size = new System.Drawing.Size(35, 13);
             this.label26.TabIndex = 0;
             this.label26.Text = "Naam";
+            // 
+            // BTSoort
+            // 
+            this.BTSoort.Location = new System.Drawing.Point(144, 70);
+            this.BTSoort.Name = "BTSoort";
+            this.BTSoort.Size = new System.Drawing.Size(137, 23);
+            this.BTSoort.TabIndex = 8;
+            this.BTSoort.Text = "button2";
+            this.BTSoort.UseVisualStyleBackColor = true;
+            this.BTSoort.Click += new System.EventHandler(this.BTSoort_Click);
             // 
             // DetailSmall
             // 
@@ -937,10 +957,12 @@
         private System.Windows.Forms.Button ButSaveVerw;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button ButPrint;
-        public System.Windows.Forms.ComboBox CBSoort;
         private System.Windows.Forms.Button ButPrintUitvoering;
         private System.Windows.Forms.Button ButtonHeropen;
         public System.Windows.Forms.PictureBox Bijlage;
         private System.Windows.Forms.Button BijlageToevoegen;
+        private System.Windows.Forms.Label RedeMOCLabel;
+        private System.Windows.Forms.Label HelpTextRedeGeenMOC;
+        public System.Windows.Forms.Button BTSoort;
     }
 }
