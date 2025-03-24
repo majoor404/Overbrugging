@@ -1285,6 +1285,9 @@ namespace Overbrugging
 
         private void ButtonNieuw_Click(object sender, EventArgs e)
         {
+            if (rechten < 1)
+                return;
+
             KeuzeType KS = new KeuzeType();
             DialogResult retKeuzeForm = KS.ShowDialog();
 
