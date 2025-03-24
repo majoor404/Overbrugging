@@ -41,7 +41,7 @@ namespace Overbrugging
                 }
                 else
                 {
-                    MessageBox.Show($"The file data\\{MocFile} does not exist.");
+                    MessageBox.Show($"The file {filePath} does not exist.");
                 }
             }
             catch (Exception ex)

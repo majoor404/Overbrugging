@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Shapes;
 
 namespace Overbrugging
 {
@@ -27,13 +20,12 @@ namespace Overbrugging
         {
             ListBox.Items.Clear();
             string file = $"{bijlagepath}{ID}.ini";
-            if(File.Exists(file))
+            if (File.Exists(file))
             {
-                List<string> lijst = new List<string>();
-                lijst = File.ReadAllLines(file).ToList();
-                for(int i = 0; i < lijst.Count; i+=2)
+                List<string> lijst = File.ReadAllLines(file).ToList();
+                for (int i = 0; i < lijst.Count; i += 2)
                 {
-                    ListBox.Items.Add(lijst[i]);
+                    _ = ListBox.Items.Add(lijst[i]);
                 }
             }
         }
@@ -41,9 +33,7 @@ namespace Overbrugging
         public bool BijlageAanwezig(string ID)
         {
             string file = $"{bijlagepath}{ID}.ini";
-            if (File.Exists(file))
-                return true;
-            return false;
+            return File.Exists(file);
         }
 
         private void ButVoegToe_Click(object sender, EventArgs e)
@@ -56,13 +46,15 @@ namespace Overbrugging
             if (open.ShowDialog() == DialogResult.OK)
             {
                 if (!Directory.Exists(bijlagepath))
+                {
                     _ = Directory.CreateDirectory(bijlagepath);
+                }
 
                 // er kunnen dus file opgeslagen worden met zelfde naam
                 // dus verander filenaam in een GUID tijdens copy naar bijlage
                 // zet in inifile de orginele naam met daaronder de GUID van file
 
-                string ext = System.IO.Path.GetExtension(open.FileName);
+                _ = System.IO.Path.GetExtension(open.FileName);
                 Guid NieuweNaam = Guid.NewGuid();
                 string NaamEnPath = $"{bijlagepath}{NieuweNaam}";
                 File.Copy(open.FileName, NaamEnPath);
@@ -98,15 +90,15 @@ namespace Overbrugging
 
             catch (IOException)
             {
-                MessageBox.Show("info file save Error()");
+                _ = MessageBox.Show("info file save Error()");
             }
         }
 
         private void ButVerwijder_Click(object sender, EventArgs e)
         {
-            if(ListBox.SelectedItems.Count == 0)
+            if (ListBox.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Selecteer welk Item");
+                _ = MessageBox.Show("Selecteer welk Item");
                 return;
             }
             string Guid = GetGuid(ListBox.SelectedItem as string);
@@ -126,12 +118,14 @@ namespace Overbrugging
             string file = $"{bijlagepath}{ID}.ini";
             if (File.Exists(file))
             {
-                List<string> lijst = new List<string>();
-                lijst = File.ReadAllLines(file).ToList();
+                _ = new List<string>();
+                List<string> lijst = File.ReadAllLines(file).ToList();
                 for (int i = 0; i < lijst.Count; i += 2)
                 {
                     if (lijst[i] == naam)
-                        return lijst[i+1];
+                    {
+                        return lijst[i + 1];
+                    }
                 }
             }
             return string.Empty;
@@ -142,13 +136,12 @@ namespace Overbrugging
             string file = $"{bijlagepath}{ID}.ini";
             if (File.Exists(file))
             {
-                List<string> lijst = new List<string>();
-                lijst = File.ReadAllLines(file).ToList();
+                List<string> lijst = File.ReadAllLines(file).ToList();
                 for (int i = 0; i < lijst.Count; i += 2)
                 {
                     if (lijst[i] == naam)
                     {
-                        lijst.RemoveAt(i+1);
+                        lijst.RemoveAt(i + 1);
                         lijst.RemoveAt(i);
                     }
                     SaveFile(file, lijst);
@@ -164,19 +157,22 @@ namespace Overbrugging
         private void ListBox_DoubleClick(object sender, EventArgs e)
         {
             if (ListBox.SelectedItems.Count == 0)
+            {
                 return;
+            }
 
             string Guid = GetGuid(ListBox.SelectedItem as string);
             if (Guid != null)
             {
-                string newFile = System.IO.Path.GetTempPath() + ListBox.SelectedItem as string;
+                string newFile = System.IO.Path.GetTempPath() + ListBox.SelectedItem;
                 // copy guid naar temp en rename met oude naam
                 try
                 {
-                    File.Copy(Guid, newFile , true);
+                    File.Copy(Guid, newFile, true);
 
                     Start(newFile);
-                }catch { }
+                }
+                catch { }
             }
         }
 

@@ -82,6 +82,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.TextBoxPersNrVerw = new System.Windows.Forms.TextBox();
             this.PanelWV = new System.Windows.Forms.Panel();
+            this.BTSoort = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.ButtonIVWVDatumNu = new System.Windows.Forms.Button();
             this.ButSaveWV = new System.Windows.Forms.Button();
@@ -97,7 +98,6 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
-            this.BTSoort = new System.Windows.Forms.Button();
             this.Panel12345.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Bijlage)).BeginInit();
             this.PanelVerwijderen.SuspendLayout();
@@ -166,9 +166,9 @@
             this.HelpTextRedeGeenMOC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HelpTextRedeGeenMOC.Location = new System.Drawing.Point(470, 8);
             this.HelpTextRedeGeenMOC.Name = "HelpTextRedeGeenMOC";
-            this.HelpTextRedeGeenMOC.Size = new System.Drawing.Size(95, 13);
+            this.HelpTextRedeGeenMOC.Size = new System.Drawing.Size(101, 13);
             this.HelpTextRedeGeenMOC.TabIndex = 19;
-            this.HelpTextRedeGeenMOC.Text = "Rede Geen MOC :";
+            this.HelpTextRedeGeenMOC.Text = "Reden Geen MOC :";
             // 
             // BijlageToevoegen
             // 
@@ -704,6 +704,16 @@
             this.PanelWV.Size = new System.Drawing.Size(1093, 178);
             this.PanelWV.TabIndex = 1;
             // 
+            // BTSoort
+            // 
+            this.BTSoort.Location = new System.Drawing.Point(144, 70);
+            this.BTSoort.Name = "BTSoort";
+            this.BTSoort.Size = new System.Drawing.Size(137, 23);
+            this.BTSoort.TabIndex = 8;
+            this.BTSoort.Text = "button2";
+            this.BTSoort.UseVisualStyleBackColor = true;
+            this.BTSoort.Click += new System.EventHandler(this.BTSoort_Click);
+            // 
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -855,16 +865,6 @@
             this.label26.Size = new System.Drawing.Size(35, 13);
             this.label26.TabIndex = 0;
             this.label26.Text = "Naam";
-            // 
-            // BTSoort
-            // 
-            this.BTSoort.Location = new System.Drawing.Point(144, 70);
-            this.BTSoort.Name = "BTSoort";
-            this.BTSoort.Size = new System.Drawing.Size(137, 23);
-            this.BTSoort.TabIndex = 8;
-            this.BTSoort.Text = "button2";
-            this.BTSoort.UseVisualStyleBackColor = true;
-            this.BTSoort.Click += new System.EventHandler(this.BTSoort_Click);
             // 
             // DetailSmall
             // 

@@ -69,9 +69,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(252, 12);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(247, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(549, 18);
+            this.label1.Size = new System.Drawing.Size(627, 18);
             this.label1.TabIndex = 1;
             this.label1.Text = "Standaard altijd een MOC, of 1 van onderstaande items moet geselecteerd worden";
             // 
@@ -94,7 +95,7 @@
             this.checkBoxTT.AutoSize = true;
             this.checkBoxTT.Checked = true;
             this.checkBoxTT.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxTT.Location = new System.Drawing.Point(870, 13);
+            this.checkBoxTT.Location = new System.Drawing.Point(907, 13);
             this.checkBoxTT.Name = "checkBoxTT";
             this.checkBoxTT.Size = new System.Drawing.Size(117, 22);
             this.checkBoxTT.TabIndex = 3;

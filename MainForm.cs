@@ -1,4 +1,5 @@
 ﻿using Melding;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1191,7 +1192,11 @@ namespace Overbrugging
                 TBN2.Text = Q.Naam2;
 
                 string HulpTekst = $"Geen MOC : {Q.Reserve1}";
-                if (Q.Reserve1 == "") HulpTekst = "";
+                if (Q.Reserve1 == "")
+                {
+                    HulpTekst = "";
+                }
+
                 if (Q.Soort == "TIW")
                 {
                     LabelType.Text = "Tijdelijke Instalatie Wijziging";
@@ -1286,7 +1291,10 @@ namespace Overbrugging
         private void ButtonNieuw_Click(object sender, EventArgs e)
         {
             if (rechten < 1)
+            {
+                MessageBox.Show("Geen rechten om nieuwe overbruging te maken.");
                 return;
+            }
 
             KeuzeType KS = new KeuzeType();
             DialogResult retKeuzeForm = KS.ShowDialog();
