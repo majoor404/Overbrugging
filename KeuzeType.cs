@@ -33,7 +33,7 @@ namespace Overbrugging
         {
             try
             {
-                string filePath = $"data\\{MocFile}";
+                string filePath = $"{ MainForm.datapath}{ MocFile}";
                 if (File.Exists(filePath))
                 {
                     string fileContent = File.ReadAllText(filePath);
