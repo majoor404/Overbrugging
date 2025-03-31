@@ -55,6 +55,8 @@ namespace Overbrugging
 
             TextBoxRede.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
             TextBoxOplossing.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
+
+            BTActueelEnabled();
         }
 
         private void RefreshForm()
@@ -78,6 +80,7 @@ namespace Overbrugging
                 RedeMOCLabel.Text = MainForm.Main.TempData.Reserve1;
             }
             BTSoort.Text = MainForm.Main.TempData.Soort;
+            BTActueelEnabled();
         }
 
         private void ComboBoxNaam1_SelectedIndexChanged(object sender, EventArgs e)
@@ -125,6 +128,7 @@ namespace Overbrugging
         private void ComboBoxSectie_SelectedIndexChanged(object sender, EventArgs e)
         {
             MainForm.Main.VulSectiesOnderdeelDropDownSmall(this);
+            BTActueelEnabled();
         }
 
         private void ButtonIVWVDatumNu_Click(object sender, EventArgs e)
@@ -516,6 +520,30 @@ namespace Overbrugging
             MainForm.Main.TempData.Reserve1 = RedeMOCLabel.Text;
 
             RefreshForm();
+        }
+
+        private void BTActuele_Click(object sender, EventArgs e)
+        {
+            Actuele act = new Actuele();
+            if (ComboBoxSectie.Text == "")
+                return;
+            if (ComboSectieDeel.Text == "")
+                return;
+
+            act.Sectie = ComboBoxSectie.Text;
+            act.Installatie = ComboSectieDeel.Text;
+
+            _ = act.ShowDialog();
+        }
+
+        private void BTActueelEnabled()
+        {
+            BTActuele.Enabled = ComboBoxSectie.Text != "" && ComboSectieDeel.Text != "";
+        }
+
+        private void ComboSectieDeel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BTActueelEnabled();
         }
     }
 }

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Detail));
             this.Panel12345 = new System.Windows.Forms.Panel();
+            this.BTActuele = new System.Windows.Forms.Button();
             this.Bijlage = new System.Windows.Forms.PictureBox();
             this.ButCancel = new System.Windows.Forms.Button();
             this.ButVoerUit = new System.Windows.Forms.Button();
@@ -107,6 +108,7 @@
             // Panel12345
             // 
             this.Panel12345.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Panel12345.Controls.Add(this.BTActuele);
             this.Panel12345.Controls.Add(this.Bijlage);
             this.Panel12345.Controls.Add(this.ButCancel);
             this.Panel12345.Controls.Add(this.ButVoerUit);
@@ -149,6 +151,17 @@
             this.Panel12345.Name = "Panel12345";
             this.Panel12345.Size = new System.Drawing.Size(1264, 417);
             this.Panel12345.TabIndex = 0;
+            // 
+            // BTActuele
+            // 
+            this.BTActuele.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTActuele.Location = new System.Drawing.Point(159, 17);
+            this.BTActuele.Name = "BTActuele";
+            this.BTActuele.Size = new System.Drawing.Size(287, 26);
+            this.BTActuele.TabIndex = 16;
+            this.BTActuele.Text = "Openstaande TIW deze installatie";
+            this.BTActuele.UseVisualStyleBackColor = true;
+            this.BTActuele.Click += new System.EventHandler(this.BTActuele_Click);
             // 
             // Bijlage
             // 
@@ -279,6 +292,7 @@
             this.ComboSectieDeel.Name = "ComboSectieDeel";
             this.ComboSectieDeel.Size = new System.Drawing.Size(133, 26);
             this.ComboSectieDeel.TabIndex = 5;
+            this.ComboSectieDeel.SelectedIndexChanged += new System.EventHandler(this.ComboSectieDeel_SelectedIndexChanged);
             // 
             // ComboBoxSectie
             // 
@@ -467,7 +481,7 @@
             // 
             this.RedeMOCLabel.AutoSize = true;
             this.RedeMOCLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RedeMOCLabel.Location = new System.Drawing.Point(491, 23);
+            this.RedeMOCLabel.Location = new System.Drawing.Point(644, 23);
             this.RedeMOCLabel.Name = "RedeMOCLabel";
             this.RedeMOCLabel.Size = new System.Drawing.Size(123, 18);
             this.RedeMOCLabel.TabIndex = 0;
@@ -507,7 +521,7 @@
             // 
             this.HelpTextRedeGeenMOC.AutoSize = true;
             this.HelpTextRedeGeenMOC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HelpTextRedeGeenMOC.Location = new System.Drawing.Point(344, 23);
+            this.HelpTextRedeGeenMOC.Location = new System.Drawing.Point(499, 23);
             this.HelpTextRedeGeenMOC.Name = "HelpTextRedeGeenMOC";
             this.HelpTextRedeGeenMOC.Size = new System.Drawing.Size(139, 18);
             this.HelpTextRedeGeenMOC.TabIndex = 0;
@@ -965,5 +979,6 @@
         private System.Windows.Forms.Label RedeMOCLabel;
         private System.Windows.Forms.Label HelpTextRedeGeenMOC;
         public System.Windows.Forms.Button BTSoort;
+        private System.Windows.Forms.Button BTActuele;
     }
 }

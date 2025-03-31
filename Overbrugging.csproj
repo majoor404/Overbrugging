@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actuele.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Actuele.Designer.cs">
+      <DependentUpon>Actuele.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bijlage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     <Compile Include="Zoek.Designer.cs">
       <DependentUpon>Zoek.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Actuele.resx">
+      <DependentUpon>Actuele.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bijlage.resx">
       <DependentUpon>Bijlage.cs</DependentUpon>
     </EmbeddedResource>

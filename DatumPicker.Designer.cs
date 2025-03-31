@@ -53,6 +53,8 @@
             this.TB.Size = new System.Drawing.Size(95, 17);
             this.TB.TabIndex = 1;
             this.TB.Text = " --/--/----";
+            this.TB.Leave += new System.EventHandler(this.TB_Leave);
+            this.TB.MouseLeave += new System.EventHandler(this.TB_MouseLeave);
             // 
             // DatumPicker
             // 

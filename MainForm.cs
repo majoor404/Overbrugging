@@ -1953,6 +1953,12 @@ namespace Overbrugging
             int jaar = int.Parse(datum.Substring(6, 4));
             int maand = int.Parse(datum.Substring(3, 2));
             int dag = int.Parse(datum.Substring(0, 2));
+
+            if(dag == 31 && maand == 4)
+            {
+                dag = 30;
+            }
+
             DateTime ret = new DateTime(jaar, maand, dag);
             return ret;
         }
