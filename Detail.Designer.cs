@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Detail));
             this.Panel12345 = new System.Windows.Forms.Panel();
             this.BTActuele = new System.Windows.Forms.Button();
@@ -99,6 +100,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.Panel12345.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Bijlage)).BeginInit();
             this.PanelVerwijderen.SuspendLayout();
@@ -155,11 +157,12 @@
             // BTActuele
             // 
             this.BTActuele.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTActuele.Location = new System.Drawing.Point(159, 17);
+            this.BTActuele.Location = new System.Drawing.Point(633, 130);
             this.BTActuele.Name = "BTActuele";
-            this.BTActuele.Size = new System.Drawing.Size(287, 26);
+            this.BTActuele.Size = new System.Drawing.Size(30, 26);
             this.BTActuele.TabIndex = 16;
-            this.BTActuele.Text = "Openstaande TIW deze installatie";
+            this.BTActuele.Text = "I";
+            this.toolTip1.SetToolTip(this.BTActuele, "De andere Openstaande TIW in deze installatie");
             this.BTActuele.UseVisualStyleBackColor = true;
             this.BTActuele.Click += new System.EventHandler(this.BTActuele_Click);
             // 
@@ -980,5 +983,6 @@
         private System.Windows.Forms.Label HelpTextRedeGeenMOC;
         public System.Windows.Forms.Button BTSoort;
         private System.Windows.Forms.Button BTActuele;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

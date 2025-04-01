@@ -68,10 +68,14 @@ namespace Overbrugging
 
         private void VulGrid()
         {
-            if (MainForm.Main.LijstData.Count > 0)
+            if(LijstOverbrugingenGefilterd.Count == 0)
             {
-                dataGridView.DataSource = LijstOverbrugingenGefilterd;
+                MessageBox.Show("Geen overbruggingen gevonden in deze installatie", "Geen data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close();
+                return;
             }
+            
+            dataGridView.DataSource = LijstOverbrugingenGefilterd;
 
             if (dataGridView.Columns["Nr"].DataPropertyName == "")
             {
