@@ -1662,7 +1662,6 @@ namespace Overbrugging
             {
                 if (File.Exists(file))
                 {
-
                     if (!Directory.Exists("Backup"))
                     {
                         _ = Directory.CreateDirectory("Backup");
@@ -1673,12 +1672,18 @@ namespace Overbrugging
                     nieuw_naam = Directory.GetCurrentDirectory() + @"\Backup\overbrug_" + s + ".bin";
                     File.Copy(file, nieuw_naam, true);  // overwrite oude file
 
+                    MainForm.Main.Log.LogRegel($"Backup gemaakt van {Path.GetFileName(file)} naar {Path.GetFileName(nieuw_naam)}");
+
                     List<FileInfo> files = new DirectoryInfo("Backup").EnumerateFiles("*overbrug_*")
                                     .OrderByDescending(f => f.CreationTime)
                                     .Skip(10)
                                     .ToList();
 
                     files.ForEach(f => f.Delete());
+                }
+                else
+                {
+                    _ = MessageBox.Show($"Backup ging fout\n{file} niet aanwezig");
                 }
             }
             catch
