@@ -654,6 +654,7 @@
             this.PictureBijlageSmall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PictureBijlageSmall.TabIndex = 79;
             this.PictureBijlageSmall.TabStop = false;
+            this.PictureBijlageSmall.Click += new System.EventHandler(this.PictureBijlageSmall_Click);
             // 
             // panel5
             // 

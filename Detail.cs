@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Overbrugging
@@ -57,6 +58,8 @@ namespace Overbrugging
            
             TextBoxRede.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
             TextBoxOplossing.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
+
+            Bijlage.Visible = MainForm.bijlage.BijlageAanwezig(TextBoxRegNr.Text);
 
             BTActueelEnabled();
         }

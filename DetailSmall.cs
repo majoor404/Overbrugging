@@ -56,6 +56,8 @@ namespace Overbrugging
             TextBoxRede.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
             TextBoxOplossing.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
 
+            Bijlage.Visible = MainForm.bijlage.BijlageAanwezig(TextBoxRegNr.Text);
+
             BTActueelEnabled();
         }
 
