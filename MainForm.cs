@@ -2084,7 +2084,8 @@ namespace Overbrugging
             bijlage.ID = ID;
             bijlage.Width = !large ? 414 : 627;
             _ = bijlage.ShowDialog();
-
+            
+            DebugMes($"Bijlage form geopend met ID {ID}");
             return bijlage.BijlageAanwezig(ID);
         }
 
