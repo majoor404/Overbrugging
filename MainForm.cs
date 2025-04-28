@@ -11,6 +11,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using Label = System.Windows.Forms.Label;
@@ -829,6 +830,7 @@ namespace Overbrugging
             {
                 GC.Collect();
             }
+            //Wait(1000);
             Backup($"{datapath}overbrug.bin");
         }
 
@@ -1657,6 +1659,7 @@ namespace Overbrugging
 
         private void Backup(string file)
         {
+            DebugMes($"Backup {file}");
             string nieuw_naam = "";
             try
             {
@@ -1670,9 +1673,10 @@ namespace Overbrugging
                     string s = DateTime.Now.ToString("MM-dd-yyyy HH-mm-ss");
 
                     nieuw_naam = Directory.GetCurrentDirectory() + @"\Backup\overbrug_" + s + ".bin";
-                    File.Copy(file, nieuw_naam, true);  // overwrite oude file
 
-                    MainForm.Main.Log.LogRegel($"Backup gemaakt van {Path.GetFileName(file)} naar {Path.GetFileName(nieuw_naam)}");
+                    //File.Copy(file, nieuw_naam, true);  // overwrite oude file
+                    // dit ging fout als orgineel nog gelockt was.
+                    CopyWithRetry(file, nieuw_naam);
 
                     List<FileInfo> files = new DirectoryInfo("Backup").EnumerateFiles("*overbrug_*")
                                     .OrderByDescending(f => f.CreationTime)
@@ -1694,7 +1698,7 @@ namespace Overbrugging
 
         public void Wait(int milliseconds)
         {
-            Timer timer1 = new System.Windows.Forms.Timer();
+            System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
             if (milliseconds == 0 || milliseconds < 0)
             {
                 return;
@@ -2106,5 +2110,49 @@ namespace Overbrugging
             ScaleMainVenster();
             CBSmall.Enabled = false;
         }
+
+        private void DebugCB_CheckedChanged(object sender, EventArgs e)
+        {
+            DebugMes("Debug mode aan, om wat problemen te melden.");
+        }
+        public static void DebugMes(string mes)
+        {
+            if(!Main.DebugCB.Checked)
+            {
+                return;
+            }
+            MessageBox.Show(mes);
+        }
+
+        public static void CopyWithRetry(string sourceFile, string destinationFile, int maxRetries = 5, int delayMs = 500)
+        {
+            int attempts = 0;
+            while (true)
+            {
+                try
+                {
+                    File.Copy(sourceFile, destinationFile, true);
+                    DebugMes($"Backup gemaakt van \n{sourceFile} naar \n{destinationFile}");
+                    return; // Success
+                }
+                catch (IOException ex)
+                {
+                    attempts++;
+                    if (attempts >= maxRetries)
+                        throw new IOException($"Failed to copy file after {maxRetries} attempts: {ex.Message}", ex);
+
+                    Thread.Sleep(delayMs);
+                }
+            }
+        }
+        //public static void CopyInUseFile(string sourceFile, string destinationFile)
+        //{
+        //    using (FileStream sourceStream = new FileStream(sourceFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+        //    using (FileStream destinationStream = new FileStream(destinationFile, FileMode.Create, FileAccess.Write))
+        //    {
+        //        sourceStream.CopyTo(destinationStream);
+        //    }
+        //    DebugMes($"Backup gemaakt van \n{sourceFile} naar \n{destinationFile}");
+        //}
     }
 }

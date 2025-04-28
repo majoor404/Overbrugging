@@ -151,6 +151,7 @@
             this.KillTimer = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.DebugCB = new System.Windows.Forms.CheckBox();
             this.panelTop.SuspendLayout();
             this.PanelDebug.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RechtenDebug)).BeginInit();
@@ -364,6 +365,7 @@
             // panelMenu
             // 
             this.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelMenu.Controls.Add(this.DebugCB);
             this.panelMenu.Controls.Add(this.groupBox1);
             this.panelMenu.Controls.Add(this.panel2);
             this.panelMenu.Controls.Add(this.ButSettings);
@@ -1515,6 +1517,16 @@
             this.toolTip1.IsBalloon = true;
             this.toolTip1.UseFading = false;
             // 
+            // DebugCB
+            // 
+            this.DebugCB.AutoSize = true;
+            this.DebugCB.Location = new System.Drawing.Point(1, 0);
+            this.DebugCB.Name = "DebugCB";
+            this.DebugCB.Size = new System.Drawing.Size(15, 14);
+            this.DebugCB.TabIndex = 25;
+            this.DebugCB.UseVisualStyleBackColor = true;
+            this.DebugCB.CheckedChanged += new System.EventHandler(this.DebugCB_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1535,6 +1547,7 @@
             this.PanelDebug.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RechtenDebug)).EndInit();
             this.panelMenu.ResumeLayout(false);
+            this.panelMenu.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -1672,6 +1685,7 @@
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.TextBox TB2S;
         private System.Windows.Forms.TextBox TB1S;
+        public System.Windows.Forms.CheckBox DebugCB;
     }
 }
 
