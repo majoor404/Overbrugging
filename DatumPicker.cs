@@ -23,6 +23,7 @@ namespace Overbrugging
                 else
                 {
                     TB.Text = value;
+                    DT.Value = DateTime.Parse(TB.Text);
                 }
             }
         }
