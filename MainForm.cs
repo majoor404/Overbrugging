@@ -554,7 +554,7 @@ namespace Overbrugging
 
             FormMelding md = new FormMelding(FormMelding.Type.Info, "Overbruging 2.0", "R.Majoor");
             md.Show();
-
+            
             // laad namen
             LaadNamen_lijst();
             // laad secties
@@ -822,8 +822,8 @@ namespace Overbrugging
                     GC.Collect();
 
                     // Melding
-                    FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Save Data Lijst.");
-                    md.Show();
+                    //FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Save Data Lijst.");
+                    //md.Show();
                 }
             }
             catch
@@ -1680,7 +1680,7 @@ namespace Overbrugging
 
                     List<FileInfo> files = new DirectoryInfo("Backup").EnumerateFiles("*overbrug_*")
                                     .OrderByDescending(f => f.CreationTime)
-                                    .Skip(10)
+                                    .Skip(25)
                                     .ToList();
 
                     files.ForEach(f => f.Delete());
@@ -2125,7 +2125,7 @@ namespace Overbrugging
             MessageBox.Show(mes);
         }
 
-        public static void CopyWithRetry(string sourceFile, string destinationFile, int maxRetries = 5, int delayMs = 500)
+        public static void CopyWithRetry(string sourceFile, string destinationFile, int maxRetries = 10, int delayMs = 500)
         {
             int attempts = 0;
             while (true)
