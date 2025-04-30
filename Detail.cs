@@ -227,12 +227,10 @@ namespace Overbrugging
 
             int index;
             MainForm.Main.LaadData_lijst();
-            //bool save_nieuwe_index = false;
             if (string.IsNullOrEmpty(TextBoxRegNr.Text))
             {
                 index = MainForm.Main.LastIndex;
                 index++;
-                //save_nieuwe_index = true;
                 MainForm.Main.Log.LogRegel($"Nieuw record {index} door {MainForm.Main.LabelUser.Text}");
             }
             else
@@ -241,7 +239,6 @@ namespace Overbrugging
                 MainForm.Main.Log.LogRegel($"Wijzig record {index} door {MainForm.Main.LabelUser.Text}");
             }
 
-            //MainForm.Main.LaadData_lijst();
             // save data
             MainForm.Main.TempData.DatumInv = DatumInv.Datum;
             MainForm.Main.TempData.SapNr = TextBoxSapNr.Text;
@@ -273,6 +270,7 @@ namespace Overbrugging
             catch { }
             // en toevoegen nieuwe
             MainForm.Main.LijstData.Add(MainForm.Main.TempData);
+            
             MainForm.Main.SaveData_lijst();
 
             Close();

@@ -1,5 +1,4 @@
 ﻿using Melding;
-using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +19,6 @@ namespace Overbrugging
 {
     public partial class MainForm : Form
     {
-        //public List<OudeOverbrugging> OudeLijst = new List<OudeOverbrugging>();
         public List<NamenFunties> NamenLijst { get; set; } = new List<NamenFunties>();
         public List<Secties> SectieLijst = new List<Secties>();
         public List<InstallatieOnderdeel> InstallatieLijst = new List<InstallatieOnderdeel>();
@@ -104,8 +102,6 @@ namespace Overbrugging
             }
 
             SchermIsKleinGemaakt = true;
-
-            //_ = MessageBox.Show($"Resolutie anders dan verwacht van standaard Tata PC\nDeze pc heeft {LogicalScreenWeight} * {LogicalScreenHeight} met Font grote {ScreenScalingFactor * 100}%\nProgramma probeert eea aan te passen, maar kan afwijken of niet passen.");
 
             Text = "Overbrug gescaled window.";
 
@@ -216,263 +212,6 @@ namespace Overbrugging
             button.Location = LocNieuw;
         }
 
-        //public string ZoekPersnr(string zoek)
-        //{
-        //    if (string.IsNullOrEmpty(zoek))
-        //    {
-        //        return "";
-        //    }
-
-        //    try
-        //    {
-        //        NamenFunties Q = MainForm.Main.NamenLijst.First(a => a.Naam == zoek);
-        //        return Q.PersoneelNummer;
-        //    }
-        //    catch
-        //    {
-        //        return "";
-        //    }
-        //}
-
-        //private void ButImport_Click(object sender, EventArgs e)
-        //{
-        //    _ = MessageBox.Show("Inlezen Overb1.mdb.csv");
-        //    try
-        //    {
-        //        string[] csvTekst = File.ReadAllLines($"Overb1.mdb.csv");
-        //        string[] items;
-        //        OudeLijst.Clear();
-
-
-        //        for (int i = 0; csvTekst.Count() > i; i++)
-        //        {
-        //            OudeOverbrugging ov = new OudeOverbrugging();
-        //            items = csvTekst[i].Split(';');
-        //            int count = 0;
-        //            ov.RegNr = items[count++];
-        //            ov.DatumInv = items[count++];
-        //            ov.Sectie = items[count++];
-        //            ov.Installatie = items[count++];
-        //            ov.InstallatieDeel = items[count++];
-        //            ov.NaamKKD1uit = items[count++];
-        //            ov.NaamKKD2uit = items[count++];
-        //            ov.Ploeg = items[count++];
-        //            ov.Reden = items[count++];
-        //            ov.Uitvoering = items[count++];
-        //            ov.EnigeOverb = items[count++];
-        //            ov.WerkVerg = items[count++];
-        //            ov.WerkVergNr = items[count++];
-        //            ov.WerkVergOk = items[count++];
-        //            ov.SrsNr = items[count++];
-        //            ov.DatumWv = items[count++];
-        //            ov.NaamWV = items[count++];
-        //            ov.DatumVerw = items[count++];
-        //            ov.NaamKKDverw = items[count++];
-        //            ov.UitersteDatum = items[count++];
-        //            ov.Veld1 = items[count++];
-        //            ov.PrintDatum = items[count++];
-        //            ov.BijzonderhedenWV = items[count++];
-        //            ov.BijzonderhedenVerw = items[count++];
-        //            ov.OvernemenIWV = items[count++];
-        //            ov.DatumVerloopWV = items[count++];
-        //            ov.TIW = items[count++];
-        //            ov.TIWOB = items[count++];
-        //            ov.InGebruik = items[count++];
-        //            ov.PersWijzig = items[count++];
-        //            ov.BewerkTijd = items[count++];
-        //            ov.Soort = items[count++];
-        //            ov.MocRsNr = items[count++];
-        //            ov.Reserve = items[count++];
-
-        //            OudeLijst.Add(ov);
-        //        }
-
-        //        _ = MessageBox.Show("Inlezen Namen.mdb.csv");
-
-        //        string[] namenTekst = File.ReadAllLines($"Namen.mdb.csv");
-        //        NamenLijst.Clear();
-
-
-        //        for (int i = 0; namenTekst.Count() > i; i++)
-        //        {
-        //            NamenFunties nf = new NamenFunties();
-        //            items = namenTekst[i].Split(';');
-        //            int count = 0;
-        //            nf.Index = items[count++];
-        //            nf.PersoneelNummer = items[count++];
-        //            nf.Naam = items[count++];
-        //            nf.Team = items[count++];
-        //            count++;    // funtie niet meer gebruiken
-        //            nf.IVWV = items[count++] == "True";
-
-        //            NamenLijst.Add(nf);
-        //        }
-
-        //        _ = MessageBox.Show("Save namen lijst");
-        //        SaveDataNamen_lijst();
-
-        //        _ = MessageBox.Show("Inlezen SectieTabel.mdb.csv");
-
-        //        string[] SectieTekst = File.ReadAllLines($"SectieTabel.mdb.csv");
-        //        SectieLijst.Clear();
-
-        //        for (int i = 0; SectieTekst.Count() > i; i++)
-        //        {
-        //            Secties sc = new Secties();
-        //            items = SectieTekst[i].Split(';');
-        //            int count = 0;
-        //            sc.Index = items[count++];
-        //            sc.Naam = items[count++];
-        //            SectieLijst.Add(sc);
-        //        }
-
-        //        _ = MessageBox.Show("Save secties lijst");
-        //        SaveDataSecties_lijst();
-
-        //        _ = MessageBox.Show("Inlezen InstallatieTabel.mdb.csv");
-
-        //        string[] InstallatieTekst = File.ReadAllLines($"InstallatieTabel.mdb.csv");
-        //        InstallatieLijst.Clear();
-
-        //        for (int i = 0; InstallatieTekst.Count() > i; i++)
-        //        {
-        //            InstallatieOnderdeel iso = new InstallatieOnderdeel();
-        //            items = InstallatieTekst[i].Split(';');
-        //            int count = 0;
-        //            iso.Index = items[count++];
-        //            iso.Instal = items[count++];
-        //            iso.Sectie = ZoekSectie(items[count++]);
-        //            InstallatieLijst.Add(iso);
-        //        }
-
-        //        _ = MessageBox.Show("Save Installatie lijst");
-        //        SaveDataInstallaties_lijst();
-
-
-        //        _ = MessageBox.Show("Dan nu samen voegen tot nieuwe opslag class.");
-
-        //        LijstData.Clear();
-
-        //        foreach (OudeOverbrugging o in OudeLijst)
-        //        {
-        //            Data a = new Data
-        //            {
-        //                RegNr = int.Parse(o.RegNr),
-        //                DatumInv = VerwijderTijd(o.DatumInv),
-        //                SapNr = o.SrsNr,
-        //                MocNr = o.MocRsNr
-        //            };
-
-        //            labelAantal.Text = a.RegNr.ToString();
-        //            labelAantal.Refresh();
-
-        //            a.Sectie = ZoekSectie(o.Sectie);
-        //            a.Installatie = ZoekInstallatie(o.Installatie);
-        //            a.InstallatieDeel = o.InstallatieDeel;
-
-        //            a.Naam1 = ZoekNaam(o.NaamKKD1uit);
-        //            a.Naam2 = ZoekNaam(o.NaamKKD2uit);
-        //            a.Ploeg = o.Ploeg;
-
-        //            a.Reden = o.Reden;
-        //            a.Uitvoering = o.Uitvoering;
-
-        //            //// ivwv
-        //            a.WerkVerg = o.WerkVerg;
-        //            a.WerkVergNr = o.WerkVergNr;
-
-        //            a.DatumWv = VerwijderTijd(o.DatumWv);
-        //            a.NaamWV = ZoekNaam(o.NaamWV);
-
-        //            a.UitersteDatum = VerwijderTijd(o.UitersteDatum);
-        //            a.DatumVerloopWV = VerwijderTijd(o.DatumVerloopWV);
-
-        //            a.Soort = "OVERB"; // default
-        //            if (o.TIWOB == "Tijdelijke Installatie Wijziging")
-        //            {
-        //                a.Soort = "TIW";
-        //            }
-
-        //            if (o.TIWOB == "Management Of Change")
-        //            {
-        //                a.Soort = "MOC";
-        //            }
-
-        //            a.BijzonderhedenWV = o.BijzonderhedenWV;
-
-        //            ////verwijderen
-        //            a.Naamverw = ZoekNaam(o.NaamKKDverw);
-        //            a.DatumVerw = VerwijderTijd(o.DatumVerw);
-        //            a.BijzonderhedenVerw = o.BijzonderhedenVerw;
-
-        //            a.Reserve1 = "";
-        //            a.Reserve2 = "";
-        //            a.Reserve3 = "";
-        //            a.Reserve4 = "";
-        //            a.Reserve5 = "";
-        //            a.Reserve6 = "";
-        //            a.Kleur = false;
-        //            a.DatumTemp = DateTime.Now;
-
-        //            LijstData.Add(a);
-        //        }
-        //        _ = MessageBox.Show("Save overbrug lijst");
-        //        SaveData_lijst();
-        //    }
-
-        //    catch (Exception ex)
-        //    {
-        //        _ = MessageBox.Show(ex.Message);
-
-        //    }
-        //}
-
-        //private string VerwijderTijd(string Datum) // is van format "19-11-2023 00:00:00" of "9-4-2001 00:00:00"
-        //{
-        //    if (string.IsNullOrEmpty(Datum))
-        //    {
-        //        return "";
-        //    }
-        //    // verwijder tijd
-        //    int pos = Datum.IndexOf(" ");
-
-        //    if (pos > 0)
-        //    {
-        //        Datum = Datum.Substring(0, pos);
-
-        //        string[] temp = Datum.Split('-');
-
-        //        int Dag = int.Parse(temp[0]);
-        //        int Maand = int.Parse(temp[1]);
-        //        int Jaar = int.Parse(temp[2]);
-
-        //        DateTime ret = new DateTime(Jaar, Maand, Dag);
-
-        //        string dat = ret.ToString("dd-MM-yyyy");
-
-        //        return dat;
-        //    }
-        //    return "";
-        //}
-
-        //private string ZoekSectie(string zoek)
-        //{
-        //    if (string.IsNullOrEmpty(zoek))
-        //    {
-        //        return "";
-        //    }
-
-        //    try
-        //    {
-        //        Secties Q = SectieLijst.First(a => a.Index == zoek);
-        //        return Q.Naam;
-        //    }
-        //    catch
-        //    {
-        //        return "";
-        //    }
-        //}
-
         private bool ZoekIV(string zoek)
         {
             if (string.IsNullOrEmpty(zoek))
@@ -554,7 +293,7 @@ namespace Overbrugging
 
             FormMelding md = new FormMelding(FormMelding.Type.Info, "Overbruging 2.0", "R.Majoor");
             md.Show();
-            
+
             // laad namen
             LaadNamen_lijst();
             // laad secties
@@ -800,8 +539,6 @@ namespace Overbrugging
                     }
                 }
 
-                //tellen.SaveOverbrugXml(instellingen[1] + "\\Overbrug.xml");
-
                 tellen.MaakOudeIniFile(instellingen[1] + "\\Overbrug.ini");
             }
             catch (Exception ex)
@@ -900,19 +637,6 @@ namespace Overbrugging
             }
         }
 
-        //public void SaveInstelingen()
-        //{
-        //    string inst = $"{datapath}progdata.ini";
-        //    try
-        //    {
-        //        File.WriteAllLines(inst, instellingen);
-        //    }
-        //    catch (IOException)
-        //    {
-        //        _ = MessageBox.Show("instelingen file save Error()");
-        //    }
-        //}
-
         private void LaadInstelingen()
         {
             string inst = $"{datapath}progdata.ini";
@@ -922,11 +646,21 @@ namespace Overbrugging
             }
             catch
             {
-                _ = MessageBox.Show($"{inst} niet aanwezig, exit");
-                Close();
+                _ = MessageBox.Show($"{inst} niet aanwezig of niet te laden");
             }
         }
         public void LaadData_lijst()
+        {
+            try
+            {
+                LaadData(5);
+            }
+            catch{ }
+            GC.Collect();
+            LastIndex = GetLaatsteRecord();
+        }
+
+        private void LaadData(int aantal)
         {
             try
             {
@@ -936,15 +670,22 @@ namespace Overbrugging
                     BinaryFormatter bin = new BinaryFormatter();
                     LijstData = (List<Data>)bin.Deserialize(stream);
                     bin = null; // destroy voor volgende keer
-                    GC.Collect();
                 }
             }
             catch
             {
-                GC.Collect();
+                aantal--;
+                if (aantal == 0)
+                {
+                    _ = MessageBox.Show("Data lijst niet kunnen laden, exit");
+                    Process.GetCurrentProcess().Kill();
+                }
+                else
+                {
+                    Thread.Sleep(1000);
+                    LaadData(aantal);
+                }
             }
-
-            LastIndex = GetLaatsteRecord();
         }
 
         private int GetLaatsteRecord()
@@ -1031,10 +772,7 @@ namespace Overbrugging
                 EditSecties editSecties = new EditSecties();
                 _ = editSecties.ShowDialog();
             }
-            //if (ret == DialogResult.Retry)
-            //{
-            //    ButImport_Click(this, null);
-            //}
+
             if (ret == DialogResult.Ignore)
             {
                 // log view
@@ -1294,7 +1032,7 @@ namespace Overbrugging
         {
             if (rechten < 1)
             {
-                MessageBox.Show("Geen rechten om nieuwe overbruging te maken.");
+                _ = MessageBox.Show("Geen rechten om nieuwe overbruging te maken.");
                 return;
             }
 
@@ -1540,8 +1278,6 @@ namespace Overbrugging
             {
                 _ = MessageBox.Show($"Kon detail van record {GeselRegNr.Text} niet laden");
             }
-
-
         }
 
         private void VulDatailForm(Detail dt, Data Q)
@@ -1963,7 +1699,7 @@ namespace Overbrugging
             int maand = int.Parse(datum.Substring(3, 2));
             int dag = int.Parse(datum.Substring(0, 2));
 
-            if(dag == 31 && maand == 4)
+            if (dag == 31 && maand == 4)
             {
                 dag = 30;
             }
@@ -2084,7 +1820,7 @@ namespace Overbrugging
             bijlage.ID = ID;
             bijlage.Width = !large ? 414 : 627;
             _ = bijlage.ShowDialog();
-            
+
             DebugMes($"Bijlage form geopend met ID {ID}");
             return bijlage.BijlageAanwezig(ID);
         }
@@ -2118,11 +1854,11 @@ namespace Overbrugging
         }
         public static void DebugMes(string mes)
         {
-            if(!Main.DebugCB.Checked)
+            if (!Main.DebugCB.Checked)
             {
                 return;
             }
-            MessageBox.Show(mes);
+            _ = MessageBox.Show(mes);
         }
 
         public static void CopyWithRetry(string sourceFile, string destinationFile, int maxRetries = 10, int delayMs = 500)
@@ -2140,7 +1876,9 @@ namespace Overbrugging
                 {
                     attempts++;
                     if (attempts >= maxRetries)
+                    {
                         throw new IOException($"Failed to copy file after {maxRetries} attempts: {ex.Message}", ex);
+                    }
 
                     Thread.Sleep(delayMs);
                 }

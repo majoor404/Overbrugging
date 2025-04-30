@@ -270,6 +270,7 @@ namespace Overbrugging
             catch { }
             // en toevoegen nieuwe
             MainForm.Main.LijstData.Add(MainForm.Main.TempData);
+            
             MainForm.Main.SaveData_lijst();
 
             Close();
