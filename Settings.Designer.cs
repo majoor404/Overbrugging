@@ -142,7 +142,7 @@
             this.ButExport.Name = "ButExport";
             this.ButExport.Size = new System.Drawing.Size(310, 61);
             this.ButExport.TabIndex = 3;
-            this.ButExport.Text = "Export Data File";
+            this.ButExport.Text = "Administratie";
             this.ButExport.UseVisualStyleBackColor = true;
             // 
             // Settings

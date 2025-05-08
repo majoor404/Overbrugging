@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
+using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using Label = System.Windows.Forms.Label;
@@ -583,8 +584,8 @@ namespace Overbrugging
                     GC.Collect();
 
                     // Melding
-                    FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Save Namen Lijst.");
-                    md.Show();
+                    //FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Save Namen Lijst.");
+                    //md.Show();
                 }
             }
             catch
@@ -605,8 +606,8 @@ namespace Overbrugging
                     GC.Collect();
 
                     // Melding
-                    FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Save Sectie's Lijst.");
-                    md.Show();
+                    //FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Save Sectie's Lijst.");
+                    //md.Show();
                 }
             }
             catch
@@ -627,8 +628,8 @@ namespace Overbrugging
                     GC.Collect();
 
                     // Melding
-                    FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Save Instalatie's Lijst.");
-                    md.Show();
+                    //FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Save Instalatie's Lijst.");
+                    //md.Show();
                 }
             }
             catch
@@ -783,14 +784,21 @@ namespace Overbrugging
 
             if (ret == DialogResult.Yes)
             {
-                // Export
-                Export();
+                // was export, nu administratie na invullen wachtwoord
+                Prompt po = new Prompt();
+                string ww = po.ShowDialog("Wachtwoord", "Wachtwoord voor administratie");
+
+                if (ww != DateTime.Now.ToString("ddMM"))
+                    return;
+
+                Administratie ad = new Administratie(Main);
+                ad.ShowDialog();
             }
 
             ButRefresh_Click(this, null);
         }
 
-        private void Export()
+        public void Export()
         {
             // laad
             LaadData_lijst();
@@ -1401,16 +1409,21 @@ namespace Overbrugging
             {
                 if (File.Exists(file))
                 {
+                    DebugMes($"File {file} bestaat");
                     if (!Directory.Exists("Backup"))
                     {
+                        DebugMes($"Backup dir maken");
                         _ = Directory.CreateDirectory("Backup");
                     }
+                    DebugMes("Backup dir bestaat");
 
                     string s = DateTime.Now.ToString("MM-dd-yyyy HH-mm-ss");
 
                     nieuw_naam = Directory.GetCurrentDirectory() + @"\Backup\overbrug_" + s + ".bin";
 
+                    DebugMes($"niewe naam {nieuw_naam}");
                     //File.Copy(file, nieuw_naam, true);  // overwrite oude file
+                    
                     // dit ging fout als orgineel nog gelockt was.
                     CopyWithRetry(file, nieuw_naam);
 
@@ -1426,9 +1439,9 @@ namespace Overbrugging
                     _ = MessageBox.Show($"Backup ging fout\n{file} niet aanwezig");
                 }
             }
-            catch
+            catch(Exception ex) 
             {
-                _ = MessageBox.Show($"Save backup ging fout\n{nieuw_naam}");
+                _ = MessageBox.Show($"Save backup ging fout\n{nieuw_naam}\n{ex}");
             }
         }
 
@@ -1884,14 +1897,30 @@ namespace Overbrugging
                 }
             }
         }
-        //public static void CopyInUseFile(string sourceFile, string destinationFile)
-        //{
-        //    using (FileStream sourceStream = new FileStream(sourceFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-        //    using (FileStream destinationStream = new FileStream(destinationFile, FileMode.Create, FileAccess.Write))
-        //    {
-        //        sourceStream.CopyTo(destinationStream);
-        //    }
-        //    DebugMes($"Backup gemaakt van \n{sourceFile} naar \n{destinationFile}");
-        //}
+
+        public class Prompt
+        {
+            public string ShowDialog(string text, string caption)
+            {
+                Form prompt = new Form()
+                {
+                    Width = 500,
+                    Height = 150,
+                    FormBorderStyle = FormBorderStyle.FixedDialog,
+                    Text = caption,
+                    StartPosition = FormStartPosition.CenterScreen
+                };
+                Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
+                TextBox textBox = new TextBox() { Left = 50, Top = 40, Width = 400 };
+                Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 80, DialogResult = DialogResult.OK };
+                confirmation.Click += (sender, e) => { prompt.Close(); };
+                prompt.Controls.Add(textBox);
+                prompt.Controls.Add(confirmation);
+                prompt.Controls.Add(textLabel);
+                prompt.AcceptButton = confirmation;
+
+                return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
+            }
+        }
     }
 }

@@ -142,16 +142,16 @@ namespace Overbrugging
         {
             try
             {
-                InstallatieOnderdeel Record = MainForm.Main.InstallatieLijst.First(a => a.Instal == TextBoxInstall.Text);
+                InstallatieOnderdeel Record = MainForm.Main.InstallatieLijst.First(a => a.Instal == TextBoxInstall.Text && a.Sectie == TextBoxSectie.Text);
 
                 // vraag
                 DialogResult dialogResult = MessageBox.Show($"Verwijder {Record.Instal}", "Vraagje", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    MainForm.Main.InstallatieLijst.Remove(Record);
+                    bool test = MainForm.Main.InstallatieLijst.Remove(Record);
                     // save
                     MainForm.Main.SaveDataInstallaties_lijst();
-                    //MainForm.Main.Wait(500);
+                    MainForm.Main.Wait(500);
                     // refresh
                     EditSecties_Shown(this, null);
                 }
