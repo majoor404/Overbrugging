@@ -57,7 +57,7 @@ namespace Overbrugging
 
         private void BTAovToPG_Click(object sender, EventArgs e)
         {
-            foreach (Data data in _mainForm.LijstData)
+            foreach (Data data in _DataRows)
             {
                 if (data.Sectie == "AOV")
                 {
@@ -69,8 +69,32 @@ namespace Overbrugging
 
         private void BTSave_Click(object sender, EventArgs e)
         {
+            _mainForm.LijstData.Clear();
+            
+            foreach (Data data in _DataRows)
+            {
+                _mainForm.LijstData.Add(data);
+            }
+
             _mainForm.SaveData_lijst();
             LBChange.Visible = false;
+        }
+
+        private void DGAdmin_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            LBChange.Visible = true;
+        }
+
+        private void BTtiwToOverb_Click(object sender, EventArgs e)
+        {
+            foreach (Data data in _DataRows)
+            {
+                if (data.Soort == "TIW")
+                {
+                    data.Soort = "OVERB";
+                }
+            }
+            LBChange.Visible = true;
         }
     }
 }

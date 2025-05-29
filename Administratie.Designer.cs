@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.LBChange = new System.Windows.Forms.Label();
+            this.BTSave = new System.Windows.Forms.Button();
             this.BTAovToPG = new System.Windows.Forms.Button();
             this.BTToXML = new System.Windows.Forms.Button();
             this.BTClose = new System.Windows.Forms.Button();
             this.DGAdmin = new System.Windows.Forms.DataGridView();
-            this.BTSave = new System.Windows.Forms.Button();
-            this.LBChange = new System.Windows.Forms.Label();
+            this.BTtiwToOverb = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGAdmin)).BeginInit();
             this.SuspendLayout();
@@ -43,6 +44,7 @@
             // 
             this.panel1.Controls.Add(this.LBChange);
             this.panel1.Controls.Add(this.BTSave);
+            this.panel1.Controls.Add(this.BTtiwToOverb);
             this.panel1.Controls.Add(this.BTAovToPG);
             this.panel1.Controls.Add(this.BTToXML);
             this.panel1.Controls.Add(this.BTClose);
@@ -53,13 +55,34 @@
             this.panel1.Size = new System.Drawing.Size(267, 961);
             this.panel1.TabIndex = 0;
             // 
+            // LBChange
+            // 
+            this.LBChange.AutoSize = true;
+            this.LBChange.BackColor = System.Drawing.Color.Red;
+            this.LBChange.Location = new System.Drawing.Point(95, 19);
+            this.LBChange.Name = "LBChange";
+            this.LBChange.Size = new System.Drawing.Size(80, 20);
+            this.LBChange.TabIndex = 1;
+            this.LBChange.Text = "CHANGE!!!";
+            this.LBChange.Visible = false;
+            // 
+            // BTSave
+            // 
+            this.BTSave.Location = new System.Drawing.Point(29, 769);
+            this.BTSave.Name = "BTSave";
+            this.BTSave.Size = new System.Drawing.Size(213, 71);
+            this.BTSave.TabIndex = 0;
+            this.BTSave.Text = "Save overbruging.bin";
+            this.BTSave.UseVisualStyleBackColor = true;
+            this.BTSave.Click += new System.EventHandler(this.BTSave_Click);
+            // 
             // BTAovToPG
             // 
             this.BTAovToPG.Location = new System.Drawing.Point(29, 151);
             this.BTAovToPG.Name = "BTAovToPG";
             this.BTAovToPG.Size = new System.Drawing.Size(213, 71);
             this.BTAovToPG.TabIndex = 0;
-            this.BTAovToPG.Text = "AOV to PG&A - PA";
+            this.BTAovToPG.Text = "Alle AOV to PG&A - PA";
             this.BTAovToPG.UseVisualStyleBackColor = true;
             this.BTAovToPG.Click += new System.EventHandler(this.BTAovToPG_Click);
             // 
@@ -85,6 +108,7 @@
             // 
             // DGAdmin
             // 
+            this.DGAdmin.AllowUserToAddRows = false;
             this.DGAdmin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGAdmin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGAdmin.Location = new System.Drawing.Point(0, 0);
@@ -92,27 +116,17 @@
             this.DGAdmin.Name = "DGAdmin";
             this.DGAdmin.Size = new System.Drawing.Size(1617, 961);
             this.DGAdmin.TabIndex = 1;
+            this.DGAdmin.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGAdmin_CellValueChanged);
             // 
-            // BTSave
+            // BTtiwToOverb
             // 
-            this.BTSave.Location = new System.Drawing.Point(29, 769);
-            this.BTSave.Name = "BTSave";
-            this.BTSave.Size = new System.Drawing.Size(213, 71);
-            this.BTSave.TabIndex = 0;
-            this.BTSave.Text = "Save overbruging.bin";
-            this.BTSave.UseVisualStyleBackColor = true;
-            this.BTSave.Click += new System.EventHandler(this.BTSave_Click);
-            // 
-            // LBChange
-            // 
-            this.LBChange.AutoSize = true;
-            this.LBChange.BackColor = System.Drawing.Color.Red;
-            this.LBChange.Location = new System.Drawing.Point(95, 19);
-            this.LBChange.Name = "LBChange";
-            this.LBChange.Size = new System.Drawing.Size(80, 20);
-            this.LBChange.TabIndex = 1;
-            this.LBChange.Text = "CHANGE!!!";
-            this.LBChange.Visible = false;
+            this.BTtiwToOverb.Location = new System.Drawing.Point(29, 246);
+            this.BTtiwToOverb.Name = "BTtiwToOverb";
+            this.BTtiwToOverb.Size = new System.Drawing.Size(213, 71);
+            this.BTtiwToOverb.TabIndex = 0;
+            this.BTtiwToOverb.Text = "Alle TIW naar OVERB";
+            this.BTtiwToOverb.UseVisualStyleBackColor = true;
+            this.BTtiwToOverb.Click += new System.EventHandler(this.BTtiwToOverb_Click);
             // 
             // Administratie
             // 
@@ -143,5 +157,6 @@
         private System.Windows.Forms.Button BTAovToPG;
         private System.Windows.Forms.Button BTSave;
         private System.Windows.Forms.Label LBChange;
+        private System.Windows.Forms.Button BTtiwToOverb;
     }
 }

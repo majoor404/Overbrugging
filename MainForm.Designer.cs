@@ -48,6 +48,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.DebugCB = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.BTMOCAanmaken = new System.Windows.Forms.Button();
             this.BTMocNodig = new System.Windows.Forms.Button();
@@ -151,7 +152,6 @@
             this.KillTimer = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.DebugCB = new System.Windows.Forms.CheckBox();
             this.panelTop.SuspendLayout();
             this.PanelDebug.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RechtenDebug)).BeginInit();
@@ -378,6 +378,16 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(213, 917);
             this.panelMenu.TabIndex = 4;
+            // 
+            // DebugCB
+            // 
+            this.DebugCB.AutoSize = true;
+            this.DebugCB.Location = new System.Drawing.Point(195, 899);
+            this.DebugCB.Name = "DebugCB";
+            this.DebugCB.Size = new System.Drawing.Size(15, 14);
+            this.DebugCB.TabIndex = 25;
+            this.DebugCB.UseVisualStyleBackColor = true;
+            this.DebugCB.CheckedChanged += new System.EventHandler(this.DebugCB_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -1516,16 +1526,6 @@
             this.toolTip1.AutomaticDelay = 0;
             this.toolTip1.IsBalloon = true;
             this.toolTip1.UseFading = false;
-            // 
-            // DebugCB
-            // 
-            this.DebugCB.AutoSize = true;
-            this.DebugCB.Location = new System.Drawing.Point(1, 0);
-            this.DebugCB.Name = "DebugCB";
-            this.DebugCB.Size = new System.Drawing.Size(15, 14);
-            this.DebugCB.TabIndex = 25;
-            this.DebugCB.UseVisualStyleBackColor = true;
-            this.DebugCB.CheckedChanged += new System.EventHandler(this.DebugCB_CheckedChanged);
             // 
             // MainForm
             // 
