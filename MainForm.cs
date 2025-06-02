@@ -1410,16 +1410,24 @@ namespace Overbrugging
                 if (File.Exists(file))
                 {
                     DebugMes($"File {file} bestaat");
-                    if (!Directory.Exists("Backup"))
+
+                    string backuppath = AppDomain.CurrentDomain.BaseDirectory + @"Backup\";
+                    DirectoryInfo di = new DirectoryInfo(backuppath);
+                    bool bestaat = di.Exists;
+
+                    DebugMes($"backup path =  {backuppath}");
+                    DebugMes($"deze backup path bestaat ? {bestaat}");
+
+                    if (!bestaat)
                     {
                         DebugMes($"Backup dir maken");
-                        _ = Directory.CreateDirectory("Backup");
+                        _ = Directory.CreateDirectory(backuppath);
+                        DebugMes("Backup dir aangemaakt!");
                     }
-                    DebugMes("Backup dir bestaat");
 
                     string s = DateTime.Now.ToString("MM-dd-yyyy HH-mm-ss");
 
-                    nieuw_naam = Directory.GetCurrentDirectory() + @"\Backup\overbrug_" + s + ".bin";
+                    nieuw_naam = backuppath + @"overbrug_" + s + ".bin";
 
                     DebugMes($"niewe naam {nieuw_naam}");
                     //File.Copy(file, nieuw_naam, true);  // overwrite oude file
