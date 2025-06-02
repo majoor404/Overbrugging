@@ -29,6 +29,7 @@ namespace Overbrugging
         public int LastIndex = 0;
         public static string datapath = AppDomain.CurrentDomain.BaseDirectory + "Data\\";
         public static string bijlagepath = AppDomain.CurrentDomain.BaseDirectory + "Bijlage\\";
+        public static string backuppath = AppDomain.CurrentDomain.BaseDirectory + "Backup\\";
         public static Bijlage bijlage = new Bijlage();
         public List<string> instellingen = new List<string>();
         public DateTime verloopdatum = DateTime.Now.AddDays(1);
@@ -1410,8 +1411,7 @@ namespace Overbrugging
                 if (File.Exists(file))
                 {
                     DebugMes($"File {file} bestaat");
-
-                    string backuppath = AppDomain.CurrentDomain.BaseDirectory + @"Backup\";
+                    
                     DirectoryInfo di = new DirectoryInfo(backuppath);
                     bool bestaat = di.Exists;
 
@@ -1429,8 +1429,7 @@ namespace Overbrugging
 
                     nieuw_naam = backuppath + @"overbrug_" + s + ".bin";
 
-                    DebugMes($"niewe naam {nieuw_naam}");
-                    //File.Copy(file, nieuw_naam, true);  // overwrite oude file
+                    DebugMes($"nieuwe naam {nieuw_naam}");
                     
                     // dit ging fout als orgineel nog gelockt was.
                     CopyWithRetry(file, nieuw_naam);
