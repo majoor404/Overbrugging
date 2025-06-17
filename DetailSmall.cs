@@ -59,6 +59,8 @@ namespace Overbrugging
             Bijlage.Visible = MainForm.bijlage.BijlageAanwezig(TextBoxRegNr.Text);
 
             BTActueelEnabled();
+
+            MainForm.Main.KillTimer.Enabled = false;
         }
 
         private void RefreshForm()
@@ -547,6 +549,11 @@ namespace Overbrugging
         private void ComboSectieDeel_SelectedIndexChanged(object sender, EventArgs e)
         {
             BTActueelEnabled();
+        }
+
+        private void DetailSmall_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MainForm.Main.KillTimer.Enabled = true;
         }
     }
 }

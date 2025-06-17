@@ -1636,7 +1636,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button BTMOCAanmaken;
         private System.Windows.Forms.Button BTMocNodig;
-        private System.Windows.Forms.Timer KillTimer;
         private System.Windows.Forms.Label KillTijdLabel;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.PictureBox PictureBijlage;
@@ -1686,6 +1685,7 @@
         private System.Windows.Forms.TextBox TB2S;
         private System.Windows.Forms.TextBox TB1S;
         public System.Windows.Forms.CheckBox DebugCB;
+        public System.Windows.Forms.Timer KillTimer;
     }
 }
 

@@ -897,6 +897,7 @@
             this.Name = "DetailSmall";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Detail Small Scherm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DetailSmall_FormClosed);
             this.Shown += new System.EventHandler(this.Detail_Shown);
             this.Panel12345.ResumeLayout(false);
             this.Panel12345.PerformLayout();

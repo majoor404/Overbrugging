@@ -35,7 +35,7 @@ namespace Overbrugging
 
             // als geen iv/wv dan niks invullen bij wv.
             PanelWV.Enabled = MainForm.Main.rechten == 2;
-            
+
             //als persoon in lijst, mag die wel afsluiten
             PanelVerwijderen.Enabled = MainForm.Main.rechten > 0;
 
@@ -55,13 +55,15 @@ namespace Overbrugging
                 ButtonHeropen.Enabled = false;
                 BijlageToevoegen.Enabled = false;
             }
-           
+
             TextBoxRede.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
             TextBoxOplossing.TextChanged += InvoerVeranderenTerwijlGoedGekeurd;
 
             Bijlage.Visible = MainForm.bijlage.BijlageAanwezig(TextBoxRegNr.Text);
 
             BTActueelEnabled();
+
+            MainForm.Main.KillTimer.Enabled = false;
         }
 
         private void RefreshForm()
@@ -549,6 +551,11 @@ namespace Overbrugging
         private void ComboSectieDeel_SelectedIndexChanged(object sender, EventArgs e)
         {
             BTActueelEnabled();
+        }
+
+        private void Detail_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MainForm.Main.KillTimer.Enabled = true;
         }
     }
 }
