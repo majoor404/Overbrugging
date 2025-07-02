@@ -653,6 +653,7 @@ namespace Overbrugging
         }
         public void LaadData_lijst()
         {
+            dataGridView1.DataSource = null;
             try
             {
                 LaadData(5);
@@ -660,6 +661,7 @@ namespace Overbrugging
             catch{ }
             GC.Collect();
             LastIndex = GetLaatsteRecord();
+            dataGridView1.DataSource = LijstData;
         }
 
         private void LaadData(int aantal)
