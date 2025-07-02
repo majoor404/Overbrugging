@@ -11,7 +11,6 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
-using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using Label = System.Windows.Forms.Label;
@@ -658,7 +657,7 @@ namespace Overbrugging
             {
                 LaadData(5);
             }
-            catch{ }
+            catch { }
             GC.Collect();
             LastIndex = GetLaatsteRecord();
             dataGridView1.DataSource = LijstData;
@@ -792,10 +791,12 @@ namespace Overbrugging
                 string ww = po.ShowDialog("Wachtwoord", "Wachtwoord voor administratie");
 
                 if (ww != DateTime.Now.ToString("ddMM"))
+                {
                     return;
+                }
 
                 Administratie ad = new Administratie(Main);
-                ad.ShowDialog();
+                _ = ad.ShowDialog();
             }
 
             ButRefresh_Click(this, null);
@@ -1413,7 +1414,7 @@ namespace Overbrugging
                 if (File.Exists(file))
                 {
                     DebugMes($"File {file} bestaat");
-                    
+
                     DirectoryInfo di = new DirectoryInfo(backuppath);
                     bool bestaat = di.Exists;
 
@@ -1432,7 +1433,7 @@ namespace Overbrugging
                     nieuw_naam = backuppath + @"overbrug_" + s + ".bin";
 
                     DebugMes($"nieuwe naam {nieuw_naam}");
-                    
+
                     // dit ging fout als orgineel nog gelockt was.
                     CopyWithRetry(file, nieuw_naam);
 
@@ -1448,7 +1449,7 @@ namespace Overbrugging
                     _ = MessageBox.Show($"Backup ging fout\n{file} niet aanwezig");
                 }
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 _ = MessageBox.Show($"Save backup ging fout\n{nieuw_naam}\n{ex}");
             }
