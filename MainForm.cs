@@ -244,42 +244,6 @@ namespace Overbrugging
             }
         }
 
-        //private string ZoekNaam(string zoek)
-        //{
-        //    if (string.IsNullOrEmpty(zoek))
-        //    {
-        //        return "";
-        //    }
-
-        //    try
-        //    {
-        //        NamenFunties Q = NamenLijst.First(a => a.Index == zoek);
-        //        return Q.Naam;
-        //    }
-        //    catch
-        //    {
-        //        return "";
-        //    }
-        //}
-
-        //private string ZoekInstallatie(string zoek)
-        //{
-        //    if (string.IsNullOrEmpty(zoek))
-        //    {
-        //        return "";
-        //    }
-
-        //    try
-        //    {
-        //        InstallatieOnderdeel Q = InstallatieLijst.First(a => a.Index == zoek);
-        //        return Q.Instal;
-        //    }
-        //    catch
-        //    {
-        //        return "";
-        //    }
-        //}
-
         private void Exit_Click(object sender, EventArgs e)
         {
             Close();
