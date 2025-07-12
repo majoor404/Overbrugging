@@ -1,24 +1,61 @@
 ﻿using System;
 using System.Drawing;
+using System.Numerics;
 using System.Windows.Forms;
 
 namespace Melding
 {
     public partial class FormMelding : Form
     {
-        private int meldingX, meldingY;
-        private readonly int schermbreed, schermhoog;
-        private int close;
-        private StatusForm status;
+        private Vector2 startPosition;
+        private Vector2 endPosition;
+        private readonly Timer animationTimer;
+        private float animationProgress = 0; // Value between 0 and 1
+        private Timer wachtTimer;
 
         private enum StatusForm { start, show, eind};
         public enum Type { Info, Cal, Err, Klaar, Edit, Save , Note};
 
-        public FormMelding(Type type, string regel1, string regel2)
+        public FormMelding()
         {
             InitializeComponent();
-            schermbreed = Screen.PrimaryScreen.WorkingArea.Width;
-            schermhoog = Screen.PrimaryScreen.WorkingArea.Height;
+
+            animationTimer = new Timer
+            {
+                Interval = 16 // Roughly 60 FPS
+            };
+            animationTimer.Tick += AnimationTimer_Tick;
+        }
+
+        private void AnimationTimer_Tick(object sender, EventArgs e)
+        {
+            animationProgress += 0.01f; // Adjust for speed
+            if (animationProgress >= 1)
+            {
+                animationProgress = 1;
+                animationTimer.Stop();
+                Close(); // Close the form when animation is complete
+            }
+
+            // Ease-in-out interpolatie (S-curve)
+            float t = animationProgress;
+            t = t * t * (3f - (2f * t)); // Smoothstep formule
+
+            float x = startPosition.X + ((endPosition.X - startPosition.X) * t);
+            float y = startPosition.Y + ((endPosition.Y - startPosition.Y) * t);
+
+            Location = new Point((int)x, (int)y);
+
+        }
+
+        public void Show(Type type, string regel1, string regel2)
+        {
+
+            int ourScreenWidth = Screen.FromControl(this).WorkingArea.Width;
+            int ourScreenHeight = Screen.FromControl(this).WorkingArea.Height;
+            startPosition = new Vector2(Location.X, Location.Y); // center screen
+            endPosition = new Vector2(ourScreenWidth, ourScreenHeight);
+            Location = new Point((int)startPosition.X, (int)startPosition.Y);
 
             label1.Text = regel1;
             label2.Text = regel2;
@@ -58,58 +95,22 @@ namespace Melding
                     panelColor.BackColor = Color.FromArgb(0, 147, 241);
                     break;
             }
+            this.Show();
+            wachtTimer = new Timer();
+            wachtTimer.Interval = 1500; // 1 seconde
+            wachtTimer.Tick += WachtTimer_Tick;
+            wachtTimer.Start();
         }
 
-        private void FormMelding_Load(object sender, EventArgs e)
+        private void WachtTimer_Tick(object sender, EventArgs e)
         {
-            meldingX = schermbreed - Width - 10;
-            meldingY = schermhoog + Height + 10;
+            wachtTimer.Stop();
+            wachtTimer.Tick -= WachtTimer_Tick;
+            wachtTimer.Dispose();
+            wachtTimer = null;
 
-            Location = new Point(meldingX, meldingY);
-        }
-
-        private void FormMelding_MouseClick(object sender, MouseEventArgs e)
-        {
-            timer.Enabled = false;
-            Close();
-        }
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            if (status == StatusForm.start)
-            {
-                meldingY -= 6;
-                Location = new Point(meldingX, meldingY);
-                Refresh();
-                if (meldingY < schermhoog - Height - 10)
-                {
-                    status = StatusForm.show;
-                    close = 150;
-                }
-            }
-            if (status == StatusForm.show)
-            {
-                close--;
-                if (close < 0)
-                    status = StatusForm.eind;
-            }
-            if (status == StatusForm.eind)
-            {
-                meldingY += 6;
-                Location = new Point(meldingX, meldingY);
-                if (meldingY > schermhoog)
-                {
-                    timer.Enabled = false;
-                    Close();
-                    System.GC.Collect();
-                }
-            }
-        }
-
-        private void FormMelding_Shown(object sender, EventArgs e)
-        {
-            status = StatusForm.start;
-            timer.Enabled = true;
+            animationProgress = 0; // Reset animation
+            animationTimer.Start();
         }
     }
 }

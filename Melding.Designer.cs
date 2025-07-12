@@ -75,26 +75,22 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "R.Majoor";
             // 
-            // timer
-            // 
-            this.timer.Interval = 10;
-            this.timer.Tick += new System.EventHandler(this.Timer_Tick);
-            // 
             // FormMelding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(298, 59);
+            this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.panelColor);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormMelding";
-            this.Text = "Melding";
-            this.Load += new System.EventHandler(this.FormMelding_Load);
-            this.Shown += new System.EventHandler(this.FormMelding_Shown);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FormMelding_MouseClick);
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

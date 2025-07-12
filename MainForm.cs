@@ -254,10 +254,11 @@ namespace Overbrugging
             if (Scalling)
             {
                 ScaleMainVenster();
+                this.WindowState = FormWindowState.Maximized;
             }
 
-            FormMelding md = new FormMelding(FormMelding.Type.Info, "Overbruging 2.0", "R.Majoor");
-            md.Show();
+            FormMelding md = new FormMelding();
+            md.Show(FormMelding.Type.Info, "Overbruging 2.0", "R.Majoor");
 
             // laad namen
             LaadNamen_lijst();
