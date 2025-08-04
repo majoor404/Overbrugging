@@ -383,6 +383,9 @@ namespace Overbrugging
                 PanelDebug.Visible = true;
                 RechtenDebug.Value = rechten;
             }
+
+            if(IsIVer.Checked)
+                Geblokkerd.Opruimen();
         }
 
         private void VulGrid()

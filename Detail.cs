@@ -152,6 +152,7 @@ namespace Overbrugging
             DatumVerloopTIW.TB.Text = nu.ToString("dd-MM-yyyy");
 
             ComboBoxIVWV.Text = MainForm.Main.LabelUser.Text;
+            ComboBoxIVWV.Enabled = false; // niet meer veranderen
         }
 
         private void ButtonIVWVDatumVerw_Click(object sender, EventArgs e)
@@ -491,6 +492,7 @@ namespace Overbrugging
             if (MainForm.Main.LabelUser.Text != ComboBoxIVWV.Text)
             {
                 ComboBoxIVWV.Text = MainForm.Main.LabelUser.Text;
+                ComboBoxIVWV.Enabled = false; // niet meer veranderen
             }
         }
 
@@ -526,6 +528,13 @@ namespace Overbrugging
             RedeMOCLabel.Text = KS.UitgekozenGeenMocRegel;
             MainForm.Main.TempData.Reserve1 = RedeMOCLabel.Text;
 
+            // als text van wv veranderd, en naam is anders dan orginele wv, deze aanpassen
+            if (MainForm.Main.LabelUser.Text != ComboBoxIVWV.Text)
+            {
+                ComboBoxIVWV.Text = MainForm.Main.LabelUser.Text;
+                ComboBoxIVWV.Enabled = false; // niet meer veranderen
+            }
+
             RefreshForm();
         }
 
@@ -556,6 +565,26 @@ namespace Overbrugging
         private void Detail_FormClosed(object sender, FormClosedEventArgs e)
         {
             MainForm.Main.KillTimer.Enabled = true;
+        }
+
+        private void DatumWv_Leave(object sender, EventArgs e)
+        {
+            // als text van wv veranderd, en naam is anders dan orginele wv, deze aanpassen
+            if (MainForm.Main.LabelUser.Text != ComboBoxIVWV.Text)
+            {
+                ComboBoxIVWV.Text = MainForm.Main.LabelUser.Text;
+                ComboBoxIVWV.Enabled = false; // niet meer veranderen
+            }
+        }
+
+        private void DatumVerloopTIW_Leave(object sender, EventArgs e)
+        {
+            // als text van wv veranderd, en naam is anders dan orginele wv, deze aanpassen
+            if (MainForm.Main.LabelUser.Text != ComboBoxIVWV.Text)
+            {
+                ComboBoxIVWV.Text = MainForm.Main.LabelUser.Text;
+                ComboBoxIVWV.Enabled = false; // niet meer veranderen
+            }
         }
     }
 }

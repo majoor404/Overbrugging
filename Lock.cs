@@ -138,5 +138,36 @@ namespace Overbrugging
                 return (T)serializer.Deserialize(stringReader);
             }
         }
+
+        public void Opruimen()
+        {
+            // Opruimen van locks die ouder zijn dan 30 minuten
+            if (LaadLockFile())
+            {
+                if (LockList.Count == 0)
+                {
+                    return;
+                }
+
+                bool changed = false;
+                // als lock > 30 minuten, gooi ik hem los.
+                DateTime test = DateTime.Now;
+                test = test.AddMinutes(-30);
+
+                foreach (Loc Rec in LockList.ToList())
+                {
+                    // als lock > 30 minuten, gooi ik hem los.
+                    if (Rec.Starttijd < test)
+                    {
+                        _ = LockList.Remove(Rec);
+                        changed = true;
+                    }
+                }
+                if(changed)
+                {
+                    SaveLockFile();
+                }
+            }
+        }
     }
 }

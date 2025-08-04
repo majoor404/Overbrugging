@@ -772,6 +772,7 @@
             this.DatumVerloopTIW.Name = "DatumVerloopTIW";
             this.DatumVerloopTIW.Size = new System.Drawing.Size(137, 42);
             this.DatumVerloopTIW.TabIndex = 4;
+            this.DatumVerloopTIW.Leave += new System.EventHandler(this.DatumVerloopTIW_Leave);
             // 
             // DatumWv
             // 
@@ -780,6 +781,7 @@
             this.DatumWv.Name = "DatumWv";
             this.DatumWv.Size = new System.Drawing.Size(137, 42);
             this.DatumWv.TabIndex = 2;
+            this.DatumWv.Leave += new System.EventHandler(this.DatumWv_Leave);
             // 
             // label21
             // 
