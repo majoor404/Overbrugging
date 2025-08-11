@@ -254,7 +254,7 @@ namespace Overbrugging
             if (Scalling)
             {
                 ScaleMainVenster();
-                this.WindowState = FormWindowState.Maximized;
+                WindowState = FormWindowState.Maximized;
             }
 
             FormMelding md = new FormMelding();
@@ -384,8 +384,10 @@ namespace Overbrugging
                 RechtenDebug.Value = rechten;
             }
 
-            if(IsIVer.Checked)
+            if (IsIVer.Checked)
+            {
                 Geblokkerd.Opruimen();
+            }
         }
 
         private void VulGrid()
@@ -805,71 +807,9 @@ namespace Overbrugging
 
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            KillTijdLabel.Text = "29";
-
-            try
-            {
-                // zoek record
-                int regNr = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
-                TempData = ZoekDataRecord(regNr);
-
-                // maak formulier
-                DetailSmall dts = new DetailSmall();
-                Detail dt = new Detail();
-
-                bool isgelockt = Geblokkerd.IsLock(GeselRegNr.Text);
-
-                if (isgelockt)
-                {
-                    dt.LockMode = true;
-                    dts.LockMode = true;
-                }
-
-                if (LabelUser.Text == "Gebruiker niet in lijst")
-                {
-                    dt.LockMode = true;
-                    dts.LockMode = true;
-                }
-
-                // als een IV of WV blokeer
-                if (IsIVer.Checked && !isgelockt)
-                {
-                    Geblokkerd.SetLock(LabelUser.Text, GeselRegNr.Text);
-                }
-
-                if (!Scalling)
-                {
-                    dt.TextBoxRegNr.Text = TempData.RegNr.ToString();
-                    dt.TextBoxRegNr.Enabled = false;
-
-                    VulDatailForm(dt, TempData);
-                    dt.Bijlage.Visible = bijlage.BijlageAanwezig(dt.TextBoxRegNr.Text);
-                    _ = dt.ShowDialog();
-
-                }
-                else
-                {
-                    dts.TextBoxRegNr.Text = TempData.RegNr.ToString();
-                    dts.TextBoxRegNr.Enabled = false;
-
-                    VulDatailFormSmall(dts, TempData);
-                    dts.Bijlage.Visible = bijlage.BijlageAanwezig(dt.TextBoxRegNr.Text);
-
-                    _ = dts.ShowDialog();
-                }
-
-                if (IsIVer.Checked && !isgelockt) // alleen als ik zelf gelockt hebt
-                {
-                    Geblokkerd.FreeLock(GeselRegNr.Text);
-                }
-
-                //refresh
-                ButRefresh_Click(this, null);
-            }
-            catch
-            {
-                _ = MessageBox.Show($"e = {e.RowIndex}");
-            }
+            // zoek record
+            int regNr = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+            RegelDetailForm(regNr);
         }
 
         public void SorteerNaamOpNaam()
@@ -1199,65 +1139,8 @@ namespace Overbrugging
                 return;
             }
 
-            KillTijdLabel.Text = "29";
-
-            try
-            {
-                // zoek record
-                int regNr = int.Parse(GeselRegNr.Text);
-                TempData = ZoekDataRecord(regNr);
-
-                // maak formulier
-                DetailSmall dts = new DetailSmall();
-                Detail dt = new Detail();
-
-                bool isgelockt = Geblokkerd.IsLock(GeselRegNr.Text);
-
-                if (isgelockt)
-                {
-                    dt.LockMode = true;
-                    dts.LockMode = true;
-                }
-
-                // als een IV of WV blokeer
-                if (IsIVer.Checked && !isgelockt)
-                {
-                    Geblokkerd.SetLock(LabelUser.Text, GeselRegNr.Text);
-                }
-
-                if (!Scalling)
-                {
-                    dt.TextBoxRegNr.Text = TempData.RegNr.ToString();
-                    dt.TextBoxRegNr.Enabled = false;
-
-                    VulDatailForm(dt, TempData);
-                    dt.Bijlage.Visible = bijlage.BijlageAanwezig(dt.TextBoxRegNr.Text);
-
-                    _ = dt.ShowDialog();
-                }
-                else
-                {
-                    dts.TextBoxRegNr.Text = TempData.RegNr.ToString();
-                    dts.TextBoxRegNr.Enabled = false;
-
-                    VulDatailFormSmall(dts, TempData);
-                    dts.Bijlage.Visible = bijlage.BijlageAanwezig(dt.TextBoxRegNr.Text);
-
-                    _ = dts.ShowDialog();
-                }
-
-                if (IsIVer.Checked && !isgelockt)  // alleen als ik zelf gelockt hebt
-                {
-                    Geblokkerd.FreeLock(GeselRegNr.Text);
-                }
-
-                //refresh
-                ButRefresh_Click(this, null);
-            }
-            catch
-            {
-                _ = MessageBox.Show($"Kon detail van record {GeselRegNr.Text} niet laden");
-            }
+            int regNr = int.Parse(GeselRegNr.Text);
+            RegelDetailForm(regNr);
         }
 
         private void VulDatailForm(Detail dt, Data Q)
@@ -1900,5 +1783,68 @@ namespace Overbrugging
                 return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
             }
         }
+
+        private void RegelDetailForm(int regNr)
+        {
+            KillTijdLabel.Text = "29";
+
+            try
+            {
+                TempData = ZoekDataRecord(regNr);
+
+                // maak formulier
+                DetailSmall dts = new DetailSmall();
+                Detail dt = new Detail();
+
+                bool isgelockt = Geblokkerd.IsLock(GeselRegNr.Text);
+
+                if (isgelockt)
+                {
+                    dt.LockMode = true;
+                    dts.LockMode = true;
+                }
+
+                // als een IV of WV blokeer
+                if (IsIVer.Checked && !isgelockt)
+                {
+                    Geblokkerd.SetLock(LabelUser.Text, GeselRegNr.Text);
+                }
+
+                if (!Scalling)
+                {
+                    dt.TextBoxRegNr.Text = TempData.RegNr.ToString();
+                    dt.TextBoxRegNr.Enabled = false;
+
+                    VulDatailForm(dt, TempData);
+                    dt.Bijlage.Visible = bijlage.BijlageAanwezig(dt.TextBoxRegNr.Text);
+
+                    _ = dt.ShowDialog();
+                }
+                else
+                {
+                    dts.TextBoxRegNr.Text = TempData.RegNr.ToString();
+                    dts.TextBoxRegNr.Enabled = false;
+
+                    VulDatailFormSmall(dts, TempData);
+                    dts.Bijlage.Visible = bijlage.BijlageAanwezig(dt.TextBoxRegNr.Text);
+
+                    _ = dts.ShowDialog();
+                }
+
+                if (IsIVer.Checked && !isgelockt)  // alleen als ik zelf gelockt hebt
+                {
+                    Geblokkerd.FreeLock(GeselRegNr.Text);
+                }
+
+                //refresh
+                ButRefresh_Click(this, null);
+            }
+            catch
+            {
+                _ = MessageBox.Show($"kon record {regNr} niet openen.");
+            }
+        }
     }
 }
+
+
