@@ -35,7 +35,7 @@ namespace Overbrugging
         public AutoCompleteStringCollection mycolIVWV = new AutoCompleteStringCollection();
         public AutoCompleteStringCollection mycol = new AutoCompleteStringCollection();
         public string inlognaam = "";
-        public int rechten = 0;
+        public int rechten = 0; // 0 is kijken, 1 is invoer, 2 is IV
 
         public Lock Geblokkerd = new Lock();
 
@@ -574,10 +574,6 @@ namespace Overbrugging
                     bin.Serialize(stream, SectieLijst);
                     bin = null; // destroy voor volgende keer
                     GC.Collect();
-
-                    // Melding
-                    //FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Save Sectie's Lijst.");
-                    //md.Show();
                 }
             }
             catch
@@ -596,10 +592,6 @@ namespace Overbrugging
                     bin.Serialize(stream, InstallatieLijst);
                     bin = null; // destroy voor volgende keer
                     GC.Collect();
-
-                    // Melding
-                    //FormMelding md = new FormMelding(FormMelding.Type.Save, "Overbruging 2.0", "Save Instalatie's Lijst.");
-                    //md.Show();
                 }
             }
             catch
