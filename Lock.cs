@@ -169,5 +169,34 @@ namespace Overbrugging
                 }
             }
         }
+
+        public void FreeLockGebruiker(string gebruiker)
+        {
+            // Opruimen van locks die ouder zijn dan 30 minuten
+            if (LaadLockFile())
+            {
+                if (LockList.Count == 0)
+                {
+                    return;
+                }
+
+                bool changed = false;
+
+                // als lock > van gebruiker , verwijderen
+                foreach (Loc Rec in LockList.ToList())
+                {
+                    // als lock > 30 minuten, gooi ik hem los.
+                    if (Rec.Naam == gebruiker)
+                    {
+                        _ = LockList.Remove(Rec);
+                        changed = true;
+                    }
+                }
+                if (changed)
+                {
+                    SaveLockFile();
+                }
+            }
+        }
     }
 }

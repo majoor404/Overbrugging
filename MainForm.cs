@@ -1831,10 +1831,14 @@ namespace Overbrugging
                     _ = dts.ShowDialog();
                 }
 
-                if (IsIVer.Checked && !isgelockt)  // alleen als ik zelf gelockt hebt
-                {
-                    Geblokkerd.FreeLock(GeselRegNr.Text);
-                }
+                
+                if(MainForm.Main.rechten == 2)
+                    Geblokkerd.FreeLockGebruiker(LabelUser.Text);
+                
+                //if (IsIVer.Checked && !isgelockt)  // alleen als ik zelf gelockt hebt
+                //{
+                //    Geblokkerd.FreeLock(GeselRegNr.Text);
+                //}
 
                 //refresh
                 ButRefresh_Click(this, null);
