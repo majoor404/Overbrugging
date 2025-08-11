@@ -20,33 +20,33 @@ namespace Melding
         {
             InitializeComponent();
 
-            animationTimer = new Timer
-            {
-                Interval = 16 // Roughly 60 FPS
-            };
-            animationTimer.Tick += AnimationTimer_Tick;
+            //animationTimer = new Timer
+            //{
+            //    Interval = 16 // Roughly 60 FPS
+            //};
+            //animationTimer.Tick += AnimationTimer_Tick;
         }
 
-        private void AnimationTimer_Tick(object sender, EventArgs e)
-        {
-            animationProgress += 0.01f; // Adjust for speed
-            if (animationProgress >= 1)
-            {
-                animationProgress = 1;
-                animationTimer.Stop();
-                Close(); // Close the form when animation is complete
-            }
+        //private void AnimationTimer_Tick(object sender, EventArgs e)
+        //{
+        //    animationProgress += 0.01f; // Adjust for speed
+        //    if (animationProgress >= 1)
+        //    {
+        //        animationProgress = 1;
+        //        animationTimer.Stop();
+        //        Close(); // Close the form when animation is complete
+        //    }
 
-            // Ease-in-out interpolatie (S-curve)
-            float t = animationProgress;
-            t = t * t * (3f - (2f * t)); // Smoothstep formule
+        //    // Ease-in-out interpolatie (S-curve)
+        //    float t = animationProgress;
+        //    t = t * t * (3f - (2f * t)); // Smoothstep formule
 
-            float x = startPosition.X + ((endPosition.X - startPosition.X) * t);
-            float y = startPosition.Y + ((endPosition.Y - startPosition.Y) * t);
+        //    float x = startPosition.X + ((endPosition.X - startPosition.X) * t);
+        //    float y = startPosition.Y + ((endPosition.Y - startPosition.Y) * t);
 
-            Location = new Point((int)x, (int)y);
+        //    Location = new Point((int)x, (int)y);
 
-        }
+        //}
 
         public void Show(Type type, string regel1, string regel2)
         {
@@ -109,8 +109,14 @@ namespace Melding
             wachtTimer.Dispose();
             wachtTimer = null;
 
-            animationProgress = 0; // Reset animation
-            animationTimer.Start();
+            Close();
+            //animationProgress = 0; // Reset animation
+            //animationTimer.Start();
+        }
+
+        private void FormMelding_MouseClick(object sender, MouseEventArgs e)
+        {
+            Close();
         }
     }
 }
