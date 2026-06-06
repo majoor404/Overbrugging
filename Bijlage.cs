@@ -28,10 +28,10 @@ namespace Overbrugging
                     _ = ListBox.Items.Add(lijst[i]);
                 }
             }
-            else
-            {
-                _ = MessageBox.Show($"Bijlage bestand {file} bestaat niet");
-            }
+            //else
+            //{
+            //    _ = MessageBox.Show($"Bijlage bestand {file} bestaat niet");
+            //}
         }
 
         public bool BijlageAanwezig(string ID)

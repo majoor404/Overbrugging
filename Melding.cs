@@ -9,8 +9,8 @@ namespace Melding
     {
         private Vector2 startPosition;
         private Vector2 endPosition;
-        private readonly Timer animationTimer;
-        private float animationProgress = 0; // Value between 0 and 1
+        //private readonly Timer animationTimer;
+        //private float animationProgress = 0; // Value between 0 and 1
         private Timer wachtTimer;
 
         private enum StatusForm { start, show, eind};

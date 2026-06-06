@@ -1294,7 +1294,8 @@ namespace Overbrugging
             }
             catch (Exception ex)
             {
-                _ = MessageBox.Show($"Save backup ging fout\n{nieuw_naam}\n{ex}");
+                // wil collega's niet lastig vallen met backup errors
+                //_ = MessageBox.Show($"Save backup ging fout\n{nieuw_naam}\n{ex}");
             }
         }
 
