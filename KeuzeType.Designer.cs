@@ -86,8 +86,9 @@
             this.textBoxMOC.Name = "textBoxMOC";
             this.textBoxMOC.ReadOnly = true;
             this.textBoxMOC.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxMOC.Size = new System.Drawing.Size(804, 361);
+            this.textBoxMOC.Size = new System.Drawing.Size(964, 361);
             this.textBoxMOC.TabIndex = 2;
+            this.textBoxMOC.WordWrap = false;
             this.textBoxMOC.Click += new System.EventHandler(this.textBoxMOC_Click);
             // 
             // checkBoxTT
@@ -108,7 +109,7 @@
             this.AcceptButton = this.ButTIW;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1056, 412);
+            this.ClientSize = new System.Drawing.Size(1215, 412);
             this.Controls.Add(this.checkBoxTT);
             this.Controls.Add(this.textBoxMOC);
             this.Controls.Add(this.label1);
